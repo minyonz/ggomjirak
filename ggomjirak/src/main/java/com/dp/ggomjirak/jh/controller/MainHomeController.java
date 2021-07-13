@@ -10,6 +10,6 @@ public class MainHomeController {
 
 	@RequestMapping(value="/mainHome", method=RequestMethod.GET)
 	public String mainHome() throws Exception {
-		return "board/main_home";
+		return "main/main_home3";
 	}
 }
