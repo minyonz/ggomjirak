@@ -3,11 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">								
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">								
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>								
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>								
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>	
+
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
@@ -20,11 +22,8 @@
 <link rel="stylesheet" href="/resources/css/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
+
+
 <title>Blog Home - Start Bootstrap Template</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -55,9 +54,9 @@
 							<div class="col-md-8">
 
 								<nav class="navbar navbar-expand-lg navbar-dark"
-									style="margin-bottom: 100px;">
+									style="margin-bottom: 70px;">
 									<div class="container">
-										<a class="navbar-brand" href="/board/mainHome">꼼지락</a>
+										<a class="navbar-brand" href="/main/mainHome3">꼼지락</a>
 										<button class="navbar-toggler" type="button"
 											data-bs-toggle="collapse"
 											data-bs-target="#navbarSupportedContent"
@@ -69,12 +68,12 @@
 											id="navbarSupportedContent">
 											<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 												<li class="nav-item">
-												<a class="nav-link" href="/board/mainHobby">취미</a></li>
+												<a class="nav-link" href="/main/mainHobby">취미</a></li>
 												<li class="nav-item"><a class="nav-link" href="#">이벤트</a></li>
 												<li class="nav-item"><a class="nav-link" href="#">소개</a></li>
 												<li class="nav-item dropdown ml-md-auto">
-												<a class="nav-link " href="http://example.com"
-													id="navbarDropdownMenuLink" data-toggle="dropdown">
+												<li class="nav-item dropdown ml-md-auto">
+												<a class="nav-link " href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown">
 													<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
 															fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
 														<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
@@ -92,6 +91,8 @@
 										</div>
 									</div>
 								</nav>
+
+
 
 								<!-- search -->
 								<div class="input-group"

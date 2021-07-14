@@ -17,4 +17,9 @@ public class MainHomeController {
 	public String mainHome3() throws Exception {
 		return "main/main_home3";
 	}
+	
+	@RequestMapping(value="/mainHobby", method=RequestMethod.GET)
+	public String mainHobby() throws Exception {
+		return "main/main_hobby";
+	}
 }
