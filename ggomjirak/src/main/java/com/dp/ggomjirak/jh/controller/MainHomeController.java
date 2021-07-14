@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("main")
 public class MainHomeController {
 
-	@RequestMapping(value="/mainHome", method=RequestMethod.GET)
-	public String mainHome() throws Exception {
+	@RequestMapping(value="/mainHome2", method=RequestMethod.GET)
+	public String mainHome2() throws Exception {
+		return "main/main_home2";
+	}
+	
+	@RequestMapping(value="/mainHome3", method=RequestMethod.GET)
+	public String mainHome3() throws Exception {
 		return "main/main_home3";
 	}
 }

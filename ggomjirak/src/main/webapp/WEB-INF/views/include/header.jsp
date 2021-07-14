@@ -37,6 +37,9 @@
 .green_color {
 	color:  rgb(31, 94, 67);
 }
+.wite_text {
+	color: white;
+}
 </style>
 </head>
 <body>
@@ -91,16 +94,6 @@
 								</nav>
 
 								<!-- search -->
-								<div>
-									<a class="navbar-brand" href="#!">꼼지락</a>
-									<button class="navbar-toggler" type="button"
-										data-bs-toggle="collapse"
-										data-bs-target="#navbarSupportedContent"
-										aria-controls="navbarSupportedContent" aria-expanded="false"
-										aria-label="Toggle navigation">
-										<span class="navbar-toggler-icon"></span>
-									</button>
-								</div>
 								<div class="input-group"
 									style="padding-left: 150px; padding-right: 150px; margin-bottom: 50px">
 									<button class="btn dropdown-toggle btn-outline-light"
