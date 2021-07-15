@@ -1,228 +1,224 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<!-- 이미지넘기기 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
-<meta charset="UTF-8">
-<title>WorkRoom Test</title>
-<style>
- body {
- 	background-color:#F5F5F5
- }
- 
- .box {
-    width: 80px;
-    height: 80px; 
-    border-radius: 70%;
-    overflow: hidden;
-}
-.profile {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.swiper-container {
-	height:200px;
-	border:5px;
-	border-radius:7px;
-}
-.swiper-slide {
-	text-align:center;
-	display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
-	align-items:center; /* 위아래 기준 중앙정렬 */
-	justify-content:center; /* 좌우 기준 중앙정렬 */
-}
-.swiper-slide img {
-	max-width:100%; /* 이미지 최대너비를 제한, 슬라이드에 이미지가 여러개가 보여질때 필요 */
-	max-height:100%;/* 이 예제에서 필요해서 설정했습니다. 상황에따라 다를 수 있습니다. */
-}
-
-.mainbox {
-	max-width:100%;
-	height:auto;
-	background-color:#FFFFFF;
-	border-radius:10px;
-	border-style:solid;
-	border-width:0.5px;
-	border-color:#E5E8E8;
-}
-
-</style>
-</head>
-<body>
-<header>
-	헤더부분
-</header>
-<div class="container-fluid" style="background:#F5F5F5">
-	<div class="row" >
-		<div class="col-md-2" >
-		</div>
+	pageEncoding="UTF-8"%>
+<%@ include file="../include/header.jsp"%>
+<!-- jquery -->
+<script>
+$(document).ready(function() {
+	// 스토리 더보기
+	var txt = $("#story_content").text().substring(0,100) + ". . .";
+	var txt_short = "<a href='/workroom/wr_story_content' style='color: #666666;'>" + txt + "</a>"
+	var text = $("#story_content").text().length;
+	if (text >= 100) {
+		$("#story_content").html(txt_short);
+		$("#story_content").hover(function() {
+			$(this).animate({fontSize: "16px"});}, function() {
+				$(this).animate({fontSize: "14px"});});
+	}
+});
+</script>
+<div class="container-fluid" style="background: #F5F5F5">
+	<div class="row">
+		<div class="col-md-2"></div>
 		<div class="col-md-8">
 			<div class="row">
 				<div class="col-md-3">
-					<div class="mainbox" style="width:250px; margin-bottom:12px">
+					<div class="checkout__order">
+						<!-- 유저 카드 프로필 -->
 						<div class="box" style="margin: 12px auto;">
-					    <img class="profile" src="/resources/img/duck.png" alt="Card image" style="width:100%; text-align: center">
-					    </div>
-					    <div class="card-body">
-					      <h4 class="card-title text-center">사용자 이름</h4>
-					      <p class="card-text text-center">간단한 소개글 넣기</p><hr>
-					      <div style="text-align: center;">
-					      <div style="display: inline-block;"><p style="margin-bottom:-5px">팔로워</p>
-					      		<p style="text-align: center">5</p>
-					      </div>
-					      <div style="display:inline-block;"><p style="margin:-2px"><img src="/resources/img/minus.png" height="25px"></p>
-					      	<p><img src="/resources/img/minus.png" height="25px"></p>
-					      </div>
-					      <div style="display: inline-block;"><p style="margin-bottom:-5px">좋아요</p>
-					      		<p style="text-align: center">5</p>
-					      </div>
-					      </div>
-					      <div style="text-align:center;">
-					      <a href="#" class="btn btn-primary">팔로우</a>
-					      <a href="#" class="btn btn-primary">쪽지보내기</a>
-					      </div>
-					    </div>
-					</div>
-					<div class="mainbox" style="width:250px; margin-bottom:12px">
+							<a href="/workroom/wr_main"><img class="profile" src="/resources/img/test/littleduck.png"
+								alt="profile image" style="width: 100%; text-align: center"></a>
+						</div>
 						<div class="card-body">
-							 <a class="card-text text-center">소개</a><br>
-							<a class="card-text text-center">취미</a><br>
-							<a class="card-text text-center">스토리</a><br>
-							<a class="card-text text-center" href="#mbm">MadeByMe</a><br>
-							<a class="card-text text-center" href="#feed">피드</a>
+							<h4 class="text-center">user1</h4>
+							<p class="card-text text-center">안녕하세요</p>
+							<div style="text-align: center;">
+								<div style="display: inline-block;">
+									<p style="margin-bottom: -5px">팔로워</p>
+									<p style="text-align: center">5</p>
+								</div>
+								<div style="display: inline-block;">
+									<p style="margin: -2px">
+										<img src="/resources/img/test/minus.png" height="25px">
+									</p>
+									<p>
+										<img src="/resources/img/test/minus.png" height="25px">
+									</p>
+								</div>
+								<div style="display: inline-block;">
+									<p style="margin-bottom: -5px">좋아요</p>
+									<p style="text-align: center">5</p>
+								</div>
+							</div>
+							<div style="text-align: center;">
+								<a href="#" class="btn btn-primary">팔로우</a> 
+								<a href="#" class="btn btn-primary">쪽지</a> 
+								<a href="/workroom/wr_story_write" class="btn btn-primary">글쓰기</a>
+							</div>
+						</div>
+
+					</div>
+					<!-- 카테고리 -->
+					<div class="checkout__order">
+						<div class="blog__sidebar__item" style="margin-left: 40px;">
+							<ul>
+								<li><a href="#">소개</a></li>
+								<li><a href="#hobby">꼼지락</a></li>
+								<li><a href="#story">Story</a></li>
+								<li><a href="#mbm">MadeByMe</a></li>
+								<li><a href="#feed">피드</a></li>
+							</ul>
 						</div>
 					</div>
-						<div>
-							<div style="display:inline-block;">
-								<select class="form-control" style="width:200px">
-								  <option selected>글쓰기 선택</option>
-								  <option value="1">소개</option>
-								  <option value="2">취미</option>
-								  <option value="3">스토리</option>
-								</select>
-							</div>
-							<div  style="display:inline-block;">
-							<a href="#"><img src="/resources/img/writing.svg" height="30px"></a>
-							</div>
-						</div>
+					<div>
+						<input type="text"
+							style="border: 1px solid #E5E8E8; height: 30px;">
+						<button type="button"
+							style="border: none; background: none; padding: 0;">
+							<img src="/resources/img/test/loupe.png" height="17px">
+						</button>
 					</div>
+				</div>
+				<!-- 간단 카드 보여주기 -->
 				<div class="col-md-9">
-					<div class="card" style="margin-bottom:12px">
-						<div class="card-header" style="background:#FFFFFF">
-							사용자 소개
+					<!-- 소개 -->
+					<div class="checkout__order">
+						<div class="workroom_box">
+							<h4>소개</h4>
 						</div>
-						<div class="card-body">
-							안녕하세요
+						<div class="workroom_box">
+							<hr>
+							<p>안녕하세요. 취미공유취미공유</p>
 						</div>
 					</div>
-					<div class="card" style="margin-bottom:12px">
-						<div class="card-header" style="background:#FFFFFF">
-							취미
+					<!-- 취미 -->
+					<div class="checkout__order" id="hobby">
+						<div class="workroom_box row" style="height:39px;">
+							<h4>꼼지락</h4>
+							<a href="/workroom/wr_hobby" style="color: #666666; ">더보기</a>
 						</div>
-						<div class="card-body">
-        					<div class="swiper-container">
-								<div class="swiper-wrapper">
-									<div class="swiper-slide"><img src="/resources/img/littleduck.png"></div>
-									<div class="swiper-slide"><img src="/resources/img/littleduck.png"></div>
-									<div class="swiper-slide"><img src="/resources/img/littleduck.png"></div>
-									<div class="swiper-slide"><img src="/resources/img/duck2.png"></div>
-									<div class="swiper-slide"><img src="/resources/img/duck2.png"></div>
-									<div class="swiper-slide"><img src="/resources/img/duck2.png"></div>
-									<div class="swiper-slide"><img src="/resources/img/duck2.png"></div>
-									<div class="swiper-slide"><img src="/resources/img/duck2.png"></div>
-									<div class="swiper-slide"><img src="/resources/img/duck2.png"></div>
+							<hr>
+						<div>
+							<div class="row">
+								<div class="categories__slider owl-carousel">
+									<div class="col-lg-3">
+										<div class="categories__item set-bg" data-setbg="/resources/img/test/sample06.jpg">
+											<h5><a href="#">test1</a></h5>
+										</div>
+									</div>
+									<div class="col-lg-3">
+										<div class="categories__item set-bg" data-setbg="/resources/img/test/sample07.jpg">
+											<h5><a href="#">test2</a></h5>
+										</div>
+									</div>
+									<div class="col-lg-3">
+										<div class="categories__item set-bg" data-setbg="/resources/img/test/sample08.jpg">
+											<h5><a href="#">test3</a></h5>
+										</div>
+									</div>
+									<div class="col-lg-3">
+										<div class="categories__item set-bg" data-setbg="/resources/img/test/sample06.jpg">
+											<h5><a href="#">test4</a></h5>
+										</div>
+									</div>
+									<div class="col-lg-3">
+										<div class="categories__item set-bg" data-setbg="/resources/img/test/sample07.jpg">
+											<h5><a href="#">test5</a></h5>
+										</div>
+									</div>
 								</div>
-								<!-- 네비게이션 -->
-								<div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
-								<div class="swiper-button-prev"></div><!-- 이전 버튼 -->
-							
-								<!-- 페이징 -->
-								<div class="swiper-pagination"></div>
 							</div>
 						</div>
 					</div>
-					<div class="card" style="margin-bottom:12px">
-						<div class="card-header" style="background:#FFFFFF">
-							스토리
+					<!-- 스토리 -->
+					<div class="checkout__order" id="story">
+						<div class="workroom_box">
+							<h4>Story</h4>
 						</div>
-						<div class="card-body">
-							안녕하세요
+						<div class="workroom_box">
+							<hr>
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-md-10" style="padding: 0px; margin: auto;" >
+										<p style="font-size: 14px; margin: 10px" id="story_content"><a href="#">
+										모더나와 화이자 백신은 바이러스 단백질을 만드는 기반인 유전 정보 일부를 주사해 해당 단백질에 대한 항체를 생성해 면역을 획득하는 mRNA 방식이 사용되고 있다. 
+										양사의 백신은 2회 투여 후 6개월이 경과한 시점에서도 유효하다는 연구 결과가 보고된 바 있다. 항체에 집중한 이전 연구에서는 
+										"항체는 일반적으로 몇 주~몇 달이 경과하면 사라지기 때문에 면역이 오래 유지되지 않을 가능성이 있다"는 내용이 발표됐다.</a></p>								
+									</div>
+									<div class="col-md-2" style="padding: 0px;">
+										<img src="/resources/img/test/duck.png" width="100px">
+									</div>
+								</div>
+								<hr>
+							</div>
+								<div class="container-fluid">
+								<div class="row">
+									<div class="col-md-10" style="padding: 0px; margin: auto;" >
+										<p style="font-size: 14px; margin: 10px">
+										모더나와 화이자 백신은 바이러스 단백질을 만드는 기반인 유전 정보 일부를 주사해 해당 단백질에 대한 항체를 생성해 면역을 획득하는 mRNA 방식이 사용되고 있다. 
+										양사의 백신은 2회 투여 후 6개월이 경과한 시점에서도 유효하다는 연구 결과가 보고된 바 있다.</p>								
+									</div>
+									<div class="col-md-2" style="padding: 0px;">
+										<img src="/resources/img/test/duck.png" width="100px">
+									</div>
+								</div>
+								<hr>
+							</div>
 						</div>
 					</div>
-					<div class="card" style="margin-bottom:12px" id="mbm">
-						<div class="card-header" style="background:#FFFFFF">
-							MadeByMe
+					<!-- mbm -->
+					<div class="checkout__order" id="mbm">
+						<div class="workroom_box row" style="height:39px;">
+							<h4>MadeByMe</h4>
+							<a href="/workroom/wr_mbm" style="color: #666666; ">더보기</a>
 						</div>
-						<div class="card-body">
-								<div class="swiper-container">
-								<div class="swiper-wrapper">
-									<div class="swiper-slide"><img src="/resources/img/littleduck.png"></div>
-									<div class="swiper-slide"><img src="/resources/img/littleduck.png"></div>
-									<div class="swiper-slide"><img src="/resources/img/littleduck.png"></div>
-									<div class="swiper-slide"><img src="/resources/img/duck2.png"></div>
-									<div class="swiper-slide"><img src="/resources/img/duck2.png"></div>
-									<div class="swiper-slide"><img src="/resources/img/duck2.png"></div>
-									<div class="swiper-slide"><img src="/resources/img/duck2.png"></div>
-									<div class="swiper-slide"><img src="/resources/img/duck2.png"></div>
-									<div class="swiper-slide"><img src="/resources/img/duck2.png"></div>
+							<hr>
+						<div>
+							<div class="row">
+								<div class="categories__slider owl-carousel">
+									<div class="col-lg-3">
+										<div class="categories__item set-bg" data-setbg="/resources/img/test/sample08.jpg">
+											<h5><a href="#">test1</a></h5>
+										</div>
+									</div>
+									<div class="col-lg-3">
+										<div class="categories__item set-bg" data-setbg="/resources/img/test/sample06.jpg">
+											<h5><a href="#">test2</a></h5>
+										</div>
+									</div>
+									<div class="col-lg-3">
+										<div class="categories__item set-bg" data-setbg="/resources/img/test/sample07.jpg">
+											<h5><a href="#">test3</a></h5>
+										</div>
+									</div>
+									<div class="col-lg-3">
+										<div class="categories__item set-bg" data-setbg="/resources/img/test/sample06.jpg">
+											<h5><a href="#">test4</a></h5>
+										</div>
+									</div>
+									<div class="col-lg-3">
+										<div class="categories__item set-bg" data-setbg="/resources/img/test/sample07.jpg">
+											<h5><a href="#">test5</a></h5>
+										</div>
+									</div>
 								</div>
-								<!-- 네비게이션 -->
-								<div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
-								<div class="swiper-button-prev"></div><!-- 이전 버튼 -->
-							
-								<!-- 페이징 -->
-								<div class="swiper-pagination"></div>
+							</div>
+						</div>
+					</div>
+					<!-- 피드 -->
+					<div class="checkout__order" id="feed">
+						<div class="workroom_box">
+							<h4>피드</h4>
+						</div>
+						<div class="workroom_box">
+							<hr>
+							<p>안녕하세요. 피드피드피드피드</p>
 						</div>
 					</div>
 				</div>
-					<div class="card" style="margin-bottom:12px" id="feed">
-						<div class="card-header" style="background:#FFFFFF">
-							피드
-						</div>
-						<div class="card-body">
-							신규 글
-						</div>
-					</div>
 			</div>
 		</div>
-		</div>
-		<div class="col-md-2">
-		</div>
+		<div class="col-md-2"></div>
 	</div>
 </div>
-<script>
-new Swiper('.swiper-container', {
 
-	slidesPerView : 3, // 동시에 보여줄 슬라이드 갯수
-	spaceBetween : 30, // 슬라이드간 간격
-	slidesPerGroup : 3, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
-
-	// 그룹수가 맞지 않을 경우 빈칸으로 메우기
-	// 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
-	loopFillGroupWithBlank : true,
-
-	loop : true, // 무한 반복
-
-	pagination : { // 페이징
-		el : '.swiper-pagination',
-		clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
-	},
-	navigation : { // 네비게이션
-		nextEl : '.swiper-button-next', // 다음 버튼 클래스명
-		prevEl : '.swiper-button-prev', // 이번 버튼 클래스명
-	},
-});
-</script>
-</body>
-</html>
+<%@ include file="../include/footer.jsp"%>
