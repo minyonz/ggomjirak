@@ -6,31 +6,33 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
+			<div class="col-md-1 col-lg-2"></div>
+			<div class="col-md-10 col-lg-8">
 
 				<!-- 검색 카테고리 메뉴 -->
 				<div class="row">
-					<div class="col-md-2">
-						<nav id="navbar-example3" style="position: fixed;"
+					<div class="col-md-3 col-lg-2">
+					
+						<nav id="navbar-example3"  style="position: fixed"
 							class="navbar navbar-light flex-column align-items-stretch p-3 green_background">
-							<a class="navbar-brand" href="#">카테고리</a>
+							<a class="navbar-brand border-bottom" style="color: white" href="#">검색</a>
 							<nav class="nav nav-pills flex-column">
-								<a class="nav-link" href="#item-1">취미</a>
-								<a class="nav-link" href="#item-2">작가</a>
-								<a class="nav-link" href="#item-3">Made by Me</a>
+								<a class="nav-link" style="color: white" href="#item-1">취미</a>
+								<a class="nav-link" style="color: white" href="#item-2">작가</a>
+								<a class="nav-link" style="color: white" href="#item-3">Made by Me</a>
 								<nav class="nav nav-pills flex-column">
 									<a class="nav-link ms-3 my-1" href="#item-3-1">Item 3-1</a>
 									<a class="nav-link ms-3 my-1" href="#item-3-2">Item 3-2</a>
 								</nav>
 							</nav>
 						</nav>
+						
 					</div>
 					
 					<!-- 검색 카테고리 메뉴 끝-->
 					
 					<!-- 검색 결과 -->
-					<div class="col-md-10">
+					<div class="col-md-9 col-lg-10">
 
 						
 
@@ -282,7 +284,7 @@
 			</div>
 			<!-- 검색 결과 끝 -->
 
-			<div class="col-md-2"></div>
+			<div class="col-md-1 col-lg-2"></div>
 		</div>
 	</div>
 </div>

@@ -39,6 +39,12 @@
 .white_color {
 	color: white;
 }
+.orange_background {
+	background-color:  rgb(231, 112, 92);
+}
+.orange_color {
+	color:  rgb(231, 112, 92);
+}
 </style>
 
 </head>
@@ -47,17 +53,16 @@
 		<div class="row">
 			<div class="col-md-12">
 
-				<!-- navbar -->
 				<div class="row">
 					<div class="col-md-12 green_background">
 						<div class="row">
 							<div class="col-md-2"></div>
 							<div class="col-md-8">
-
-								<nav class="navbar navbar-expand-lg navbar-dark"
-									style="margin-bottom: 70px;">
-									<div class="container">
-										<a class="navbar-brand" href="/main/mainHome3">꼼지락</a>
+								
+								<!-- 메뉴바 -->
+								<nav class="navbar navbar-expand-lg navbar-dark" style="margin-bottom: 30px;">
+									<div>
+										<a class="navbar-brand" href="/main/mainHome" style="display:none">꼼지락</a>
 										<button class="navbar-toggler" type="button"
 											data-bs-toggle="collapse"
 											data-bs-target="#navbarSupportedContent"
@@ -68,8 +73,8 @@
 										<div class="collapse navbar-collapse"
 											id="navbarSupportedContent">
 											<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-												<li class="nav-item">
-												<a class="nav-link" href="/main/mainHobby">취미</a></li>
+												<li class="nav-item"><a class="nav-link" href="/main/mainHome">홈</a></li>
+												<li class="nav-item"><a class="nav-link" href="/main/mainHobby">취미</a></li>
 												<li class="nav-item"><a class="nav-link" href="/main/mainEvent">이벤트</a></li>
 												<li class="nav-item"><a class="nav-link" href="/main/mainAboutUs">소개</a></li>
 												<li class="nav-item"><a class="nav-link" href="#">내 작업실</a></li>
@@ -111,19 +116,29 @@
 												</div>
 												</li>
 												
-												
 											</ul>
 										</div>
 									</div>
 								</nav>
+								<!-- 메뉴바 끝 -->
+							
+								<!-- 로고 -->
+								<header class="py-3 mb-4">
+								  <div class="container d-flex flex-wrap justify-content-center">
+								    <a href="/main/mainHome" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+								      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+								      <span class="fs-4 white_color">꼼지락</span>
+								    </a>
+								  </div>
+								</header>
+								<!-- 로고 끝 -->
 
-
-
-
-								<!-- search -->
-								<div class="input-group"
-									style="padding-left: 100px; padding-right: 100px; margin-bottom: 50px">
-									<button class="btn dropdown-toggle btn-outline-light"
+								<!-- 검색 -->
+								<form class="col-12 col-lg-10 mb-12 mb-lg-10 mx-auto"
+										action="/main/mainSearch" method="get">
+								<div class="input-group" style="margin-bottom: 50px">
+									
+									<button class="btn dropdown-toggle btn-outline-light orange_background"
 										type="button" data-bs-toggle="dropdown" aria-expanded="false">카테고리</button>
 									<ul class="dropdown-menu">
 										<li><a class="dropdown-item" href="#">Action</a></li>
@@ -132,14 +147,21 @@
 										<li><hr class="dropdown-divider"></li>
 										<li><a class="dropdown-item" href="#">Separated link</a></li>
 									</ul>
-									<input type="text" class="form-control" aria-label="Text input with dropdown button">
-									<button class="btn btn-outline-light" type="button" id="button-addon2">
+									
+									<input type="text" class="form-control" aria-label="Text input with dropdown button"
+									placeholder="나의 취미를 찾아보세요">
+									
+									<button type="submit" class="btn btn-outline-light orange_background" id="button-addon2">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 											fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
 										  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
 										</svg>
 										<span class="visually-hidden">검색</span>
 									</button>
+									</div>
+								</form>
+								<!-- 검색 끝 -->
+									
 								</div>
 								<div class="col-md-2"></div>
 							</div>
@@ -147,4 +169,3 @@
 					</div>
 				</div>
 			</div>
-		</div>

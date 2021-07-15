@@ -14,22 +14,60 @@
 					<ul class="nav nav-tabs">
 						<li class="nav-item"><a class="nav-link active" href="#">진행중인 이벤트</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">종료된 이벤트</a></li>
-						
 					</ul>
-	
 				</div>
 				
-				<div class="col-lg-3 col-md-4 col-sm-6" style="float:left;">
+				<div style="padding: 20px; overflow: hidden;">
+				
+				<div class="col-lg-6 col-md-12 col-sm-12" style="float:left; padding: 30px">
 					<div class="featured__item">
-						<div class="featured__item__pic set-bg h=50" data-setbg="/resources/img/featured/feature-4.jpg">
-							
+						<div>
+							<img src="/resources/img/eximage.png" class="rounded mx-auto d-block" alt="..."
+							width="700px" height="200px">
 						</div>
 						<div class="featured__item__text">
 							<h6><a href="#">제목</a></h6>
-							<h5>작가</h5>
+							<h5>기간</h5>
 						</div>
 					</div>
 				</div>
+				
+				<div class="col-lg-6 col-md-12 col-sm-12" style="float:left; padding: 30px">
+					<div class="featured__item">
+						<div>
+							<img src="/resources/img/eximage.png" class="rounded mx-auto d-block" alt="..."
+							width="700px" height="200px">
+						</div>
+						<div class="featured__item__text">
+							<h6><a href="#">제목</a></h6>
+							<h5>기간</h5>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-6 col-md-12 col-sm-12" style="float:left; padding: 30px">
+					<div class="featured__item">
+						<div>
+							<img src="/resources/img/eximage.png" class="rounded mx-auto d-block" alt="..."
+							width="700px" height="200px">
+						</div>
+						<div class="featured__item__text">
+							<h6><a href="#">제목</a></h6>
+							<h5>기간</h5>
+						</div>
+					</div>
+				</div>
+				
+				</div>
+				
+				<div class="product__pagination justify-content-center " style="display: flex">
+                        <a href="#"><i class="fa fa-long-arrow-left"></i></a>
+                        <a href="#">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                </div>
 								
 			</div>
 			<div class="col-md-2"></div>

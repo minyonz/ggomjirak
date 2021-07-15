@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
 
+<!-- 배너 -->
+
 <div class="row">
-	<div class="col-md-12" style="background-color: rgb(31, 94, 67); padding-bottom: 20px">
+	<div class="col-md-12 green_background" style="padding-bottom: 20px">
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
@@ -59,283 +61,747 @@
 	</div>
 </div>
 
+<!-- 배너 끝 -->
 
+<!-- 추천취미 -->
 
-<!-- slide-menu -->
-
-	<div class="row">
-		<div class="col-md-12 container"  style="margin-top: 50px;">
-			<div class="row">
-				<div class="col-md-2"></div>
-				<div class="col-md-8 container">
-					<div class="row row-cols-3">
-						<div class="col-md-2 col">
-							<h4 class="green_color">추천 취미</h4>
-							<p>#추천취미1 #추천취미2 #추천취미3 #추천취미4</p>
-							<p><a class="btn" href="#">더보기 »</a></p>
+<div class="row">
+	<div class="col-md-12"  style="padding-top: 50px">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+			
+				<div class="row">
+					<div class="col-md-2">
+						<div style="margin-right: 40px">
+						<h5>추천취미</h5>
+						<p>#추천취미  #추천취미  #추천취미  #추천취미  #추천취미</p>
+						<button type="button" class="btn green_background white_color">더보기</button>
 						</div>
-						<div class="col-md-10 col">
-							<div class="carousel slide" id="carousel-825884">
-								<ol class="carousel-indicators">
-									<li data-slide-to="0" data-target="#carousel-825884" class="active" style="background-color: green"></li>
-									<li data-slide-to="1" data-target="#carousel-825884" style="background-color: green"></li>
-									<li data-slide-to="2" data-target="#carousel-825884" style="background-color: green"></li>
-								</ol>
-								<div class="carousel-inner">
-									<div class="carousel-item active">
-										
+						
+					</div>
+					<div class="col-md-10">
+						<!-- Categories Section Begin -->
+				<section class="categories">
 
-										<div class="card" style="width: 13rem; margin: 10px; margin-left: 60px; margin-bottom: 50px; float: left;">
-										  <img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="card-img-top" alt="...">
-										  <div class="card-body">
-										    <p class="card-text"><span><strong>제목</strong></span><br/>작가<br/>난이도</p>
-										    
-										  </div>
-										</div>
-										
-										<div class="card" style="width: 13rem; margin: 10px; margin-bottom: 50px; float: left;">
-										  <img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="card-img-top" alt="...">
-										  <div class="card-body">
-										  <p class="card-text"><span><strong>제목</strong></span><br/>작가<br/>난이도</p>
-										  </div>
-										</div>
-										
-										<div class="card" style="width: 13rem; margin: 10px; margin-bottom: 50px; float: left;">
-										  <img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="card-img-top" alt="...">
-										  <div class="card-body">
-										  <p class="card-text"><span><strong>제목</strong></span><br/>작가<br/>난이도</p>
-										  </div>
-										</div>
-										
-										<div class="card" style="width: 13rem; margin: 10px; margin-right: 60px; margin-bottom: 50px; float: left;">
-										  <img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="card-img-top" alt="...">
-										  <div class="card-body">
-										  <p class="card-text"><span><strong>제목</strong></span><br/>작가<br/>난이도</p>
-										  </div>
-										</div>
-										
+					<div class="container">
+						<div class="row">
+							<div class="categories__slider owl-carousel">
 
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-1.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
 									</div>
-									<div class="carousel-item">
-
-										<div class="card" style="width: 13rem; margin-left: 80px; margin-bottom: 50px; float: left;">
-										  <img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="card-img-top" alt="...">
-										  <div class="card-body">
-										    <p class="card-text"><span><strong>제목</strong></span><br/>작가<br/>난이도</p>
-										    
-										  </div>
-										</div>
-										
-										<div class="card" style="width: 13rem; margin-left: 20px; margin-bottom: 50px; float: left;">
-										  <img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="card-img-top" alt="...">
-										  <div class="card-body">
-										  <p class="card-text"><span><strong>제목</strong></span><br/>작가<br/>난이도</p>
-										  </div>
-										</div>
-										
-										<div class="card" style="width: 13rem; margin-left: 20px; margin-bottom: 50px; float: left;">
-										  <img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="card-img-top" alt="...">
-										  <div class="card-body">
-										  <p class="card-text"><span><strong>제목</strong></span><br/>작가<br/>난이도</p>
-										  </div>
-										</div>
-										
-										<div class="card" style="width: 13rem; margin-left: 20px; margin-bottom: 50px; float: left;">
-										  <img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="card-img-top" alt="...">
-										  <div class="card-body">
-										  <p class="card-text"><span><strong>제목</strong></span><br/>작가<br/>난이도</p>
-										  </div>
-										</div>										
-
-									</div>
-									<div class="carousel-item">
-										
-										<div class="card" style="width: 13rem; margin-left: 80px; margin-bottom: 50px; float: left;">
-										  <img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="card-img-top" alt="...">
-										  <div class="card-body">
-										    <p class="card-text"><span><strong>제목</strong></span><br/>작가<br/>난이도</p>
-										    
-										  </div>
-										</div>
-										
-										<div class="card" style="width: 13rem; margin-left: 20px; margin-bottom: 50px; float: left;">
-										  <img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="card-img-top" alt="...">
-										  <div class="card-body">
-										  <p class="card-text"><span><strong>제목</strong></span><br/>작가<br/>난이도</p>
-										  </div>
-										</div>
-										
-										<div class="card" style="width: 13rem; margin-left: 20px; margin-bottom: 50px; float: left;">
-										  <img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="card-img-top" alt="...">
-										  <div class="card-body">
-										  <p class="card-text"><span><strong>제목</strong></span><br/>작가<br/>난이도</p>
-										  </div>
-										</div>
-										
-										<div class="card" style="width: 13rem; margin-left: 20px; margin-bottom: 50px; float: left;">
-										  <img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="card-img-top" alt="...">
-										  <div class="card-body">
-										  <p class="card-text"><span><strong>제목</strong></span><br/>작가<br/>난이도</p>
-										  </div>
-										</div>
-										
+										<div class="featured__item__text">
+										<h6><a href="#">제목1</a></h6>
+										<h5>작가1</h5>
 									</div>
 								</div>
-								<a class="carousel-control-prev" href="#carousel-825884" data-slide="prev">
-								<span style="margin-right: 100px">
-								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chevron-left green_color" viewBox="0 0 16 16">
-								  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-								</svg>
-								</span>
-									<span class="sr-only">Previous</span></a>
-									<a class="carousel-control-next" href="#carousel-825884" data-slide="next">
-									<span style="margin-left: 100px">
-									<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chevron-right green_color" viewBox="0 0 16 16">
-									  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-									</svg>
-									</span>
-									<span class="sr-only">Next</span></a>
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-2.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목2</a></h6>
+										<h5>작가2</h5>
+									</div>
+								</div>
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-3.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목3</a></h6>
+										<h5>작가3</h5>
+									</div>
+								</div>
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-4.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목4</a></h6>
+										<h5>작가4</h5>
+									</div>
+								</div>
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-5.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목5</a></h6>
+										<h5>작가5</h5>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
+				</section>
+				<!-- Categories Section End -->
+					</div>
 				</div>
-				<div class="col-md-2"></div>
 			</div>
+			<div class="col-md-2"></div>
 		</div>
 	</div>
-	
-	<!-- makers -->
+</div>
+<!-- 추천취미 끝 -->
 
-	<div class="row">
+<!-- 인기취미 -->
+<div class="row">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+
+
+				<!-- Categories Section Begin -->
+				<section class="categories" style="margin-top: 50px">
+
+					<div class="container">
+						<div class="row">
+							<div class="section-title">
+								<h5>인기 취미<button type="button" class="btn green_background white_color">더보기</button></h5>
+							</div>
+
+							<div class="categories__slider owl-carousel">
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-1.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목1</a></h6>
+										<h5>작가1</h5>
+									</div>
+								</div>
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-2.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목2</a></h6>
+										<h5>작가2</h5>
+									</div>
+								</div>
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-3.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목3</a></h6>
+										<h5>작가3</h5>
+									</div>
+								</div>
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-4.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목4</a></h6>
+										<h5>작가4</h5>
+									</div>
+								</div>
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-5.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목5</a></h6>
+										<h5>작가5</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- Categories Section End -->
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+</div>
+<!-- 인기취미 끝 -->
+
+<!-- 작가어워드 -->
+<div class="row">
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-2"></div>
 				<div class="col-md-8">
-				<div><h4 class="green_color">베스트 작가</h4></div>
-				<div style="padding-left: 100px; padding-right: 100px">
-					<div style="float: left; margin-top: 20px; margin-right: 80px">
-						<div><img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" alt="..." class="rounded-circle"></div>
-					
-						<div><span class="badge badge-default">작가이름</span></div>
-					</div>
-				</div>
 				
-				<div>
-					<div style="float: left; margin-top: 20px; margin-right: 80px">
-						<div><img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" alt="..." class="rounded-circle"></div>
-					
-						<div><span class="badge badge-default">작가이름</span></div>
-					</div>
-				</div>
+				 <!-- Featured Section Begin -->
+    <section class="featured spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h2>작가 어워드</h2>
+                    </div>
+                    <div class="featured__controls">
+                        <ul>
+                            <li class="active" data-filter="*">전체</li>
+                            <li data-filter=".oranges">금손</li>
+                            <li data-filter=".fresh-meat">은손</li>
+                            <li data-filter=".vegetables">곰손</li>
+                            <li data-filter=".fastfood">맨손</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row featured__filter">
+                <div class="col-lg-2 col-md-4 col-sm-6 mix oranges">
+                    <div class="featured__item">
+                    
+                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
+                        <img src="/resources/img/featured/feature-1.jpg" class="rounded-circle" alt="..."/>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">작가1</a></h6>
+                            <h5>금손</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-sm-6 mix oranges">
+                    <div class="featured__item">
+                    
+                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
+                        <img src="/resources/img/featured/feature-2.jpg" class="rounded-circle" alt="..."/>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">작가2</a></h6>
+                            <h5>금손</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-sm-6 mix oranges">
+                    <div class="featured__item">
+                    
+                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
+                        <img src="/resources/img/featured/feature-3.jpg" class="rounded-circle" alt="..."/>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">작가3</a></h6>
+                            <h5>금손</h5>
+                        </div>
+                    </div>
+                </div>
+                                
+                <div class="col-lg-2 col-md-4 col-sm-6 mix oranges">
+                    <div class="featured__item">
+                    
+                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
+                        <img src="/resources/img/featured/feature-4.jpg" class="rounded-circle" alt="..."/>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">작가4</a></h6>
+                            <h5>금손</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-sm-6 mix oranges">
+                    <div class="featured__item">
+                    
+                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
+                        <img src="/resources/img/featured/feature-5.jpg" class="rounded-circle" alt="..."/>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">작가5</a></h6>
+                            <h5>금손</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 은손 -->
+                
+                <div class="col-lg-2 col-md-4 col-sm-6 mix fresh-meat">
+                    <div class="featured__item">
+                    
+                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
+                        <img src="/resources/img/featured/feature-1.jpg" class="rounded-circle" alt="..."/>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">작가1</a></h6>
+                            <h5>은손</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-sm-6 mix fresh-meat">
+                    <div class="featured__item">
+                    
+                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
+                        <img src="/resources/img/featured/feature-2.jpg" class="rounded-circle" alt="..."/>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">작가2</a></h6>
+                            <h5>은손</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-sm-6 mix fresh-meat">
+                    <div class="featured__item">
+                    
+                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
+                        <img src="/resources/img/featured/feature-3.jpg" class="rounded-circle" alt="..."/>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">작가3</a></h6>
+                            <h5>은손</h5>
+                        </div>
+                    </div>
+                </div>
+                                
+                <div class="col-lg-2 col-md-4 col-sm-6 mix vegetables">
+                    <div class="featured__item">
+                    
+                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
+                        <img src="/resources/img/featured/feature-4.jpg" class="rounded-circle" alt="..."/>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">작가1</a></h6>
+                            <h5>곰손</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-sm-6 mix vegetables">
+                    <div class="featured__item">
+                    
+                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
+                        <img src="/resources/img/featured/feature-5.jpg" class="rounded-circle" alt="..."/>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">작가2</a></h6>
+                            <h5>곰손</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                    <!-- 맨손 -->
+                <div class="col-lg-2 col-md-4 col-sm-6 mix fastfood">
+                    <div class="featured__item">
+                    
+                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
+                        <img src="/resources/img/featured/feature-4.jpg" class="rounded-circle" alt="..."/>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">작가1</a></h6>
+                            <h5>맨손</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 col-sm-6 mix fastfood">
+                    <div class="featured__item">
+                    
+                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
+                        <img src="/resources/img/featured/feature-5.jpg" class="rounded-circle" alt="..."/>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">작가2</a></h6>
+                            <h5>맨손</h5>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <!-- Featured Section End -->
 				
-				<div>
-					<div style="float: left; margin-top: 20px; margin-right: 80px">
-						<div><img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" alt="..." class="rounded-circle"></div>
-					
-						<div><span class="badge badge-default">작가이름</span></div>
-					</div>
-				</div>
-				
-				<div>
-					<div style="float: left; margin-top: 20px; margin-right: 80px">
-						<div><img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" alt="..." class="rounded-circle"></div>
-					
-						<div><span class="badge badge-default">작가이름</span></div>
-					</div>
-				</div>
-				
-				<div>
-					<div style="float: left; margin-top: 20px;">
-						<div><img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" alt="..." class="rounded-circle"></div>
-					
-						<div><span class="badge badge-default">작가이름</span></div>
-					</div>
-				</div>
-				
-				<!-- 2열 -->
-				<div style="padding-left: 100px; padding-right: 100px">
-					<div style="float: left; margin-top: 20px; margin-right: 80px">
-						<div><img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" alt="..." class="rounded-circle"></div>
-					
-						<div><span class="badge badge-default">작가이름</span></div>
-					</div>
-				</div>
-				
-				<div>
-					<div style="float: left; margin-top: 20px; margin-right: 80px">
-						<div><img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" alt="..." class="rounded-circle"></div>
-					
-						<div><span class="badge badge-default">작가이름</span></div>
-					</div>
-				</div>
-				
-				<div>
-					<div style="float: left; margin-top: 20px; margin-right: 80px">
-						<div><img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" alt="..." class="rounded-circle"></div>
-					
-						<div><span class="badge badge-default">작가이름</span></div>
-					</div>
-				</div>
-				
-				<div>
-					<div style="float: left; margin-top: 20px; margin-right: 80px">
-						<div><img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" alt="..." class="rounded-circle"></div>
-					
-						<div><span class="badge badge-default">작가이름</span></div>
-					</div>
-				</div>
-				
-				<div>
-					<div style="float: left; margin-top: 20px;">
-						<div><img src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" alt="..." class="rounded-circle"></div>
-					
-						<div><span class="badge badge-default">작가이름</span></div>
-					</div>
-				</div>
 				
 				</div>
 				<div class="col-md-2"></div>
 			</div>
 		</div>
 	</div>
-	
-	<!-- category -->
-	<div class="row">
-		<div class="col-md-2"></div>
-		<div class="col-md-8">
-			<div><h4 class="green_color">인기 카테고리</h4></div>
-		</div>
-		<div class="col-md-2"></div>
-	</div>
-	<div class="row">
-		<div class="col-md-12 green_background">
+<!-- 작가 어워드 끝 -->
+
+<!-- 인기 키워드 -->
+
+<div class="row">
+		<div class="col-md-12">
 			<div class="row">
-				<div class="col-md-2">
-				</div>
+				<div class="col-md-2"> </div>
 				<div class="col-md-8">
-					 
-						<div style="padding-left: 100px; padding-right: 100px; padding-top: 20px; padding-bottom: 20px">
-							<button type="button" class="btn btn-light" style="margin: 10px">#카테고리</button>
-							<button type="button" class="btn btn-light" style="margin: 10px">#카테고리</button>
-							<button type="button" class="btn btn-light" style="margin: 10px">#카테고리</button>
-							<button type="button" class="btn btn-light" style="margin: 10px">#카테고리</button>
-							<button type="button" class="btn btn-light" style="margin: 10px">#카테고리</button>
-							<button type="button" class="btn btn-light" style="margin: 10px">#카테고리</button>
-							<button type="button" class="btn btn-light" style="margin: 10px">#카테고리</button>
-							<button type="button" class="btn btn-light" style="margin: 10px">#카테고리</button>
-							<button type="button" class="btn btn-light" style="margin: 10px">#카테고리</button>
-							<button type="button" class="btn btn-light" style="margin: 10px">#카테고리</button>
-							<button type="button" class="btn btn-light" style="margin: 10px">#카테고리</button>
-							<button type="button" class="btn btn-light" style="margin: 10px">#카테고리</button>
-							<button type="button" class="btn btn-light" style="margin: 10px">#카테고리</button>
-							<button type="button" class="btn btn-light" style="margin: 10px">#카테고리</button>
-							<button type="button" class="btn btn-light" style="margin: 10px">#카테고리</button>
-							<button type="button" class="btn btn-light" style="margin: 10px">#카테고리</button>
-							
-						</div>
+				
+					<div><h5>인기 키워드<button type="button" class="btn green_background white_color">더보기</button></div></h5>
+					
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-2"></div>
+			</div>
+			<div class="row green_background">
+				<div class="col-md-12">
+					<div class="row" style="padding: 20px">
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+						
+						<div>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1키워드1</button>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1</button>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1</button>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1키워드1</button>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1키워드1</button>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1</button>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1키워드1</button>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1</button>
+							
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1</button>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1</button>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1키워드1</button>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1키워드1</button>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1</button>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1키워드1</button>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1</button>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1키워드1</button>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1</button>
+							<button type="button" class="rounded-pill btn-light btn green_color" style="margin: 10px">키워드1</button>
+						</div>
+						
+						</div>
+						<div class="col-md-2">
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+
+<!-- 인기 키워드 끝 -->
+
+<!-- 이달의 취미 -->
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+
+
+				<!-- Categories Section Begin -->
+				<section class="categories" style="margin-top: 50px">
+
+					<div class="container">
+						<div class="row">
+							<div class="section-title">
+								<h5>이달의 취미<button type="button" class="btn green_background white_color">더보기</button></h5>
+							</div>
+
+							<div class="categories__slider owl-carousel">
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-1.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목1</a></h6>
+										<h5>작가1</h5>
+									</div>
+								</div>
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-2.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목2</a></h6>
+										<h5>작가2</h5>
+									</div>
+								</div>
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-3.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목3</a></h6>
+										<h5>작가3</h5>
+									</div>
+								</div>
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-4.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목4</a></h6>
+										<h5>작가4</h5>
+									</div>
+								</div>
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-5.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목5</a></h6>
+										<h5>작가5</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- Categories Section End -->
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+</div>
+<!-- 이달의 취미 끝 -->
+
+<!-- 베스트 메이드 -->
+<div class="row">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+
+
+				<!-- Categories Section Begin -->
+				<section class="categories" style="margin-top: 50px">
+
+					<div class="container">
+						<div class="row">
+							<div class="section-title">
+								<h5>베스트 메이드<button type="button" class="btn green_background white_color">더보기</button></h5>
+							</div>
+
+							<div class="categories__slider owl-carousel">
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-1.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목1</a></h6>
+										<h5>작가1</h5>
+									</div>
+								</div>
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-2.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목2</a></h6>
+										<h5>작가2</h5>
+									</div>
+								</div>
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-3.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목3</a></h6>
+										<h5>작가3</h5>
+									</div>
+								</div>
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-4.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목4</a></h6>
+										<h5>작가4</h5>
+									</div>
+								</div>
+
+								<div class="featured__item">
+									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-5.jpg"
+										style="margin-left: 10px; margin-right: 10px">
+										<ul class="featured__item__pic__hover">
+											<li><a href="#"><i class="fa fa-heart"></i></a></li>
+											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
+											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+										</ul>
+									</div>
+										<div class="featured__item__text">
+										<h6><a href="#">제목5</a></h6>
+										<h5>작가5</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- Categories Section End -->
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+</div>
+<!-- 베스트 메이드 끝 -->
+
+    
 <%@ include file="../include/footer.jsp" %>
