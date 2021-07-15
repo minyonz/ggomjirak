@@ -36,10 +36,11 @@
 .green_color {
 	color:  rgb(31, 94, 67);
 }
-.wite_text {
+.white_color {
 	color: white;
 }
 </style>
+
 </head>
 <body>
 	<div class="container-fluid">
@@ -69,8 +70,8 @@
 											<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 												<li class="nav-item">
 												<a class="nav-link" href="/main/mainHobby">취미</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">이벤트</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">소개</a></li>
+												<li class="nav-item"><a class="nav-link" href="/main/mainEvent">이벤트</a></li>
+												<li class="nav-item"><a class="nav-link" href="/main/mainAboutUs">소개</a></li>
 												<li class="nav-item"><a class="nav-link" href="#">내 작업실</a></li>
 												
 												<li class="nav-item dropdown ml-md-auto">

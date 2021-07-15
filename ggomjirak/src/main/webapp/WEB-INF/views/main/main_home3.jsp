@@ -76,7 +76,7 @@
 						<div style="margin-right: 40px">
 						<h5>추천취미</h5>
 						<p>#추천취미  #추천취미  #추천취미  #추천취미  #추천취미</p>
-						<button type="button" class="btn green_background wite_text">더보기</button>
+						<button type="button" class="btn green_background white_color">더보기</button>
 						</div>
 						
 					</div>
@@ -190,7 +190,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="section-title">
-								<h5>인기 취미<button type="button" class="btn green_background wite_text">더보기</button></h5>
+								<h5>인기 취미<button type="button" class="btn green_background white_color">더보기</button></h5>
 							</div>
 
 							<div class="categories__slider owl-carousel">
@@ -548,7 +548,7 @@
 				<div class="col-md-2"> </div>
 				<div class="col-md-8">
 				
-					<div><h5>인기 키워드<button type="button" class="btn green_background wite_text">더보기</button></div></h5>
+					<div><h5>인기 키워드<button type="button" class="btn green_background white_color">더보기</button></div></h5>
 					
 				</div>
 				<div class="col-md-2"></div>
@@ -607,7 +607,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="section-title">
-								<h5>이달의 취미<button type="button" class="btn green_background wite_text">더보기</button></h5>
+								<h5>이달의 취미<button type="button" class="btn green_background white_color">더보기</button></h5>
 							</div>
 
 							<div class="categories__slider owl-carousel">
@@ -712,7 +712,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="section-title">
-								<h5>베스트 메이드<button type="button" class="btn green_background wite_text">더보기</button></h5>
+								<h5>베스트 메이드<button type="button" class="btn green_background white_color">더보기</button></h5>
 							</div>
 
 							<div class="categories__slider owl-carousel">

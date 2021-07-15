@@ -22,4 +22,19 @@ public class MainHomeController {
 	public String mainHobby() throws Exception {
 		return "main/main_hobby";
 	}
+	
+	@RequestMapping(value="/mainEvent", method=RequestMethod.GET)
+	public String mainEvent() throws Exception {
+		return "main/main_event";
+	}
+	
+	@RequestMapping(value="/mainAboutUs", method=RequestMethod.GET)
+	public String mainAboutUs() throws Exception {
+		return "main/main_about_us";
+	}
+	
+	@RequestMapping(value="/mainSearch", method=RequestMethod.GET)
+	public String mainSearch() throws Exception {
+		return "main/main_search";
+	}
 }
