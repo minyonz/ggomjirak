@@ -28,7 +28,7 @@
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="css/styles.css" rel="stylesheet" />
+<link href="/resources/css/styles.css" rel="stylesheet" />
 <style>
 .green_background {
 	background-color: rgb(31, 94, 67);
@@ -78,6 +78,7 @@
 												<li class="nav-item"><a class="nav-link" href="/main/mainEvent">이벤트</a></li>
 												<li class="nav-item"><a class="nav-link" href="/main/mainAboutUs">소개</a></li>
 												<li class="nav-item"><a class="nav-link" href="#">내 작업실</a></li>
+												
 												
 												<li class="nav-item dropdown ml-md-auto">
 												<div class="dropdown">
@@ -138,7 +139,7 @@
 										action="/main/mainSearch" method="get">
 								<div class="input-group" style="margin-bottom: 50px">
 									
-									<button class="btn dropdown-toggle btn-outline-light orange_background"
+									<button class="btn dropdown-toggle btn-outline-light orange_background shadow bg-body"
 										type="button" data-bs-toggle="dropdown" aria-expanded="false">카테고리</button>
 									<ul class="dropdown-menu">
 										<li><a class="dropdown-item" href="#">Action</a></li>
@@ -148,10 +149,10 @@
 										<li><a class="dropdown-item" href="#">Separated link</a></li>
 									</ul>
 									
-									<input type="text" class="form-control" aria-label="Text input with dropdown button"
+									<input type="text" class="form-control shadow bg-body" aria-label="Text input with dropdown button"
 									placeholder="나의 취미를 찾아보세요">
 									
-									<button type="submit" class="btn btn-outline-light orange_background" id="button-addon2">
+									<button type="submit" class="btn btn-outline-light orange_background shadow bg-body rounded" id="button-addon2">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 											fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
 										  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
@@ -161,7 +162,7 @@
 									</div>
 								</form>
 								<!-- 검색 끝 -->
-									
+								
 								</div>
 								<div class="col-md-2"></div>
 							</div>

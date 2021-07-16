@@ -6,13 +6,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("main")
-public class MainHomeController {
+public class MainController {
 
-	@RequestMapping(value="/copyHome", method=RequestMethod.GET)
-	public String copyHome() throws Exception {
-		return "main/copy_home";
-	}
-	
 	@RequestMapping(value="/mainHome", method=RequestMethod.GET)
 	public String mainHome() throws Exception {
 		return "main/main_home";
