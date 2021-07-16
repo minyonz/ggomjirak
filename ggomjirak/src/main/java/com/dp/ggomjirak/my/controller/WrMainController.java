@@ -24,8 +24,13 @@ public class WrMainController {
 	}
 	
 	@RequestMapping(value="/wr_story_content", method=RequestMethod.GET)
-	public String wrStory() throws Exception {
+	public String wrStoryContent() throws Exception {
 		return "workroom/wr_story_content";
+	}
+	
+	@RequestMapping(value="/wr_story_write", method=RequestMethod.GET)
+	public String wrStoryWrite() throws Exception {
+		return "workroom/wr_story_write";
 	}
 	
 }

@@ -29,7 +29,10 @@ $(document).ready(function() {
 								alt="profile image" style="width: 100%; text-align: center"></a>
 						</div>
 						<div class="card-body">
-							<h4 class="text-center">user1</h4>
+							<div style="display: flex; justify-content: center;">
+							<h4 class="text-center" style="display:inline;">user1</h4><a href="#" class="fa fa-cog" style="margin-top:5px; margin-left:3px"></a>
+							</div>
+							<p class="text-center" style="font-size:12px; margin-top:-20px">곰손</p>
 							<p class="card-text text-center">안녕하세요</p>
 							<div style="text-align: center;">
 								<div style="display: inline-block;">
@@ -72,10 +75,11 @@ $(document).ready(function() {
 					<div>
 						<input type="text"
 							style="border: 1px solid #E5E8E8; height: 30px;">
-						<button type="button"
-							style="border: none; background: none; padding: 0;">
-							<img src="/resources/img/test/loupe.png" height="17px">
-						</button>
+						<a href="#" class="fa fa-search"></a>
+<!-- 						<button type="button" -->
+<!-- 							style="border: none; background: none; padding: 0;"> -->
+<!-- 							<img src="/resources/img/test/loupe.png" height="17px"> -->
+<!-- 						</button> -->
 					</div>
 				</div>
 				<!-- 간단 카드 보여주기 -->
@@ -94,7 +98,7 @@ $(document).ready(function() {
 					<div class="checkout__order" id="hobby">
 						<div class="workroom_box row" style="height:39px;">
 							<h4>꼼지락</h4>
-							<a href="/workroom/wr_hobby" style="color: #666666; ">더보기</a>
+							<a href="/workroom/wr_hobby">더보기</a>
 						</div>
 							<hr>
 						<div>
@@ -169,7 +173,7 @@ $(document).ready(function() {
 					<div class="checkout__order" id="mbm">
 						<div class="workroom_box row" style="height:39px;">
 							<h4>MadeByMe</h4>
-							<a href="/workroom/wr_mbm" style="color: #666666; ">더보기</a>
+							<a href="/workroom/wr_mbm">더보기</a>
 						</div>
 							<hr>
 						<div>
