@@ -46,7 +46,16 @@
 	color:  rgb(231, 112, 92);
 }
 </style>
-
+<script>
+$(document).ready(function() {
+	$("#frmSearch").submit(function() {
+		console.log($(this));
+		return false;
+	});
+	
+	
+});
+</script>
 </head>
 <body>
 	<div class="container-fluid">
@@ -135,21 +144,29 @@
 								<!-- 로고 끝 -->
 
 								<!-- 검색 -->
-								<form class="col-12 col-lg-10 mb-12 mb-lg-10 mx-auto"
+								<form id="frmSearch" class="col-12 col-lg-10 mb-12 mb-lg-10 mx-auto"
 										action="/main/mainSearch" method="get">
 								<div class="input-group" style="margin-bottom: 50px">
 									
-									<button class="btn dropdown-toggle btn-outline-light orange_background shadow bg-body"
+									<select name="category" class="btn btn-outline-light orange_background shadow bg-body"
+										data-bs-toggle="dropdown" aria-expanded="false">
+										<option class="dropdown-item" value="ca">카테고리</option>
+										<option class="dropdown-item" value="1">1</option>
+										<option class="dropdown-item" value="2">2</option>
+										<option class="dropdown-item" value="3">3</option>
+										<option class="dropdown-item" value="4">4</option>
+									</select>
+									<button id="btnCategory" class="btn dropdown-toggle btn-outline-light orange_background shadow bg-body"
 										type="button" data-bs-toggle="dropdown" aria-expanded="false">카테고리</button>
 									<ul class="dropdown-menu">
-										<li><a class="dropdown-item" href="#">Action</a></li>
-										<li><a class="dropdown-item" href="#">Another action</a></li>
-										<li><a class="dropdown-item" href="#">Something else here</a></li>
-										<li><hr class="dropdown-divider"></li>
-										<li><a class="dropdown-item" href="#">Separated link</a></li>
+										<li value="1"><a class="dropdown-item" href="#">1</a></li>
+										<li value="2"><a class="dropdown-item" href="#">2</a></li>
+										<li value="3"><a class="dropdown-item" href="#">3</a></li>
+										<li value="4"><hr class="dropdown-divider"></li>
+										<li value="5"><a class="dropdown-item" href="#">4</a></li>
 									</ul>
 									
-									<input type="text" class="form-control shadow bg-body" aria-label="Text input with dropdown button"
+									<input id="searchText" type="text" class="form-control shadow bg-body" aria-label="Text input with dropdown button"
 									placeholder="나의 취미를 찾아보세요">
 									
 									<button type="submit" class="btn btn-outline-light orange_background shadow bg-body rounded" id="button-addon2">
