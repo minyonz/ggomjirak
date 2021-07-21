@@ -32,4 +32,5 @@ public class MainController {
 	public String mainSearch() throws Exception {
 		return "main/main_search";
 	}
+
 }
