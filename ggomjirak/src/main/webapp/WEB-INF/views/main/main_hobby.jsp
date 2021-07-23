@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp" %>
 
 
@@ -104,22 +105,7 @@
 					</ul>
 
 						<div style="overflow:hidden;">
-								<div class="col-lg-3 col-md-4 col-sm-6" style="float:left;">
-									<div class="featured__item">
-										<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-1.jpg">
-											<ul class="featured__item__pic__hover">
-												<li><a href="#"><i class="fa fa-heart"></i></a></li>
-												<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-												<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-											</ul>
-										</div>
-										<div class="featured__item__text">
-											<h6><a href="#">제목</a></h6>
-											<h5>작가</h5>
-										</div>
-									</div>
-								</div>
-								
+								<c:forEach var="popular" items="${popularHobby}">
 								<div class="col-lg-3 col-md-4 col-sm-6" style="float:left;">
 									<div class="featured__item">
 										<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-2.jpg">
@@ -130,43 +116,13 @@
 											</ul>
 										</div>
 										<div class="featured__item__text">
-											<h6><a href="#">제목</a></h6>
-											<h5>작가</h5>
+											<h6><a href="#">${popular.hobby_title}</a></h6>
+											<h5>${popular.hobby_writer}</h5>
 										</div>
 									</div>
 								</div>
+								</c:forEach>
 								
-								<div class="col-lg-3 col-md-4 col-sm-6" style="float:left;">
-									<div class="featured__item">
-										<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-3.jpg">
-											<ul class="featured__item__pic__hover">
-												<li><a href="#"><i class="fa fa-heart"></i></a></li>
-												<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-												<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-											</ul>
-										</div>
-										<div class="featured__item__text">
-											<h6><a href="#">제목</a></h6>
-											<h5>작가</h5>
-										</div>
-									</div>
-								</div>
-								
-								<div class="col-lg-3 col-md-4 col-sm-6" style="float:left;">
-									<div class="featured__item">
-										<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-4.jpg">
-											<ul class="featured__item__pic__hover">
-												<li><a href="#"><i class="fa fa-heart"></i></a></li>
-												<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-												<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-											</ul>
-										</div>
-										<div class="featured__item__text">
-											<h6><a href="#">제목</a></h6>
-											<h5>작가</h5>
-										</div>
-									</div>
-								</div>
 								
 								
 							</div>

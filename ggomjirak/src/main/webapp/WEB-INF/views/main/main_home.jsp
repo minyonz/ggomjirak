@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp" %>
 
 <!-- 배너 -->
-
 <div class="row">
 	<div class="col-md-12 green_background" style="padding-bottom: 20px">
 		<div class="row">
@@ -195,6 +195,7 @@
 
 							<div class="categories__slider owl-carousel">
 
+								<c:forEach var="popular" items="${popularHobby}">
 								<div class="featured__item">
 									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-1.jpg"
 										style="margin-left: 10px; margin-right: 10px">
@@ -205,71 +206,14 @@
 										</ul>
 									</div>
 										<div class="featured__item__text">
-										<h6><a href="#">제목1</a></h6>
-										<h5>작가1</h5>
+										<h6><a href="#">${popular.hobby_title}</a></h6>
+										<h5>${popular.hobby_writer}</h5>
 									</div>
 								</div>
+								</c:forEach>
+								
 
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-2.jpg"
-										style="margin-left: 10px; margin-right: 10px">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-										<div class="featured__item__text">
-										<h6><a href="#">제목2</a></h6>
-										<h5>작가2</h5>
-									</div>
-								</div>
-
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-3.jpg"
-										style="margin-left: 10px; margin-right: 10px">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-										<div class="featured__item__text">
-										<h6><a href="#">제목3</a></h6>
-										<h5>작가3</h5>
-									</div>
-								</div>
-
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-4.jpg"
-										style="margin-left: 10px; margin-right: 10px">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-										<div class="featured__item__text">
-										<h6><a href="#">제목4</a></h6>
-										<h5>작가4</h5>
-									</div>
-								</div>
-
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-5.jpg"
-										style="margin-left: 10px; margin-right: 10px">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-										<div class="featured__item__text">
-										<h6><a href="#">제목5</a></h6>
-										<h5>작가5</h5>
-									</div>
-								</div>
-							</div>
+								
 						</div>
 					</div>
 				</section>
@@ -593,7 +537,6 @@
 <!-- 인기 키워드 끝 -->
 
 <!-- 이달의 취미 -->
-
 <div class="row">
 	<div class="col-md-12">
 		<div class="row">
@@ -612,6 +555,7 @@
 
 							<div class="categories__slider owl-carousel">
 
+								<c:forEach var="month" items="${monthHobby}">
 								<div class="featured__item">
 									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-1.jpg"
 										style="margin-left: 10px; margin-right: 10px">
@@ -622,70 +566,13 @@
 										</ul>
 									</div>
 										<div class="featured__item__text">
-										<h6><a href="#">제목1</a></h6>
-										<h5>작가1</h5>
+										<h6><a href="#">${month.hobby_title}</a></h6>
+										<h5>${month.hobby_writer}</h5>
 									</div>
 								</div>
+								</c:forEach>
 
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-2.jpg"
-										style="margin-left: 10px; margin-right: 10px">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-										<div class="featured__item__text">
-										<h6><a href="#">제목2</a></h6>
-										<h5>작가2</h5>
-									</div>
-								</div>
-
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-3.jpg"
-										style="margin-left: 10px; margin-right: 10px">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-										<div class="featured__item__text">
-										<h6><a href="#">제목3</a></h6>
-										<h5>작가3</h5>
-									</div>
-								</div>
-
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-4.jpg"
-										style="margin-left: 10px; margin-right: 10px">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-										<div class="featured__item__text">
-										<h6><a href="#">제목4</a></h6>
-										<h5>작가4</h5>
-									</div>
-								</div>
-
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-5.jpg"
-										style="margin-left: 10px; margin-right: 10px">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-										<div class="featured__item__text">
-										<h6><a href="#">제목5</a></h6>
-										<h5>작가5</h5>
-									</div>
-								</div>
+								
 							</div>
 						</div>
 					</div>
