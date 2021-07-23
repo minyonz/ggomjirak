@@ -50,13 +50,18 @@
 										<label for="user_name">연락처</label>
 										<input type="text" class="form-control" id="user_name" name="user_name" />
 									</div>
+									<div>
+										<label for="cars">차</label>
+									</div>
 									<div class="form-group">
-										<select id="hobby1" name="hobby1">
-											<option value="volvo">DIY</option>
-											<option value="saab">공예</option>
-											<option value="opel">쿠킹</option>
+										<label for="cars">차</label>
+										<select name="cars" id="cars">
+											<option value="volvo">Volvo</option>
+											<option value="saab">Saab</option>
+											<option value="opel">Opel</option>
 											<option value="audi">Audi</option>
-										</select>
+										</select> <br>
+										
 									</div>
 									<div class="form-group">
 										<button type="submit" class="btn btn-primary">가입완료</button>
