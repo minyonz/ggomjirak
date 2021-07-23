@@ -1,20 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp"%>
 <script>
-$(document).ready(function() {	
-// 파일첨부(보류)
-// 	$("#fileDrop").on("dragenter dragover", function(e){
-// 		e.preventDefault();
-// 	});
-	
-// 	$("#fileDrop").on("drop", function(e) {
-// 		e.preventDefault();
-// 		console.log(e);
-// 	});
-});
+
 </script>
-<!-- 스토리 작성 폼 -->
+<!-- 스토리 목록 폼 -->
 <div class="container-fluid" style="background: #F5F5F5">
 	<div class="row">
 		<div class="col-md-2"></div>
@@ -71,23 +62,41 @@ $(document).ready(function() {
 					<div>
 						<input type="text"
 							style="border: 1px solid #E5E8E8; height: 30px;">
-						<a href="#" class="fa fa-search"></a>
+						<button type="button"
+							style="border: none; background: none; padding: 0;">
+							<img src="/resources/img/test/loupe.png" height="17px">
+						</button>
 					</div>
 				</div>
-				<!-- 글작성 폼 -->
+				<!-- 간단 카드 보여주기 -->
 				<div class="col-md-9">
-					<div class="checkout__order contact-form">
-					 <form action="/story/write_run" method="post">
-                    <div class="col-lg-12 text-center">
-                        <textarea placeholder="스토리를 작성해 주세요." name="st_content" id="st_content"></textarea>
-                        <div>
-                        	<p style="text-align:left; font-size:13px; margin-bottom:-10px">첨부파일을 드래그 해 주세요</p>
-                        	<div class="checkout__order" id="fileDrop"></div>
-                        </div>
-                        <button type="submit" class="site-btn">작성완료</button>
-                    </div>
-            		</form>
+					<div class="checkout__order">
+						<div class="workroom_box row" style="height: 39px;">
+							<h4>Story detail</h4>
+						</div>
+						<div class="workroom_box">
+							<hr>
+							<div class="container-fluid">
+								<c:forEach var="storyVo" items="${list}">
+								<div class="row">
+									<div class="col-md-10" style="padding: 0px; margin: auto;" >
+										<p style="font-size: 14px; margin: 10px" id="story_detail">
+										<a href="/story/detail?st_no=${storyVo.st_no}">
+										${storyVo.st_content}</a><br>
+										<a class="fa fa-heart-o" href="#" style="margin-right:5px"> ${storyVo.st_like_count}</a>
+										<a class="fa fa-comment-o" href="#"> ${storyVo.st_c_count}</a>
+										</p>								
+									</div>
+									<div class="col-md-2" style="padding: 0px;">
+										<img src="/resources/img/test/duck.png" width="100px">
+									</div>
+								</div>
+								<hr>
+								</c:forEach>
+							</div>
+						</div>
 					</div>
+				</div>
 			</div>
 			<div class="col-md-2"></div>
 	</div>
