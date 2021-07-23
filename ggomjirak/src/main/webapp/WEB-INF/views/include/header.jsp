@@ -89,7 +89,7 @@ $(document).ready(function() {
 												<li class="nav-item"><a class="nav-link" href="#">내 작업실</a></li>
 												
 												
-												<li class="nav-item dropdown ml-md-auto">
+												<li class="nav-item dropdown">
 												<div class="dropdown">
 												  <a class="btn nav-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 												   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
@@ -148,7 +148,7 @@ $(document).ready(function() {
 										action="/main/mainSearch" method="get">
 								<div class="input-group" style="margin-bottom: 50px">
 									
-									<select name="category" class="btn btn-outline-light orange_background shadow bg-body"
+									<select name="category" class="btn btn-light orange_background white_color shadow bg-body"
 										data-bs-toggle="dropdown" aria-expanded="false">
 										<option class="dropdown-item" value="ca">카테고리</option>
 										<option class="dropdown-item" value="1">1</option>
@@ -176,105 +176,9 @@ $(document).ready(function() {
 										</svg>
 										<span class="visually-hidden">검색</span>
 									</button>
-									
 									</div>
 								</form>
 								<!-- 검색 끝 -->
-								
-								
-								
-								<!-- 검색 -->
-								<form id="frmSearch" class="col-12 col-lg-10 mb-12 mb-lg-10 mx-auto"
-										action="/main/mainSearch" method="get">
-								<div style="margin-bottom: 50px">
-								<span class="col-lg-2">
-								
-								   <select name="category" class="btn btn-outline-light green_background shadow bg-body"
-										data-bs-toggle="dropdown" style="float:left;">
-									<option class="dropdown-item" value="ca">카테고리1</option>
-									<option class="dropdown-item" value="1">1</option>
-									<option class="dropdown-item" value="2">2</option>
-									<option class="dropdown-item" value="3">3</option>
-									<option class="dropdown-item" value="4">4</option>
-								</select>
-								  
-								 
-								   <select name="category" class="btn btn-outline-light green_background shadow bg-body"
-										data-bs-toggle="dropdown">
-									<option class="dropdown-item" value="ca">카테고리2</option>
-									<option class="dropdown-item" value="1">1</option>
-									<option class="dropdown-item" value="2">2</option>
-									<option class="dropdown-item" value="3">3</option>
-									<option class="dropdown-item" value="4">4</option>
-								</select>
-								  
-								</span>
-								
-								
-									<div class="input-group col-lg-10">
-									  <input type="text" class="form-control" placeholder="나의 취미를 찾아보세요" aria-label="Recipient's username" aria-describedby="button-addon2">
-									  <div class="input-group-append">
-									    <button class="btn btn-outline-light" type="button" id="button-addon2">
-									    	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-												fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-											  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-											</svg>
-										<span class="visually-hidden">검색</span>
-									    </button>
-									  </div>
-									</div>
-									</div>
-								</form>
-								<!-- 검색 끝 -->
-								
-								<!-- 검색 -->
-								<form id="frmSearch" class="col-12 col-lg-10 mb-12 mb-lg-10 mx-auto"
-										action="/main/mainSearch" method="get">
-								<div style="margin-bottom: 50px">
-								
-								   <button id="btnCategory" class="btn btn-outline-light dropdown-toggle shadow bg-body"
-										type="button" data-bs-toggle="dropdown" aria-expanded="false">카테고리</button>
-									<ul class="dropdown-menu">
-										<li value="1"><a class="dropdown-item" href="#">1</a></li>
-										<li value="2"><a class="dropdown-item" href="#">2</a></li>
-										<li value="3"><a class="dropdown-item" href="#">3</a></li>
-										<li value="4"><hr class="dropdown-divider"></li>
-										<li value="5"><a class="dropdown-item" href="#">4</a></li>
-									</ul>
-									
-								  <!-- Default dropend button -->
-									<div class="btn-group dropend">
-									  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-									    Dropright
-									  </button>
-									  <ul class="dropdown-menu">
-									   <li value="1"><a class="dropdown-item" href="#">1</a></li>
-										<li value="2"><a class="dropdown-item" href="#">2</a></li>
-									  </ul>
-									</div>
-									
-									
-								
-									<div class="input-group col-lg-10">
-									  <input type="text" class="form-control" placeholder="나의 취미를 찾아보세요" aria-label="Recipient's username" aria-describedby="button-addon2">
-									  <div class="input-group-append">
-									    <button class="btn btn-outline-light" type="button" id="button-addon2">
-									    	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-												fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-											  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-											</svg>
-										<span class="visually-hidden">검색</span>
-									    </button>
-									  </div>
-									</div>
-									</div>
-								</form>
-								<!-- 검색 끝 -->
-								
-								
-								
-								
-								
 								
 								</div>
 								<div class="col-md-2"></div>

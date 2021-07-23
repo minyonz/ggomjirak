@@ -22,11 +22,13 @@
 				<div class="col-lg-6 col-md-12 col-sm-12" style="float:left; padding: 30px">
 					<div class="featured__item">
 						<div>
-							<img src="/resources/img/eximage.png" class="rounded mx-auto d-block" alt="..."
-							width="700px" height="200px">
+							<a href="/main/mainEventContent">
+								<img src="/resources/img/eximage.png" class="rounded mx-auto d-block" alt="..."
+								width="700px" height="200px">
+							</a>
 						</div>
 						<div class="featured__item__text">
-							<h6><a href="#">제목</a></h6>
+							<h6><a href="/main/mainEventContent">제목1</a></h6>
 							<h5>기간</h5>
 						</div>
 					</div>
@@ -35,11 +37,13 @@
 				<div class="col-lg-6 col-md-12 col-sm-12" style="float:left; padding: 30px">
 					<div class="featured__item">
 						<div>
-							<img src="/resources/img/eximage.png" class="rounded mx-auto d-block" alt="..."
-							width="700px" height="200px">
+							<a href="/main/mainEventContent">
+								<img src="/resources/img/eximage.png" class="rounded mx-auto d-block" alt="..."
+								width="700px" height="200px">
+							</a>
 						</div>
 						<div class="featured__item__text">
-							<h6><a href="#">제목</a></h6>
+							<h6><a href="/main/mainEventContent">제목2</a></h6>
 							<h5>기간</h5>
 						</div>
 					</div>
@@ -48,11 +52,13 @@
 				<div class="col-lg-6 col-md-12 col-sm-12" style="float:left; padding: 30px">
 					<div class="featured__item">
 						<div>
-							<img src="/resources/img/eximage.png" class="rounded mx-auto d-block" alt="..."
-							width="700px" height="200px">
+							<a href="/main/mainEventContent">
+								<img src="/resources/img/eximage.png" class="rounded mx-auto d-block" alt="..."
+								width="700px" height="200px">
+							</a>
 						</div>
 						<div class="featured__item__text">
-							<h6><a href="#">제목</a></h6>
+							<h6><a href="/main/mainEventContent">제목3</a></h6>
 							<h5>기간</h5>
 						</div>
 					</div>
