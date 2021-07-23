@@ -26,7 +26,7 @@ public class MyPageController {
 	
 
 	// 팀플 - 마이 페이지
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String mypageForm() throws Exception {
 		return "mypage/member_login";
 	}
