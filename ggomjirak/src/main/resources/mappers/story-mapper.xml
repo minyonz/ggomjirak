@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dp.ggomjirak.story">
+		
+	<!-- story write -->
+	<insert id="insertStory">
+		insert into tbl_story(st_no, user_id, st_content)
+		values(seq_story_no.nextval, #{user_id}, #{st_content})
+	</insert>
+	
+	<!-- story list -->
+	<select id="listStory" resultType="StoryVo">
+		select * from tbl_story
+		where user_id = #{user_id}
+		order by st_no desc
+	</select>
+	
+	<!-- story delete -->
+	<delete id="deleteStory">
+		delete from tbl_story
+		where st_no = #{st_no}
+	</delete>
+	
+	<!-- story update -->
+	<update id="updateStory">
+		update tbl_story set
+			st_content = #{st_content},
+			mod_date = sysdate
+		where st_no = #{st_no}
+	</update>
+	
+	<!-- 글조회 -->
+	<select id="selectStory" resultType="StoryVo">
+		select * from tbl_story
+		where st_no = #{st_no}
+	</select>
+	
+	<!-- 댓글 카운트 증가 -->
+	<update id="updateCommentCnt">
+		update tbl_story set
+			st_c_count = st_c_count + #{count}
+		where st_no = #{st_no}
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+
