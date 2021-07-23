@@ -119,8 +119,6 @@ $(document).ready(function(){
 	}); */
 });
 </script>
-
-
 <!-- 파일 업로드 안내 모달-->
 <div class="container-fluid">
 	<div class="row">
@@ -160,16 +158,23 @@ $(document).ready(function(){
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
-				<div class="col-md-2"></div>
+				<div class="col-md-2">
+						<!-- 전체 페이지에서 왼쪽 패널  -->
+				</div>
 				<div class="col-md-8">
+					<!-- 전체 페이지 메인 패널 -->
 					<div class="row">
-					<%@ include file="mypage_include/mypage_left.jsp"%>
+					<div class="col-md-3">
+						<!-- 내부 패널 왼쪽 -->
+						<%@ include file="mypage_include/mypage_left.jsp"%>
+					</div>
 					<div class="col-md-9">
-						<form role="form" id="frmProfile" action="joinRun" method="post"
-							enctype="multipart/form-data">
+						<!-- 내부 패널 메인 -->
+						<form role="form" id="frmProfile" action="joinRun" method="post" enctype="multipart/form-data">
 							<div class="form-group">
-								<label for="user_id"> 닉네임</label> <input type="text"
-									class="form-control" id="user_id" name="user_id" /> <br/>
+								<label for="user_id"> 닉네임</label> 
+								<input type="text" class="form-control" id="user_id" name="user_id" /> 
+								<br/>
 								<button type="button" class="btn btn-small btn-danger"
 									id="btnCheckDupId">닉네임 중복 확인</button>
 								<span id="checkDupIdResult"></span>
@@ -212,13 +217,16 @@ $(document).ready(function(){
 						</div>
 							<button type="submit" class="btn btn-primary">프로필 저장</button>
 						</form>
-					</div>
-					</div>
+						</div> <!-- </div class="row"> --> 
+					</div> <!-- 내부 패널 메인  끝 -->
+				</div> 	<!-- 전체 페이지 메인 패널 끝 -->
+				<div class="col-md-2">
+					<!-- 전체 페이지 오른쪽 패널 -->
 				</div>
-				<div class="col-md-2"></div>
-			</div>
-		</div>
-	</div>
-</div>
+			</div> <!-- </div class="row"> -->
+		</div> <!-- </div class="col-md-12"> -->
+	</div> <!-- </div class="row"> -->
+</div> <!-- <div class="container-fluid"> -->
 </body>
+
 <%@ include file="../include/footer.jsp"%>
