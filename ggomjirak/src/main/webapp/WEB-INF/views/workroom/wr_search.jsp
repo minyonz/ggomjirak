@@ -10,7 +10,7 @@
 					<div class="checkout__order">
 						<!-- 유저 카드 프로필 -->
 						<div class="box" style="margin: 12px auto;">
-							<a href="/workroom/wr_main"><img class="profile" src="/resources/img/test/littleduck.png"
+							<a href="/workroom/main"><img class="profile" src="/resources/img/test/littleduck.png"
 								alt="profile image" style="width: 100%; text-align: center"></a>
 						</div>
 						<div class="card-body">
@@ -65,32 +65,22 @@
 				</div>
 				<!-- 간단 카드 보여주기 -->
 				<div class="col-md-9">
-					<div class="checkout__order">
+				<!-- 검색결과 -->
+				<h1>${txtStSearch}의 검색결과 입니다.</h1>
+					<div class="checkout__order" id="hobby">
 						<div class="workroom_box row" style="height: 39px;">
-							<h4>Story detail</h4>
+							<h4>취미</h4>
 						</div>
 						<hr>
-						<div>
-							<img src="/resources/img/test/duck.png" width="300px" style="display: block; margin: 0px auto; margin-top:50px">
+
+					</div>
+					<div class="checkout__order" id="story">
+						<div class="workroom_box row" style="height: 39px;">
+							<h4>Story</h4>
 						</div>
-						<!-- 스토리 전체 내용 -->
-						<div style="margin: 50px">
-							<p>
-							모더나와 화이자 백신은 바이러스 단백질을 만드는 기반인 유전 정보 일부를 주사해 해당 단백질에 대한 항체를 생성해 면역을 획득하는 mRNA 방식이 사용되고 있다. 
-							양사의 백신은 2회 투여 후 6개월이 경과한 시점에서도 유효하다는 연구 결과가 보고된 바 있다. 항체에 집중한 이전 연구에서는 
-							"항체는 일반적으로 몇 주~몇 달이 경과하면 사라지기 때문에 면역이 오래 유지되지 않을 가능성이 있다"는 내용이 발표됐다.</p>
 						<hr>
-						</div>
-						<div class="row" style="margin: 50px">
-							<p>좋아요 1 </p>
-							<p>댓글수 3 </p>
-						</div>
-						
+						<div class="col-md-2"></div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-2"></div>
-	</div>
-</div>
 
 <%@ include file="../include/footer.jsp"%>
