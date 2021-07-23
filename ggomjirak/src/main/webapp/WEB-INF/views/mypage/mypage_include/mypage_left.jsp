@@ -9,10 +9,12 @@
 				<a class="navbar-brand" href="#">마이페이지</a>
 				<nav class="nav nav-pills flex-column">
 					<a class="nav-link" href="/mypage/joinForm">회원가입</a> 
-					<a class="nav-link" href="/mypage/joinForm">내정보 수정</a> 
+					<a class="nav-link" href="/mypage/infoForm">내정보</a> 
+					<a class="nav-link" href="/mypage/modifyForm">내정보 수정</a> 
 					<a class="nav-link" href="/mypage/profileForm">프로필 수정</a>
 					<a class="nav-link" href="/mypage/alarmSetup">알람 설정</a>
-					<a class="nav-link" href="/cs_center/consultList">문의하기</a>
+					<a class="nav-link" href="/cs_center/consultQS">1:1 문의</a>
+					<a class="nav-link" href="/cs_center/consultQnA">문의하기 글수정</a>
 				</nav>
 			</nav>
 		</div>
