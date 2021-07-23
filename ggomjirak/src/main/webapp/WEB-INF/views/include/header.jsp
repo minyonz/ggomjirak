@@ -86,7 +86,8 @@ $(document).ready(function() {
 												<li class="nav-item"><a class="nav-link" href="/main/mainHobby">취미</a></li>
 												<li class="nav-item"><a class="nav-link" href="/main/mainEvent">이벤트</a></li>
 												<li class="nav-item"><a class="nav-link" href="/main/mainAboutUs">소개</a></li>
-												<li class="nav-item"><a class="nav-link" href="#">내 작업실</a></li>
+												<li class="nav-item"><a class="nav-link" href="/workroom/main">내 작업실</a></li>
+												<li class="nav-item"><a class="nav-link" href="/mypage/login">로그인</a></li>
 												
 												
 												<li class="nav-item dropdown">
@@ -118,6 +119,7 @@ $(document).ready(function() {
 													</svg>
 												  </a>
 												  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+												    <li><a class="dropdown-item" href="/mypage/infoForm">마이페이지</a></li>
 												    <li><a class="dropdown-item" href="#">쪽지함</a></li>
 												    <li><a class="dropdown-item" href="#">1:1문의</a></li>
 												    <li><hr class="dropdown-divider"></li>
