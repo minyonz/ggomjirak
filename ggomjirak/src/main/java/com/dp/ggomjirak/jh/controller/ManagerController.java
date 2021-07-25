@@ -98,8 +98,21 @@ public class ManagerController {
 		managerService.updateMember(memberVo);
 		rttr.addFlashAttribute("updateMsg", "success");
 		String user_id = memberVo.getUser_id();
-		System.out.println(memberVo);
 		return "redirect:/manager/managerMemberContent?user_id=" + user_id;
+	}
+	// 회원 상세 정보 삭제 실행
+	@RequestMapping(value="/managerMemberDeleteRun", method=RequestMethod.GET)
+	public String managerMemberDeleteRun(String user_id, RedirectAttributes rttr) throws Exception {
+		managerService.deleteMember(user_id);
+		rttr.addFlashAttribute("deleteMsg", "success");
+		return "redirect:/manager/managerMemberListLeave";
+	}
+	// 회원 상세 정보 삭제 취소실행
+	@RequestMapping(value="/managerCancelMemberDeleteRun", method=RequestMethod.GET)
+	public String managerCancelMemberDeleteRun(String user_id, RedirectAttributes rttr) throws Exception {
+		managerService.cancleDeleteMember(user_id);
+		rttr.addFlashAttribute("cancleDeleteMsg", "success");
+		return "redirect:/manager/managerMemberList";
 	}
 	
 	

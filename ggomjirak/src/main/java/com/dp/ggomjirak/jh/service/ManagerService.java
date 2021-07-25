@@ -24,6 +24,8 @@ public interface ManagerService {
 	
 	
 	public void updateMember(MemberVo memberVo);
+	public void deleteMember(String user_id);
+	public void cancleDeleteMember(String user_id);
 	
 	public List<EventVo> showEventListAll();
 	public List<EventVo> showEventList();

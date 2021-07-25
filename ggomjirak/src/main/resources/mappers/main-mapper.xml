@@ -21,6 +21,33 @@
 		and to_char(reg_date, 'mm') = to_char(sysdate, 'mm')
 		order by view_cnt desc, like_cnt desc
 	</select>
+	
+	<!-- 등급 표시 -->
+	<select id="selectUserGrade" resultType="String">
+		select name from tbl_membergrade
+		where cd = #{user_grade}
+	</select>
+	
+	<!-- 검색(취미) -->
+	<select id="searchHobby" resultType="HobbyVo">
+		select * from
+			(select rownum rnum, a.* from
+				(select * from tbl_hobby
+				where hobby_title like '%' || #{keyword} || '%'
+				order by hobby_no desc) a)
+		where rnum between 1 and 10
+	</select>
+	
+	<!-- 검색(작가) -->
+	<select id="searchMember" resultType="MemberVo">
+		select * from
+			(select rownum rnum, a.* from
+				(select * from tbl_memberdetail
+				where user_nick like '%' || #{keyword} || '%'
+				order by user_grade asc) a)
+		where rnum between 1 and 10
+	</select>
+	
 
 
 </mapper>

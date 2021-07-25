@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.dp.ggomjirak.vo.HobbyVo;
+import com.dp.ggomjirak.vo.MemberVo;
 
 @Repository
 public class MainDaoImpl implements MainDao {
@@ -17,6 +18,7 @@ public class MainDaoImpl implements MainDao {
 	@Inject
 	SqlSession sqlSession;
 
+	
 	@Override
 	public List<HobbyVo> getPopularHobbyList() {
 		List<HobbyVo> list = sqlSession.selectList(NAMESPACE + "getPopularHobbyList");
@@ -26,9 +28,28 @@ public class MainDaoImpl implements MainDao {
 	@Override
 	public List<HobbyVo> getMonthHobbyList() {
 		List<HobbyVo> list = sqlSession.selectList(NAMESPACE + "getMonthHobbyList");
-		System.out.println(list);
 		return list;
 	}
+
+	@Override
+	public String selectUserGrade(int user_grade) {
+		String strGrade = sqlSession.selectOne(NAMESPACE + "selectUserGrade", user_grade);
+		return strGrade;
+	}
+
+	@Override
+	public List<HobbyVo> searchHobby(String keyword) {
+		List<HobbyVo> list = sqlSession.selectList(NAMESPACE + "searchHobby", keyword);
+		return list;
+	}
+
+	@Override
+	public List<MemberVo> searchMember(String keyword) {
+		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "searchMember", keyword);
+		return list;
+	}
+
+
 
 
 }

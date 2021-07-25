@@ -86,6 +86,7 @@
 							<th>회원가입일</th>
 							<th>회원 탈퇴 여부</th>
 							<th>회원 탈퇴일</th>
+							<th>탈퇴 취소</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -100,6 +101,9 @@
 							<td>${leaveList.reg_date}</td>
 							<td>${leaveList.is_del}</td>
 							<td>${leaveList.del_date}</td>
+							<td>
+								<a href="/manager/managerCancelMemberDeleteRun?user_id=${leaveList.user_id}" type="button" class="btn btn-success green_background">취소</a>
+							</td>
 						</tr>
 					</c:forEach>
 					</tbody>

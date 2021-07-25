@@ -96,6 +96,21 @@
 		where user_id = #{user_id}
 	</update>
 	
+	<!-- 회원 탈퇴 -->
+	<update id="deleteMember">
+		update tbl_memberinfo set
+			is_del = 'Y',
+			del_date = sysdate
+		where user_id = #{user_id}
+	</update>
+	
+	<!-- 회원 탈퇴 취소 -->
+	<update id="cancleDeleteMember">
+		update tbl_memberinfo set
+			is_del = 'N'
+		where user_id = #{user_id}
+	</update>
+	
 	
 	
 	<!-- 관리자 회원 리스트 -->

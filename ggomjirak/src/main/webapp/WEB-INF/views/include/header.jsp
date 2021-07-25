@@ -49,8 +49,8 @@
 <script>
 $(document).ready(function() {
 	$("#frmSearch").submit(function() {
-		console.log($(this));
-		return false;
+		
+		
 	});
 	
 	
@@ -168,7 +168,7 @@ $(document).ready(function() {
 										<li value="5"><a class="dropdown-item" href="#">4</a></li>
 									</ul>
 									
-									<input id="searchText" type="text" class="form-control shadow bg-body" aria-label="Text input with dropdown button"
+									<input id="keyword" name="keyword" type="text" class="form-control shadow bg-body"
 									placeholder="나의 취미를 찾아보세요">
 									
 									<button type="submit" class="btn btn-outline-light orange_background shadow bg-body rounded" id="button-addon2">

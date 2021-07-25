@@ -75,7 +75,11 @@
 					<div class="col-md-2">
 						<div style="margin-right: 40px">
 						<h5>추천취미</h5>
-						<p>#추천취미  #추천취미  #추천취미  #추천취미  #추천취미</p>
+						<p>
+						${cateStrVo.cate_no1} <br/>
+						${cateStrVo.cate_no2} <br/>
+						${cateStrVo.cate_no3} <br/>
+						</p>
 						<button type="button" class="btn green_background white_color">더보기</button>
 						</div>
 						
@@ -243,16 +247,18 @@
                     <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">전체</li>
-                            <li data-filter=".oranges">금손</li>
-                            <li data-filter=".fresh-meat">은손</li>
-                            <li data-filter=".vegetables">곰손</li>
-                            <li data-filter=".fastfood">맨손</li>
+                            <li data-filter=".grade1">금손</li>
+                            <li data-filter=".grade2">은손</li>
+                            <li data-filter=".grade3">곰손</li>
+                            <li data-filter=".grade4">맨손</li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="row featured__filter">
-                <div class="col-lg-2 col-md-4 col-sm-6 mix oranges">
+            
+            <c:forEach var="member" items="${memberVo}">
+                <div class="col-lg-2 col-md-4 col-sm-6 mix grade${member.user_grade}">
                     <div class="featured__item">
                     
                         <div class="featured__item__pic set-bg h-50" style="padding: 10px">
@@ -264,212 +270,14 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">작가1</a></h6>
-                            <h5>금손</h5>
+                            <h6><a href="#">${member.user_nick}</a></h6>
+                            <h5>${member.user_grade}</h5>
                         </div>
                     </div>
                 </div>
+                </c:forEach>
                 
-                <div class="col-lg-2 col-md-4 col-sm-6 mix oranges">
-                    <div class="featured__item">
-                    
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/resources/img/featured/feature-2.jpg" class="rounded-circle" alt="..."/>
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">작가2</a></h6>
-                            <h5>금손</h5>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-4 col-sm-6 mix oranges">
-                    <div class="featured__item">
-                    
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/resources/img/featured/feature-3.jpg" class="rounded-circle" alt="..."/>
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">작가3</a></h6>
-                            <h5>금손</h5>
-                        </div>
-                    </div>
-                </div>
-                                
-                <div class="col-lg-2 col-md-4 col-sm-6 mix oranges">
-                    <div class="featured__item">
-                    
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/resources/img/featured/feature-4.jpg" class="rounded-circle" alt="..."/>
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">작가4</a></h6>
-                            <h5>금손</h5>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-4 col-sm-6 mix oranges">
-                    <div class="featured__item">
-                    
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/resources/img/featured/feature-5.jpg" class="rounded-circle" alt="..."/>
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">작가5</a></h6>
-                            <h5>금손</h5>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 은손 -->
-                
-                <div class="col-lg-2 col-md-4 col-sm-6 mix fresh-meat">
-                    <div class="featured__item">
-                    
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/resources/img/featured/feature-1.jpg" class="rounded-circle" alt="..."/>
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">작가1</a></h6>
-                            <h5>은손</h5>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-4 col-sm-6 mix fresh-meat">
-                    <div class="featured__item">
-                    
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/resources/img/featured/feature-2.jpg" class="rounded-circle" alt="..."/>
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">작가2</a></h6>
-                            <h5>은손</h5>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-4 col-sm-6 mix fresh-meat">
-                    <div class="featured__item">
-                    
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/resources/img/featured/feature-3.jpg" class="rounded-circle" alt="..."/>
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">작가3</a></h6>
-                            <h5>은손</h5>
-                        </div>
-                    </div>
-                </div>
-                                
-                <div class="col-lg-2 col-md-4 col-sm-6 mix vegetables">
-                    <div class="featured__item">
-                    
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/resources/img/featured/feature-4.jpg" class="rounded-circle" alt="..."/>
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">작가1</a></h6>
-                            <h5>곰손</h5>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-4 col-sm-6 mix vegetables">
-                    <div class="featured__item">
-                    
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/resources/img/featured/feature-5.jpg" class="rounded-circle" alt="..."/>
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">작가2</a></h6>
-                            <h5>곰손</h5>
-                        </div>
-                    </div>
-                </div>
-                
-                    <!-- 맨손 -->
-                <div class="col-lg-2 col-md-4 col-sm-6 mix fastfood">
-                    <div class="featured__item">
-                    
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/resources/img/featured/feature-4.jpg" class="rounded-circle" alt="..."/>
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">작가1</a></h6>
-                            <h5>맨손</h5>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-2 col-md-4 col-sm-6 mix fastfood">
-                    <div class="featured__item">
-                    
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/resources/img/featured/feature-5.jpg" class="rounded-circle" alt="..."/>
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">작가2</a></h6>
-                            <h5>맨손</h5>
-                        </div>
-                    </div>
-                </div>
+               
                 
             </div>
         </div>

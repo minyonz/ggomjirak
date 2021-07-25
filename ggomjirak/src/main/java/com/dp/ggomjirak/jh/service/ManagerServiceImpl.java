@@ -79,6 +79,17 @@ public class ManagerServiceImpl implements ManagerService {
 		
 	}
 
+	@Override
+	public void deleteMember(String user_id) {
+		managerDao.deleteMember(user_id);
+		
+	}
+
+	@Override
+	public void cancleDeleteMember(String user_id) {
+		managerDao.cancleDeleteMember(user_id);
+		
+	}
 	
 	@Override
 	public List<EventVo> showEventListAll() {
@@ -125,6 +136,7 @@ public class ManagerServiceImpl implements ManagerService {
 	public void deleteEvent(int e_no) {
 		managerDao.deleteEvent(e_no);
 	}
+
 
 
 

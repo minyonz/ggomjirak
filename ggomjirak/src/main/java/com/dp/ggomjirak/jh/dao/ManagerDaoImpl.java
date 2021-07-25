@@ -85,7 +85,17 @@ private static final String NAMESPACE = "com.dp.ggomjirak.manager.";
 		sqlSession.update(NAMESPACE + "updateMemberDetail", memberVo);
 	}
 
-	
+	@Override
+	public void deleteMember(String user_id) {
+		sqlSession.update(NAMESPACE + "deleteMember", user_id);
+		
+	}
+
+	@Override
+	public void cancleDeleteMember(String user_id) {
+		sqlSession.update(NAMESPACE + "cancleDeleteMember", user_id);
+		
+	}
 	
 	
 	@Override
@@ -135,6 +145,8 @@ private static final String NAMESPACE = "com.dp.ggomjirak.manager.";
 		sqlSession.update(NAMESPACE + "deleteEvent", e_no);
 		
 	}
+
+
 
 
 

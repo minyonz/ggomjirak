@@ -26,6 +26,9 @@ public interface ManagerDao {
 	public void updateMemberInfo(MemberVo memberVo);
 	public void updateMemberDetail(MemberVo memberVo);
 	
+	public void deleteMember(String user_id);
+	public void cancleDeleteMember(String user_id);
+	
 	
 	public List<EventVo> showEventListAll();
 	public List<EventVo> showEventList();
