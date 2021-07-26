@@ -14,7 +14,6 @@ public interface ManagerService {
 
 	public List<MemberVo> showMemberList();
 	public List<MemberVo> showMemberListLeave();
-	public List<ManagerVo> showManagerList();
 	
 	public MemberVo selectMemberById(String user_id);
 	public CateStrVo selectCateStr(String user_id);
@@ -27,6 +26,10 @@ public interface ManagerService {
 	public void deleteMember(String user_id);
 	public void cancleDeleteMember(String user_id);
 	
+	public List<ManagerVo> showManagerList();
+	public void insertManager(ManagerVo managerVo);
+	public void deleteManager(String user_id);
+	
 	public List<EventVo> showEventListAll();
 	public List<EventVo> showEventList();
 	public List<EventVo> showEventListEnd();
@@ -36,4 +39,7 @@ public interface ManagerService {
 	public void insertEvent(EventVo eventVo);
 	public void updateEvent(EventVo eventVo);
 	public void deleteEvent(int e_no);
+	
+	//메인
+	public List<MemberVo> selectPopularMemberList();
 }

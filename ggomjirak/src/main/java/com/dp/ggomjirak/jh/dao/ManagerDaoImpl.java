@@ -97,6 +97,20 @@ private static final String NAMESPACE = "com.dp.ggomjirak.manager.";
 		
 	}
 	
+
+	@Override
+	public void insertManager(ManagerVo managerVo) {
+		sqlSession.insert(NAMESPACE + "insertManager", managerVo);
+		
+	}
+	
+
+	@Override
+	public void deleteManager(String user_id) {
+		sqlSession.delete(NAMESPACE + "deleteManager", user_id);
+		
+	}
+	
 	
 	@Override
 	public List<EventVo> showEventListAll() {
@@ -145,6 +159,15 @@ private static final String NAMESPACE = "com.dp.ggomjirak.manager.";
 		sqlSession.update(NAMESPACE + "deleteEvent", e_no);
 		
 	}
+
+	//메인
+	@Override
+	public List<MemberVo> selectPopularMemberList() {
+		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "selectPopularMemberList");
+		return list;
+	}
+
+
 
 
 

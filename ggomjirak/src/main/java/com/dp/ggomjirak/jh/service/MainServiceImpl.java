@@ -37,6 +37,30 @@ public class MainServiceImpl implements MainService {
 	}
 
 	@Override
+	public List<MemberVo> getPopularMemberList1() {
+		List<MemberVo> list = mainDao.getPopularMemberList1();
+		return list;
+	}
+
+	@Override
+	public List<MemberVo> getPopularMemberList2() {
+		List<MemberVo> list = mainDao.getPopularMemberList2();
+		return list;
+	}
+
+	@Override
+	public List<MemberVo> getPopularMemberList3() {
+		List<MemberVo> list = mainDao.getPopularMemberList3();
+		return list;
+	}
+
+	@Override
+	public List<MemberVo> getPopularMemberList4() {
+		List<MemberVo> list = mainDao.getPopularMemberList4();
+		return list;
+	}
+
+	@Override
 	public List<HobbyVo> searchHobby(String keyword) {
 		List<HobbyVo> list = mainDao.searchHobby(keyword);
 		return list;
@@ -47,5 +71,6 @@ public class MainServiceImpl implements MainService {
 		List<MemberVo> list = mainDao.searchMember(keyword);
 		return list;
 	}
+
 
 }

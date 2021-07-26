@@ -102,7 +102,7 @@
 							<td>${leaveList.is_del}</td>
 							<td>${leaveList.del_date}</td>
 							<td>
-								<a href="/manager/managerCancelMemberDeleteRun?user_id=${leaveList.user_id}" type="button" class="btn btn-success green_background">취소</a>
+								<a href="/manager/managerCancelMemberDeleteRun?user_id=${leaveList.user_id}" type="button" class="btn btn-danger orange_background">취소</a>
 							</td>
 						</tr>
 					</c:forEach>

@@ -211,7 +211,7 @@
 									</div>
 										<div class="featured__item__text">
 										<h6><a href="#">${popular.hobby_title}</a></h6>
-										<h5>${popular.hobby_writer}</h5>
+										<h5>${popular.user_nick}</h5>
 									</div>
 								</div>
 								</c:forEach>
@@ -257,8 +257,8 @@
             </div>
             <div class="row featured__filter">
             
-            <c:forEach var="member" items="${memberVo}">
-                <div class="col-lg-2 col-md-4 col-sm-6 mix grade${member.user_grade}">
+            <c:forEach var="member1" items="${popularMember1}">
+                <div class="col-lg-2 col-md-4 col-sm-6 mix grade${member1.user_grade}">
                     <div class="featured__item">
                     
                         <div class="featured__item__pic set-bg h-50" style="padding: 10px">
@@ -270,8 +270,65 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="#">${member.user_nick}</a></h6>
-                            <h5>${member.user_grade}</h5>
+                            <h6><a href="#">${member1.user_nick}</a></h6>
+                            <h5>${member1.name}</h5>
+                        </div>
+                    </div>
+                </div>
+                </c:forEach>
+            <c:forEach var="member2" items="${popularMember2}">
+                <div class="col-lg-2 col-md-4 col-sm-6 mix grade${member2.user_grade}">
+                    <div class="featured__item">
+                    
+                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
+                        <img src="/resources/img/featured/feature-1.jpg" class="rounded-circle" alt="..."/>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">${member2.user_nick}</a></h6>
+                            <h5>${member2.name}</h5>
+                        </div>
+                    </div>
+                </div>
+                </c:forEach>
+            <c:forEach var="member3" items="${popularMember3}">
+                <div class="col-lg-2 col-md-4 col-sm-6 mix grade${member3.user_grade}">
+                    <div class="featured__item">
+                    
+                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
+                        <img src="/resources/img/featured/feature-1.jpg" class="rounded-circle" alt="..."/>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">${member3.user_nick}</a></h6>
+                            <h5>${member3.name}</h5>
+                        </div>
+                    </div>
+                </div>
+                </c:forEach>
+            <c:forEach var="member4" items="${popularMember4}">
+                <div class="col-lg-2 col-md-4 col-sm-6 mix grade${member4.user_grade}">
+                    <div class="featured__item">
+                    
+                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
+                        <img src="/resources/img/featured/feature-1.jpg" class="rounded-circle" alt="..."/>
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">${member4.user_nick}</a></h6>
+                            <h5>${member4.name}</h5>
                         </div>
                     </div>
                 </div>
@@ -375,7 +432,7 @@
 									</div>
 										<div class="featured__item__text">
 										<h6><a href="#">${month.hobby_title}</a></h6>
-										<h5>${month.hobby_writer}</h5>
+										<h5>${month.user_nick}</h5>
 									</div>
 								</div>
 								</c:forEach>

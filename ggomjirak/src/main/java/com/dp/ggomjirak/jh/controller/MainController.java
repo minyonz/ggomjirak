@@ -31,13 +31,20 @@ public class MainController {
 	public String mainHome(Model model) throws Exception {
 		List<HobbyVo> popularHobby = mainService.getPopularHobbyList();
 		List<HobbyVo> monthHobby = mainService.getMonthHobbyList();
-		List<MemberVo> memberVo = managerService.showMemberList();
+		List<MemberVo> popularMember1 = mainService.getPopularMemberList1();
+		List<MemberVo> popularMember2 = mainService.getPopularMemberList2();
+		List<MemberVo> popularMember3 = mainService.getPopularMemberList3();
+		List<MemberVo> popularMember4 = mainService.getPopularMemberList4();
 		String user_id = "cat";
 		CateStrVo cateStrVo = managerService.selectCateStr(user_id);
 
 		model.addAttribute("popularHobby", popularHobby);
 		model.addAttribute("monthHobby", monthHobby);
-		model.addAttribute("memberVo", memberVo);
+		model.addAttribute("popularMember1", popularMember1);
+		model.addAttribute("popularMember2", popularMember2);
+		model.addAttribute("popularMember3", popularMember3);
+		model.addAttribute("popularMember4", popularMember4);
+		
 		model.addAttribute("cateStrVo", cateStrVo);
 		return "main/main_home";
 	}
@@ -57,25 +64,19 @@ public class MainController {
 		return "main/main_event";
 	}
 	// 전체 이벤트
-	@ResponseBody
-	@RequestMapping(value="/getEventListAll", method=RequestMethod.GET)
-	public List<EventVo> getEventListAll() throws Exception {
-		List<EventVo> eventList = managerService.showEventListAll();
-		return eventList;
+	@RequestMapping(value="/mainEventListAll", method=RequestMethod.GET)
+	public String mainEventListAll(Model model) throws Exception {
+		List<EventVo> eventListAll = managerService.showEventListAll();
+		model.addAttribute("eventListAll", eventListAll);
+		return "main/main_event_all";
 	}
-	// 진행중인 이벤트
-	@ResponseBody
-	@RequestMapping(value="/getEventList", method=RequestMethod.GET)
-	public List<EventVo> getEventList() throws Exception {
-		List<EventVo> eventList = managerService.showEventList();
-		return eventList;
-	}
+	
 	// 완료된 이벤트
-	@ResponseBody
-	@RequestMapping(value="/getEventListEnd", method=RequestMethod.GET)
-	public List<EventVo> getEventListEnd() throws Exception {
-		List<EventVo> eventList = managerService.showEventListEnd();
-		return eventList;
+	@RequestMapping(value="/mainEventListEnd", method=RequestMethod.GET)
+	public String getEventListEnd(Model model) throws Exception {
+		List<EventVo> eventListEnd = managerService.showEventListEnd();
+		model.addAttribute("eventListEnd", eventListEnd);
+		return "main/main_event_end";
 	}
 
 	// 이벤트 상세페이지
@@ -99,5 +100,10 @@ public class MainController {
 		model.addAttribute("searchMemberList", searchMemberList);
 		model.addAttribute("keyword", keyword);
 		return "main/main_search";
+	}
+	
+	// 카테고리
+	public void getHobbyCate(Model model) throws Exception {
+		
 	}
 }

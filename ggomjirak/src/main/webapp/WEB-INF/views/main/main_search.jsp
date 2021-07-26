@@ -63,7 +63,7 @@
 														</div>
 														<div class="featured__item__text">
 															<h6><a href="#">${hobby.hobby_title}</a></h6>
-															<h5>${hobby.hobby_writer}</h5>
+															<h5>${hobby.user_nick}</h5>
 														</div>
 													</div>
 												</div>
@@ -92,7 +92,7 @@
 									</div>
 									<div class="featured__item__text">
 										<h6><a href="#">${member.user_nick}</a></h6>
-										<h5>${member.user_grade}</h5>
+										<h5>${member.name}</h5>
 									</div>
 								</div>
 							</div>

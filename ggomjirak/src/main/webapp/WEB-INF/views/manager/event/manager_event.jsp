@@ -33,7 +33,7 @@ $(document).ready(function() {
 				// -> 기존에 달려있던 댓글들 모두 삭제
 				$("#eventTable > tbody > tr:gt(0)").remove();
 				$.each(receivedData, function() {
-					var cloneTr = $("#eventTable > tbody > tr:last").clone();
+					var cloneTr = $("#tr").clone();
 					var td = cloneTr.find("td");
 					td.eq(0).text(this.e_no);
 					td.eq(1).text(this.m_no);
@@ -119,9 +119,10 @@ $(document).ready(function() {
 		<div class="card-body">
 		
 		<ul class="nav nav-tabs">
-			<li class="nav-item"><button id="listAll" class="green_color nav-link list">전체 이벤트</button></li>
+			
 			<li class="nav-item"><button id="list" class="green_color nav-link list active">진행중인 이벤트</button></li>
 			<li class="nav-item"><button id="listEnd" class="green_color nav-link list">종료된 이벤트</button></li>
+			<li class="nav-item"><button id="listAll" class="green_color nav-link list">전체 이벤트</button></li>
 			<li class="nav-item"><button id="listDelete" class="green_color nav-link list">삭제된 이벤트</button></li>
 		</ul>
 		
@@ -140,8 +141,19 @@ $(document).ready(function() {
 		    </tr>
 		  </thead>
 		  <tbody>
+		    <tr  id="tr" style="display: none;">
+		      <td scope="row" ></td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		      <td></td>
+		    </tr>
 		 	<c:forEach var="event" items="${eventList}">
-		    <tr id="tr">
+		    <tr>
 		      <td scope="row">${event.e_no}</td>
 		      <td>${event.m_no}</td>
 		      <td><a href="/manager/managerEventContent?e_no=${event.e_no}">${event.e_title}</a></td>
@@ -155,10 +167,27 @@ $(document).ready(function() {
 		    </c:forEach>
 		  </tbody>
 		</table>
-
+		
 		</div>
+		
 	</div>
-	
+	<nav aria-label="Page navigation example">
+		  <ul class="pagination justify-content-center">
+		    <li class="page-item">
+		      <a class="page-link" href="#" aria-label="Previous">
+		        <span aria-hidden="true">&laquo;</span>
+		      </a>
+		    </li>
+		    <li class="page-item"><a class="page-link" href="#">1</a></li>
+		    <li class="page-item"><a class="page-link" href="#">2</a></li>
+		    <li class="page-item"><a class="page-link" href="#">3</a></li>
+		    <li class="page-item">
+		      <a class="page-link" href="#" aria-label="Next">
+		        <span aria-hidden="true">&raquo;</span>
+		      </a>
+		    </li>
+		  </ul>
+		</nav>
 
 </div>
 <!-- /.container-fluid -->

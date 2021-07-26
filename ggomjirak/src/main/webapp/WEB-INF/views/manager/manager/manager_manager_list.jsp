@@ -83,6 +83,7 @@
 							<th>직급</th>
 							<th>닉네임</th>
 							<th>관리자 승인일</th>
+							<th>관리자 취소</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -94,6 +95,12 @@
 							<td>${manager.m_autority}</td>
 							<td>${manager.m_nik}</td>
 							<td>${manager.m_reg_date}</td>
+							<td>
+								<form action="/manager/managerDeleteManager" method="post">
+									<button type="submit" class="btn btn-danger orange_background">취소</button>
+									<input type="hidden" id="user_id" name="user_id" value="${manager.user_id}">
+								</form>
+							</td>
 						</tr>
 					</c:forEach>
 					</tbody>

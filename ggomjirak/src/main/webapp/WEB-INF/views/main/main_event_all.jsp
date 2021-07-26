@@ -14,15 +14,15 @@
 	
 					<ul class="nav nav-tabs">
 						
-						<li class="nav-item"><a id="list" class="nav-link active" href="/main/mainEvent">진행중인 이벤트</a></li>
+						<li class="nav-item"><a id="list" class="nav-link" href="/main/mainEvent">진행중인 이벤트</a></li>
 						<li class="nav-item"><a id="listEnd" class="nav-link" href="/main/mainEventListEnd">종료된 이벤트</a></li>
-						<li class="nav-item"><a id="listAll" class="nav-link" href="/main/mainEventListAll">전체 이벤트</a></li>
+						<li class="nav-item"><a id="listAll" class="nav-link active" href="/main/mainEventListAll">전체 이벤트</a></li>
 					</ul>
 				</div>
 				
 				<div style="padding: 20px; overflow: hidden;">
 				
-				<c:forEach var="event" items="${eventList}">
+				<c:forEach var="event" items="${eventListAll}">
 				<div class="col-lg-6 col-md-12 col-sm-12" style="float:left; padding: 30px">
 					<div class="featured__item">
 						<div>

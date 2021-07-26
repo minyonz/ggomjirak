@@ -29,7 +29,9 @@ public class ManagerController {
 	
 	// 홈
 	@RequestMapping(value="/managerHome", method=RequestMethod.GET)
-	public String managerHome() throws Exception {
+	public String managerHome(Model model) throws Exception {
+		List<MemberVo> popularMemberList = managerService.selectPopularMemberList();
+		model.addAttribute("popularMemberList", popularMemberList);
 		return "manager/manager_home";
 	}
 	
@@ -132,6 +134,19 @@ public class ManagerController {
 		model.addAttribute("memberList", memberList);
 		return "manager/manager/manager_manager_permission";
 	}
+	// 관리자 등록
+	@RequestMapping(value="/managerInsertManager", method=RequestMethod.POST)
+	public String managerInsertManager(ManagerVo managerVo) throws Exception {
+		managerService.insertManager(managerVo);
+		return "redirect:/manager/managerManagerList";
+	}
+	// 관리자 삭제
+	@RequestMapping(value="/managerDeleteManager", method=RequestMethod.POST)
+	public String managerDeleteManager(String user_id) throws Exception {
+		managerService.deleteManager(user_id);
+		System.out.println(user_id);
+		return "redirect:/manager/managerManagerList";
+	}
 	
 	
 	// 문의글 리스트
@@ -199,7 +214,6 @@ public class ManagerController {
 	// 이벤트 작성 실행
 	@RequestMapping(value="/managerEventWriteRun", method=RequestMethod.POST)
 	public String managerEventWriteRun(EventVo eventVo, RedirectAttributes rttr) throws Exception {
-		System.out.println(eventVo);
 		managerService.insertEvent(eventVo);
 		rttr.addFlashAttribute("writeMsg", "success");
 		return "redirect:/manager/managerEvent";

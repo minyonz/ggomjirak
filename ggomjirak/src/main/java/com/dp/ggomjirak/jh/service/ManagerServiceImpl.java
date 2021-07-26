@@ -91,6 +91,19 @@ public class ManagerServiceImpl implements ManagerService {
 		
 	}
 	
+
+	@Override
+	public void insertManager(ManagerVo managerVo) {
+		managerDao.insertManager(managerVo);
+		
+	}
+
+	@Override
+	public void deleteManager(String user_id) {
+		managerDao.deleteManager(user_id);
+		
+	}
+	
 	@Override
 	public List<EventVo> showEventListAll() {
 		List<EventVo> list = managerDao.showEventListAll();
@@ -136,6 +149,14 @@ public class ManagerServiceImpl implements ManagerService {
 	public void deleteEvent(int e_no) {
 		managerDao.deleteEvent(e_no);
 	}
+
+	@Override
+	public List<MemberVo> selectPopularMemberList() {
+		List<MemberVo> list = managerDao.selectPopularMemberList();
+		return list;
+	}
+
+
 
 
 

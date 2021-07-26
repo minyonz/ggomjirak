@@ -111,42 +111,64 @@
 		where user_id = #{user_id}
 	</update>
 	
-	
-	
 	<!-- 관리자 회원 리스트 -->
 	<select id="showManagerList" resultType="ManagerVo">
 		select * from tbl_manager_member
 	</select>
 	
+	<!-- 관리자 회원 등록 -->
+	<insert id="insertManager">
+		insert into tbl_manager_member
+		values (seq_m_no.nextval, #{user_id}, 'manager', '꼼지락', sysdate, #{user_name})
+	</insert>
+	
+	<!-- 관리자 회원 삭제 -->
+	<delete id="deleteManager">
+		delete from tbl_manager_member
+		where user_id = #{user_id}
+	</delete>
+	
 	
 	<!-- 이벤트 글 목록 (전체) -->
 	<select id="showEventListAll" resultType="EventVo">
-		select * from tbl_event
-		where is_del = 'N'
-		order by e_no desc
+		select * from
+		    (select rownum rnum, a.* from
+		        (select * from tbl_event
+		        where is_del = 'N'
+		        order by e_no desc) a)
+		where rnum between 1 and 8
 	</select>
 
 	<!-- 이벤트 글 목록 (진행중) -->
 	<select id="showEventList" resultType="EventVo">
-		select * from tbl_event
-		where end_date > sysdate
-		and is_del = 'N'
-		order by e_no desc
+		select * from
+		    (select rownum rnum, a.* from
+		        (select * from tbl_event
+		        where end_date > sysdate
+		        and is_del = 'N'
+		        order by e_no desc) a)
+		where rnum between 1 and 8
 	</select>
 	
 	<!-- 이벤트 글 목록 (종료) -->
 	<select id="showEventListEnd" resultType="EventVo">
-		select * from tbl_event
-		where sysdate > end_date
-		and is_del = 'N'
-		order by e_no desc
+		select * from
+		    (select rownum rnum, a.* from
+		        (select * from tbl_event
+		        where sysdate > end_date
+		        and is_del = 'N'
+		        order by e_no desc) a)
+		where rnum between 1 and 8
 	</select>
 	
 	<!-- 이벤트 글 목록 (삭제) -->
 	<select id="showEventListDelete" resultType="EventVo">
-		select * from tbl_event
-		where is_del = 'Y'
-		order by e_no desc
+		select * from
+		    (select rownum rnum, a.* from
+		        (select * from tbl_event
+		        where is_del = 'Y'
+		        order by e_no desc) a)
+		where rnum between 1 and 8
 	</select>
 	
 	<!-- 이벤트 컨텐츠 들어가기 -->
@@ -182,6 +204,17 @@
 		where e_no = #{e_no}	
 	</update>
 	
+	<!-- 메인 -->
+	<!-- 인기 작가 리스트 -->
+	<select id="selectPopularMemberList" resultType="MemberVo">
+		select * from
+		(select rownum rnum, a.*, c.name from
+		        (select * from tbl_memberdetail where user_id in (select user_id from tbl_memberinfo where is_del = 'N') 
+		         order by follower_cnt desc) a 
+		         left join tbl_membergrade c on a.user_grade = c.cd
+		         order by follower_cnt desc)
+		where rnum between 1 and 10
+	</select>
 
 
 </mapper>

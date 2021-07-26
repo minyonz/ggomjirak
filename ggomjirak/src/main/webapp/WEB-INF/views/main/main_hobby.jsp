@@ -117,7 +117,7 @@
 										</div>
 										<div class="featured__item__text">
 											<h6><a href="#">${popular.hobby_title}</a></h6>
-											<h5>${popular.hobby_writer}</h5>
+											<h5>${popular.user_nick}</h5>
 										</div>
 									</div>
 								</div>

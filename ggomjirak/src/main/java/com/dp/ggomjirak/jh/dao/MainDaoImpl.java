@@ -32,6 +32,30 @@ public class MainDaoImpl implements MainDao {
 	}
 
 	@Override
+	public List<MemberVo> getPopularMemberList1() {
+		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "getPopularMemberList1");
+		return list;
+	}
+	
+	@Override
+	public List<MemberVo> getPopularMemberList2() {
+		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "getPopularMemberList2");
+		return list;
+	}
+	
+	@Override
+	public List<MemberVo> getPopularMemberList3() {
+		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "getPopularMemberList3");
+		return list;
+	}
+	
+	@Override
+	public List<MemberVo> getPopularMemberList4() {
+		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "getPopularMemberList4");
+		return list;
+	}
+
+	@Override
 	public String selectUserGrade(int user_grade) {
 		String strGrade = sqlSession.selectOne(NAMESPACE + "selectUserGrade", user_grade);
 		return strGrade;
@@ -48,6 +72,7 @@ public class MainDaoImpl implements MainDao {
 		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "searchMember", keyword);
 		return list;
 	}
+
 
 
 

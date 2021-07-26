@@ -87,8 +87,11 @@
 						</tr>
 					</thead>
 					<tbody>
+					
 					<c:forEach var="member" items="${memberList}">
+					
 						<tr>
+						
 							<td>${member.user_name}</td>
 							<td><a href="/manager/managerMemberContent?user_id=${member.user_id}">${member.user_id}</a></td>
 							<td>${member.user_pw}</td>
@@ -97,10 +100,17 @@
 							<td>${member.user_nick}</td>
 							<td>${member.reg_date}</td>
 							<td>
-								<button class="btn btn-success green_background">등록</button>
+								<form action="/manager/managerInsertManager" method="post">
+									<button type="submit" class="btn btn-success green_background">등록</button>
+									<input type="hidden" id="user_id" name="user_id" value="${member.user_id}">
+									<input type="hidden" id="user_name" name="user_name" value="${member.user_name}">
+								</form>
 							</td>
+						
 						</tr>
+					
 					</c:forEach>
+					
 					</tbody>
 				</table>
 			</div>

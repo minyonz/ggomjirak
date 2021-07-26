@@ -146,41 +146,43 @@ $(document).ready(function() {
 								<!-- 로고 끝 -->
 
 								<!-- 검색 -->
-								<form id="frmSearch" class="col-12 col-lg-10 mb-12 mb-lg-10 mx-auto"
-										action="/main/mainSearch" method="get">
-								<div class="input-group" style="margin-bottom: 50px">
+								
+								<form id="frmSearch" action="/main/mainSearch" method="get">
+								<div class="row" style="margin-bottom: 50px">
+									<div class="col-md-3">
 									
-									<select name="category" class="btn btn-light orange_background white_color shadow bg-body"
-										data-bs-toggle="dropdown" aria-expanded="false">
-										<option class="dropdown-item" value="ca">카테고리</option>
-										<option class="dropdown-item" value="1">1</option>
-										<option class="dropdown-item" value="2">2</option>
-										<option class="dropdown-item" value="3">3</option>
-										<option class="dropdown-item" value="4">4</option>
-									</select>
-									<button id="btnCategory" class="btn dropdown-toggle btn-outline-light orange_background shadow bg-body"
-										type="button" data-bs-toggle="dropdown" aria-expanded="false">카테고리</button>
-									<ul class="dropdown-menu">
-										<li value="1"><a class="dropdown-item" href="#">1</a></li>
-										<li value="2"><a class="dropdown-item" href="#">2</a></li>
-										<li value="3"><a class="dropdown-item" href="#">3</a></li>
-										<li value="4"><hr class="dropdown-divider"></li>
-										<li value="5"><a class="dropdown-item" href="#">4</a></li>
-									</ul>
-									
-									<input id="keyword" name="keyword" type="text" class="form-control shadow bg-body"
-									placeholder="나의 취미를 찾아보세요">
-									
-									<button type="submit" class="btn btn-outline-light orange_background shadow bg-body rounded" id="button-addon2">
+								     <div class="input-group">
+								      <select class="form-control btn btn-outline-light green_background shadow bg-body rounded" style="margin-right: 10px" aria-label="Default select example">
+										  <option selected>대분류</option>
+										  <option value="1">One</option>
+										  <option value="2">Two</option>
+										  <option value="3">Three</option>
+										</select>
+								      <select class="form-control btn btn-outline-light green_background shadow bg-body rounded" aria-label="Default select example">
+										  <option selected>중분류</option>
+										  <option value="1">One</option>
+										  <option value="2">Two</option>
+										  <option value="3">Three</option>
+										</select>
+								      </div>
+								
+									</div>
+									<div class="col-md-9">
+									<div class="input-group mb-3">
+									  <input id="keyword" name="keyword" type="text" class="form-control shadow bg-body rounded" placeholder="나의 취미를 찾아보세요" aria-label="Recipient's username" aria-describedby="button-addon2">
+									  <div class="input-group-append">
+									    <button type="submit" class="btn btn-outline-light shadow bg-body rounded" id="button-addon2">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 											fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
 										  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-										</svg>
-										<span class="visually-hidden">검색</span>
-									</button>
+										</svg>검색</button>
+									  </div>
 									</div>
+									</div>
+								</div>
 								</form>
 								<!-- 검색 끝 -->
+								
 								
 								</div>
 								<div class="col-md-2"></div>
