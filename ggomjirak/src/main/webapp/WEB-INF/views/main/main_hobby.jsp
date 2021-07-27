@@ -88,11 +88,11 @@
 					    <h4 class="green_color">취미</h4>
 					  </li>
 					  <li class="nav-item dropdown">
-					    <button type="button" class="btn dropdown-toggle btn-outline-light green_background" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">검색옵션</button>
-					    <ul class="dropdown-menu">
-					      <li><a class="dropdown-item" href="#">인기순</a></li>
-					      <li><a class="dropdown-item" href="#">최신순</a></li>
-					    </ul>
+					  <select class="form-control btn btn-outline-light green_background shadow bg-body rounded" style="margin-right: 10px" aria-label="Default select example">
+						  <option value="popular" selected>인기순</option>
+						  <option value="new">최신순</option>
+						  <option value="month">이번달</option>
+					</select>
 					  </li>
 					  <li class="nav-item dropdown">
 					    <button type="button" class="btn dropdown-toggle btn-outline-light green_background" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">난이도</button>
@@ -105,7 +105,7 @@
 					</ul>
 
 						<div style="overflow:hidden;">
-								<c:forEach var="popular" items="${popularHobby}">
+								<c:forEach var="popular" items="${hobbyPopular}">
 								<div class="col-lg-3 col-md-4 col-sm-6" style="float:left;">
 									<div class="featured__item">
 										<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-2.jpg">

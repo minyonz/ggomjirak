@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.MemberVo;
+import com.dp.ggomjirak.vo.PagingDto;
 
 @Repository
 public class MainDaoImpl implements MainDao {
@@ -72,6 +73,13 @@ public class MainDaoImpl implements MainDao {
 		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "searchMember", keyword);
 		return list;
 	}
+
+	@Override
+	public List<HobbyVo> hobbyListPopular() {
+		List<HobbyVo> list = sqlSession.selectList(NAMESPACE + "hobbyListPopular");
+		return list;
+	}
+
 
 
 

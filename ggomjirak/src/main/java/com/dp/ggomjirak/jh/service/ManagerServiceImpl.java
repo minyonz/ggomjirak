@@ -14,6 +14,7 @@ import com.dp.ggomjirak.vo.MemberActivVo;
 import com.dp.ggomjirak.vo.MemberDetailVo;
 import com.dp.ggomjirak.vo.MemberInfoVo;
 import com.dp.ggomjirak.vo.MemberVo;
+import com.dp.ggomjirak.vo.PagingDto;
 
 @Service
 public class ManagerServiceImpl implements ManagerService {
@@ -105,27 +106,51 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 	
 	@Override
-	public List<EventVo> showEventListAll() {
-		List<EventVo> list = managerDao.showEventListAll();
+	public List<EventVo> showEventListAll(PagingDto pagingDto) {
+		List<EventVo> list = managerDao.showEventListAll(pagingDto);
 		return list;
 	}
 	
 	@Override
-	public List<EventVo> showEventList() {
-		List<EventVo> list = managerDao.showEventList();
+	public List<EventVo> showEventList(PagingDto pagingDto) {
+		List<EventVo> list = managerDao.showEventList(pagingDto);
 		return list; 
 	}
 
 	@Override
-	public List<EventVo> showEventListEnd() {
-		List<EventVo> list = managerDao.showEventListEnd();
+	public List<EventVo> showEventListEnd(PagingDto pagingDto) {
+		List<EventVo> list = managerDao.showEventListEnd(pagingDto);
 		return list;
 	}
 
 	@Override
-	public List<EventVo> showEventListDelete() {
-		List<EventVo> list = managerDao.showEventListDelete();
+	public List<EventVo> showEventListDelete(PagingDto pagingDto) {
+		List<EventVo> list = managerDao.showEventListDelete(pagingDto);
 		return list;
+	}
+
+	@Override
+	public int getCountEventAll(PagingDto pagingDto) {
+		int count = managerDao.getCountEventAll(pagingDto);
+		return count;
+	}
+
+	@Override
+	public int getCountEvent(PagingDto pagingDto) {
+		int count = managerDao.getCountEvent(pagingDto);
+		return count;
+	}
+
+	@Override
+	public int getCountEventEnd(PagingDto pagingDto) {
+		int count = managerDao.getCountEventEnd(pagingDto);
+		return count;
+	}
+
+	@Override
+	public int getCountEventDelete(PagingDto pagingDto) {
+		int count = managerDao.getCountEventDelete(pagingDto);
+		return count;
 	}
 
 	@Override
@@ -156,11 +181,11 @@ public class ManagerServiceImpl implements ManagerService {
 		return list;
 	}
 
-
-
-
-
-
+	@Override
+	public int getMemberCount() {
+		int count = managerDao.getMemberCount();
+		return count;
+	}
 
 
 

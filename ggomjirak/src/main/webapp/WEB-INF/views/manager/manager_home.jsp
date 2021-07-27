@@ -24,7 +24,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 총 회원 수</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">158명</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">${memberCount}명</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-gray-300"></i>

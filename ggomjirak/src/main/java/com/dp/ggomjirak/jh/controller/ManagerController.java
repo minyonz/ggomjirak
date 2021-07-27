@@ -19,6 +19,7 @@ import com.dp.ggomjirak.vo.MemberActivVo;
 import com.dp.ggomjirak.vo.MemberDetailVo;
 import com.dp.ggomjirak.vo.MemberInfoVo;
 import com.dp.ggomjirak.vo.MemberVo;
+import com.dp.ggomjirak.vo.PagingDto;
 
 @Controller
 @RequestMapping("manager")
@@ -31,7 +32,9 @@ public class ManagerController {
 	@RequestMapping(value="/managerHome", method=RequestMethod.GET)
 	public String managerHome(Model model) throws Exception {
 		List<MemberVo> popularMemberList = managerService.selectPopularMemberList();
+		int memberCount = managerService.getMemberCount();
 		model.addAttribute("popularMemberList", popularMemberList);
+		model.addAttribute("memberCount", memberCount);
 		return "manager/manager_home";
 	}
 	
@@ -164,39 +167,56 @@ public class ManagerController {
 	public String managerAskAnswer() throws Exception {
 		return "manager/ask/manager_ask_answer";
 	}
-	// 이벤트 리스트
+	// 이벤트 리스트 (진행중)
 	@RequestMapping(value="/managerEvent", method=RequestMethod.GET)
-	public String managerEvent(Model model) throws Exception {
-		List<EventVo> eventList = managerService.showEventList();
+	public String managerEvent(Model model, PagingDto pagingDto) throws Exception {
+		
+		int count = managerService.getCountEvent(pagingDto);
+		pagingDto.setCount(count);
+		
+		System.out.println("count: " + count);
+		System.out.println("pagingDto: " + pagingDto);
+		
+		List<EventVo> eventList = managerService.showEventList(pagingDto);
 		model.addAttribute("eventList", eventList);
 		return "manager/event/manager_event";
 	}
 	// 전체 이벤트
 	@ResponseBody
 	@RequestMapping(value="/getEventListAll", method=RequestMethod.GET)
-	public List<EventVo> getEventListAll() throws Exception {
-		List<EventVo> eventListAll = managerService.showEventListAll();
+	public List<EventVo> getEventListAll(PagingDto pagingDto) throws Exception {
+		int count = managerService.getCountEventAll(pagingDto);
+		pagingDto.setCount(count);
+		
+		System.out.println("count: " + count);
+		System.out.println("pagingDto: " + pagingDto);
+		List<EventVo> eventListAll = managerService.showEventListAll(pagingDto);
+		
 		return eventListAll;
-	}
-	// 진행중인 이벤트
-	@ResponseBody
-	@RequestMapping(value="/getEventList", method=RequestMethod.GET)
-	public List<EventVo> getEventList() throws Exception {
-		List<EventVo> eventList = managerService.showEventList();
-		return eventList;
 	}
 	// 완료된 이벤트
 	@ResponseBody
 	@RequestMapping(value="/getEventListEnd", method=RequestMethod.GET)
-	public List<EventVo> getEventListEnd() throws Exception {
-		List<EventVo> eventListEnd = managerService.showEventListEnd();
+	public List<EventVo> getEventListEnd(PagingDto pagingDto, Model model) throws Exception {
+		int count = managerService.getCountEventEnd(pagingDto);
+		pagingDto.setCount(count);
+		
+		System.out.println("count: " + count);
+		System.out.println("pagingDto: " + pagingDto);
+		List<EventVo> eventListEnd = managerService.showEventListEnd(pagingDto);
 		return eventListEnd;
 	}
 	// 삭제된 이벤트
 	@ResponseBody
 	@RequestMapping(value="/getEventListDelete", method=RequestMethod.GET)
-	public List<EventVo> getEventListDelete() throws Exception {
-		List<EventVo> eventListDelete = managerService.showEventListDelete();
+	public List<EventVo> getEventListDelete(PagingDto pagingDto) throws Exception {
+		
+		int count = managerService.getCountEventDelete(pagingDto);
+		pagingDto.setCount(count);
+		
+		System.out.println("count: " + count);
+		System.out.println("pagingDto: " + pagingDto);
+		List<EventVo> eventListDelete = managerService.showEventListDelete(pagingDto);
 		return eventListDelete;
 	}
 	// 이벤트 상세페이지

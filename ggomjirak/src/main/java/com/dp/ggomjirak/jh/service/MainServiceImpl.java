@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.dp.ggomjirak.jh.dao.MainDao;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.MemberVo;
+import com.dp.ggomjirak.vo.PagingDto;
 
 @Service
 public class MainServiceImpl implements MainService {
@@ -71,6 +72,13 @@ public class MainServiceImpl implements MainService {
 		List<MemberVo> list = mainDao.searchMember(keyword);
 		return list;
 	}
+
+	@Override
+	public List<HobbyVo> hobbyListPopular() {
+		List<HobbyVo> list = mainDao.hobbyListPopular();
+		return list;
+	}
+	
 
 
 }

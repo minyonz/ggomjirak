@@ -9,6 +9,7 @@ import com.dp.ggomjirak.vo.MemberActivVo;
 import com.dp.ggomjirak.vo.MemberDetailVo;
 import com.dp.ggomjirak.vo.MemberInfoVo;
 import com.dp.ggomjirak.vo.MemberVo;
+import com.dp.ggomjirak.vo.PagingDto;
 
 public interface ManagerService {
 
@@ -30,10 +31,15 @@ public interface ManagerService {
 	public void insertManager(ManagerVo managerVo);
 	public void deleteManager(String user_id);
 	
-	public List<EventVo> showEventListAll();
-	public List<EventVo> showEventList();
-	public List<EventVo> showEventListEnd();
-	public List<EventVo> showEventListDelete();
+	public List<EventVo> showEventListAll(PagingDto pagingDto);
+	public List<EventVo> showEventList(PagingDto pagingDto);
+	public List<EventVo> showEventListEnd(PagingDto pagingDto);
+	public List<EventVo> showEventListDelete(PagingDto pagingDto);
+	
+	public int getCountEventAll(PagingDto pagingDto);
+	public int getCountEvent(PagingDto pagingDto);
+	public int getCountEventEnd(PagingDto pagingDto);
+	public int getCountEventDelete(PagingDto pagingDto);
 	
 	public EventVo selectByEno(int e_no);
 	public void insertEvent(EventVo eventVo);
@@ -42,4 +48,5 @@ public interface ManagerService {
 	
 	//메인
 	public List<MemberVo> selectPopularMemberList();
+	public int getMemberCount();
 }

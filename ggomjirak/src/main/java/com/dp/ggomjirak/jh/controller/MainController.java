@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dp.ggomjirak.jh.service.MainService;
 import com.dp.ggomjirak.jh.service.ManagerService;
@@ -16,6 +15,7 @@ import com.dp.ggomjirak.vo.CateStrVo;
 import com.dp.ggomjirak.vo.EventVo;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.MemberVo;
+import com.dp.ggomjirak.vo.PagingDto;
 
 @Controller
 @RequestMapping("main")
@@ -51,30 +51,51 @@ public class MainController {
 	
 	@RequestMapping(value="/mainHobby", method=RequestMethod.GET)
 	public String mainHobby(Model model) throws Exception {
-		List<HobbyVo> popularHobby = mainService.getPopularHobbyList();
-		model.addAttribute("popularHobby", popularHobby);
+		List<HobbyVo> hobbyPopular = mainService.hobbyListPopular();
+		model.addAttribute("hobbyPopular", hobbyPopular);
 		return "main/main_hobby";
 	}
 
 	// 이벤트 리스트
 	@RequestMapping(value="/mainEvent", method=RequestMethod.GET)
-	public String mainEvent(Model model) throws Exception {
-		List<EventVo> eventList = managerService.showEventList();
+	public String mainEvent(Model model, PagingDto pagingDto) throws Exception {
+		
+		
+		int count = managerService.getCountEvent(pagingDto);
+		pagingDto.setCount(count);
+		
+		System.out.println("count: " + count);
+		System.out.println("pagingDto: " + pagingDto);
+		List<EventVo> eventList = managerService.showEventList(pagingDto);
 		model.addAttribute("eventList", eventList);
 		return "main/main_event";
 	}
 	// 전체 이벤트
 	@RequestMapping(value="/mainEventListAll", method=RequestMethod.GET)
-	public String mainEventListAll(Model model) throws Exception {
-		List<EventVo> eventListAll = managerService.showEventListAll();
+	public String mainEventListAll(Model model, PagingDto pagingDto) throws Exception {
+		
+		
+		int count = managerService.getCountEventAll(pagingDto);
+		pagingDto.setCount(count);
+		
+		System.out.println("count: " + count);
+		System.out.println("pagingDto: " + pagingDto);
+		List<EventVo> eventListAll = managerService.showEventListAll(pagingDto);
 		model.addAttribute("eventListAll", eventListAll);
 		return "main/main_event_all";
 	}
 	
 	// 완료된 이벤트
 	@RequestMapping(value="/mainEventListEnd", method=RequestMethod.GET)
-	public String getEventListEnd(Model model) throws Exception {
-		List<EventVo> eventListEnd = managerService.showEventListEnd();
+	public String mainEventListEnd(Model model, PagingDto pagingDto) throws Exception {
+		
+		
+		int count = managerService.getCountEventEnd(pagingDto);
+		pagingDto.setCount(count);
+		
+		System.out.println("count: " + count);
+		System.out.println("pagingDto: " + pagingDto);
+		List<EventVo> eventListEnd = managerService.showEventListEnd(pagingDto);
 		model.addAttribute("eventListEnd", eventListEnd);
 		return "main/main_event_end";
 	}

@@ -18,4 +18,6 @@ public interface MainDao {
 	// 키워드 검색
 	public List<HobbyVo> searchHobby(String keyword);
 	public List<MemberVo> searchMember(String keyword);
+	
+	public List<HobbyVo> hobbyListPopular();
 }

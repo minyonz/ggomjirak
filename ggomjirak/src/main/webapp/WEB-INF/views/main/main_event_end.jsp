@@ -26,7 +26,7 @@
 				<div class="col-lg-6 col-md-12 col-sm-12" style="float:left; padding: 30px">
 					<div class="featured__item">
 						<div>
-							<a href="/main/mainEventContent">
+							<a href="/main/mainEventContent?e_no=${event.e_no}">
 								<img src="/resources/img/eximage.png" class="rounded mx-auto d-block" alt="..."
 								width="700px" height="200px">
 							</a>
@@ -43,12 +43,24 @@
 				</div>
 				
 				<div class="product__pagination justify-content-center " style="display: flex">
-                        <a href="#"><i class="fa fa-long-arrow-left"></i></a>
-                        <a href="#">1</a>
-                        <a href="#">2</a>
-                        <a href="#">3</a>
-                        <a href="#">4</a>
-                        <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+				<c:if test="${pagingDto.startPage != 1}">
+                        <a href="/main/mainEventListEnd?page=${pagingDto.startPage - 1}&perPage=${pagingDto.perPage}"><i class="fa fa-long-arrow-left"></i></a>
+                </c:if>
+                <c:forEach var="v" begin="${pagingDto.startPage}" end="${pagingDto.endPage}">
+                	<a
+                		<c:choose>
+							<c:when test="${v == pagingDto.page}">
+								class="green_background" style="color: white;"
+						 	</c:when>
+						 	<c:otherwise>
+						 		class="page-item"
+							</c:otherwise>
+						</c:choose>
+                        href="/main/mainEventListEnd?page=${v}&perPage=${pagingDto.perPage}">${v}</a>
+                </c:forEach>
+                <c:if test="${pagingDto.endPage < pagingDto.totalPage}">
+                        <a href="/main/mainEventListEnd?page=${pagingDto.endPage + 1}&perPage=${pagingDto.perPage}"><i class="fa fa-long-arrow-right green_background"></i></a>
+                </c:if>
                 </div>
 								
 			</div>
