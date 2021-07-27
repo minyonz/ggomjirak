@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.dp.ggomjirak.hobby">
+ 	<!-- 취미글 -->
+ 	<insert id="insertHobby" parameterType="HobbyVo">
+ 		<selectKey keyProperty="hobby_no" resultType="int" order="BEFORE">
+ 			SELECT SEQ_HOBBY_NO.NEXTVAL FROM dual
+ 		</selectKey>
+ 		
+ 		INSERT INTO 
+ 			tbl_hobby (hobby_no, hobby_writer, hobby_title, main_img,
+ 				hobby_intro, hobby_video, l_cate_no, m_cate_no, 
+ 				time_no, level_no, cost_no 
+ 			)
+ 		VALUES (#{hobby_no}, #{hobby_writer}, #{hobby_title}, #{main_img},
+ 			#{hobby_intro}, #{hobby_video, jdbcType=VARCHAR}, #{l_cate_no}, #{m_cate_no},
+ 			#{time_no}, #{level_no}, #{cost_no}
+ 		)
+ 	</insert>
+ 	
+ 	<!-- vo로 글 상세조회 -->
+	<select id="selectHobby2" parameterType="HobbyVo" resultType="HobbyVo">
+			select a.*, b.cate_name l_cate_name, c.cate_name m_cate_name, d.level_name, e.cost_name, f.time_name
+			from tbl_hobby a
+			join tbl_hobby_cate b on a.l_cate_no = b.cate_no
+			join tbl_hobby_cate c on a.m_cate_no = c.cate_no
+			join tbl_level_cate d on a.level_no = d.level_no
+			join tbl_cost_cate e on a.cost_no = e.cost_no 
+			join tbl_time_cate f on a.time_no = f.time_no
+			where a.hobby_no = #{hobby_no}
+	</select> 	
+ 	
+ 	<!-- 글번호로 글 상세조회 -->
+ 	<select id="selectHobby" parameterType="int" resultType="HobbyVo">
+			SELECT 
+				a.*, b.cate_name l_cate_name, c.cate_name m_cate_name,
+			    d.level_name, e.cost_name, f.time_name, 
+			    g.user_name user_name, g.user_img user_img
+			FROM tbl_hobby a
+			JOIN tbl_hobby_cate b ON a.l_cate_no = b.cate_no
+			JOIN tbl_hobby_cate c ON a.m_cate_no = c.cate_no
+			JOIN tbl_level_cate d ON a.level_no = d.level_no
+			JOIN tbl_cost_cate e ON a.cost_no = e.cost_no 
+			JOIN tbl_time_cate f ON a.time_no = f.time_no
+			JOIN tbl_member g ON a.hobby_writer = g.user_id
+			WHERE a.hobby_no = #{hobby_no}
+	</select> 	
+	
+	<!-- vo로 make_step 상세조회 -->
+	<select id="selectMakeStepList2" parameterType="HobbyVo" resultType="MakeStepVo">
+			SELECT * FROM tbl_make_step
+	 		WHERE hobby_no = #{hobby_no}
+	 		ORDER BY make_step_num ASC
+	</select> 	
+	
+ 	<!-- 글번호로 make_step 조회 -->
+ 	<select id="selectMakeStepList" parameterType="int" resultType="MakeStepVo">
+			SELECT * FROM tbl_make_step
+	 		WHERE hobby_no = #{hobby_no}
+	 		ORDER BY make_step_num ASC
+	</select> 	
+	
+	<!-- vo로 hobby_material 조회 -->
+	<select id="selectHobbyMaterialList2" parameterType="HobbyVo" resultType="HobbyMaterialVo">
+			SELECT 
+				b.hobby_no hobby_no, a.material_no material_no, a.material_name materialName, 
+				b.material_detail material_detail, b.seq seq
+			FROM 
+				tbl_material a, tbl_hobby_material b
+			WHERE a.material_no = b.material_no AND b.hobby_no = #{hobby_no}
+			ORDER BY seq
+	</select> 	
+ 	
+ 	<!-- 글번호로 hobby_material 상세조회 -->
+ 	<select id="selectHobbyMaterialList" parameterType="int" resultType="HobbyMaterialVo">
+			SELECT 
+				b.hobby_no hobby_no, a.material_no material_no, a.material_name materialName, 
+				b.material_detail material_detail, b.seq seq
+			FROM 
+				tbl_material a, tbl_hobby_material b
+			WHERE a.material_no = b.material_no AND b.hobby_no = #{hobby_no}
+			ORDER BY seq
+	</select> 	
+	
+	<!-- 글번호로 완성사진 조회 -->
+ 	<select id="selectCompleteImgList" parameterType="int" resultType="CompleteImgVo">
+	 		SELECT ROWNUM seq, A.* 
+	 		FROM (SELECT * FROM tbl_complete_img ORDER BY num) A
+			WHERE hobby_no = #{hobby_no} AND img_name IS NOT NULL
+	</select> 
+ 	
+ 	<!-- 만들기 순서 -->
+ 	<insert id="insertMakeStep" parameterType="java.util.List">
+	    INSERT INTO tbl_make_step
+	    SELECT A.* FROM (
+	    <foreach item="item" collection="list" separator="UNION ALL" >
+	        select #{item.hobby_no} HOBBY_NO,
+	        #{item.make_step_num} MAKE_STEP_NUM,
+	        #{item.make_step_text} MAKE_STEP_TEXT,
+	        #{item.make_step_img} MAKE_STEP_IMG,
+	        #{item.tip, jdbcType=VARCHAR} TIP,
+	        #{item.note, jdbcType=VARCHAR} NOTE,
+	        #{item.link_url, jdbcType=VARCHAR} LINK_URL,
+	        #{item.link_desc, jdbcType=VARCHAR} LINK_DESC
+	        from dual
+	    </foreach>) A
+	</insert>
+	
+	<!-- hobby_material insert -->
+	<insert id="insertHobbyMaterial"  parameterType="java.util.List">
+		INSERT INTO tbl_hobby_material
+	    SELECT A.* FROM (
+	    <foreach item="item" collection="list" separator="UNION ALL" >
+	        select #{item.hobby_no} HOBBY_NO,
+	        #{item.material_no} MATERIAL_NO,
+	        #{item.material_detail, jdbcType=VARCHAR} MATERIAL_DETAIL,
+	        #{item.seq} SEQ
+	        from dual
+	    </foreach>) A
+	</insert>
+	
+	<!-- complete_img insert -->
+	<insert id="insertCompleteImg" parameterType="java.util.List">
+		INSERT INTO tbl_complete_img
+	    SELECT A.* FROM (
+	    <foreach item="item" collection="list" separator="UNION ALL" >
+	        select #{item.hobby_no, jdbcType=VARCHAR} HOBBY_NO,
+	        #{item.img_name, jdbcType=VARCHAR} IMG_NAME,
+	        #{item.num, jdbcType=VARCHAR} NUM
+	        from dual
+	    </foreach>) A
+	</insert>
+ </mapper>

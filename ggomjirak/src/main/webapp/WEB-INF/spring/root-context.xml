@@ -7,35 +7,35 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- 커넥션 풀 -->
-<!-- 	<bean id="dataSource"  -->
-<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
-<!-- 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/> -->
-<!-- 		<property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe"/> -->
-<!-- 		<property name="username" value="springmvc"/> -->
-<!-- 		<property name="password" value="1234"/> -->
-<!-- 	</bean> -->
+	<bean id="dataSource" 
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+		<property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="dp_temp"/>
+		<property name="password" value="1234"/>
+	</bean>
 	
 	<!-- 커넥션 얻기 -->
-<!-- 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" -->
-<!-- 		id="sqlSessionFactory"> -->
-<!-- 		<property name="dataSource" ref="dataSource"/> -->
-<!-- 		<property name="configLocation" value="classpath:mybatis-config.xml"/> -->
-<!-- 		<property name="mapperLocations" value="classpath:mappers/*-mapper.xml"/> -->
-<!-- 	</bean> -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
+		id="sqlSessionFactory">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath:mappers/*-mapper.xml"/>
+	</bean>
 	
 	<!-- 템플릿 -->
-<!-- 	<bean class="org.mybatis.spring.SqlSessionTemplate"> -->
-<!-- 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/> -->
-<!-- 	</bean> -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
 	
 	<!-- @Transactional 가능(~able) -->
 	<tx:annotation-driven/>
 	
 	<!-- setAutoCommit, commit, rollback -->
-<!-- 	<bean id="transactionManager" -->
-<!-- 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
-<!-- 		<property name="dataSource" ref="dataSource"/> -->
-<!-- 	</bean> -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
 
 	<!-- 구글 메일 -->
 	<!-- 2단계 인증, 앱비밀번호: 16자리 - 앱선택(메일), 기기선택(Window 컴퓨터) -->										

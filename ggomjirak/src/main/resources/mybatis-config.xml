@@ -5,6 +5,6 @@
 
 <configuration>
 	<typeAliases>
-		<package name="com.dp.ggomjirak.domain"/>
+		<package name="com.dp.ggomjirak.vo"/>
 	</typeAliases>
 </configuration>
