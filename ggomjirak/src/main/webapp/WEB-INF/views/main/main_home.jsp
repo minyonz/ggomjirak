@@ -92,6 +92,7 @@
 						<div class="row">
 							<div class="categories__slider owl-carousel">
 
+								<c:forEach var="suggestHobby" items="${suggestHobby}">
 								<div class="featured__item">
 									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-1.jpg"
 										style="margin-left: 10px; margin-right: 10px">
@@ -102,70 +103,12 @@
 										</ul>
 									</div>
 										<div class="featured__item__text">
-										<h6><a href="#">제목1</a></h6>
-										<h5>작가1</h5>
+										<h6><a href="#">${suggestHobby.hobby_title}</a></h6>
+										<h5>${suggestHobby.hobby_writer}</h5>
 									</div>
 								</div>
+								</c:forEach>
 
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-2.jpg"
-										style="margin-left: 10px; margin-right: 10px">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-										<div class="featured__item__text">
-										<h6><a href="#">제목2</a></h6>
-										<h5>작가2</h5>
-									</div>
-								</div>
-
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-3.jpg"
-										style="margin-left: 10px; margin-right: 10px">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-										<div class="featured__item__text">
-										<h6><a href="#">제목3</a></h6>
-										<h5>작가3</h5>
-									</div>
-								</div>
-
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-4.jpg"
-										style="margin-left: 10px; margin-right: 10px">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-										<div class="featured__item__text">
-										<h6><a href="#">제목4</a></h6>
-										<h5>작가4</h5>
-									</div>
-								</div>
-
-								<div class="featured__item">
-									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-5.jpg"
-										style="margin-left: 10px; margin-right: 10px">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
-									</div>
-										<div class="featured__item__text">
-										<h6><a href="#">제목5</a></h6>
-										<h5>작가5</h5>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -250,10 +193,10 @@
                     <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">전체</li>
-                            <li data-filter=".grade1">금손</li>
-                            <li data-filter=".grade2">은손</li>
-                            <li data-filter=".grade3">곰손</li>
-                            <li data-filter=".grade4">맨손</li>
+                            <li data-filter=".grade4">금손</li>
+                            <li data-filter=".grade3">은손</li>
+                            <li data-filter=".grade2">곰손</li>
+                            <li data-filter=".grade1">맨손</li>
                         </ul>
                     </div>
                 </div>

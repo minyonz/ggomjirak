@@ -2,12 +2,16 @@ package com.dp.ggomjirak.jh.dao;
 
 import java.util.List;
 
+import com.dp.ggomjirak.vo.CateVo;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.MemberVo;
+import com.dp.ggomjirak.vo.PagingDto;
 
 public interface MainDao {
 
+	public List<CateVo> selectCate();
 	
+	public List<HobbyVo> getSuggestHobby(String user_id);
 	public List<HobbyVo> getPopularHobbyList();
 	public List<HobbyVo> getMonthHobbyList();
 	public String selectUserGrade(int user_grade);
@@ -16,8 +20,11 @@ public interface MainDao {
 	public List<MemberVo> getPopularMemberList3();
 	public List<MemberVo> getPopularMemberList4();
 	// 키워드 검색
-	public List<HobbyVo> searchHobby(String keyword);
-	public List<MemberVo> searchMember(String keyword);
+	public List<HobbyVo> searchHobby(PagingDto pagingDto);
+	public List<MemberVo> searchMember(PagingDto pagingDto);
+	public int getCountHobbySearch(PagingDto pagingDto);
+	public int getCountMemberSearch(PagingDto pagingDto);
 	
-	public List<HobbyVo> hobbyListPopular();
+	public List<HobbyVo> hobbyListPopular(PagingDto pagingDto);
+	public int getCountHobbyList(PagingDto pagingDto);
 }

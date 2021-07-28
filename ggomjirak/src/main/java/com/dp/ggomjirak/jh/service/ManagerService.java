@@ -10,11 +10,14 @@ import com.dp.ggomjirak.vo.MemberDetailVo;
 import com.dp.ggomjirak.vo.MemberInfoVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
+import com.dp.ggomjirak.vo.WorkroomVo;
 
 public interface ManagerService {
 
-	public List<MemberVo> showMemberList();
-	public List<MemberVo> showMemberListLeave();
+	public List<MemberVo> showMemberList(PagingDto pagingDto);
+	public List<MemberVo> showMemberListLeave(PagingDto pagingDto);
+	public int getCountMemberList(PagingDto pagingDto);
+	public int getCountMemberListLeave(PagingDto pagingDto);
 	
 	public MemberVo selectMemberById(String user_id);
 	public CateStrVo selectCateStr(String user_id);
@@ -23,13 +26,16 @@ public interface ManagerService {
 	public String selectMemberIntroById(String user_id);
 	
 	
-	public void updateMember(MemberVo memberVo);
+	public void updateMember(MemberVo memberVo, WorkroomVo workroomVo);
+	
 	public void deleteMember(String user_id);
 	public void cancleDeleteMember(String user_id);
 	
-	public List<ManagerVo> showManagerList();
+	public List<ManagerVo> showManagerList(PagingDto pagingDto);
 	public void insertManager(ManagerVo managerVo);
 	public void deleteManager(String user_id);
+	
+	public int getCountManager(PagingDto pagingDto);
 	
 	public List<EventVo> showEventListAll(PagingDto pagingDto);
 	public List<EventVo> showEventList(PagingDto pagingDto);

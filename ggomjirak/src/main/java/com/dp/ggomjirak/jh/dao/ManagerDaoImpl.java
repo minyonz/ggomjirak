@@ -15,6 +15,7 @@ import com.dp.ggomjirak.vo.MemberDetailVo;
 import com.dp.ggomjirak.vo.MemberInfoVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
+import com.dp.ggomjirak.vo.WorkroomVo;
 
 @Repository
 public class ManagerDaoImpl implements ManagerDao {
@@ -26,21 +27,39 @@ private static final String NAMESPACE = "com.dp.ggomjirak.manager.";
 
 
 	@Override
-	public List<MemberVo> showMemberList() {
-		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "showMemberList");
+	public List<MemberVo> showMemberList(PagingDto pagingDto) {
+		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "showMemberList", pagingDto);
 		return list;
 	}
 
 	@Override
-	public List<MemberVo> showMemberListLeave() {
-		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "showMemberListLeave");
+	public List<MemberVo> showMemberListLeave(PagingDto pagingDto) {
+		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "showMemberListLeave", pagingDto);
 		return list;
 	}
 
 	@Override
-	public List<ManagerVo> showManagerList() {
-		List<ManagerVo> list = sqlSession.selectList(NAMESPACE + "showManagerList");
+	public int getCountMemberList(PagingDto pagingDto) {
+		int count = sqlSession.selectOne(NAMESPACE + "getCountMemberList", pagingDto);
+		return count;
+	}
+
+	@Override
+	public int getCountMemberListLeave(PagingDto pagingDto) {
+		int count = sqlSession.selectOne(NAMESPACE + "getCountMemberListLeave", pagingDto);
+		return count;
+	}
+
+	@Override
+	public List<ManagerVo> showManagerList(PagingDto pagingDto) {
+		List<ManagerVo> list = sqlSession.selectList(NAMESPACE + "showManagerList", pagingDto);
 		return list;
+	}
+
+	@Override
+	public int getCountManager(PagingDto pagingDto) {
+		int count = sqlSession.selectOne(NAMESPACE + "getCountManager", pagingDto);
+		return count;
 	}
 
 	@Override
@@ -84,6 +103,12 @@ private static final String NAMESPACE = "com.dp.ggomjirak.manager.";
 	@Override
 	public void updateMemberDetail(MemberVo memberVo) {
 		sqlSession.update(NAMESPACE + "updateMemberDetail", memberVo);
+	}
+
+	@Override
+	public void updateMemberWorkroom(WorkroomVo workroomVo) {
+		sqlSession.update(NAMESPACE + "updateMemberWorkroom", workroomVo);
+		
 	}
 
 	@Override
@@ -196,6 +221,7 @@ private static final String NAMESPACE = "com.dp.ggomjirak.manager.";
 		int count = sqlSession.selectOne(NAMESPACE + "getMemberCount");
 		return count;
 	}
+
 
 
 

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.dp.ggomjirak.vo.CateVo;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
@@ -19,6 +20,19 @@ public class MainDaoImpl implements MainDao {
 	@Inject
 	SqlSession sqlSession;
 
+	
+
+	@Override
+	public List<HobbyVo> getSuggestHobby(String user_id) {
+		List<HobbyVo> list = sqlSession.selectList(NAMESPACE + "getSuggestHobby", user_id);
+		return list;
+	}
+
+	@Override
+	public List<CateVo> selectCate() {
+		List<CateVo> list = sqlSession.selectList(NAMESPACE + "selectCate");
+		return list;
+	}
 	
 	@Override
 	public List<HobbyVo> getPopularHobbyList() {
@@ -63,22 +77,42 @@ public class MainDaoImpl implements MainDao {
 	}
 
 	@Override
-	public List<HobbyVo> searchHobby(String keyword) {
-		List<HobbyVo> list = sqlSession.selectList(NAMESPACE + "searchHobby", keyword);
+	public List<HobbyVo> searchHobby(PagingDto pagingDto) {
+		List<HobbyVo> list = sqlSession.selectList(NAMESPACE + "searchHobby", pagingDto);
 		return list;
 	}
 
 	@Override
-	public List<MemberVo> searchMember(String keyword) {
-		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "searchMember", keyword);
+	public List<MemberVo> searchMember(PagingDto pagingDto) {
+		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "searchMember", pagingDto);
 		return list;
 	}
 
 	@Override
-	public List<HobbyVo> hobbyListPopular() {
-		List<HobbyVo> list = sqlSession.selectList(NAMESPACE + "hobbyListPopular");
+	public int getCountHobbySearch(PagingDto pagingDto) {
+		int count = sqlSession.selectOne(NAMESPACE + "getCountHobbySearch", pagingDto);
+		return count;
+	}
+
+	@Override
+	public int getCountMemberSearch(PagingDto pagingDto) {
+		int count = sqlSession.selectOne(NAMESPACE + "getCountMemberSearch", pagingDto);
+		return count;
+	}
+
+
+	@Override
+	public List<HobbyVo> hobbyListPopular(PagingDto pagingDto) {
+		List<HobbyVo> list = sqlSession.selectList(NAMESPACE + "hobbyListPopular", pagingDto);
 		return list;
 	}
+
+	@Override
+	public int getCountHobbyList(PagingDto pagingDto) {
+		int count = sqlSession.selectOne(NAMESPACE + "getCountHobbyList", pagingDto);
+		return count;
+	}
+
 
 
 

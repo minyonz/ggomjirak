@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.dp.ggomjirak.jh.dao.MainDao;
+import com.dp.ggomjirak.vo.CateVo;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
@@ -18,7 +19,18 @@ public class MainServiceImpl implements MainService {
 	private MainDao mainDao;
 
 
+	@Override
+	public List<CateVo> selectCate() {
+		List<CateVo> list = mainDao.selectCate();
+		return list;
+	}
 
+	@Override
+	public List<HobbyVo> getSuggestHobby(String user_id) {
+		List<HobbyVo> list = mainDao.getSuggestHobby(user_id);
+		return list;
+	}
+	
 	@Override
 	public List<HobbyVo> getPopularHobbyList() {
 		List<HobbyVo> list = mainDao.getPopularHobbyList();
@@ -62,22 +74,41 @@ public class MainServiceImpl implements MainService {
 	}
 
 	@Override
-	public List<HobbyVo> searchHobby(String keyword) {
-		List<HobbyVo> list = mainDao.searchHobby(keyword);
+	public List<HobbyVo> searchHobby(PagingDto pagingDto) {
+		List<HobbyVo> list = mainDao.searchHobby(pagingDto);
 		return list;
 	}
 
 	@Override
-	public List<MemberVo> searchMember(String keyword) {
-		List<MemberVo> list = mainDao.searchMember(keyword);
+	public List<MemberVo> searchMember(PagingDto pagingDto) {
+		List<MemberVo> list = mainDao.searchMember(pagingDto);
 		return list;
 	}
 
 	@Override
-	public List<HobbyVo> hobbyListPopular() {
-		List<HobbyVo> list = mainDao.hobbyListPopular();
+	public int getCountHobbySearch(PagingDto pagingDto) {
+		int count = mainDao.getCountHobbySearch(pagingDto);
+		return count;
+	}
+
+	@Override
+	public int getCountMemberSearch(PagingDto pagingDto) {
+		int count = mainDao.getCountMemberSearch(pagingDto);
+		return count;
+	}
+	@Override
+	public List<HobbyVo> hobbyListPopular(PagingDto pagingDto) {
+		List<HobbyVo> list = mainDao.hobbyListPopular(pagingDto);
 		return list;
 	}
+
+	@Override
+	public int getCountHobbyList(PagingDto pagingDto) {
+		int count = mainDao.getCountHobbyList(pagingDto);
+		return count;
+	}
+
+
 	
 
 

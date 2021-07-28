@@ -15,6 +15,7 @@ import com.dp.ggomjirak.vo.MemberDetailVo;
 import com.dp.ggomjirak.vo.MemberInfoVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
+import com.dp.ggomjirak.vo.WorkroomVo;
 
 @Service
 public class ManagerServiceImpl implements ManagerService {
@@ -24,21 +25,41 @@ public class ManagerServiceImpl implements ManagerService {
 
 
 	@Override
-	public List<MemberVo> showMemberList() {
-		List<MemberVo> list = managerDao.showMemberList();
+	public List<MemberVo> showMemberList(PagingDto pagingDto) {
+		List<MemberVo> list = managerDao.showMemberList(pagingDto);
 		return list;
 	}
 
 	@Override
-	public List<MemberVo> showMemberListLeave() {
-		List<MemberVo> list = managerDao.showMemberListLeave();
+	public List<MemberVo> showMemberListLeave(PagingDto pagingDto) {
+		List<MemberVo> list = managerDao.showMemberListLeave(pagingDto);
+		return list;
+	}
+	
+
+	@Override
+	public int getCountMemberList(PagingDto pagingDto) {
+		int count = managerDao.getCountMemberList(pagingDto);
+		return count;
+	}
+
+	@Override
+	public int getCountMemberListLeave(PagingDto pagingDto) {
+		int count = managerDao.getCountMemberListLeave(pagingDto);
+		return count;
+	}
+
+
+	@Override
+	public List<ManagerVo> showManagerList(PagingDto pagingDto) {
+		List<ManagerVo> list = managerDao.showManagerList(pagingDto);
 		return list;
 	}
 
 	@Override
-	public List<ManagerVo> showManagerList() {
-		List<ManagerVo> list = managerDao.showManagerList();
-		return list;
+	public int getCountManager(PagingDto pagingDto) {
+		int count = managerDao.getCountManager(pagingDto);
+		return count;
 	}
 
 	@Override
@@ -74,11 +95,13 @@ public class ManagerServiceImpl implements ManagerService {
 
 
 	@Override
-	public void updateMember(MemberVo memberVo) {
+	public void updateMember(MemberVo memberVo, WorkroomVo workroomVo) {
 		managerDao.updateMemberInfo(memberVo);
 		managerDao.updateMemberDetail(memberVo);
+		managerDao.updateMemberWorkroom(workroomVo);
 		
 	}
+
 
 	@Override
 	public void deleteMember(String user_id) {
@@ -186,6 +209,7 @@ public class ManagerServiceImpl implements ManagerService {
 		int count = managerDao.getMemberCount();
 		return count;
 	}
+
 
 
 

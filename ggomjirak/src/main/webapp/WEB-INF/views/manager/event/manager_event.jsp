@@ -37,10 +37,13 @@ $(document).ready(function() {
 			}
 			
 			$.get(url, function(receivedData) {
+				console.log(receivedData.pagingDto);
+				console.log(receivedData.eventList);
+				
 				var cloneTr;
 				// -> 기존에 달려있던 댓글들 모두 삭제
 				$("#eventTable > tbody > tr:gt(0)").remove();
-				$.each(receivedData, function() {
+				$.each(receivedData.eventList, function() {
 					var cloneTr = $("#tr").clone();
 					var td = cloneTr.find("td");
 					td.eq(0).text(this.e_no);
@@ -56,16 +59,18 @@ $(document).ready(function() {
 					
 					$("#eventTable > tbody").append(cloneTr);
 					cloneTr.show("slow");
+					
+					$(".pagination > li > a").click(function(e) {
+						e.preventDefault(); // 페이지 이동 막기
+						var page = $(this).attr("href");
+						var frmPaging = $("#frmPaging");
+						frmPaging.find("[name=page]").val(page); // page에 페이지 숫자 넣어줌
+						console.log(page);
+						frmPaging.submit();
+						// -> 주소창에 : http://localhost/board/listAll?page=1&perPage=10&searchType=&keyword=
+					});
 				});
-				$(".pagination > li > a").click(function(e) {
-					e.preventDefault(); // 페이지 이동 막기
-					var page = $(this).attr("href");
-					var frmPaging = $("#frmPaging");
-					frmPaging.find("[name=page]").val(page); // page에 페이지 숫자 넣어줌
-					console.log(page);
-					frmPaging.submit();
-					// -> 주소창에 : http://localhost/board/listAll?page=1&perPage=10&searchType=&keyword=
-				});
+				
 			});
 		});
 		

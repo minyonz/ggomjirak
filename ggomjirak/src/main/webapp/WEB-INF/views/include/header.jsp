@@ -48,6 +48,52 @@
 </style>
 <script>
 $(document).ready(function() {
+	//* 카테고리 부분
+	var jsonData = JSON.parse('${cates}');
+	var cate1Arr = new Array();
+	var cate1Obj = new Object();
+	// 1차 분류 셀렉트 박스에 삽입할 데이터 준비
+	for(var i = 0; i < jsonData.length; i++) {
+	 if(jsonData[i].cate_level == "1") {
+	  cate1Obj = new Object();  //초기화
+	  cate1Obj.cate_no = jsonData[i].cate_no;
+	  cate1Obj.cate_name = jsonData[i].cate_name;
+	  cate1Arr.push(cate1Obj);
+	 }
+	}
+	// 1차 분류 셀렉트 박스에 데이터 삽입
+	var cate1Select = $("select.cate1")
+	for(var i = 0; i < cate1Arr.length; i++) {
+		 cate1Select.append("<option value='" + cate1Arr[i].cate_no + "'>"
+	      + cate1Arr[i].cate_name + "</option>"); 
+	}
+	$(document).on("change", "select.cate1", function(){
+		 var cate2Arr = new Array();
+		 var cate2Obj = new Object();
+		 // 2차 분류 셀렉트 박스에 삽입할 데이터 준비
+		 for(var i = 0; i < jsonData.length; i++) {
+		  if(jsonData[i].cate_level == "2") {
+		   cate2Obj = new Object();  //초기화
+		   cate2Obj.cate_no = jsonData[i].cate_no;
+		   cate2Obj.cate_name = jsonData[i].cate_name;
+		   cate2Obj.parent_cate_no = jsonData[i].parent_cate_no;
+		   cate2Arr.push(cate2Obj);
+		  }
+		 }
+		 var cate2Select = $("select.cate2");
+		 cate2Select.children().remove();
+		 $("option:selected", this).each(function(){
+		  var selectVal = $(this).val();  
+		  cate2Select.append("<option value=''>중분류</option>");
+		  for(var i = 0; i < cate2Arr.length; i++) {
+		   if(selectVal == cate2Arr[i].parent_cate_no) {
+		    cate2Select.append("<option value='" + cate2Arr[i].cate_no + "'>"
+		         + cate2Arr[i].cate_name + "</option>");
+		   }
+		  }
+		 });
+	});
+
 	$("#frmSearch").submit(function() {
 		
 		
@@ -147,27 +193,26 @@ $(document).ready(function() {
 
 								<!-- 검색 -->
 								
-								<form id="frmSearch" action="/main/mainSearch" method="get">
+								
 								<div class="row" style="margin-bottom: 50px">
 									<div class="col-md-3">
-									
+									<form role="form" method="post" autocomplete="off">
 								     <div class="input-group">
-								      <select class="form-control btn btn-outline-light green_background shadow bg-body rounded" style="margin-right: 10px" aria-label="Default select example">
-										  <option selected>대분류</option>
-										  <option value="1">One</option>
-										  <option value="2">Two</option>
-										  <option value="3">Three</option>
+								     
+								      <select class="cate1 form-control btn btn-outline-light green_background shadow bg-body rounded" style="margin-right: 10px" aria-label="Default select example">
+										  <option value="">카테고리</option>
 										</select>
-								      <select class="form-control btn btn-outline-light green_background shadow bg-body rounded" aria-label="Default select example">
-										  <option selected>중분류</option>
-										  <option value="1">One</option>
-										  <option value="2">Two</option>
-										  <option value="3">Three</option>
+								      <select class="cate2 form-control btn btn-outline-light green_background shadow bg-body rounded" aria-label="Default select example">
+										  <option value="">카테고리</option>
 										</select>
+										
 								      </div>
-								
+									</form>
 									</div>
+									
 									<div class="col-md-9">
+									
+									<form id="frmSearch" action="/main/mainSearch" method="get">
 									<div class="input-group mb-3">
 									  <input id="keyword" name="keyword" type="text" class="form-control shadow bg-body rounded" placeholder="나의 취미를 찾아보세요" aria-label="Recipient's username" aria-describedby="button-addon2">
 									  <div class="input-group-append">
@@ -178,9 +223,12 @@ $(document).ready(function() {
 										</svg>검색</button>
 									  </div>
 									</div>
+									</form>
+									
 									</div>
+									
 								</div>
-								</form>
+								
 								<!-- 검색 끝 -->
 								
 								
