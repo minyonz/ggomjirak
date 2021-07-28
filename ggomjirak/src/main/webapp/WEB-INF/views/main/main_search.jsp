@@ -182,14 +182,36 @@
 							<h5 id="item-3-2">Item 3-2</h5>
 							<p>...</p>
 						</div>
+						<div class="product__pagination justify-content-center " style="display: flex">
+						<c:if test="${pagingDto.startPage != 1}">
+		                        <a href="/main/mainEvent?page=${pagingDto.startPage - 1}&perPage=${pagingDto.perPage}"><i class="fa fa-long-arrow-left"></i></a>
+		                </c:if>
+		                <c:forEach var="v" begin="${pagingDto.startPage}" end="${pagingDto.endPage}">
+		                	<a
+		                		<c:choose>
+									<c:when test="${v == pagingDto.page}">
+										class="green_background" style="color: white;"
+								 	</c:when>
+								 	<c:otherwise>
+								 		class="page-item"
+									</c:otherwise>
+								</c:choose>
+		                        href="/main/mainEvent?page=${v}&perPage=${pagingDto.perPage}">${v}</a>
+		                </c:forEach>
+		                <c:if test="${pagingDto.endPage < pagingDto.totalPage}">
+		                        <a href="/main/mainEvent?page=${pagingDto.endPage + 1}&perPage=${pagingDto.perPage}"><i class="fa fa-long-arrow-right green_background"></i></a>
+		                </c:if>
+		                </div>
 					</div>
 				</div>
 			</div>
 			<!-- 검색 결과 끝 -->
+			
 
 			<div class="col-md-1 col-lg-2"></div>
 		</div>
 	</div>
+	
 </div>
 
 
