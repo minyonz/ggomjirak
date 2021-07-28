@@ -18,10 +18,23 @@ public class MyFileUploadUtil {
 	public static final String GGOMJIRAK_FOLDER = "//192.168.0.217/ggomjirak";
 	public static final String YJ_ACADEMY_FOLDER = "D:/ggomjirak";
 	public static final String YJ_HOME_FOLDER = "C:/Users/user/Desktop";
+
 	private static String rootPath = YJ_HOME_FOLDER;
 	
+
 	
-	public static String uploadImage(String uploadPath, String fileName, byte[] fileData, int dw, int dh) throws Exception {
+	/**
+	 * @param uploadPath 예) D:/ggomjirak/hobby/main_img/2021/7/28/uuid_사진.png 
+	 * 		  -> /hobby/main_img 가 uploadPath
+	 * @param fileName 
+	 * @param fileData
+	 * @param dw 썸네일사진 폭
+	 * @param dh 썸네일사진 높이
+	 * @return String thumbnailPath 만들어진 썸네일 사진 경로
+	 * @throws Exception
+	 */
+	public static String uploadImage(String uploadPath, String fileName,
+									byte[] fileData, int dw, int dh) throws Exception {
 		String filePath = makeUploadPath(uploadPath) + calcUuidFileName(fileName);
 		File target = new File(filePath);
 		FileCopyUtils.copy(fileData, target); // fileData를 target에 복사
@@ -29,23 +42,6 @@ public class MyFileUploadUtil {
 		return thumbPath;
 	}
 	
-	
-//	/**
-//	 * @param uploadPath 업로드할 경로
-//	 * @param orgFileName 업로드할 파일의 이름.확장자
-//	 * @param fileData 
-//	 * @param dw 만들 썸네일이미지 가로 길이
-//	 * @param dh 만들 썸네일 이미지 세로 길이
-//	 * @return thumnailPath 썸네일경로 
-//	 * @throws Exception
-//	 */
-//	public static String uploadImage(String uploadPath, String orgFileName, byte[] fileData, int dw, int dh) throws Exception {
-//		String orgFilePath = getOrgFilePath(uploadPath, orgFileName);
-//		File target = new File(orgFilePath);
-//		FileCopyUtils.copy(fileData, target); // fileData를 target에 복사
-//		String thumbnailPath = makeThumnailImg(orgFilePath, dw, dh);
-//		return thumbnailPath;
-//	}
 	
 	
 	/** 파일 올라갈 폴더들 만들기 
@@ -105,6 +101,30 @@ public class MyFileUploadUtil {
 		return thumbPath;
 	}
 	
+	// 첨부파일 삭제
+		public static boolean deleteFile(String fileName) throws Exception {
+			File orgFile = new File(rootPath + fileName) ;
+			String prefix = fileName.substring(0, fileName.lastIndexOf("/") + 1);
+			String suffix = "sm_" + fileName.substring(fileName.lastIndexOf("/") + 1);
+			File thumbFile = new File(rootPath + prefix + suffix);
+			if(orgFile.exists()) {
+				if (orgFile.delete() && thumbFile.delete()) {
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	//-> 화질 안좋아서 다른거 이용
 //	private static String makeThumnailImg(String orgFilePath, int dw, int dh) {
 //		String thumbnailPath = getThumnailPath(orgFilePath);
 //		File orgFile = new File(orgFilePath);
@@ -147,17 +167,5 @@ public class MyFileUploadUtil {
 //	}
 	
 	
-	// 첨부파일 삭제
-	public static boolean deleteFile(String fileName) throws Exception {
-		File orgFile = new File(rootPath + fileName) ;
-		String prefix = fileName.substring(0, fileName.lastIndexOf("/") + 1);
-		String suffix = "sm_" + fileName.substring(fileName.lastIndexOf("/") + 1);
-		File thumbFile = new File(rootPath + prefix + suffix);
-		if(orgFile.exists()) {
-			if (orgFile.delete() && thumbFile.delete()) {
-				return true;
-			}
-		}
-		return false;
-	}
+	
 }

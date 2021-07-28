@@ -132,8 +132,6 @@ public class HobbyController {
 		}
 		return thumbPath;
 	}
-
-	
 	//첨부파일 삭제
 	@RequestMapping(value="/deleteImg", method=RequestMethod.GET)
 	@ResponseBody
