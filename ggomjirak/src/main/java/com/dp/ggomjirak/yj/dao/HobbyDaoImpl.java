@@ -1,0 +1,90 @@
+package com.dp.ggomjirak.yj.dao;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
+
+import com.dp.ggomjirak.vo.CompleteImgVo;
+import com.dp.ggomjirak.vo.HobbyMaterialVo;
+import com.dp.ggomjirak.vo.HobbyVo;
+import com.dp.ggomjirak.vo.MakeStepVo;
+import com.dp.ggomjirak.vo.MaterialVo;
+
+@Repository
+public class HobbyDaoImpl implements HobbyDao {
+	
+	private static final String NAMESPACE = "com.dp.ggomjirak.hobby.";
+	
+	@Inject
+	SqlSession sqlSession;
+	
+	
+	@Override
+	public int insertHobby(HobbyVo hobbyVo) {
+		sqlSession.insert(NAMESPACE + "insertHobby", hobbyVo);
+		return hobbyVo.getHobby_no();
+	}
+
+	@Override
+	public HobbyVo selectHobby2(HobbyVo hobbyVo) {
+		return sqlSession.selectOne(NAMESPACE + "selectHobby2", hobbyVo);
+	}
+	
+	@Override
+	public HobbyVo selectHobby(int hobby_no) {
+		return sqlSession.selectOne(NAMESPACE + "selectHobby", hobby_no);
+	}
+
+	@Override
+	public void insertMakeStepVo(List<MakeStepVo> makeSteps) {
+		sqlSession.insert(NAMESPACE + "insertMakeStep", makeSteps);
+		
+	}
+
+
+	@Override
+	public void insertHobbyMaterial(List<HobbyMaterialVo> hobbyMaterials) {
+		sqlSession.insert(NAMESPACE + "insertHobbyMaterial", hobbyMaterials);
+		
+	}
+
+	
+	@Override
+	public void insertCompleteImg(List<CompleteImgVo> completeImgs) {
+		sqlSession.insert(NAMESPACE + "insertCompleteImg", completeImgs);
+		
+	}
+
+	@Override
+	public List<HobbyMaterialVo> selectHobbyMaterialList2(HobbyVo hobbyVo) {
+		return sqlSession.selectList(NAMESPACE + "selectHobbyMaterialList2", hobbyVo);
+	}
+
+	@Override
+	public List<HobbyMaterialVo> selectHobbyMaterialList(int hobby_no) {
+		return sqlSession.selectList(NAMESPACE + "selectHobbyMaterialList", hobby_no);
+	}
+
+	@Override
+	public List<MakeStepVo> selectMakeStepList2(HobbyVo hobbyVo) {
+		return sqlSession.selectList(NAMESPACE + "selectMakeStepList2", hobbyVo);
+	}
+
+	@Override
+	public List<MakeStepVo> selectMakeStepList(int hobby_no) {
+		return sqlSession.selectList(NAMESPACE + "selectMakeStepList", hobby_no);
+	}
+
+	@Override
+	public List<CompleteImgVo> selectCompleteImgList(int hobby_no) {
+		return sqlSession.selectList(NAMESPACE + "selectCompleteImgList", hobby_no);
+	}
+
+
+
+
+
+}
