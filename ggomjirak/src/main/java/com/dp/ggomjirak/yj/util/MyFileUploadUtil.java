@@ -18,7 +18,7 @@ public class MyFileUploadUtil {
 	public static final String GGOMJIRAK_FOLDER = "//192.168.0.217/ggomjirak";
 	public static final String YJ_ACADEMY_FOLDER = "D:/ggomjirak";
 	public static final String YJ_HOME_FOLDER = "C:/Users/user/Desktop";
-	private static String rootPath = YJ_HOME_FOLDER;
+	private static String rootPath = YJ_ACADEMY_FOLDER;
 	
 	
 	public static String uploadImage(String uploadPath, String fileName, byte[] fileData, int dw, int dh) throws Exception {

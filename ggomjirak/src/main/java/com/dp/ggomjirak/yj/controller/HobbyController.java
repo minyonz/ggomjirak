@@ -63,7 +63,7 @@ public class HobbyController {
 		
 		HobbyVo hobbyVo = hobbyService.selectHobbyArticle(hobby_no);
 		model.addAttribute("hobbyVo", hobbyVo);
-		String rootPath = MyFileUploadUtil.YJ_HOME_FOLDER;
+		String rootPath = MyFileUploadUtil.YJ_ACADEMY_FOLDER;
 		model.addAttribute("rootPath", rootPath);
 		model.addAttribute("url", request.getRequestURL());
 		return "hobby/content";
