@@ -52,7 +52,7 @@ public class MainController {
 		model.addAttribute("popularMember3", popularMember3);
 		model.addAttribute("popularMember4", popularMember4);
 		model.addAttribute("cateStrVo", cateStrVo);
-		return "main/main_home";
+		return "main/main_home2";
 	}
 	
 	@RequestMapping(value="/mainHobby", method=RequestMethod.GET)

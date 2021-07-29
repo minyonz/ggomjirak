@@ -2,11 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp" %>
-
+<style>
+.tiledBackground {
+  wiedth: 100%;
+   height: 400px; 
+}
+</style>
 <!-- 배너 -->
-<div class="row tiledBackground">
-	<div class="col-md-12 green_background" style="padding-bottom: 20px">
-		<div class="row">
+
+<div class="row">
+	<div class="col-md-12" style="padding-bottom: 20px">
+	
+	<div class="tiledBackground green_background row" style="position: relative;"></div>
+	
+		<div class="row"  style="position: relative; top: -400px;">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<div class="carousel slide" id="carousel-313760">
@@ -22,7 +31,7 @@
 								src="/resources/img/event01.jpg" height="500"/>
 							<div class="carousel-caption">
 								<h4 class="white_color">First Thumbnail label</h4>
-								<p>Cras justo odio, dapibus ac facilisis in, egestas eget
+								<p  class="white_color">Cras justo odio, dapibus ac facilisis in, egestas eget
 									quam. Donec id elit non mi porta gravida at eget metus. Nullam
 									id dolor id nibh ultricies vehicula ut id elit.</p>
 							</div>
@@ -55,23 +64,9 @@
 						data-slide="next"><span class="carousel-control-next-icon"></span>
 						<span class="sr-only">Next</span></a>
 				</div>
-			</div>
-			<div class="col-md-2"></div>
-		</div>
-	</div>
-</div>
-
-<!-- 배너 끝 -->
-
-<!-- 추천취미 -->
-
-<div class="row">
-	<div class="col-md-12"  style="padding-top: 50px">
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-			
-				<div class="row">
+				
+				<!-- 추천취미 -->
+				<div class="row" style="margin-top: 50px">
 					<div class="col-md-2">
 						<div style="margin-right: 40px">
 						<h5>추천취미</h5>
@@ -116,21 +111,9 @@
 				<!-- Categories Section End -->
 					</div>
 				</div>
-			</div>
-			<div class="col-md-2"></div>
-		</div>
-	</div>
-</div>
-<!-- 추천취미 끝 -->
-
-<!-- 인기취미 -->
-<div class="row">
-	<div class="col-md-12">
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-
-
+				<!-- 추천취미 끝 -->
+				
+				<!-- 인기취미 -->
 				<!-- Categories Section Begin -->
 				<section class="categories" style="margin-top: 50px">
 
@@ -168,21 +151,10 @@
 					</div>
 				</section>
 				<!-- Categories Section End -->
-			</div>
-			<div class="col-md-2"></div>
-		</div>
-	</div>
-</div>
-<!-- 인기취미 끝 -->
-
-<!-- 작가어워드 -->
-<div class="row">
-		<div class="col-md-12">
-			<div class="row">
-				<div class="col-md-2"></div>
-				<div class="col-md-8">
+				<!-- 인기취미 끝 -->
 				
-				 <!-- Featured Section Begin -->
+				<!-- 작가어워드 -->
+				<!-- Featured Section Begin -->
     <section class="featured spad">
         <div class="container">
             <div class="row">
@@ -286,18 +258,20 @@
         </div>
     </section>
     <!-- Featured Section End -->
+				<!-- 작가어워드 끝-->
 				
-				
-				</div>
-				<div class="col-md-2"></div>
 			</div>
+			
+			<div class="col-md-2"></div>
 		</div>
 	</div>
-<!-- 작가 어워드 끝 -->
+</div>
+<!-- 배너 끝 -->
+
 
 <!-- 인기 키워드 -->
 
-<div class="row">
+<div class="row" style="position: relative; top: -400px;">
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-2"> </div>
@@ -348,7 +322,7 @@
 <!-- 인기 키워드 끝 -->
 
 <!-- 이달의 취미 -->
-<div class="row">
+<div class="row"  style="position: relative; top: -400px;">
 	<div class="col-md-12">
 		<div class="row">
 			<div class="col-md-2"></div>
@@ -389,21 +363,7 @@
 					</div>
 				</section>
 				<!-- Categories Section End -->
-			</div>
-			<div class="col-md-2"></div>
-		</div>
-	</div>
-</div>
-<!-- 이달의 취미 끝 -->
-
-<!-- 베스트 메이드 -->
-<div class="row">
-	<div class="col-md-12">
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-
-
+				<!-- 베스트메이드 -->
 				<!-- Categories Section Begin -->
 				<section class="categories" style="margin-top: 50px">
 
@@ -494,12 +454,13 @@
 					</div>
 				</section>
 				<!-- Categories Section End -->
+				<!-- 베스트메이드 끝 -->
 			</div>
 			<div class="col-md-2"></div>
 		</div>
 	</div>
 </div>
-<!-- 베스트 메이드 끝 -->
+<!-- 이달의 취미 끝 -->
 
     
 <%@ include file="../include/footer.jsp" %>
