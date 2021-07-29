@@ -25,7 +25,11 @@ public interface MainService {
 	public int getCountHobbySearch(PagingDto pagingDto);
 	public int getCountMemberSearch(PagingDto pagingDto);
 	
+	public List<CateVo> cateBigSort();
+	public List<CateVo> cateSmallSort();
 	public List<HobbyVo> hobbyListPopular(PagingDto pagingDto);
 	public int getCountHobbyList(PagingDto pagingDto);
+	public List<HobbyVo> searchHobbyCate(PagingDto pagingDto);
+	public int getCountHobbyCate(PagingDto pagingDto);
 
 }

@@ -20,6 +20,7 @@ import com.dp.ggomjirak.vo.ManagerVo;
 import com.dp.ggomjirak.vo.MemberActivVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
+import com.dp.ggomjirak.vo.QnAVo;
 import com.dp.ggomjirak.vo.WorkroomVo;
 
 @Controller
@@ -167,17 +168,29 @@ public class ManagerController {
 	
 	// 문의글 리스트
 	@RequestMapping(value="/managerAsk", method=RequestMethod.GET)
-	public String managerAsk() throws Exception {
+	public String managerAsk(Model model, PagingDto pagingDto) throws Exception {
+		int count = managerService.getCountQnA(pagingDto);
+		pagingDto.setEndRow(10);
+		pagingDto.setPerPage(10);
+		pagingDto.setCount(count);
+		
+		List<QnAVo> qnaVo = managerService.selectQnAList(pagingDto);
+		model.addAttribute("qnaVo", qnaVo);
+		model.addAttribute("pagingDto", pagingDto);
 		return "manager/ask/manager_ask";
 	}
 	// 문의글 상세페이지
 	@RequestMapping(value="/managerAskContent", method=RequestMethod.GET)
-	public String managerAskContent() throws Exception {
+	public String managerAskContent(Model model, int qna_no) throws Exception {
+		QnAVo qnaVo = managerService.selectQnaByNo(qna_no);
+		model.addAttribute("qnaVo", qnaVo);
 		return "manager/ask/manager_ask_content";
 	}
 	// 문의글 답변폼
 	@RequestMapping(value="/managerAskAnswer", method=RequestMethod.GET)
-	public String managerAskAnswer() throws Exception {
+	public String managerAskAnswer(Model model, int qna_no) throws Exception {
+		QnAVo qnaVo = managerService.selectQnaByNo(qna_no);
+		model.addAttribute("qnaVo", qnaVo);
 		return "manager/ask/manager_ask_answer";
 	}
 	// 이벤트 리스트 (진행중)

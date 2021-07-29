@@ -11,6 +11,7 @@ public interface MainDao {
 
 	public List<CateVo> selectCate();
 	
+	
 	public List<HobbyVo> getSuggestHobby(String user_id);
 	public List<HobbyVo> getPopularHobbyList();
 	public List<HobbyVo> getMonthHobbyList();
@@ -25,6 +26,10 @@ public interface MainDao {
 	public int getCountHobbySearch(PagingDto pagingDto);
 	public int getCountMemberSearch(PagingDto pagingDto);
 	
+	public List<CateVo> cateBigSort();
+	public List<CateVo> cateSmallSort();
 	public List<HobbyVo> hobbyListPopular(PagingDto pagingDto);
 	public int getCountHobbyList(PagingDto pagingDto);
+	public List<HobbyVo> searchHobbyCate(PagingDto pagingDto);
+	public int getCountHobbyCate(PagingDto pagingDto);
 }

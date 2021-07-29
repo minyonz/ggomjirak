@@ -10,9 +10,11 @@
 	<!-- 추천 취미 리스트 -->
 	<select id="getSuggestHobby" resultType="HobbyVo">
 		select * from
-			(select rownum rnum, a.* from
+			(select rownum rnum, a.*, c.user_nick from
 				(select * from tbl_hobby where hobby_writer != #{user_id}
+				and hobby_writer not in(select user_id from tbl_manager_member)
 				order by like_cnt desc)a
+			left join tbl_memberdetail c on a.hobby_writer = c.user_id
 			where (select cate_no1 from tbl_memberdetail where user_id = #{user_id}) = a.m_cate_no
 			or (select cate_no2 from tbl_memberdetail where user_id = #{user_id}) = a.m_cate_no
 			or (select cate_no3 from tbl_memberdetail where user_id = #{user_id}) = a.m_cate_no)
@@ -25,6 +27,7 @@
 		    (select rownum rnum, a.* from
 		        (select * from tbl_hobby
 		        where is_del = 'N'
+		        and hobby_writer not in(select user_id from tbl_manager_member)
 		        order by view_cnt desc, like_cnt desc) a) b
 		        left join tbl_memberdetail c on b.hobby_writer = c.user_id
 		where rnum between 1 and 10
@@ -36,6 +39,7 @@
 		    (select rownum rnum, a.* from
 		        (select * from tbl_hobby
 		        where is_del = 'N'
+		        and hobby_writer not in(select user_id from tbl_manager_member)
 		        and to_char(reg_date, 'mm') = to_char(sysdate, 'mm')
 		        order by view_cnt desc, like_cnt desc) a) b
 		        left join tbl_memberdetail c on b.hobby_writer = c.user_id
@@ -95,9 +99,20 @@
 	</select>
 
 	
-	<!-- 카테고리 -->
+	<!-- 카테고리 셀렉트 -->
 	<select id="selectCate" resultType="CateVo">
 		select * from tbl_hobby_cate
+	</select>
+	<!-- 카테고리 메뉴 -->
+	<select id="cateBigSort" resultType="CateVo">
+		select * from tbl_hobby_cate
+		where cate_level = 1
+		order by cate_no
+	</select>
+	<select id="cateSmallSort" resultType="CateVo">
+		select * from tbl_hobby_cate
+		where cate_level = 2
+		order by cate_no
 	</select>
 	
 	<!-- 취미 리스트 (인기순) -->
@@ -106,15 +121,43 @@
 		    (select rownum rnum, a.* from
 		        (select * from tbl_hobby
 		        where is_del = 'N'
+		        and hobby_writer not in(select user_id from tbl_manager_member)
 		        order by view_cnt desc, like_cnt desc) a) b
 		        left join tbl_memberdetail c on b.hobby_writer = c.user_id
 		where rnum between #{startRow} and #{endRow}
 	</select>
 	<!-- 취미 갯수 -->
 	<select id="getCountHobbyList" resultType="int">
+		select count (*) from tbl_hobby
+		where is_del = 'N'
+		and hobby_writer not in(select user_id from tbl_manager_member)
+	</select>
+	
+	<!-- 취미 카테고리 검색 -->
+	<select id="searchHobbyCate" resultType="HobbyVo">
+		select * from
+		(select rownum rnum, a.*, c.user_nick from
+		        (select * from tbl_hobby where hobby_writer in 
+		        (select user_id from tbl_memberinfo where is_del = 'N'
+		        and user_id not in(select user_id from tbl_manager_member)))a
+		        left join tbl_memberdetail c on a.hobby_writer = c.user_id
+		        <if test="m_cate_no != 0">
+		         where m_cate_no = #{m_cate_no}
+		        </if>
+		         order by hobby_no desc)
+		where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 취미 카테고리 검색 수 -->
+	<select id="getCountHobbyCate" resultType="int">
 		select count (*) from
-		(select * from tbl_hobby
-		where is_del = 'N')
+			(select * from tbl_hobby where hobby_writer in 
+		        (select user_id from tbl_memberinfo where is_del = 'N'
+		        and user_id not in(select user_id from tbl_manager_member)))a
+                left join tbl_memberdetail c on a.hobby_writer = c.user_id
+                <if test="m_cate_no != 0">
+                where m_cate_no = #{m_cate_no}
+                </if>
 	</select>
 	
 	<!-- 검색(취미) -->
@@ -122,7 +165,8 @@
 		select * from
 		(select rownum rnum, a.*, c.user_nick from
 		        (select * from tbl_hobby where hobby_writer in 
-		        (select user_id from tbl_memberinfo where is_del = 'N'))a
+		        (select user_id from tbl_memberinfo where is_del = 'N'
+		        and user_id not in(select user_id from tbl_manager_member)))a
 		        left join tbl_memberdetail c on a.hobby_writer = c.user_id
 		         where hobby_title like '%' || #{keyword} || '%'
 		         or user_nick like '%' || #{keyword} || '%'
@@ -134,7 +178,8 @@
 	<select id="getCountHobbySearch" resultType="int">
 		select count (*) from
 			(select * from tbl_hobby where hobby_writer in 
-		        (select user_id from tbl_memberinfo where is_del = 'N'))a
+		        (select user_id from tbl_memberinfo where is_del = 'N'
+		        and user_id not in(select user_id from tbl_manager_member)))a
                 left join tbl_memberdetail c on a.hobby_writer = c.user_id
                 where hobby_title like '%' || #{keyword} || '%'
 		         or user_nick like '%' || #{keyword} || '%'
@@ -148,6 +193,7 @@
 		        	(select user_id from tbl_memberinfo where is_del = 'N')) a 
 		         left join tbl_membergrade c on a.user_grade = c.cd
 		         where user_nick like '%' || #{keyword} || '%'
+		         and a.user_id not in(select user_id from tbl_manager_member)
 		         order by follower_cnt desc)
 		where rnum between #{startRow} and #{endRow}
 	</select>
@@ -159,6 +205,7 @@
 		        (select user_id from tbl_memberinfo where is_del = 'N')) a 
 		         left join tbl_membergrade c on a.user_grade = c.cd
 		         where user_nick like '%' || #{keyword} || '%'
+		         and a.user_id not in(select user_id from tbl_manager_member)
 	</select>
 	
 	

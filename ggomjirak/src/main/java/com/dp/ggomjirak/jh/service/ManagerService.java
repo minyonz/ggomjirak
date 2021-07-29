@@ -10,6 +10,7 @@ import com.dp.ggomjirak.vo.MemberDetailVo;
 import com.dp.ggomjirak.vo.MemberInfoVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
+import com.dp.ggomjirak.vo.QnAVo;
 import com.dp.ggomjirak.vo.WorkroomVo;
 
 public interface ManagerService {
@@ -52,7 +53,12 @@ public interface ManagerService {
 	public void updateEvent(EventVo eventVo);
 	public void deleteEvent(int e_no);
 	
-	//메인
+	// 문의
+	public List<QnAVo> selectQnAList(PagingDto pagingDto);
+	public int getCountQnA(PagingDto pagingDto);
+	public QnAVo selectQnaByNo (int qna_no);
+	
+	// 메인
 	public List<MemberVo> selectPopularMemberList();
 	public int getMemberCount();
 }

@@ -48,6 +48,7 @@
 </style>
 <script>
 $(document).ready(function() {
+	
 	//* 카테고리 부분
 	var jsonData = JSON.parse('${cates}');
 	var cate1Arr = new Array();
@@ -64,7 +65,7 @@ $(document).ready(function() {
 	// 1차 분류 셀렉트 박스에 데이터 삽입
 	var cate1Select = $("select.cate1")
 	for(var i = 0; i < cate1Arr.length; i++) {
-		 cate1Select.append("<option value='" + cate1Arr[i].cate_no + "'>"
+		 cate1Select.append("<option id='parent_cate_no' name='parent_cate_no' value='" + cate1Arr[i].cate_no + "'>"
 	      + cate1Arr[i].cate_name + "</option>"); 
 	}
 	$(document).on("change", "select.cate1", function(){
@@ -80,25 +81,29 @@ $(document).ready(function() {
 		   cate2Arr.push(cate2Obj);
 		  }
 		 }
-		 var cate2Select = $("select.cate2");
+		 var cate2Select = $("ul.cate2");
 		 cate2Select.children().remove();
 		 $("option:selected", this).each(function(){
 		  var selectVal = $(this).val();  
-		  cate2Select.append("<option value=''>중분류</option>");
+		  cate2Select.append("<li class='dropdown-item'>중분류</li>");
 		  for(var i = 0; i < cate2Arr.length; i++) {
 		   if(selectVal == cate2Arr[i].parent_cate_no) {
-		    cate2Select.append("<option value='" + cate2Arr[i].cate_no + "'>"
-		         + cate2Arr[i].cate_name + "</option>");
+		    cate2Select.append("<li><a class='dropdown-item' value='" + cate2Arr[i].cate_no 
+		    	+ "' data-cate='" + cate2Arr[i].parent_cate_no 
+		    	+ "' href='/main/mainHobby?parent_cate_no=" + cate2Arr[i].parent_cate_no + "&m_cate_no=" + cate2Arr[i].cate_no + "'>"
+		         + cate2Arr[i].cate_name + "</a></li>");
 		   }
 		  }
 		 });
+		
 	});
 
 	$("#frmSearch").submit(function() {
-		
+		if ($("#keyword").val() == null) {
+			return false;
+		}
 		
 	});
-	
 	
 });
 </script>
@@ -125,16 +130,17 @@ $(document).ready(function() {
 											aria-label="Toggle navigation">
 											<span class="navbar-toggler-icon"></span>
 										</button>
-										<div class="collapse navbar-collapse"
-											id="navbarSupportedContent">
+										<div class="collapse navbar-collapse" id="navbarSupportedContent">
 											<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 												<li class="nav-item"><a class="nav-link" href="/main/mainHome">홈</a></li>
 												<li class="nav-item"><a class="nav-link" href="/main/mainHobby">취미</a></li>
 												<li class="nav-item"><a class="nav-link" href="/main/mainEvent">이벤트</a></li>
 												<li class="nav-item"><a class="nav-link" href="/main/mainAboutUs">소개</a></li>
-												<li class="nav-item"><a class="nav-link" href="/workroom/main">내 작업실</a></li>
-												<li class="nav-item"><a class="nav-link" href="/mypage/login">로그인</a></li>
+												</ul>
 												
+      											<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+												<li class="nav-item"><a class="nav-link flex-item" href="/workroom/main">내 작업실</a></li>
+												<li class="nav-item"><a class="nav-link" href="/mypage/login">로그인</a></li>
 												
 												<li class="nav-item dropdown">
 												<div class="dropdown">
@@ -183,9 +189,10 @@ $(document).ready(function() {
 								<!-- 로고 -->
 								<header class="py-3 mb-4">
 								  <div class="container d-flex flex-wrap justify-content-center">
+								  
 								    <a href="/main/mainHome" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
 								      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-								      <span class="fs-4 white_color">꼼지락</span>
+								      <img src="/resources/img/logo04.png" class="rounded mx-auto" alt="..." width="200px">
 								    </a>
 								  </div>
 								</header>
@@ -196,18 +203,28 @@ $(document).ready(function() {
 								
 								<div class="row" style="margin-bottom: 50px">
 									<div class="col-md-3">
-									<form role="form" method="post" autocomplete="off">
-								     <div class="input-group">
-								     
-								      <select class="cate1 form-control btn btn-outline-light green_background shadow bg-body rounded" style="margin-right: 10px" aria-label="Default select example">
-										  <option value="">카테고리</option>
-										</select>
-								      <select class="cate2 form-control btn btn-outline-light green_background shadow bg-body rounded" aria-label="Default select example">
-										  <option value="">카테고리</option>
+									
+									
+									
+									<div class="input-group">
+
+										<select class="cate1 form-control btn btn-outline-light green_background shadow bg-body rounded"
+											style="margin-right: 10px"
+											aria-label="Default select example">
+											<option value="">카테고리</option>
 										</select>
 										
-								      </div>
-									</form>
+										<div class="dropdown">
+									  <button class="form-control btn btn-outline-light green_background shadow bg-body rounded dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+									   카테고리
+									  </button>
+									  <ul class="cate2 dropdown-menu" aria-labelledby="dropdownMenuButton1">
+									    <li><a class="dropdown-item" href="#">중분류</a></li>
+									  </ul>
+									</div>
+
+									</div>
+										
 									</div>
 									
 									<div class="col-md-9">
@@ -216,7 +233,7 @@ $(document).ready(function() {
 									<div class="input-group mb-3">
 									  <input id="keyword" name="keyword" type="text" class="form-control shadow bg-body rounded" placeholder="나의 취미를 찾아보세요" aria-label="Recipient's username" aria-describedby="button-addon2">
 									  <div class="input-group-append">
-									    <button type="submit" class="btn btn-outline-light shadow bg-body rounded" id="button-addon2">
+									    <button type="submit" class="btn btn-outline-light shadow bg-body rounded" id="btnSearch">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 											fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
 										  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />

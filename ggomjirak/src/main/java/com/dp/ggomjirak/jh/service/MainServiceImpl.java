@@ -96,6 +96,20 @@ public class MainServiceImpl implements MainService {
 		int count = mainDao.getCountMemberSearch(pagingDto);
 		return count;
 	}
+	
+
+	@Override
+	public List<CateVo> cateBigSort() {
+		List<CateVo> list = mainDao.cateBigSort();
+		return list;
+	}
+
+	@Override
+	public List<CateVo> cateSmallSort() {
+		List<CateVo> list = mainDao.cateSmallSort();
+		return list;
+	}
+
 	@Override
 	public List<HobbyVo> hobbyListPopular(PagingDto pagingDto) {
 		List<HobbyVo> list = mainDao.hobbyListPopular(pagingDto);
@@ -105,6 +119,18 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public int getCountHobbyList(PagingDto pagingDto) {
 		int count = mainDao.getCountHobbyList(pagingDto);
+		return count;
+	}
+
+	@Override
+	public List<HobbyVo> searchHobbyCate(PagingDto pagingDto) {
+		List<HobbyVo> list = mainDao.searchHobbyCate(pagingDto);
+		return list;
+	}
+
+	@Override
+	public int getCountHobbyCate(PagingDto pagingDto) {
+		int count = mainDao.getCountHobbyCate(pagingDto);
 		return count;
 	}
 

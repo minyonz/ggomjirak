@@ -29,13 +29,21 @@ public class PagingDto {
 	private String searchType;
 	private String keyword;
 	
+	// 카테고리
+	private int parent_cate_no;
+	private int m_cate_no;
+	
+	//문의글
+	private int qCheck;
+	
 	public PagingDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
 	public PagingDto(int page, int startRow, int endRow, int count, int startPage, int endPage, int totalPage,
-			int perPage, String hobby_writer, String searchType, String keyword) {
+			int perPage, String hobby_writer, String searchType, String keyword,
+			int parent_cate_no, int m_cate_no, int qCheck) {
 		super();
 		this.page = page;
 		this.startRow = startRow;
@@ -48,6 +56,9 @@ public class PagingDto {
 		this.hobby_writer = hobby_writer;
 		this.searchType = searchType;
 		this.keyword = keyword;
+		this.parent_cate_no = parent_cate_no;
+		this.m_cate_no = m_cate_no;
+		this.qCheck = qCheck;
 	}
 	
 	public int getPage() {
@@ -156,12 +167,39 @@ public class PagingDto {
 		return PAGE_BLOCK;
 	}
 	
+	public int getParent_cate_no() {
+		return parent_cate_no;
+	}
+
+	public void setParent_cate_no(int parent_cate_no) {
+		this.parent_cate_no = parent_cate_no;
+	}
+
+	public int getM_cate_no() {
+		return m_cate_no;
+	}
+
+	public void setM_cate_no(int m_cate_no) {
+		this.m_cate_no = m_cate_no;
+	}
+
+	public int getqCheck() {
+		return qCheck;
+	}
+
+	public void setqCheck(int qCheck) {
+		this.qCheck = qCheck;
+	}
+
 	@Override
 	public String toString() {
 		return "PagingDto [page=" + page + ", startRow=" + startRow + ", endRow=" + endRow + ", count=" + count
 				+ ", startPage=" + startPage + ", endPage=" + endPage + ", totalPage=" + totalPage + ", perPage="
 				+ perPage + ", PAGE_BLOCK=" + PAGE_BLOCK + ", hobby_writer=" + hobby_writer + ", searchType="
-				+ searchType + ", keyword=" + keyword + "]";
+				+ searchType + ", keyword=" + keyword + ", parent_cate_no=" + parent_cate_no + ", m_cate_no="
+				+ m_cate_no + ", qCheck=" + qCheck + "]";
 	}
+
+
 	
 }

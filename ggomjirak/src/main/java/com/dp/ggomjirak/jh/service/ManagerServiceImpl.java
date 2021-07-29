@@ -15,6 +15,7 @@ import com.dp.ggomjirak.vo.MemberDetailVo;
 import com.dp.ggomjirak.vo.MemberInfoVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
+import com.dp.ggomjirak.vo.QnAVo;
 import com.dp.ggomjirak.vo.WorkroomVo;
 
 @Service
@@ -197,6 +198,27 @@ public class ManagerServiceImpl implements ManagerService {
 	public void deleteEvent(int e_no) {
 		managerDao.deleteEvent(e_no);
 	}
+	
+
+	// 문의
+	@Override
+	public List<QnAVo> selectQnAList(PagingDto pagingDto) {
+		List<QnAVo> list = managerDao.selectQnAList(pagingDto);
+		return list;
+	}
+
+	@Override
+	public int getCountQnA(PagingDto pagingDto) {
+		int count = managerDao.getCountQnA(pagingDto);
+		return count;
+	}
+
+	@Override
+	public QnAVo selectQnaByNo(int qna_no) {
+		QnAVo qnaVo = managerDao.selectQnaByNo(qna_no);
+		return qnaVo;
+	}
+	
 
 	@Override
 	public List<MemberVo> selectPopularMemberList() {
@@ -209,6 +231,9 @@ public class ManagerServiceImpl implements ManagerService {
 		int count = managerDao.getMemberCount();
 		return count;
 	}
+
+
+
 
 
 

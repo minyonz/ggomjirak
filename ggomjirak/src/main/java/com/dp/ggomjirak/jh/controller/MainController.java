@@ -33,16 +33,15 @@ public class MainController {
 	@RequestMapping(value="/mainHome", method=RequestMethod.GET)
 	public String mainHome(Model model) throws Exception {
 		List<CateVo> category = mainService.selectCate();
-		String user_id1 = "hong";
-		List<HobbyVo> suggestHobby = mainService.getSuggestHobby(user_id1);
+		String user_id = "hong";
+		List<HobbyVo> suggestHobby = mainService.getSuggestHobby(user_id);
 		List<HobbyVo> popularHobby = mainService.getPopularHobbyList();
 		List<HobbyVo> monthHobby = mainService.getMonthHobbyList();
 		List<MemberVo> popularMember1 = mainService.getPopularMemberList1();
 		List<MemberVo> popularMember2 = mainService.getPopularMemberList2();
 		List<MemberVo> popularMember3 = mainService.getPopularMemberList3();
 		List<MemberVo> popularMember4 = mainService.getPopularMemberList4();
-		String user_id2 = "cat";
-		CateStrVo cateStrVo = managerService.selectCateStr(user_id2);
+		CateStrVo cateStrVo = managerService.selectCateStr(user_id);
 
 		model.addAttribute("cates", JSONArray.fromObject(category));
 		model.addAttribute("suggestHobby", suggestHobby);
@@ -60,7 +59,8 @@ public class MainController {
 	public String mainHobby(Model model, PagingDto pagingDto) throws Exception {
 		List<CateVo> category = mainService.selectCate();
 		model.addAttribute("cates", JSONArray.fromObject(category));
-		int count = mainService.getCountHobbyList(pagingDto);
+//		int count = mainService.getCountHobbyList(pagingDto);
+		int count = mainService.getCountHobbyCate(pagingDto);
 		pagingDto.setPerPage(16);
 		pagingDto.setEndRow(16);
 		pagingDto.setCount(count);
@@ -68,8 +68,19 @@ public class MainController {
 		
 		System.out.println("count: " + count);
 		System.out.println("pagingDto: " + pagingDto);
+		
+		List<CateVo> bigSort = mainService.cateBigSort();
+		List<CateVo> smallSort = mainService.cateSmallSort();
+		model.addAttribute("bigSort", bigSort);
+		model.addAttribute("smallSort", smallSort);
+		
+		List<HobbyVo> cateHobby = mainService.searchHobbyCate(pagingDto);
+		
+		model.addAttribute("cateHobby", cateHobby);
+
 		List<HobbyVo> hobbyPopular = mainService.hobbyListPopular(pagingDto);
 		model.addAttribute("hobbyPopular", hobbyPopular);
+		model.addAttribute("pagingDto", pagingDto);
 		return "main/main_hobby";
 	}
 

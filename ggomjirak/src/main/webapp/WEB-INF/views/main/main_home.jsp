@@ -104,7 +104,7 @@
 									</div>
 										<div class="featured__item__text">
 										<h6><a href="#">${suggestHobby.hobby_title}</a></h6>
-										<h5>${suggestHobby.hobby_writer}</h5>
+										<h5>${suggestHobby.user_nick}</h5>
 									</div>
 								</div>
 								</c:forEach>

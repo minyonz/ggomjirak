@@ -251,6 +251,52 @@
 		where e_no = #{e_no}	
 	</update>
 	
+	<!-- 문의 -->
+	<!-- 문의글 목록 -->
+	<select id="selectQnAList" resultType="QnAVo">
+		select * from
+		(select rownum rnum, a.* from tbl_QnA a
+		where qna_type = 'Q'
+			<choose>
+				<when test="qCheck == 1">
+				and is_del = 'N'
+					and a_no = 0
+				</when>
+				<when test="qCheck == 2">
+				and is_del = 'N'
+					and a_no != 0
+				</when>
+				<when test="qCheck == 3">
+				and is_del = 'Y'
+				</when>
+			</choose>
+		order by qna_no desc)
+		where rnum between #{startRow} and #{endRow}
+	</select>
+	<!-- 문의글 수 -->
+	<select id="getCountQnA" resultType="int">
+		select count (*) from tbl_QnA 
+		where qna_type = 'Q'
+			<choose>
+				<when test="qCheck == 1">
+				and is_del = 'N'
+					and a_no = 0
+				</when>
+				<when test="qCheck == 2">
+				and is_del = 'N'
+					and a_no != 0
+				</when>
+				<when test="qCheck == 3">
+				and is_del = 'Y'
+				</when>
+			</choose>
+	</select>
+	
+	<select id="selectQnaByNo" resultType="QnAVo">
+		select * from tbl_QnA
+		where qna_no = #{qna_no}
+	</select>
+	
 	<!-- 메인 -->
 	<!-- 인기 작가 리스트 -->
 	<select id="selectPopularMemberList" resultType="MemberVo">

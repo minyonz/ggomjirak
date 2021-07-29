@@ -8,6 +8,7 @@ import com.dp.ggomjirak.vo.ManagerVo;
 import com.dp.ggomjirak.vo.MemberActivVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
+import com.dp.ggomjirak.vo.QnAVo;
 import com.dp.ggomjirak.vo.WorkroomVo;
 
 public interface ManagerDao {
@@ -54,6 +55,11 @@ public interface ManagerDao {
 	public void insertEvent(EventVo eventVo);
 	public void updateEvent(EventVo eventVo);
 	public void deleteEvent(int e_no);
+	
+	// 문의
+	public List<QnAVo> selectQnAList(PagingDto pagingDto);
+	public int getCountQnA(PagingDto pagingDto);
+	public QnAVo selectQnaByNo (int qna_no);
 	
 	// 메인
 	public List<MemberVo> selectPopularMemberList();

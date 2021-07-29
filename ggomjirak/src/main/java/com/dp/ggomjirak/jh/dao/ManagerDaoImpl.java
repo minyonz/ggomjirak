@@ -15,6 +15,7 @@ import com.dp.ggomjirak.vo.MemberDetailVo;
 import com.dp.ggomjirak.vo.MemberInfoVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
+import com.dp.ggomjirak.vo.QnAVo;
 import com.dp.ggomjirak.vo.WorkroomVo;
 
 @Repository
@@ -208,8 +209,27 @@ private static final String NAMESPACE = "com.dp.ggomjirak.manager.";
 		sqlSession.update(NAMESPACE + "deleteEvent", e_no);
 		
 	}
+	
+	// 문의
+	@Override
+	public List<QnAVo> selectQnAList(PagingDto pagingDto) {
+		List<QnAVo> list = sqlSession.selectList(NAMESPACE + "selectQnAList", pagingDto);
+		return list;
+	}
 
-	//메인
+	@Override
+	public int getCountQnA(PagingDto pagingDto) {
+		int count = sqlSession.selectOne(NAMESPACE + "getCountQnA", pagingDto);
+		return count;
+	}
+
+	@Override
+	public QnAVo selectQnaByNo(int qna_no) {
+		QnAVo qnaVo = sqlSession.selectOne(NAMESPACE + "selectQnaByNo", qna_no);
+		return qnaVo;
+	}
+
+	// 메인
 	@Override
 	public List<MemberVo> selectPopularMemberList() {
 		List<MemberVo> list = sqlSession.selectList(NAMESPACE + "selectPopularMemberList");
@@ -221,6 +241,9 @@ private static final String NAMESPACE = "com.dp.ggomjirak.manager.";
 		int count = sqlSession.selectOne(NAMESPACE + "getMemberCount");
 		return count;
 	}
+
+
+
 
 
 

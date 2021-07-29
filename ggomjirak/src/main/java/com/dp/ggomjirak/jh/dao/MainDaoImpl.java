@@ -102,6 +102,18 @@ public class MainDaoImpl implements MainDao {
 
 
 	@Override
+	public List<CateVo> cateBigSort() {
+		List<CateVo> list = sqlSession.selectList(NAMESPACE + "cateBigSort");
+		return list;
+	}
+
+	@Override
+	public List<CateVo> cateSmallSort() {
+		List<CateVo> list = sqlSession.selectList(NAMESPACE + "cateSmallSort");
+		return list;
+	}
+
+	@Override
 	public List<HobbyVo> hobbyListPopular(PagingDto pagingDto) {
 		List<HobbyVo> list = sqlSession.selectList(NAMESPACE + "hobbyListPopular", pagingDto);
 		return list;
@@ -110,6 +122,18 @@ public class MainDaoImpl implements MainDao {
 	@Override
 	public int getCountHobbyList(PagingDto pagingDto) {
 		int count = sqlSession.selectOne(NAMESPACE + "getCountHobbyList", pagingDto);
+		return count;
+	}
+
+	@Override
+	public List<HobbyVo> searchHobbyCate(PagingDto pagingDto) {
+		List<HobbyVo> list = sqlSession.selectList(NAMESPACE + "searchHobbyCate", pagingDto);
+		return list;
+	}
+
+	@Override
+	public int getCountHobbyCate(PagingDto pagingDto) {
+		int count = sqlSession.selectOne(NAMESPACE + "getCountHobbyCate", pagingDto);
 		return count;
 	}
 
