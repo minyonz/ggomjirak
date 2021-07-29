@@ -1,6 +1,8 @@
 package com.dp.ggomjirak.vo;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -22,6 +24,7 @@ public class UrlOGTag {
 	
 	public UrlOGTag(String url) {
 	  try {
+		  	url = restructureUrl(url);
 	        Connection con = Jsoup.connect(url);
 	        Document doc = con.get();
 	        Elements ogTags = doc.select("meta[property^=og:]");
@@ -44,6 +47,27 @@ public class UrlOGTag {
 	    } catch (IOException e) {
 	    	e.printStackTrace();
 	    }
+	}
+	public static void main(String[] args) {
+		System.out.println(restructureUrl("https://blog.naver.com/psj9102/221203659771"));
+		System.out.println(restructureUrl("https://m.blog.naver.com/psj9102/221203659771"));
+		System.out.println(restructureUrl("https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=psj9102&logNo=221203659771"));
+		System.out.println(restructureUrl("https://m.blog.naver.com/PostView.naver?blogId=psj9102&logNo=221203659771"));
+		System.out.println(restructureUrl("https://blog.naver.com/PostView.naver?blogId=psj9102&logNo=221203659771"));
+	}
+	
+	private static String restructureUrl(String url) {
+		String naverBlog = 
+				"^(https?:\\/\\/)(m\\.blog\\.naver\\.com\\/|blog\\.naver\\.com\\/)(.*)(\\/)(.*)";
+		Pattern naverBlogPattern = Pattern.compile(naverBlog);
+		Matcher matcher = naverBlogPattern.matcher(url);
+		if (matcher.matches()) {
+			url = matcher.group(1) + matcher.group(2) 
+			+ "PostView.nhn?blogId=" + matcher.group(3)
+					+ "&logNo=" + matcher.group(5);
+		}
+		
+		return url;
 	}
 
 	public UrlOGTag(String url, String title, String image, String desc) {

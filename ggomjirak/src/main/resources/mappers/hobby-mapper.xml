@@ -86,10 +86,16 @@
 	</select> 	
 	
 	<!-- 글번호로 완성사진 조회 -->
- 	<select id="selectCompleteImgList" parameterType="int" resultType="CompleteImgVo">
+ 	<select id="selectCompleteImgListNotNull" parameterType="int" resultType="CompleteImgVo">
 	 		SELECT ROWNUM seq, A.* 
 	 		FROM (SELECT * FROM tbl_complete_img ORDER BY num) A
 			WHERE hobby_no = #{hobby_no} AND img_name IS NOT NULL
+	</select> 
+	
+	<select id="selectCompleteImgListAll" parameterType="int" resultType="CompleteImgVo">
+	 		SELECT ROWNUM seq, A.* 
+	 		FROM (SELECT * FROM tbl_complete_img ORDER BY num) A
+			WHERE hobby_no = #{hobby_no}
 	</select> 
  	
  	<!-- 만들기 순서 -->
@@ -100,7 +106,7 @@
 	        select #{item.hobby_no} HOBBY_NO,
 	        #{item.make_step_num} MAKE_STEP_NUM,
 	        #{item.make_step_text} MAKE_STEP_TEXT,
-	        #{item.make_step_img} MAKE_STEP_IMG,
+	        #{item.make_step_img, jdbcType=VARCHAR} MAKE_STEP_IMG,
 	        #{item.tip, jdbcType=VARCHAR} TIP,
 	        #{item.note, jdbcType=VARCHAR} NOTE,
 	        #{item.link_url, jdbcType=VARCHAR} LINK_URL,

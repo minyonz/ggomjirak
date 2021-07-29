@@ -79,8 +79,13 @@ public class HobbyDaoImpl implements HobbyDao {
 	}
 
 	@Override
-	public List<CompleteImgVo> selectCompleteImgList(int hobby_no) {
-		return sqlSession.selectList(NAMESPACE + "selectCompleteImgList", hobby_no);
+	public List<CompleteImgVo> selectCompleteImgListNotNull(int hobby_no) {
+		return sqlSession.selectList(NAMESPACE + "selectCompleteImgListNotNull", hobby_no);
+	}
+
+	@Override
+	public List<CompleteImgVo> selectCompleteImgListAll(int hobby_no) {
+		return sqlSession.selectList(NAMESPACE + "selectCompleteImgListAll", hobby_no);
 	}
 
 

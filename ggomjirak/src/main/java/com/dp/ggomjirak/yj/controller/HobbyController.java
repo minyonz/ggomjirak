@@ -3,7 +3,6 @@ package com.dp.ggomjirak.yj.controller;
 
 
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.util.List;
 
@@ -51,21 +50,46 @@ public class HobbyController {
 	private static final String STEP_IMG_UPLOAD_PATH = "/test/make_step";
 	private static final String COMPLETE_IMG_UPLOAD_PATH = "/test/complete_img";
 	
+	String rootPath = MyFileUploadUtil.YJ_HOME_FOLDER;
+	
 	@RequestMapping(value="/content/{hobby_no}", method=RequestMethod.GET)
 	public String content(Model model, @PathVariable("hobby_no") int hobby_no,
 			HttpServletRequest request) throws Exception {
-		
-		HobbyVo hobbyVo = hobbyService.selectHobbyArticle(hobby_no);
+		HobbyVo hobbyVo = hobbyService.selectHobbyArticle(hobby_no, false);
+		System.out.println("완성사진:" + hobbyVo.getCompleteImgs());
 		model.addAttribute("hobbyVo", hobbyVo);
-		String rootPath = MyFileUploadUtil.YJ_HOME_FOLDER;
 		model.addAttribute("rootPath", rootPath);
 		model.addAttribute("url", request.getRequestURL());
 		return "hobby/content";
 	}
 	
+	@RequestMapping(value="/update/{hobby_no}", method=RequestMethod.GET)
+	public String update(Model model, @PathVariable("hobby_no") int hobby_no) throws Exception {
+		
+		HobbyVo hobbyVo = hobbyService.selectHobbyArticle(hobby_no, true);
+		model.addAttribute("hobbyVo", hobbyVo);
+		model.addAttribute("rootPath", rootPath);
+		
+		List<CateVo> cates = cateService.getCateList();
+		List<TimeVo> times = cateService.getTimeList();
+		List<LevelVo> levels = cateService.getLevelList();
+		List<CostVo> costs = cateService.getCostList();
+		model.addAttribute("cates", JSONArray.fromObject(cates));
+		model.addAttribute("times", JSONArray.fromObject(times));
+		model.addAttribute("levels", JSONArray.fromObject(levels));
+		model.addAttribute("costs", JSONArray.fromObject(costs));
+		return "hobby/modify_form";
+	}
+	
+	@RequestMapping(value="/updateRun", method=RequestMethod.POST)
+	public String updateRun(HobbyVo hobbyVo) throws Exception {
+		System.out.println(hobbyVo);
+		
+		return "redirect:/listAll";
+	}
 	
 	@RequestMapping(value="/insert", method=RequestMethod.GET)
-	public String test(Model model) throws Exception {
+	public String insert(Model model) throws Exception {
 		List<CateVo> cates = cateService.getCateList();
 		List<TimeVo> times = cateService.getTimeList();
 		List<LevelVo> levels = cateService.getLevelList();
@@ -78,7 +102,7 @@ public class HobbyController {
 	}
 	
 	@RequestMapping(value="/insertRun", method=RequestMethod.POST)
-	public String testRun(HobbyVo hobbyVo) throws Exception {
+	public String insertRun(HobbyVo hobbyVo) throws Exception {
 		System.out.println(hobbyVo);
 		
 		hobbyService.insertHobbyArticle(hobbyVo);
@@ -132,6 +156,8 @@ public class HobbyController {
 		}
 		return thumbPath;
 	}
+
+	
 	//첨부파일 삭제
 	@RequestMapping(value="/deleteImg", method=RequestMethod.GET)
 	@ResponseBody

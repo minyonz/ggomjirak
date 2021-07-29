@@ -24,8 +24,6 @@
 
 <script defer>
 	$(document).ready(function() {
-		$("[data-toggle=tooltip").tooltip();
-
 		//* 카테고리 부분
 		var jsonData = JSON.parse('${cates}');
 		var cate1Arr = new Array();
@@ -42,28 +40,50 @@
 		}
 		// 1차 분류 셀렉트 박스에 데이터 삽입
 		var cate1Select = $("select.cate1")
+		var selectedCate1 = "${hobbyVo.l_cate_no}"
+		console.log(selectedCate1);
 		for(var i = 0; i < cate1Arr.length; i++) {
+			if(cate1Arr[i].cate_no == selectedCate1) {
+				cate1Select.append("<option value='" + cate1Arr[i].cate_no + "' selected>"
+				      + cate1Arr[i].cate_name + "</option>");
+			} else {
 			 cate1Select.append("<option value='" + cate1Arr[i].cate_no + "'>"
 		      + cate1Arr[i].cate_name + "</option>"); 
+			}
 		}
+	
+
+		 var cate2Arr = new Array();
+		 var cate2Obj = new Object();
+		 
+		 // 2차 분류 셀렉트 박스에 삽입할 데이터 준비
+		 for(var i = 0; i < jsonData.length; i++) {
+		  if(jsonData[i].cate_level == "2") {
+		   cate2Obj = new Object();  //초기화
+		   cate2Obj.cate_no = jsonData[i].cate_no;
+		   cate2Obj.cate_name = jsonData[i].cate_name;
+		   cate2Obj.parent_cate_no = jsonData[i].parent_cate_no;
+		   cate2Arr.push(cate2Obj);
+		  }
+		 }
+		 //수정용 임시로 보여줄 2차분류
+		 var selectedCate2 = "${hobbyVo.m_cate_no}"
+		 var cate2Select = $("select.cate2");
+		  for(var i = 0; i < cate2Arr.length; i++) {
+		   if(selectedCate1 == cate2Arr[i].parent_cate_no) {
+			   if(cate2Arr[i].cate_no == selectedCate2) {
+				   cate2Select.append("<option value='" + cate2Arr[i].cate_no + "' selected>"
+					      + cate2Arr[i].cate_name + "</option>");
+				} else {
+				 	cate2Select.append("<option value='" + cate2Arr[i].cate_no + "'>"
+			      + cate2Arr[i].cate_name + "</option>"); 
+				}
+		   } 
+		  }
+		
+		  //1차분류에따라 보여줄 2차분류들
 		$(document).on("change", "select.cate1", function(){
 		
-			 var cate2Arr = new Array();
-			 var cate2Obj = new Object();
-			 
-			 // 2차 분류 셀렉트 박스에 삽입할 데이터 준비
-			 for(var i = 0; i < jsonData.length; i++) {
-			  if(jsonData[i].cate_level == "2") {
-			   cate2Obj = new Object();  //초기화
-			   cate2Obj.cate_no = jsonData[i].cate_no;
-			   cate2Obj.cate_name = jsonData[i].cate_name;
-			   cate2Obj.parent_cate_no = jsonData[i].parent_cate_no;
-			   cate2Arr.push(cate2Obj);
-			  }
-			 }
-			 
-			 var cate2Select = $("select.cate2");
-	
 			 cate2Select.children().remove();
 	
 			 $("option:selected", this).each(function(){
@@ -93,9 +113,15 @@
 		}
 		// 셀렉트 박스에 데이터 삽입
 		var timeSelect = $("select.time-cate")
+		var selectedTime = "${hobbyVo.time_no}"
 		for(var i = 0; i < timeArr.length; i++) {
-			timeSelect.append("<option value='" + timeArr[i].time_no + "'>"
+			if(timeArr[i].time_no == selectedTime) {
+				timeSelect.append("<option value='" + timeArr[i].time_no + "' selected>"
+				      + timeArr[i].time_name + "</option>");
+			} else {
+				timeSelect.append("<option value='" + timeArr[i].time_no + "'>"
 		      + timeArr[i].time_name + "</option>"); 
+			}
 		}
 		//* 난이도 카테고리
 		var levels = JSON.parse('${levels}');
@@ -110,10 +136,17 @@
 		}
 		// 셀렉트 박스에 데이터 삽입
 		var levelSelect = $("select.level-cate")
+		var selectedLevel = "${hobbyVo.level_no}"
 		for(var i = 0; i < levelArr.length; i++) {
-			levelSelect.append("<option value='" + levelArr[i].level_no + "'>"
+			if(levelArr[i].level_no == selectedLevel) {
+				levelSelect.append("<option value='" + levelArr[i].level_no + "' selected>"
+				      + levelArr[i].level_name + "</option>");
+			} else {
+				levelSelect.append("<option value='" + levelArr[i].level_no + "'>"
 		      + levelArr[i].level_name + "</option>"); 
+			}
 		}
+		
 		
 		//* 비용 카테고리
 		var costs = JSON.parse('${costs}');
@@ -128,21 +161,20 @@
 		}
 		// 셀렉트 박스에 데이터 삽입
 		var costSelect = $("select.cost-cate")
+		var selectedCost = "${hobbyVo.cost_no}"
 		for(var i = 0; i < costArr.length; i++) {
-			costSelect.append("<option value='" + costArr[i].cost_no + "'>"
+			if(costArr[i].cost_no == selectedCost) {
+				costSelect.append("<option value='" + costArr[i].cost_no + "' selected>"
+				      + costArr[i].cost_name + "</option>");
+			} else {
+				costSelect.append("<option value='" + costArr[i].cost_no + "'>"
 		      + costArr[i].cost_name + "</option>"); 
+			}
 		}
-		
 		
 		// * 만들기 부분
 		$("#stepBoxWrap").sortable({
-// 			placeholder : "placeholder",
-// 			start : function(event, ui) {
-// 				ui.item.data('start_pos', ui.item.index());
-// 			},
 			stop : function(event, ui) {
-// 				var spos = ui.item.data('start_pos');
-// 				var epos = ui.item.index();
 				reorder();
 			}
 		});
@@ -532,17 +564,18 @@ margin-right: 15px;
 .side-right { grid-area: side-right; }
  }
 </style>
-<title>취미 글쓰기</title>
+<title>수정하기</title>
 </head>
 <body>
-
+${hobbyVo }
 <%@ include file="../include/header.jsp" %>
 <div class="container-fluid">
 	<div class="myContainer">
 		<div class="side side-left">
+	  
 	  	</div>
   	    <div class="body">
-  				<form method="post" action="/insertRun" onsubmit="return validate();">
+  				<form method="post" action="/updateRun" onsubmit="return validate();">
 				<input type="hidden" name="hobby_writer" value="wendy"/>
 				<div style="background: #f8f8f8; border-bottom: 1px solid #e6e7e8; 
 					padding: 14px 18px; position: relative;">
@@ -568,7 +601,9 @@ margin-right: 15px;
 								</div>
 								<div class="row">
 									<input type="text" class="form-control main_input" 
-										id="hobby_title" name="hobby_title" required maxlength="40" minlength="2" autocomplete="off"/>
+										id="hobby_title" name="hobby_title" required 
+										value="${hobbyVo.hobby_title}"
+										maxlength="40" minlength="2" autocomplete="off"/>
 								</div>
 								<div class="row float-right" 
 									 style="
@@ -595,7 +630,8 @@ margin-right: 15px;
 								</div>
 								<div class="row">
 									<textarea class="form-control main_input" style="height:80px; resize:none;" 
-											 name="hobby_intro" id="hobby_intro" required maxlength="300" minlength="2" autocomplete="off"></textarea>
+											 name="hobby_intro" id="hobby_intro" required maxlength="300" minlength="2" 
+											 autocomplete="off">${hobbyVo.hobby_intro}</textarea>
 								</div>
 								<div class="row float-right" 
 									 style="
@@ -625,15 +661,16 @@ margin-right: 15px;
 										<div class="divMainImg" style="width:350px; height:230px; position:relative;">
 											<label for="mainImg_file" id="mainImg_label"
 												style="width: 350px; height: 230px; overflow: hidden;">
-												<img id="previewImg_main" src="${contextPath}/resources/images/main_img_btn.jpg"
+												<img id="previewImg_main" 
+													src="/displayImage?filePath=${rootPath}${hobbyVo.main_img}"
 													style="width:100%; height:100%; object-fit:cover; cursor:pointer; border: 1px solid #e1e1e1;" >
 											</label>
 											<input type="file" class="mainImg_file" name="mainImg_file" 
 												id="mainImg_file" accept=".gif, .jpg, .png" onchange="previewMainImg(this);"
 												style="display:none;width:0px;height:0px;font-size:0px;"/>
-											<input type="hidden" name="main_img" id="main_img"/>
+											<input type="hidden" name="main_img" id="main_img" value="${hobbyVo.main_img}"/>
 											<a id="btnDelMainImg" href="javascript:delMainImg()" class="btn_del"
-												style="display:none; position:absolute; top:0; right: 0.1rem; "  ></a>
+												style="position:absolute; top:0; right: 0.1rem; "  ></a>
 										</div>
 									</div>
 									<div class="col-md-7" style="padding-left: 20px;">
@@ -648,7 +685,8 @@ margin-right: 15px;
 												</div>
 											</div>
 											<div class="row">
-												<input class="form-control main_input" type="text"
+												<input class="form-control main_input" 
+													type="text" value="${hobbyVo.hobby_video}"
 													 name="hobby_video" id="hobby_video" autocomplete="off"
 													placeholder="유튜브 주소만 가능해요. ex)https://youtu.be/Ab6E2BsuLJ0" ></input>
 											</div>
@@ -730,20 +768,28 @@ margin-right: 15px;
 									<span>준비물설명</span>
 								</div>
 							<div id="materialBoxWrap">
-								<div class="materialBox" id="materialBox_1" style="cursor:pointer; margin: 0 0 7px 50px;">
-									<img src = "${contextPath}/resources/images/double-arrow.png" 
-										style="width:15px; height:20px; opacity:0.75;"/>
-									<div class="divMaterialItem" style="display:inline-block;">
-										<input type="hidden" class="seq" name="hobbyMaterials[0].seq" value="1"/>
-										<input type="text" style="width:200px; display: inline-block;" class="materialName form-control" 
-											name="hobbyMaterials[0].materialName" placeholder="예)비즈"  autocomplete="off"/>
-										<input type="text" style="width:200px; display: inline-block;" class="material_detail form-control" 
-											name="hobbyMaterials[0].material_detail"placeholder="예)100알" autocomplete="off"/>
-										<a  href="javascript:delMaterial(1)"
-											 class="btnDelMaterial" style="display:none;"></a>
-											
+								<c:forEach var="hobbyMaterialVo" items="${hobbyVo.hobbyMaterials}" varStatus="vs">
+									<div class="materialBox" id="materialBox_${vs.count}" style="cursor:pointer; margin: 0 0 7px 50px;">
+										<img src = "${contextPath}/resources/images/double-arrow.png"
+											style="width:15px; height:20px; opacity:0.75;"/>
+										<div class="divMaterialItem" style="display:inline-block;">
+											<input type="hidden" class="seq" name="hobbyMaterials[${vs.count -1}].seq" value="${hobbyMaterialVo.seq}"/>
+											<input type="text" value="${hobbyMaterialVo.materialName}"
+												style="width:200px; display: inline-block;" 
+												class="materialName form-control" 
+												name="hobbyMaterials[${vs.count - 1}].materialName"
+												autocomplete="off"/>
+											<input type="text" value="${hobbyMaterialVo.material_detail}"
+												style="width:200px; display: inline-block;" 
+												class="material_detail form-control" 
+												name="hobbyMaterials[${vs.count - 1}].material_detail"
+												autocomplete="off"/>
+											<a  href="javascript:delMaterial(${vs.count})"
+												 class="btnDelMaterial" style="display:none;"></a>
+												
+										</div>
 									</div>
-								</div>
+								</c:forEach>
 							</div>
 							<div class="row">
 									<button type="button" class="btnAdd" style="width:130px; margin: 20px 0 0 230px;"
@@ -781,97 +827,146 @@ margin-right: 15px;
 							<!-- 둘째줄 -->
 							<div class="row">
 								<div id="stepBoxWrap">
-									<div class="none_img stepBox" id="stepBox_1"> <!-- <-- 한줄짜리 스탭을 감싸는 박스 -->
+									<c:forEach var="makeStepVo" items="${hobbyVo.makeSteps}" varStatus="vs">
+										<div class="stepBox ${empty makeStepVo.make_step_img ? 'none_img' : ''}" id="stepBox_${vs.count}"> 
 										<!-- divStepItem -->
 										<!-- 이미지는 눌허용 -->
 										<div class="divStepItem">
 											<div class="divStepNum">
-												<input class="stepNum_input" type="hidden" name="makeSteps[0].make_step_num" value="1"/>
-												Step<span class="stepNum_span">1</span>
+												<input class="stepNum_input" type="hidden" name="makeSteps[${vs.count - 1}].make_step_num" value="${vs.count}"/>
+												Step<span class="stepNum_span">${vs.count}</span>
 											</div>
-											<div class="divStepUpload" id="divStepUpload_1">
-												<label class="stepImg_label" for="stepImg_file_1">
-													<img id="previewImg_step_1" class="previewImg_step" src="${contextPath}/resources/images/preview_img.jpg" >
-												</label>
-												<input type="file" class="stepImg_file" 
-													 id="stepImg_file_1" accept=".gif, .jpg, .png" onchange="previewMakeStepImg(this, 1);"
-													style="display:none;width:0px;height:0px;font-size:0px;">
-												<input type="hidden" class="stepImg_hidden" data-exist="0" data-seq="1"
-													id="makeSteps[0].make_step_img" name="makeSteps[0].make_step_img"/>
-												<div style="position: relative; bottom: 10.4rem; right:0.1rem">
-													<a id="btnDelStepImg_1" href="javascript:delStepImg(1)" class="btn_del btn_delStepImg" style="display:none; float:right"></a>
-												</div>
+											<div class="divStepUpload" id="divStepUpload_${vs.count}">
+													<c:choose>
+														<c:when test="${not empty makeStepVo.make_step_img}">
+															<label class="stepImg_label" for="stepImg_file_${vs.count}">
+																<img id="previewImg_step_${vs.count}" class="previewImg_step" 
+																	src="/displayImage?filePath=${rootPath}${makeStepVo.make_step_img}" >
+															</label>
+															<input type="hidden" class="stepImg_hidden" 
+																value="${makeStepVo.make_step_img }"
+																data-exist="1" data-seq="${vs.count}"
+																id="makeSteps[${vs.count - 1}].make_step_img"
+																 name="makeSteps[${vs.count - 1}].make_step_img"/>
+															 <input type="file" class="stepImg_file"
+																 id="stepImg_file_${vs.count}" accept=".gif, .jpg, .png" 
+																 onchange="previewMakeStepImg(this, ${vs.count});"
+																style="display:none;width:0px;height:0px;font-size:0px;">
+															<input type="hidden" class="stepImg_hidden" 
+																value="${makeStepVo.make_step_img }"
+																data-exist="1" data-seq="${vs.count}"
+																id="makeSteps[${vs.count - 1}].make_step_img"
+																 name="makeSteps[${vs.count - 1}].make_step_img"/>
+															<div style="position: relative; bottom: 10.4rem; right:0.1rem">
+																<a id="btnDelStepImg_${vs.count}" 
+																href="javascript:delStepImg(${vs.count})"
+																 class="btn_del btn_delStepImg" style="float:right"></a>
+															</div>
+														</c:when>
+														<c:otherwise>
+															<label class="stepImg_label" for="stepImg_file_${vs.count}">
+																<img id="previewImg_step_${vs.count}"" class="previewImg_step" src="${contextPath}/resources/images/preview_img.jpg" >
+															</label>
+															<input type="file" class="stepImg_file" 
+																 id="stepImg_file_${vs.count}" accept=".gif, .jpg, .png" 
+																 onchange="previewMakeStepImg(this, ${vs.count});"
+																style="display:none;width:0px;height:0px;font-size:0px;">
+															<input type="hidden" class="stepImg_hidden" data-exist="0" data-seq="${vs.count}"
+																id="makeSteps[${vs.count - 1}].make_step_img" name="makeSteps[${vs.count - 1}].make_step_img"/>
+															<div style="position: relative; bottom: 10.4rem; right:0.1rem">
+																<a id="btnDelStepImg_${vs.count}" href="javascript:delStepImg(${vs.count})" 
+																class="btn_del btn_delStepImg" style="display:none; float:right"></a>
+															</div>
+														</c:otherwise>
+													</c:choose>
 											</div>
 											<div class="divStepText">
-												<textarea name="makeSteps[0].make_step_text"
-												class="form-control stepText" placeholder="순서에 맞는 설명을 입력해 주세요" 
-												style="height:160px; width:430px; resize:none;" autocomplete="off"></textarea>
+												<textarea 
+													name="makeSteps[${vs.count - 1}].make_step_text"
+													class="form-control stepText" 
+													placeholder="순서에 맞는 설명을 입력해 주세요" 
+													style="height:160px; width:430px; resize:none;" 
+													autocomplete="off">${makeStepVo.make_step_text }</textarea>
 											</div>
 											<div class="divStepBtn" style="display:inline-block; display:none;">
-												<a class="moveUp" href="javascript:moveUp(1)"><span class="fa fa-chevron-up"></span></a>
-												<a class="moveDown" href="javascript:moveDown(1)"><span class="fa fa-chevron-down"></span></a>
-												<a class="addStepBox" href="javascript:addStepBox(1)"><span class="fa fa-plus"></span></a>
-												<a class="delStepBox" href="javascript:delStepBox(1)"><span class="fa fa-times"></span></a>
+												<a class="moveUp" href="javascript:moveUp(${vs.count})"><span class="fa fa-chevron-up"></span></a>
+												<a class="moveDown" href="javascript:moveDown(${vs.count})"><span class="fa fa-chevron-down"></span></a>
+												<a class="addStepBox" href="javascript:addStepBox(${vs.count})"><span class="fa fa-plus"></span></a>
+												<a class="delStepBox" href="javascript:delStepBox(${vs.count})"><span class="fa fa-times"></span></a>
 											</div>
 											<!-- 노트, 팁 부분 -->
 											<div style="width:594px;border:3px solid rgba(31, 94, 67, .75);;margin-left: 123px">
 												<div style="padding:5px; text-align:center">
 													<!-- 노트보기 -->
-													<a href="javascript:showNote(1);"
+													<a href="javascript:showNote(${vs.count});"
 													class="extraBtn showNote" style="width:90px;height:26px;">
 													<img src="${contextPath}/resources/images/note.png" 
 													style="width:16px;height:16px;"/> 노트</a>
 													<!-- //노트보기 -->
 													<!-- 팁보기 -->
-													<a href="javascript:showTip(1);" 
+													<a href="javascript:showTip(${vs.count});" 
 													class="extraBtn showTip" style="width:90px;height:26px;">
 													<img src="${contextPath}/resources/images/lamp.png" 
 													style="width:16px;height:16px;"/> 팁</a>
 													<!-- //팁보기 -->
 													<!-- 링크보기 -->
-													<a href="javascript:showLink(1);" 
+													<a href="javascript:showLink(${vs.count});" 
 													class="extraBtn showLink" style="width:90px;height:26px;">
 													<img src="${contextPath}/resources/images/link.png" 
 													style="width:16px;height:16px;"/> 참조</a>
 													<!-- //링크보기 -->
 													<!-- 전체보기 -->
-													<a href="javascript:showAll(1);"
+													<a href="javascript:showAll(${vs.count});"
 													class="extraBtn showAll" style="width:90px;height:26px;"> 전 체 </a>
 													<!-- //전체보기 -->
 													<!-- 가이드보기 -->
-													<a href="javascript:openStepGuide();" id="stepBtn_guide_1" 
+													<a href="javascript:openStepGuide();" id="stepBtn_guide_${vs.count}" 
 													class="extraBtn" 
 													style="width:160px;height:26px; border:none; 
 													background:#1F5E43; color:#fff; padding:6px 7px 4px;">추가기능 가이드</a>
 													<!-- //가이드보기 -->
 													<!-- 노트영역 -->
-												<div id="stepNote_1" class="divStepNote" style="display:none; margin:5px 5px;">
+												<div id="stepNote_${vs.count}" class="divStepNote" 
+													style="${empty makeStepVo.note  ? 'display:none;' : ''} 
+														margin:5px 5px;">
 													<img src="${contextPath}/resources/images/note.png"
 													style="width:24px;height:24px; vertical-align:top;"/> 
-													<textarea name="makeSteps[0].note" class="form-control stepNote" autocomplete="off"
-														style="width:500px;height:50px;resize:none; display: inline-block;"></textarea>
+													<textarea name="makeSteps[${vs.count - 1}].note" 
+														class="form-control stepNote" autocomplete="off"
+														style="width:500px;height:50px;
+														resize:none; display: inline-block;">${makeStepVo.note}</textarea>
 												</div>
 												<!--// 노트영역 -->
 												<!-- 팁영역 -->
-												<div id="stepTip_1" class="divStepTip" style="display:none; margin:5px 5px;">
+												<div id="stepTip_${vs.count}" class="divStepTip" 
+													style="${empty makeStepVo.tip  ? 'display:none;' : ''}
+														 margin:5px 5px;">
 													<img src="${contextPath}/resources/images/lamp.png"
 														style="width:24px;height:24px;vertical-align:top;"> 
-													<textarea name="makeSteps[0].tip" class="form-control stepTip" autocomplete="off"
-														 style="width:500px;height:50px;resize:none; display: inline-block;"></textarea>
+													<textarea name="makeSteps[${vs.count - 1}].tip" 
+														class="form-control stepTip" autocomplete="off"
+														 style="width:500px;height:50px;
+															 resize:none; display: inline-block;">${makeStepVo.tip}</textarea>
 												</div>
 												<!-- //팁영역 -->
 												<!-- 링크영역 -->
-												<div id="stepLink_1" class="divStepLink" style="display:none; margin:5px 5px;">
+												<div id="stepLink_${vs.count}" class="divStepLink" 
+													style="${empty makeStepVo.link_url  ? 'display:none;' : ''}
+													margin:5px 5px;">
 													<img src="${contextPath}/resources/images/link.png"
 														style="width:24px;height:24px;vertical-align:top;"> 
-													<input type="text" name="makeSteps[0].link_url"
+													<input type="text" value="${makeStepVo.link_url}"
+														 name="makeSteps[${vs.count - 1}].link_url"
 														 placeholder="사이트 주소를 입력해주세요"
 														 class="form-control stepLink_url" autocomplete="off"
 														 style="width:500px;resize:none; display: inline-block;">
-													<textarea name="makeSteps[0].link_desc" 
+													<textarea 
+														name="makeSteps[${vs.count - 1}].link_desc" 
 														placeholder="url에 대한 설명을 입력해 주세요"
 														class="form-control stepLink_desc" autocomplete="off"
-														style="width:500px;height:50px;resize:none; display: inline-block; margin-left: 28px;"></textarea>
+														style="width:500px;height:50px;
+															resize:none; display: inline-block; 
+															margin-left: 28px;">${makeStepVo.link_desc}</textarea>
 												</div>
 												<!-- //링크영역 -->
 												</div>
@@ -880,7 +975,7 @@ margin-right: 15px;
 										<!-- //divStepItem -->
 									</div>
 									<!-- //stepBox -->
-								</div>
+									</c:forEach>
 								<!-- //stepBoxWrap -->
 								<div style="padding:0 0 20px 180px; width:820px; text-align: center; margin: 27px 0 40px 0;"> <!-- stepBox추가 버튼 -->
 									<button type="button" class="btnAdd"
@@ -897,22 +992,46 @@ margin-right: 15px;
 							<!-- //셋째줄 -->
 							<!-- 넷째줄 -->
 							<div class="row" style="margin-top:10px; justify-content: center;">
-								<c:forEach var="v" begin="1" end="6" >
+								<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs }" varStatus="vs">
 									<div class="divCompleteImg" style="margin-right:20px; height: 140px;">
-									<label class="complImg_label" for="complImg_file_${v }" style="border: 1px solid #e1e1e1;">
-										<img id="previewImg_compl_${v }" class="previewImg_compl" 
-											src="${contextPath}/resources/images/preview_img.jpg" style="width:140px; height:140px;  cursor: pointer;">
-									</label>
-									<input type="file" class="complImg_file" 
-										 id="complImg_file_${v }" accept=".gif, .jpg, .png" onchange="previewComplImg(this, ${v });"
-										style="display:none;width:0px;height:0px;font-size:0px;">
-									<input type="hidden" class="complImg_hidden" data-exist="0" data-num="1"
-										id="completeImgs[${v - 1}].img_name" name="completeImgs[${v - 1 }].img_name"/>
-									<input type="hidden" class="complImg_num" name="completeImgs[${v - 1 }].num" value="${v }"/>
-									<div style="position: relative;bottom: 9.3rem;">
-										<a id="btnDelComplImg_${v }" href="javascript:delComplImg(${v })" 
-											class="btn_del btn_delComplImg" style="float:right; display:none"></a>
-									</div>
+										<c:choose>
+											<c:when test="${not empty completeImgVo.img_name}">
+												<label class="complImg_label" for="complImg_file_${vs.count}" style="border: 1px solid #e1e1e1;">
+													<img id="previewImg_compl_${vs.count}" class="previewImg_compl" 
+														src="/displayImage?filePath=${rootPath}${completeImgVo.img_name}" 
+														style="width:140px; height:140px;  cursor: pointer;">
+												</label>
+												<input type="file" class="complImg_file" 
+													 id="complImg_file_${vs.count}" accept=".gif, .jpg, .png" onchange="previewComplImg(this, ${v });"
+													style="display:none;width:0px;height:0px;font-size:0px;">
+												<input type="hidden" class="complImg_hidden" 
+													value="${completeImgVo.img_name}"
+													data-exist="1" data-num="${vs.count}"
+													id="completeImgs[${vs.count - 1}].img_name" 
+													name="completeImgs[${vs.count - 1}].img_name"/>
+												<input type="hidden" class="complImg_num" name="completeImgs[${vs.count - 1}].num" value="${vs.count}"/>
+												<div style="position: relative;bottom: 9.3rem;">
+													<a id="btnDelComplImg_${vs.count}" href="javascript:delComplImg(${vs.count})" 
+														class="btn_del btn_delComplImg" style="float:right;"></a>
+												</div>
+											</c:when>
+											<c:otherwise>
+												<label class="complImg_label" for="complImg_file_${vs.count}" style="border: 1px solid #e1e1e1;">
+													<img id="previewImg_compl_${vs.count}" class="previewImg_compl" 
+														src="${contextPath}/resources/images/preview_img.jpg" style="width:140px; height:140px;  cursor: pointer;">
+												</label>
+												<input type="file" class="complImg_file" 
+													 id="complImg_file_${vs.count}" accept=".gif, .jpg, .png" onchange="previewComplImg(this, ${v });"
+													style="display:none;width:0px;height:0px;font-size:0px;">
+												<input type="hidden" class="complImg_hidden" data-exist="0" data-num="${vs.count}"
+													id="completeImgs[${vs.count - 1}].img_name" name="completeImgs[${vs.count - 1}].img_name"/>
+												<input type="hidden" class="complImg_num" name="completeImgs[${vs.count - 1}].num" value="${vs.count}"/>
+												<div style="position: relative;bottom: 9.3rem;">
+													<a id="btnDelComplImg_${vs.count}" href="javascript:delComplImg(${vs.count})" 
+														class="btn_del btn_delComplImg" style="float:right; display:none"></a>
+												</div>
+											</c:otherwise>
+										</c:choose>
 								</div>		
 								</c:forEach>
 							</div>
@@ -989,6 +1108,20 @@ margin-right: 15px;
  </div>
 <%@ include file="../include/footer.jsp" %>
 <script>
+// ----------수정폼------------
+
+
+
+
+
+
+
+
+
+
+
+
+// -------------------입력폼------------------
 $("#hobby_title").on("input", function(){
 	var cnt = $(this).val();
 	$("#titleCnt").text(cnt.length);

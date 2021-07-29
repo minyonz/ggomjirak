@@ -9,5 +9,5 @@ public interface HobbyService {
 	 */
 	public void insertHobbyArticle (HobbyVo hobbyVo); 
 	
-	public HobbyVo selectHobbyArticle (int hobby_no);
+	public HobbyVo selectHobbyArticle (int hobby_no, boolean isUpdate);
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,7 @@ $(document).ready(function() {
 	selectCommentList();
 });
 </script>
-<title>상세보기 테스트</title>
+<title>상세보기</title>
 <!-- 내가 설정한 style -->
 <style>
 /* <내가 한 style> */
@@ -593,8 +594,17 @@ figure[data-ke-type='opengraph'] .og-desc {
 																					data-og-description="${makeStepVo.urlOgTag.desc}"  data-og-url="${makeStepVo.urlOgTag.url }" 
 																					data-og-image="${makeStepVo.urlOgTag.image}"> 
 																			      <a href="${makeStepVo.urlOgTag.url }">
-																			        <div class="og-image" 
-																			        	style="background-image:url(${makeStepVo.urlOgTag.image })"></div>
+																		   			<c:set var = "image" value = "${makeStepVo.urlOgTag.image }"/>
+																		   				<c:choose>
+																		   					<c:when test="${fn:contains(image, 'blogthumb')}">
+																		   						<div class="og-image" 
+																			        			style="background-image:url(${contextPath}/resources/images/sad.png)"></div>
+																		   					</c:when>
+																		   					<c:otherwise>
+																		   						 <div class="og-image" 
+																			        				style="background-image:url(${makeStepVo.urlOgTag.image })"></div>
+																		   					</c:otherwise>
+																		   				</c:choose>
 																			        <div class="og-text">
 																			          <p class="og-title">${makeStepVo.urlOgTag.title}</p>
 																			          <p class="og-desc">${makeStepVo.urlOgTag.desc}</p>
@@ -657,8 +667,17 @@ figure[data-ke-type='opengraph'] .og-desc {
 															data-og-description="${makeStepVo.urlOgTag.desc}"  data-og-url="${makeStepVo.urlOgTag.url }" 
 															data-og-image="${makeStepVo.urlOgTag.image}"> 
 													      <a href="${makeStepVo.urlOgTag.url }">
-													        <div class="og-image" 
-													        	style="background-image:url(${makeStepVo.urlOgTag.image })"></div>
+													        <c:set var = "image" value = "${makeStepVo.urlOgTag.image }"/>
+												   				<c:choose>
+												   					<c:when test="${fn:contains(image, 'blogthumb')}">
+												   						<div class="og-image" 
+													        			style="background-image:url(${contextPath}/resources/images/sad.png)"></div>
+												   					</c:when>
+												   					<c:otherwise>
+												   						 <div class="og-image" 
+													        				style="background-image:url(${makeStepVo.urlOgTag.image })"></div>
+												   					</c:otherwise>
+												   				</c:choose>
 													        <div class="og-text">
 													          <p class="og-title">${makeStepVo.urlOgTag.title}</p>
 													          <p class="og-desc">${makeStepVo.urlOgTag.desc}</p>
@@ -679,7 +698,7 @@ figure[data-ke-type='opengraph'] .og-desc {
 								<div style="margin-top: 100px;">
 									<div class="carousel slide" id="craftSlide" style="width:700px">
 										<ol class="carousel-indicators">
-												<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs }">
+												<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}">
 														<li data-slide-to="${completeImgVo.seq - 1 }" 
 															data-target="#craftSlide"
 															class="${completeImgVo.seq==1  ? 'active' : ''}">
@@ -856,7 +875,8 @@ figure[data-ke-type='opengraph'] .og-desc {
 													/>
 												</a>
 												<span class="c_user_name"> 하윤지</span>
-												<span class="is_hobby_writer" style="display:none; font-weight:550; color:#1f5e43;"> 글주인</span>
+												<span class="is_hobby_writer badge badge-pill badge-success" 
+													style="display:none; background: #1f5e43; padding-top: 5px;"> 글주인</span>
 												<div class="dropdown" style="float:right">
 													<button class="btnMenu_cmt" type="button" id="dropdownMenuButton" data-toggle="dropdown">
 													</button>
@@ -1038,6 +1058,11 @@ function selectCommentList() {
 // 	$("#moreViewDiv > .comment-row").remove();
 	var url = "/comment/selectCommentList/${hobbyVo.hobby_no}";
 	$.get(url, function(rData) {
+		if (rData == 0) {
+			$("#btnMoreComments").hide();
+		} else {
+			$("#btnMoreComments").show();
+		}
 		$("#comment_cnt").text(rData.length);
 		
 		$.each(rData, function(i) {

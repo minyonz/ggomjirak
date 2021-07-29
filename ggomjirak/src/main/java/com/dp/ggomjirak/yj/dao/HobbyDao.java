@@ -36,7 +36,8 @@ public interface HobbyDao {
 	public List<HobbyMaterialVo> selectHobbyMaterialList(int hobby_no);
 	public List<MakeStepVo> selectMakeStepList2(HobbyVo hobbyVo);
 	public List<MakeStepVo> selectMakeStepList(int hobby_no);
-	public List<CompleteImgVo> selectCompleteImgList(int hobby_no);
+	public List<CompleteImgVo> selectCompleteImgListNotNull(int hobby_no);
+	public List<CompleteImgVo> selectCompleteImgListAll(int hobby_no);
 	/**
 	 * @param makeSteps
 	 */
