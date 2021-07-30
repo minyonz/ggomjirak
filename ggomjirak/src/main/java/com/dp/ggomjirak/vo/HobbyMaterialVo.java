@@ -33,12 +33,6 @@ public class HobbyMaterialVo {
 		this.seq = seq;
 	}
 	
-	public HobbyMaterialVo(String materialName, String material_detail, int seq) {
-		super();
-		this.materialName = materialName;
-		this.material_detail = material_detail;
-		this.seq = seq;
-	}
 
 	public int getHobby_no() {
 		return hobby_no;
@@ -98,6 +92,7 @@ public class HobbyMaterialVo {
 		return "HobbyMaterialVo [hm_no=" + hm_no + ", hobby_no=" + hobby_no + ", material_no=" + material_no
 				+ ", material_detail=" + material_detail + ", seq=" + seq + ", materialName=" + materialName + "]";
 	}
+
 
 
 	

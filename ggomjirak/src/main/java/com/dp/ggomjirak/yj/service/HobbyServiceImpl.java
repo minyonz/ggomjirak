@@ -16,10 +16,10 @@ import com.dp.ggomjirak.vo.HobbyMaterialVo;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.MakeStepVo;
 import com.dp.ggomjirak.vo.MaterialVo;
-import com.dp.ggomjirak.vo.UrlOGTag;
 import com.dp.ggomjirak.yj.dao.HobbyDao;
 import com.dp.ggomjirak.yj.dao.MaterialDao;
 import com.dp.ggomjirak.yj.util.MyFileUploadUtil;
+import com.dp.ggomjirak.yj.util.UrlOGTag;
 
 @Service
 public class HobbyServiceImpl implements HobbyService {

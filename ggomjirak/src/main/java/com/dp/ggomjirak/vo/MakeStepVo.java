@@ -1,8 +1,8 @@
 package com.dp.ggomjirak.vo;
 
-import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
+
+import com.dp.ggomjirak.yj.util.UrlOGTag;
 
 public class MakeStepVo {
 	private int step_no;

@@ -30,6 +30,34 @@
 /* Template default CSS
 /*----------------------------------------*/
 
+/* 민영 추가함 */
+.workroom_box {
+	margin-left:15px;
+	margin-top:10px;
+}
+
+/* a태그 색 회색으로 변경*/
+a {
+	color: #666666;
+}
+
+/* a태그 마우스 오버시 색상변화 */
+a:hover,
+a:focus {
+	text-decoration: none;
+	outline: none;
+	color: #1F5E43;
+}
+
+/* 스토리 작성 폼 ※적용이 안됨※*/
+/* .contact-form { */
+/* 	padding-top: 40px; */
+/* 	padding-bottom: 40px; */
+/* } */
+
+/* 추가 끝 */
+
+
 html,
 body {
 	height: 100%;
@@ -94,16 +122,17 @@ textarea:focus {
 	outline: none;
 }
 
-a:hover,
-a:focus {
-	text-decoration: none;
-	outline: none;
-	color: #ffffff;
-}
+/* a:hover, */
+/* a:focus { */
+/* 	text-decoration: none; */
+/* 	outline: none; */
+/* 	color: #ffffff; */
+/* } */
+
 
 ul,
 ol {
-	padding: 0;
+ 	padding: 0; 
 	margin: 0;
 }
 
@@ -171,6 +200,7 @@ ol {
 	letter-spacing: 2px;
 }
 
+/*background색상 #7fad39 -> #1f5e43 */
 .site-btn {
 	font-size: 14px;
 	color: #ffffff;
@@ -178,7 +208,7 @@ ol {
 	text-transform: uppercase;
 	display: inline-block;
 	padding: 13px 30px 12px;
-	background: #7fad39;
+	background: #1f5e43;
 	border: none;
 }
 
@@ -758,7 +788,7 @@ ol {
 -----------------------*/
 
 .categories__item {
-	height: 270px;
+	height: 200px;
 	position: relative;
 }
 
@@ -771,6 +801,7 @@ ol {
 	text-align: center;
 }
 
+/* 사진 슬라이드 텍스트 부분 투명색 추가 */
 .categories__item h5 a {
 	font-size: 18px;
 	color: #1c1c1c;
@@ -779,6 +810,7 @@ ol {
 	letter-spacing: 2px;
 	padding: 12px 0 10px;
 	background: #ffffff;
+	background-color: rgba( 255, 255, 255, 0.3 );
 	display: block;
 }
 
@@ -786,19 +818,19 @@ ol {
 	max-width: 100%;
 }
 
+/*버튼 모양, 투명 변경, 테두리 삭제*/
 .categories__slider.owl-carousel .owl-nav button {
 	font-size: 18px;
-	color: #1c1c1c;
+	color: #1f5e43;
 	height: 70px;
 	width: 30px;
 	line-height: 70px;
 	text-align: center;
-	border: 1px solid #ebebeb;
 	position: absolute;
 	left: -35px;
 	top: 50%;
 	-webkit-transform: translateY(-35px);
-	background: #ffffff;
+	background: #00ff0000;
 }
 
 .categories__slider.owl-carousel .owl-nav button.owl-next {
@@ -820,6 +852,7 @@ ol {
 	margin-bottom: 50px;
 }
 
+/**/
 .featured__controls ul li {
 	list-style: none;
 	font-size: 18px;
@@ -2188,18 +2221,23 @@ ol {
 	opacity: 0;
 }
 
+/*색상 변경, 보더스타일, 굵기, 색상 변경*/
 .checkout__order {
-	background: #f5f5f5;
-	padding: 40px;
-	padding-top: 30px;
+	background: #FFFFFF;
+	border-style:solid;
+	border-width:0.5px;
+	border-color:#E5E8E8;
+	padding: 20px;
+	margin-bottom: 12px;
+	margin-top:12px;
 }
 
 .checkout__order h4 {
 	color: #1c1c1c;
 	font-weight: 700;
-	border-bottom: 1px solid #e1e1e1;
-	padding-bottom: 20px;
-	margin-bottom: 20px;
+	border-bottom: 1px solid #FFFFFF;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .checkout__order .checkout__order__products {
@@ -2213,7 +2251,8 @@ ol {
 	float: right;
 }
 
-.checkout__order ul {
+/*ul 삭제*/
+.checkout__order {
 	margin-bottom: 12px;
 }
 
@@ -2222,6 +2261,8 @@ ol {
 	color: #6f6f6f;
 	line-height: 40px;
 	list-style: none;
+	margin-bottom: -10px;
+    margin-top: -10px;
 }
 
 .checkout__order ul li span {
@@ -2233,8 +2274,8 @@ ol {
 	font-size: 18px;
 	color: #1c1c1c;
 	font-weight: 700;
-	border-bottom: 1px solid #e1e1e1;
-	border-top: 1px solid #e1e1e1;
+	border-bottom: 1px solid #FFFFFF;
+	border-top: 1px solid #FFFFFF;
 	padding-bottom: 15px;
 	margin-bottom: 15px;
 	padding-top: 15px;
@@ -2252,7 +2293,7 @@ ol {
 	font-size: 18px;
 	color: #1c1c1c;
 	font-weight: 700;
-	border-bottom: 1px solid #e1e1e1;
+	border-bottom: 1px solid #FFFFFF;
 	padding-bottom: 15px;
 	margin-bottom: 25px;
 }
@@ -2262,12 +2303,35 @@ ol {
 	color: #dd2222;
 }
 
-.checkout__order button {
-	font-size: 18px;
-	letter-spacing: 2px;
-	width: 100%;
-	margin-top: 10px;
+/* 사용X */
+/* .checkout__order button { */
+/* 	font-size: 18px; */
+/* 	letter-spacing: 2px; */
+/* 	width: 100%; */
+/* 	margin-top: 10px; */
+/* } */
+
+.box {
+    width: 80px;
+    height: 80px; 
+    border-radius: 70%;
+    overflow: hidden;
 }
+.profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* .mainbox { */
+/* 	max-width:100%; */
+/* 	height:auto; */
+/* 	background-color:#FFFFFF; */
+/* 	border-radius:10px; */
+/* 	border-style:solid; */
+/* 	border-width:0.5px; */
+/* 	border-color:#E5E8E8; */
+/* } */
 
 /*---------------------
   Blog
@@ -2356,9 +2420,10 @@ ol {
 	padding-top: 50px;
 }
 
-.blog__sidebar__item {
-	margin-bottom: 50px;
-}
+/*margin사용 X */
+/* .blog__sidebar__item { */
+/* 	margin-bottom: 50px; */
+/* } */
 
 .blog__sidebar__item h4 {
 	color: #1c1c1c;
@@ -2371,7 +2436,7 @@ ol {
 }
 
 .blog__sidebar__item ul li a {
-	font-size: 16px;
+	font-size: 13px;
 	color: #666666;
 	line-height: 48px;
 	-webkit-transition: all, 0.3s;
@@ -2552,15 +2617,17 @@ ol {
 	margin-right: 15px;
 }
 
+/* 댓글사용, 사진크기 변경 */
 .blog__details__author__pic img {
-	height: 92px;
-	width: 92px;
+	height: 40px;
+	width: 40px;
 	border-radius: 50%;
 }
 
+/* padding-top 사용 X */
 .blog__details__author__text {
 	overflow: hidden;
-	padding-top: 30px;
+/* 	padding-top: 30px; */
 }
 
 .blog__details__author__text h6 {
@@ -2858,9 +2925,10 @@ ol {
 	font-weight: 700;
 }
 
+/* 80px -> 40px 수정 */
 .contact-form {
-	padding-top: 80px;
-	padding-bottom: 80px;
+	padding-top: 40px;
+	padding-bottom: 40px;
 }
 
 .contact-form form input {
@@ -2878,9 +2946,10 @@ ol {
 	color: #6f6f6f;
 }
 
+/* textarea 수정 */
 .contact-form form textarea {
-	width: 100%;
-	height: 150px;
+	width: 100%;	
+	height: 300px;
 	font-size: 16px;
 	color: #6f6f6f;
 	padding-left: 20px;
