@@ -25,8 +25,6 @@
 	
 	<context:component-scan base-package="com.dp.ggomjirak" />
 	
-	<beans:bean class="com.dp.ggomjirak.kty.interceptor.AuthInterceptor" id="authInterceptor"></beans:bean>
-	
 	<!-- 트랜잭션 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
@@ -36,6 +34,9 @@
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="104857560"/>	
 	</beans:bean>
+	
+	<!-- 임시 인터셉터 -->
+	<beans:bean class="com.dp.ggomjirak.kty.interceptor.AuthInterceptor" id="authInterceptor"></beans:bean>
 	
 	<!-- 인터셉터 -->
 <!-- 	<beans:bean class="com.kh.sample01.interceptor.SampleInterceptor" -->
