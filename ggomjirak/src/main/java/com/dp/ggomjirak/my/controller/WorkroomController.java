@@ -168,30 +168,9 @@ public class WorkroomController {
 		map.put("unFollow", "unFollow");
 		return map;
 	}
-<<<<<<< HEAD
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> c1d2dbfdfd6f96de4694324d9749c3ac0771b2d8
-
-
-}
-
-
 
 
 
