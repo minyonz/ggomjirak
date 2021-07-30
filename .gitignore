@@ -2,9 +2,13 @@
 # Created by https://www.toptal.com/developers/gitignore/api/eclipse,java
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,java
 
+<<<<<<< HEAD
+
+=======
 root-context.xml
 
 */src/test/
+>>>>>>> 38c31c1c91e0b6f0692b176c9ce0cb3b67c39c90
 Servers/
 
 
