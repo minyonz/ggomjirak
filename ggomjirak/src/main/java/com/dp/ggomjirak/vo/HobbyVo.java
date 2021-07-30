@@ -9,7 +9,7 @@ public class HobbyVo {
 	//db column
 	private int hobby_no;
 	private String hobby_title;
-	private String hobby_writer;
+	private String user_id;
 	private String main_img;
 	private String hobby_video;
 	private String hobby_intro;
@@ -23,7 +23,26 @@ public class HobbyVo {
 	private String is_del;
 	private Timestamp reg_date;
 	private Timestamp mod_date;
+	private String user_nick;
 	
+	public String getUser_nick() {
+		return user_nick;
+	}
+
+
+
+	public void setUser_nick(String user_nick) {
+		this.user_nick = user_nick;
+	}
+
+
+
+	public void setIs_del(String is_del) {
+		this.is_del = is_del;
+	}
+
+
+
 	private MultipartFile mf_main_img;
 	
 	// has a
@@ -40,26 +59,26 @@ public class HobbyVo {
 	
 	
 
-	public HobbyVo(String hobby_writer, String hobby_title) {
+	public HobbyVo(String user_id, String hobby_title) {
 		super();
-		this.hobby_writer = hobby_writer;
+		this.user_id = user_id;
 		this.hobby_title = hobby_title;
 	}
 
 
-	public HobbyVo(String hobby_writer, String hobby_title, List<MakeStepVo> makeSteps) {
+	public HobbyVo(String user_id, String hobby_title, List<MakeStepVo> makeSteps) {
 		super();
-		this.hobby_writer = hobby_writer;
+		this.user_id = user_id;
 		this.hobby_title = hobby_title;
 		this.makeSteps = makeSteps;
 	}
 
 
 
-	public HobbyVo(String hobby_writer, String hobby_title, List<MakeStepVo> makeSteps,
+	public HobbyVo(String user_id, String hobby_title, List<MakeStepVo> makeSteps,
 			List<HobbyMaterialVo> hobbyMaterials) {
 		super();
-		this.hobby_writer = hobby_writer;
+		this.user_id = user_id;
 		this.hobby_title = hobby_title;
 		this.makeSteps = makeSteps;
 		this.hobbyMaterials = hobbyMaterials;
@@ -67,9 +86,9 @@ public class HobbyVo {
 
 
 
-	public HobbyVo(String hobby_writer, String hobby_title, String main_img, String hobby_intro) {
+	public HobbyVo(String user_id, String hobby_title, String main_img, String hobby_intro) {
 		super();
-		this.hobby_writer = hobby_writer;
+		this.user_id = user_id;
 		this.hobby_title = hobby_title;
 		this.main_img = main_img;
 		this.hobby_intro = hobby_intro;
@@ -101,14 +120,14 @@ public class HobbyVo {
 
 
 
-	public String getHobby_writer() {
-		return hobby_writer;
+	public String getUser_id() {
+		return user_id;
 	}
 
 
 
-	public void setHobby_writer(String hobby_writer) {
-		this.hobby_writer = hobby_writer;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 
@@ -319,7 +338,7 @@ public class HobbyVo {
 
 	@Override
 	public String toString() {
-		return "HobbyVo [hobby_no=" + hobby_no + ", hobby_title=" + hobby_title + ", hobby_writer=" + hobby_writer
+		return "HobbyVo [hobby_no=" + hobby_no + ", hobby_title=" + hobby_title + ", user_id=" + user_id
 				+ ", main_img=" + main_img + ", hobby_video=" + hobby_video + ", hobby_intro=" + hobby_intro
 				+ ", l_cate_no=" + l_cate_no + ", m_cate_no=" + m_cate_no + ", level_no=" + level_no + ", cost_no="
 				+ cost_no + ", time_no=" + time_no + ", view_cnt=" + view_cnt + ", like_cnt=" + like_cnt
