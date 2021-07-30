@@ -11,10 +11,10 @@
 	<select id="getSuggestHobby" resultType="HobbyVo">
 		select * from
 			(select rownum rnum, a.*, c.user_nick from
-				(select * from tbl_hobby where hobby_writer != #{user_id}
-				and hobby_writer not in(select user_id from tbl_manager_member)
+				(select * from tbl_hobby where user_id != #{user_id}
+				and user_id not in(select user_id from tbl_manager_member)
 				order by like_cnt desc)a
-			left join tbl_memberdetail c on a.hobby_writer = c.user_id
+			left join tbl_memberdetail c on a.user_id = c.user_id
 			where (select cate_no1 from tbl_memberdetail where user_id = #{user_id}) = a.m_cate_no
 			or (select cate_no2 from tbl_memberdetail where user_id = #{user_id}) = a.m_cate_no
 			or (select cate_no3 from tbl_memberdetail where user_id = #{user_id}) = a.m_cate_no)
@@ -27,9 +27,9 @@
 		    (select rownum rnum, a.* from
 		        (select * from tbl_hobby
 		        where is_del = 'N'
-		        and hobby_writer not in(select user_id from tbl_manager_member)
+		        and user_id not in(select user_id from tbl_manager_member)
 		        order by view_cnt desc, like_cnt desc) a) b
-		        left join tbl_memberdetail c on b.hobby_writer = c.user_id
+		        left join tbl_memberdetail c on b.user_id = c.user_id
 		where rnum between 1 and 10
 	</select>
 	
@@ -39,10 +39,10 @@
 		    (select rownum rnum, a.* from
 		        (select * from tbl_hobby
 		        where is_del = 'N'
-		        and hobby_writer not in(select user_id from tbl_manager_member)
+		        and user_id not in(select user_id from tbl_manager_member)
 		        and to_char(reg_date, 'mm') = to_char(sysdate, 'mm')
 		        order by view_cnt desc, like_cnt desc) a) b
-		        left join tbl_memberdetail c on b.hobby_writer = c.user_id
+		        left join tbl_memberdetail c on b.user_id = c.user_id
 		where rnum between 1 and 10
 	</select>
 	
@@ -121,26 +121,26 @@
 		    (select rownum rnum, a.* from
 		        (select * from tbl_hobby
 		        where is_del = 'N'
-		        and hobby_writer not in(select user_id from tbl_manager_member)
+		        and user_id not in(select user_id from tbl_manager_member)
 		        order by view_cnt desc, like_cnt desc) a) b
-		        left join tbl_memberdetail c on b.hobby_writer = c.user_id
+		        left join tbl_memberdetail c on b.user_id = c.user_id
 		where rnum between #{startRow} and #{endRow}
 	</select>
 	<!-- 취미 갯수 -->
 	<select id="getCountHobbyList" resultType="int">
 		select count (*) from tbl_hobby
 		where is_del = 'N'
-		and hobby_writer not in(select user_id from tbl_manager_member)
+		and user_id not in(select user_id from tbl_manager_member)
 	</select>
 	
 	<!-- 취미 카테고리 검색 -->
 	<select id="searchHobbyCate" resultType="HobbyVo">
 		select * from
 		(select rownum rnum, a.*, c.user_nick from
-		        (select * from tbl_hobby where hobby_writer in 
+		        (select * from tbl_hobby where user_id in 
 		        (select user_id from tbl_memberinfo where is_del = 'N'
 		        and user_id not in(select user_id from tbl_manager_member)))a
-		        left join tbl_memberdetail c on a.hobby_writer = c.user_id
+		        left join tbl_memberdetail c on a.user_id = c.user_id
 		        <if test="m_cate_no != 0">
 		         where m_cate_no = #{m_cate_no}
 		        </if>
@@ -151,10 +151,10 @@
 	<!-- 취미 카테고리 검색 수 -->
 	<select id="getCountHobbyCate" resultType="int">
 		select count (*) from
-			(select * from tbl_hobby where hobby_writer in 
+			(select * from tbl_hobby where user_id in 
 		        (select user_id from tbl_memberinfo where is_del = 'N'
 		        and user_id not in(select user_id from tbl_manager_member)))a
-                left join tbl_memberdetail c on a.hobby_writer = c.user_id
+                left join tbl_memberdetail c on a.user_id = c.user_id
                 <if test="m_cate_no != 0">
                 where m_cate_no = #{m_cate_no}
                 </if>
@@ -164,10 +164,10 @@
 	<select id="searchHobby" resultType="HobbyVo">
 		select * from
 		(select rownum rnum, a.*, c.user_nick from
-		        (select * from tbl_hobby where hobby_writer in 
+		        (select * from tbl_hobby where user_id in 
 		        (select user_id from tbl_memberinfo where is_del = 'N'
 		        and user_id not in(select user_id from tbl_manager_member)))a
-		        left join tbl_memberdetail c on a.hobby_writer = c.user_id
+		        left join tbl_memberdetail c on a.user_id = c.user_id
 		         where hobby_title like '%' || #{keyword} || '%'
 		         or user_nick like '%' || #{keyword} || '%'
 		         order by hobby_no desc)
@@ -177,10 +177,10 @@
 	<!-- 검색 취미 갯수 -->
 	<select id="getCountHobbySearch" resultType="int">
 		select count (*) from
-			(select * from tbl_hobby where hobby_writer in 
+			(select * from tbl_hobby where user_id in 
 		        (select user_id from tbl_memberinfo where is_del = 'N'
 		        and user_id not in(select user_id from tbl_manager_member)))a
-                left join tbl_memberdetail c on a.hobby_writer = c.user_id
+                left join tbl_memberdetail c on a.user_id = c.user_id
                 where hobby_title like '%' || #{keyword} || '%'
 		         or user_nick like '%' || #{keyword} || '%'
 	</select>
