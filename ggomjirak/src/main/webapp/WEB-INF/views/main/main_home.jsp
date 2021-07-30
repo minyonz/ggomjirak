@@ -2,11 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp" %>
-
+<style>
+.tiledBackground {
+  wiedth: 100%;
+   height: 400px; 
+}
+</style>
 <!-- 배너 -->
-<div class="row tiledBackground">
-	<div class="col-md-12 green_background" style="padding-bottom: 20px">
-		<div class="row">
+
+<div class="row">
+	<div class="col-md-12" style="padding-bottom: 20px">
+	
+	<div class="tiledBackground green_background row" style="position: relative;"></div>
+	
+		<div class="row"  style="position: relative; top: -400px;">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<div class="carousel slide" id="carousel-313760">
@@ -22,7 +31,7 @@
 								src="/resources/img/event01.jpg" height="500"/>
 							<div class="carousel-caption">
 								<h4 class="white_color">First Thumbnail label</h4>
-								<p>Cras justo odio, dapibus ac facilisis in, egestas eget
+								<p  class="white_color">Cras justo odio, dapibus ac facilisis in, egestas eget
 									quam. Donec id elit non mi porta gravida at eget metus. Nullam
 									id dolor id nibh ultricies vehicula ut id elit.</p>
 							</div>
@@ -55,23 +64,9 @@
 						data-slide="next"><span class="carousel-control-next-icon"></span>
 						<span class="sr-only">Next</span></a>
 				</div>
-			</div>
-			<div class="col-md-2"></div>
-		</div>
-	</div>
-</div>
-
-<!-- 배너 끝 -->
-
-<!-- 추천취미 -->
-
-<div class="row">
-	<div class="col-md-12"  style="padding-top: 50px">
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-			
-				<div class="row">
+				
+				<!-- 추천취미 -->
+				<div class="row" style="margin-top: 50px">
 					<div class="col-md-2">
 						<div style="margin-right: 40px">
 						<h5>추천취미</h5>
@@ -116,21 +111,9 @@
 				<!-- Categories Section End -->
 					</div>
 				</div>
-			</div>
-			<div class="col-md-2"></div>
-		</div>
-	</div>
-</div>
-<!-- 추천취미 끝 -->
-
-<!-- 인기취미 -->
-<div class="row">
-	<div class="col-md-12">
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-
-
+				<!-- 추천취미 끝 -->
+				
+				<!-- 인기취미 -->
 				<!-- Categories Section Begin -->
 				<section class="categories" style="margin-top: 50px">
 
@@ -168,21 +151,10 @@
 					</div>
 				</section>
 				<!-- Categories Section End -->
-			</div>
-			<div class="col-md-2"></div>
-		</div>
-	</div>
-</div>
-<!-- 인기취미 끝 -->
-
-<!-- 작가어워드 -->
-<div class="row">
-		<div class="col-md-12">
-			<div class="row">
-				<div class="col-md-2"></div>
-				<div class="col-md-8">
+				<!-- 인기취미 끝 -->
 				
-				 <!-- Featured Section Begin -->
+				<!-- 작가어워드 -->
+				<!-- Featured Section Begin -->
     <section class="featured spad">
         <div class="container">
             <div class="row">
@@ -286,18 +258,20 @@
         </div>
     </section>
     <!-- Featured Section End -->
+				<!-- 작가어워드 끝-->
 				
-				
-				</div>
-				<div class="col-md-2"></div>
 			</div>
+			
+			<div class="col-md-2"></div>
 		</div>
 	</div>
-<!-- 작가 어워드 끝 -->
+</div>
+<!-- 배너 끝 -->
+
 
 <!-- 인기 키워드 -->
 
-<div class="row">
+<div class="row" style="position: relative; top: -400px;">
 		<div class="col-md-12">
 			<div class="row">
 				<div class="col-md-2"> </div>
@@ -348,7 +322,7 @@
 <!-- 인기 키워드 끝 -->
 
 <!-- 이달의 취미 -->
-<div class="row">
+<div class="row"  style="position: relative; top: -400px;">
 	<div class="col-md-12">
 		<div class="row">
 			<div class="col-md-2"></div>
@@ -389,21 +363,7 @@
 					</div>
 				</section>
 				<!-- Categories Section End -->
-			</div>
-			<div class="col-md-2"></div>
-		</div>
-	</div>
-</div>
-<!-- 이달의 취미 끝 -->
-
-<!-- 베스트 메이드 -->
-<div class="row">
-	<div class="col-md-12">
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-
-
+				<!-- 베스트메이드 -->
 				<!-- Categories Section Begin -->
 				<section class="categories" style="margin-top: 50px">
 
@@ -494,12 +454,108 @@
 					</div>
 				</section>
 				<!-- Categories Section End -->
+				<!-- 베스트메이드 끝 -->
 			</div>
 			<div class="col-md-2"></div>
 		</div>
 	</div>
 </div>
-<!-- 베스트 메이드 끝 -->
+<!-- 이달의 취미 끝 -->
 
-    
-<%@ include file="../include/footer.jsp" %>
+
+</div>			
+	<!-- Footer-->
+	<footer class="py-5 bg-dark"  style="position: relative; top: -350px;">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; Your
+				Website 2021</p>
+		</div>
+	</footer>
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="/resources/js/scripts.js"></script>
+	    <!-- Footer Section Begin -->
+    <footer class="footer spad" style="position: relative; top: -350px;">
+        <div class="container" >
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__about__logo">
+                            <a href="./index.html"><img src="/resources/img/logo.png" alt=""></a>
+                        </div>
+                        <ul>
+                            <li>Address: 60-49 Road 11378 New York</li>
+                            <li>Phone: +65 11.188.888</li>
+                            <li>Email: hello@colorlib.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                    <div class="footer__widget">
+                        <h6>Useful Links</h6>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">About Our Shop</a></li>
+                            <li><a href="#">Secure Shopping</a></li>
+                            <li><a href="#">Delivery infomation</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Our Sitemap</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#">Who We Are</a></li>
+                            <li><a href="#">Our Services</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Innovation</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__widget" >
+                        <h6>Join Our Newsletter Now</h6>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="#">
+                            <input type="text" placeholder="Enter your mail">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__widget__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__copyright">
+                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+                        <div class="footer__copyright__payment"><img src="/resources/img/payment-item.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="/resources/js/jquery-3.3.1.min.js"></script>
+    <script src="/resources/js/bootstrap.min.js"></script>
+    <script src="/resources/js/jquery.nice-select.min.js"></script>
+    <script src="/resources/js/jquery-ui.min.js"></script>
+    <script src="/resources/js/jquery.slicknav.js"></script>
+    <script src="/resources/js/mixitup.min.js"></script>
+    <script src="/resources/js/owl.carousel.min.js"></script>
+    <script src="/resources/js/main.js"></script>
+
+
+	
+
+</body>
+</html>

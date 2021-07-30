@@ -52,6 +52,30 @@ public class MainController {
 		model.addAttribute("popularMember3", popularMember3);
 		model.addAttribute("popularMember4", popularMember4);
 		model.addAttribute("cateStrVo", cateStrVo);
+		return "main/main_home";
+	}
+	@RequestMapping(value="/mainHome2", method=RequestMethod.GET)
+	public String mainHome2(Model model) throws Exception {
+		List<CateVo> category = mainService.selectCate();
+		String user_id = "hong";
+		List<HobbyVo> suggestHobby = mainService.getSuggestHobby(user_id);
+		List<HobbyVo> popularHobby = mainService.getPopularHobbyList();
+		List<HobbyVo> monthHobby = mainService.getMonthHobbyList();
+		List<MemberVo> popularMember1 = mainService.getPopularMemberList1();
+		List<MemberVo> popularMember2 = mainService.getPopularMemberList2();
+		List<MemberVo> popularMember3 = mainService.getPopularMemberList3();
+		List<MemberVo> popularMember4 = mainService.getPopularMemberList4();
+		CateStrVo cateStrVo = managerService.selectCateStr(user_id);
+		
+		model.addAttribute("cates", JSONArray.fromObject(category));
+		model.addAttribute("suggestHobby", suggestHobby);
+		model.addAttribute("popularHobby", popularHobby);
+		model.addAttribute("monthHobby", monthHobby);
+		model.addAttribute("popularMember1", popularMember1);
+		model.addAttribute("popularMember2", popularMember2);
+		model.addAttribute("popularMember3", popularMember3);
+		model.addAttribute("popularMember4", popularMember4);
+		model.addAttribute("cateStrVo", cateStrVo);
 		return "main/main_home2";
 	}
 	

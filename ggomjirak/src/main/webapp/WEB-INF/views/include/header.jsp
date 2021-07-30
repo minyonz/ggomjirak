@@ -120,72 +120,73 @@ $(document).ready(function() {
 							<div class="col-md-8">
 								
 								<!-- 메뉴바 -->
-								<nav class="navbar navbar-expand-lg navbar-dark" style="margin-bottom: 30px;">
-									<div>
-										<a class="navbar-brand" href="/main/mainHome" style="display:none">꼼지락</a>
-										<button class="navbar-toggler" type="button"
-											data-bs-toggle="collapse"
-											data-bs-target="#navbarSupportedContent"
-											aria-controls="navbarSupportedContent" aria-expanded="false"
-											aria-label="Toggle navigation">
-											<span class="navbar-toggler-icon"></span>
-										</button>
-										<div class="collapse navbar-collapse" id="navbarSupportedContent">
-											<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-												<li class="nav-item"><a class="nav-link" href="/main/mainHome">홈</a></li>
-												<li class="nav-item"><a class="nav-link" href="/main/mainHobby">취미</a></li>
-												<li class="nav-item"><a class="nav-link" href="/main/mainEvent">이벤트</a></li>
-												<li class="nav-item"><a class="nav-link" href="/main/mainAboutUs">소개</a></li>
-												</ul>
-												
-      											<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-												<li class="nav-item"><a class="nav-link flex-item" href="/workroom/main">내 작업실</a></li>
-												<li class="nav-item"><a class="nav-link" href="/mypage/login">로그인</a></li>
-												
-												<li class="nav-item dropdown">
-												<div class="dropdown">
-												  <a class="btn nav-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-												   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
-													  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
-													</svg>
-												  </a>
-												  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-												    <li><a class="dropdown-item" href="#">알림내용</a></li>
-												    <li><a class="dropdown-item" href="#">알림내용</a></li>
-												    <li><a class="dropdown-item" href="#">알림내용</a></li>
-												    <li><a class="dropdown-item" href="#">알림내용</a></li>
-												    <li><a class="dropdown-item" href="#">알림내용</a></li>
-												    <li><a class="dropdown-item" href="#">알림내용</a></li>
-												    <li><hr class="dropdown-divider"></li>
-												    <li><a class="dropdown-item" href="#">알림함</a></li>
-												  </ul>
-												</div>
-												</li>
-												
-												<li class="nav-item dropdown ml-md-auto">
-												<div class="dropdown">
-												  <a class="btn nav-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-												   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-															fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-														<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-													</svg>
-												  </a>
-												  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-												    <li><a class="dropdown-item" href="/mypage/infoForm">마이페이지</a></li>
-												    <li><a class="dropdown-item" href="#">쪽지함</a></li>
-												    <li><a class="dropdown-item" href="#">1:1문의</a></li>
-												    <li><hr class="dropdown-divider"></li>
-												    <li><a class="dropdown-item" href="#">로그아웃</a></li>
-												  </ul>
-												</div>
-												</li>
-												
-											</ul>
+								<nav class="navbar navbar-expand-lg navbar-dark">
+								<button class="navbar-toggler" type="button"
+									data-bs-toggle="collapse"
+									data-bs-target="#navbarSupportedContent"
+									aria-controls="navbarSupportedContent" aria-expanded="false"
+									aria-label="Toggle navigation">
+									<span class="navbar-toggler-icon"></span>
+								</button>
+								  
+									<div class="collapse navbar-collapse" id="navbarSupportedContent">
+									  	<ul class="navbar-nav mr-auto color_white">
+									    	<li class="nav-item"><a class="nav-link float-right" href="/main/mainHome">홈</a></li>
+											<li class="nav-item"><a class="nav-link float-right" href="/main/mainHobby">취미</a></li>
+											<li class="nav-item"><a class="nav-link float-right" href="/main/mainEvent">이벤트</a></li>
+											<li class="nav-item"><a class="nav-link float-right" href="/main/mainAboutUs">소개</a></li>
+								  		</ul>
+								    
+								    <ul class="nav navbar-nav navbar-right">
+										<li class="nav-item"><a class="nav-link flex-item" href="/workroom/main">내 작업실</a></li>
+										<li class="nav-item"><a class="nav-link" href="/mypage/login">로그인</a></li>
+										<li class="nav-item"><a class="nav-link flex-item" href="/workroom/main">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+										  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+										</svg>
+										</a></li>
+										<li class="nav-item dropdown">
+										<div class="dropdown">
+										  <a class="btn nav-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+										   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+											  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+											</svg>
+										  </a>
+										  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+										    <li><a class="dropdown-item" href="#">알림내용</a></li>
+										    <li><a class="dropdown-item" href="#">알림내용</a></li>
+										    <li><a class="dropdown-item" href="#">알림내용</a></li>
+										    <li><a class="dropdown-item" href="#">알림내용</a></li>
+										    <li><a class="dropdown-item" href="#">알림내용</a></li>
+										    <li><a class="dropdown-item" href="#">알림내용</a></li>
+										    <li><hr class="dropdown-divider"></li>
+										    <li><a class="dropdown-item" href="#">알림함</a></li>
+										  </ul>
 										</div>
-									</div>
+										</li>
+										
+										<li class="nav-item dropdown ml-md-auto">
+										<div class="dropdown">
+										  <a class="btn nav-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+										   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+													fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+												<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+											</svg>
+										  </a>
+										  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+										    <li><a class="dropdown-item" href="/mypage/infoForm">마이페이지</a></li>
+										    <li><a class="dropdown-item" href="#">쪽지함</a></li>
+										    <li><a class="dropdown-item" href="#">1:1문의</a></li>
+										    <li><hr class="dropdown-divider"></li>
+										    <li><a class="dropdown-item" href="#">로그아웃</a></li>
+										  </ul>
+										</div>
+										</li>
+									</ul>
+								  </div>
 								</nav>
 								<!-- 메뉴바 끝 -->
-							
+								
 								<!-- 로고 -->
 								<header class="py-3 mb-4">
 								  <div class="container d-flex flex-wrap justify-content-center">
@@ -203,9 +204,6 @@ $(document).ready(function() {
 								
 								<div class="row" style="margin-bottom: 50px">
 									<div class="col-md-3">
-									
-									
-									
 									<div class="input-group">
 
 										<select class="cate1 form-control btn btn-outline-light green_background shadow bg-body rounded"
@@ -241,11 +239,8 @@ $(document).ready(function() {
 									  </div>
 									</div>
 									</form>
-									
 									</div>
-									
 								</div>
-								
 								<!-- 검색 끝 -->
 								
 								
