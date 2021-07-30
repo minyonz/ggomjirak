@@ -33,9 +33,11 @@ public class QnAVo {
 	private String a_state;
 	
 	// 관리자 답변 내용
+	private int a_qna_no;
 	private String a_title;
 	private String a_content;
 	private String a_save_time;
+	private String m_user_id;
 	private String m_nik;
 	
 	
@@ -48,7 +50,8 @@ public class QnAVo {
 	public QnAVo(String qna_sort_cd, String qna_type_nm, int qna_no, int a_no, char qna_type, String title,
 			String content, String user_id, char is_del, String save_time, String update_time, String delete_time,
 			String input_name, String input_tel, String input_email, String is_email_receive, String q_save_time,
-			String a_state, String a_title, String a_content, String a_save_time, String m_nik) {
+			String a_state, int a_qna_no, String a_title, String a_content, String a_save_time, String m_user_id,
+			String m_nik) {
 		super();
 		this.qna_sort_cd = qna_sort_cd;
 		this.qna_type_nm = qna_type_nm;
@@ -68,9 +71,11 @@ public class QnAVo {
 		this.is_email_receive = is_email_receive;
 		this.q_save_time = q_save_time;
 		this.a_state = a_state;
+		this.a_qna_no = a_qna_no;
 		this.a_title = a_title;
 		this.a_content = a_content;
 		this.a_save_time = a_save_time;
+		this.m_user_id = m_user_id;
 		this.m_nik = m_nik;
 	}
 
@@ -255,6 +260,16 @@ public class QnAVo {
 	}
 
 
+	public int getA_qna_no() {
+		return a_qna_no;
+	}
+
+
+	public void setA_qna_no(int a_qna_no) {
+		this.a_qna_no = a_qna_no;
+	}
+
+
 	public String getA_title() {
 		return a_title;
 	}
@@ -285,6 +300,16 @@ public class QnAVo {
 	}
 
 
+	public String getM_user_id() {
+		return m_user_id;
+	}
+
+
+	public void setM_user_id(String m_user_id) {
+		this.m_user_id = m_user_id;
+	}
+
+
 	public String getM_nik() {
 		return m_nik;
 	}
@@ -302,8 +327,9 @@ public class QnAVo {
 				+ ", is_del=" + is_del + ", save_time=" + save_time + ", update_time=" + update_time + ", delete_time="
 				+ delete_time + ", input_name=" + input_name + ", input_tel=" + input_tel + ", input_email="
 				+ input_email + ", is_email_receive=" + is_email_receive + ", q_save_time=" + q_save_time + ", a_state="
-				+ a_state + ", a_title=" + a_title + ", a_content=" + a_content + ", a_save_time=" + a_save_time
-				+ ", m_nik=" + m_nik + "]";
+				+ a_state + ", a_qna_no=" + a_qna_no + ", a_title=" + a_title + ", a_content=" + a_content
+				+ ", a_save_time=" + a_save_time + ", m_user_id=" + m_user_id + ", m_nik=" + m_nik + "]";
 	}
+
 
 }
