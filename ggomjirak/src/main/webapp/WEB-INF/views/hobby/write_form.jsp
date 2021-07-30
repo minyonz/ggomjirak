@@ -906,7 +906,7 @@ margin-right: 15px;
 									<input type="file" class="complImg_file" 
 										 id="complImg_file_${v }" accept=".gif, .jpg, .png" onchange="previewComplImg(this, ${v });"
 										style="display:none;width:0px;height:0px;font-size:0px;">
-									<input type="hidden" class="complImg_hidden" data-exist="0" data-num="1"
+									<input type="hidden" class="complImg_hidden" data-exist="0" 
 										id="completeImgs[${v - 1}].img_name" name="completeImgs[${v - 1 }].img_name"/>
 									<input type="hidden" class="complImg_num" name="completeImgs[${v - 1 }].num" value="${v }"/>
 									<div style="position: relative;bottom: 9.3rem;">
@@ -1012,7 +1012,7 @@ function calcFileName(thumbPath) {
 	// const home = 21;
 	// const yj = 12;
 	// const team;
-	var rootIndex = 21;
+	var rootIndex = 12;
 	// -> /test ~ 이런식으로 대쉬부터 시작하는 값으로 설정해놔야함 ! 
 	
 	console.log(thumbPath);
@@ -1084,7 +1084,7 @@ function delMainImg() {
 	console.log("삭제")
 	var fileName = $("#main_img").val();
 	console.log(fileName);
-	var url = "/deleteImg?fileName=" + fileName;
+	var url = "/deleteFile?fileName=" + fileName;
 	$.get(url, function(rData) {
 		if (rData == "success") {
 			$("#main_img").val("");
@@ -1143,7 +1143,7 @@ function delStepImg(seq) {
 	var el = document.getElementById("makeSteps["+ (seq - 1) +"].make_step_img");
 	var fileName = $(el).val();
 	console.log(fileName);
-	var url = "/deleteImg?fileName=" + fileName;
+	var url = "/deleteFile?fileName=" + fileName;
 	$.get(url, function(rData) {
 		if (rData == "success") {
 			$(el).val("");
@@ -1266,7 +1266,7 @@ function delComplImg(num) {
 	var el = document.getElementById("completeImgs["+ (num - 1) +"].img_name");
 	var fileName = $(el).val();
 	console.log(fileName);
-	var url = "/deleteImg?fileName=" + fileName;
+	var url = "/deleteFile?fileName=" + fileName;
 	$.get(url, function(rData) {
 		if (rData == "success") {
 			$(el).val("");

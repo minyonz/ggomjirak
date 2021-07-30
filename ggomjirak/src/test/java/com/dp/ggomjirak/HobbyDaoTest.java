@@ -56,4 +56,13 @@ public class HobbyDaoTest {
 		System.out.println(h);
 	}
 	
+	@Test
+	public void testUpdateMakeSteps() {
+		int hobby_no = 27;
+		HobbyVo h = hobbyDao.selectHobby(hobby_no);
+		List<MakeStepVo> makeSteps = hobbyDao.selectMakeStepList(hobby_no);
+//		List<MakeStepVo> makeSteps = new ArrayList<>();
+		System.out.println(makeSteps);
+		
+	}
 }

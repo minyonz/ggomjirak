@@ -50,4 +50,11 @@ public interface HobbyDao {
 	
 	public void insertCompleteImg (List<CompleteImgVo> completeImgs);
 	
+	
+	// * 수정 작업
+	public String selectCompleteImgName(CompleteImgVo completeImgVo);
+	public String selectMainImg(int hobby_no);
+	public String selectMakeStepImg(MakeStepVo makeStepVo);
+	
+	public void updateMakeStep(List<MakeStepVo> makeSteps);
 }

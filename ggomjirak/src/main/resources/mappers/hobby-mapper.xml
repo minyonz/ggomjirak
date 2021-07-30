@@ -139,4 +139,55 @@
 	        from dual
 	    </foreach>) A
 	</insert>
+	
+	
+	<!-- *수정  작업-->
+	<!-- 완성사진 디비에 있는지 없는지 체크 -->
+	<select id="selectCompleteImgName" parameterType="CompleteImgVo" resultType="java.lang.String">
+		SELECT img_name FROM tbl_complete_img
+		WHERE hobby_no = #{hobby_no} AND num = #{num}
+	</select>
+	
+	<!-- 메인사진 디비 체크 -->
+	<select id="selectMainImg" parameterType="int" resultType="java.lang.String">
+		SELECT main_img FROM tbl_hobby
+		WHERE hobby_no = #{hobby_no}
+	</select>
+	
+	<!-- 스탭사진 디비 -->
+	<select id="selectMakeStepImg" parameterType="MakeStepVo" resultType="java.lang.String">
+		SELECT make_step_img FROM tbl_make_step
+		WHERE hobby_no = #{hobby_no} AND make_step_num = #{make_step_num}
+	</select>
+	
+	<update id="updateHobby" parameterType="HobbyVo">
+ 		UPDATE tbl_hobby
+ 		SET hobby_title = #{hobby_title},
+ 			main_img = #{main_img},
+ 			hobby_intro = #{hobby_intro},
+ 			hobby_video = #{hobby_video, jdbcType=VARCHAR},
+ 			l_cate_no = #{l_cate_no},
+ 			m_cate_no = #{m_cate_no},
+ 			time_no = #{time_no},
+ 			level_no = #{level_no},
+ 			cost_no = #{cost_no},
+ 			mode_date = sysdate
+ 		WHERE hobby_no = #{hobby_no}
+	</update>
+	
+	<!-- 만들기 순서 수정-->
+<!--  	<update id="updateMakeStep" parameterType="java.util.List"> -->
+<!--  		<foreach  item="item" collection="list"  index="index"  -->
+<!--     	  separator=";" open="DECLARE BEGIN" close="; END;" > -->
+<!-- 			UPDATE tbl_make_step -->
+<!-- 			SET make_step_num = #{item.make_step_num}, -->
+<!-- 				make_step_text = #{item.make_step_text}, -->
+<!-- 				make_step_img =  #{item.make_step_img, jdbcType=VARCHAR}, -->
+<!-- 				tip =  #{item.tip, jdbcType=VARCHAR}, -->
+<!-- 				note = #{item.note, jdbcType=VARCHAR}, -->
+<!-- 				link_url =  #{item.link_url, jdbcType=VARCHAR}, -->
+<!-- 				link_desc = #{item.link_desc, jdbcType=VARCHAR} -->
+<!-- 			WHERE hobby_no = #{item.hobby_no} AND make_step_num = #{ite -->
+<!-- 		</foreach> -->
+<!-- 	</update> -->
  </mapper>

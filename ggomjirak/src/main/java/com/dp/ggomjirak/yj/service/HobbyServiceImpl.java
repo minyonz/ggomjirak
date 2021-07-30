@@ -91,9 +91,11 @@ public class HobbyServiceImpl implements HobbyService {
 			// 만들기 순서 작업
 			for (MakeStepVo makeStepVo : makeSteps) {
 				String link_url = makeStepVo.getLink_url();
-				if (link_url != null) {
+				if (link_url != null) { // 사용자가 입력한 url있다면 
 					UrlOGTag urlOgTag = new UrlOGTag(link_url);
+					// ogtag찾기 실패하면 (ogtag.getstatus notfound상태) ogtag클래스의 url필드에 link_url주소만 넣고 프론트에 링크텍스트만 보여주기.
 					makeStepVo.setUrlOgTag(urlOgTag);
+					System.out.println(urlOgTag);
 				}
 			}
 			List<CompleteImgVo> completeImgs = hobbyDao.selectCompleteImgListNotNull(hobby_no);
@@ -117,6 +119,23 @@ public class HobbyServiceImpl implements HobbyService {
 			return matcher.group(1);
 		}
 		return null;
+	}
+	
+	
+	// 삭제 작업
+	@Override
+	public String selectCompleteImgName(CompleteImgVo completeImgVo) {
+		return hobbyDao.selectCompleteImgName(completeImgVo);
+	}
+
+	@Override
+	public String selectMainImg(int hobby_no) {
+		return hobbyDao.selectMainImg(hobby_no);
+	}
+
+	@Override
+	public String selectMakeStepImg(MakeStepVo makeStepVo) {
+		return hobbyDao.selectMakeStepImg(makeStepVo);
 	}
 
 }

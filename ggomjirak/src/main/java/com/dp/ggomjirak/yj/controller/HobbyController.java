@@ -13,22 +13,24 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dp.ggomjirak.vo.CateVo;
+import com.dp.ggomjirak.vo.CompleteImgVo;
 import com.dp.ggomjirak.vo.CostVo;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.LevelVo;
+import com.dp.ggomjirak.vo.MakeStepVo;
 import com.dp.ggomjirak.vo.TimeVo;
 import com.dp.ggomjirak.yj.service.CateService;
 import com.dp.ggomjirak.yj.service.HobbyService;
@@ -50,7 +52,7 @@ public class HobbyController {
 	private static final String STEP_IMG_UPLOAD_PATH = "/test/make_step";
 	private static final String COMPLETE_IMG_UPLOAD_PATH = "/test/complete_img";
 	
-	String rootPath = MyFileUploadUtil.YJ_HOME_FOLDER;
+	String rootPath = MyFileUploadUtil.YJ_ACADEMY_FOLDER;
 	
 	@RequestMapping(value="/content/{hobby_no}", method=RequestMethod.GET)
 	public String content(Model model, @PathVariable("hobby_no") int hobby_no,
@@ -85,6 +87,8 @@ public class HobbyController {
 	public String updateRun(HobbyVo hobbyVo) throws Exception {
 		System.out.println(hobbyVo);
 		
+		
+		// 리다이렉트 자기글로 가기
 		return "redirect:/listAll";
 	}
 	
@@ -158,8 +162,8 @@ public class HobbyController {
 	}
 
 	
-	//첨부파일 삭제
-	@RequestMapping(value="/deleteImg", method=RequestMethod.GET)
+	//첨부파일 서버에서 삭제
+	@RequestMapping(value="/deleteFile", method=RequestMethod.GET)
 	@ResponseBody
 	public String deleteImg(String fileName) throws Exception {
 		if (MyFileUploadUtil.deleteFile(fileName)) {
@@ -168,5 +172,26 @@ public class HobbyController {
 		return "fail";
 	}
 	
+	//*수정작업
+	
+	@RequestMapping(value="/selectCompleteImgName", method=RequestMethod.POST, produces="application/text;charset=utf-8") 
+	@ResponseBody
+	public String selectCompleteImgName(@RequestBody CompleteImgVo completeImgVo){
+		System.out.println("완성사진: " + completeImgVo);
+		return hobbyService.selectCompleteImgName(completeImgVo);
+	}
+	
+	@RequestMapping(value="/selectMainImg", method=RequestMethod.GET, produces="application/text;charset=utf-8") 
+	@ResponseBody
+	public String selectMainImg(int hobby_no){
+		return hobbyService.selectMainImg(hobby_no);
+	}
+	
+	@RequestMapping(value="/selectMakeStepImg", method=RequestMethod.POST, produces="application/text;charset=utf-8") 
+	@ResponseBody
+	public String selectMakeStepImg(@RequestBody MakeStepVo makeStepVo){
+		System.out.println("완성사진: " + makeStepVo);
+		return hobbyService.selectMakeStepImg(makeStepVo);
+	}
 
 }

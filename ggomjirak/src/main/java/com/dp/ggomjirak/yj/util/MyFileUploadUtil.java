@@ -19,7 +19,7 @@ public class MyFileUploadUtil {
 	public static final String YJ_ACADEMY_FOLDER = "D:/ggomjirak";
 	public static final String YJ_HOME_FOLDER = "C:/Users/user/Desktop";
 
-	private static String rootPath = YJ_HOME_FOLDER;
+	private static String rootPath = YJ_ACADEMY_FOLDER;
 	
 
 	

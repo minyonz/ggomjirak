@@ -590,28 +590,35 @@ figure[data-ke-type='opengraph'] .og-desc {
 																			</p>
 																		</c:if>
 																		<c:if test="${not empty makeStepVo.urlOgTag}">
-																				<figure data-ke-type="opengraph" data-og-title="${makeStepVo.urlOgTag.title}" 
+																			<c:choose>
+																				<c:when test="${makeStepVo.urlOgTag.status == 0}">
+																					<a href="${makeStepVo.urlOgTag.url }">${makeStepVo.urlOgTag.url}</a>
+																				</c:when>
+																				<c:otherwise>
+																					<figure data-ke-type="opengraph" data-og-title="${makeStepVo.urlOgTag.title}" 
 																					data-og-description="${makeStepVo.urlOgTag.desc}"  data-og-url="${makeStepVo.urlOgTag.url }" 
 																					data-og-image="${makeStepVo.urlOgTag.image}"> 
-																			      <a href="${makeStepVo.urlOgTag.url }">
-																		   			<c:set var = "image" value = "${makeStepVo.urlOgTag.image }"/>
-																		   				<c:choose>
-																		   					<c:when test="${fn:contains(image, 'blogthumb')}">
-																		   						<div class="og-image" 
-																			        			style="background-image:url(${contextPath}/resources/images/sad.png)"></div>
-																		   					</c:when>
-																		   					<c:otherwise>
-																		   						 <div class="og-image" 
-																			        				style="background-image:url(${makeStepVo.urlOgTag.image })"></div>
-																		   					</c:otherwise>
-																		   				</c:choose>
-																			        <div class="og-text">
-																			          <p class="og-title">${makeStepVo.urlOgTag.title}</p>
-																			          <p class="og-desc">${makeStepVo.urlOgTag.desc}</p>
-																			          <p class="og-host">${makeStepVo.urlOgTag.url }</p>
-																			        </div>
-																			      </a>
-																			    </figure>
+																				      <a href="${makeStepVo.urlOgTag.url }">
+																			   			<c:set var = "image" value = "${makeStepVo.urlOgTag.image }"/>
+																			   				<c:choose>
+																			   					<c:when test="${fn:contains(image, 'blogthumb')}">
+																			   						<div class="og-image" 
+																				        			style="background-image:url(${contextPath}/resources/images/sad.png)"></div>
+																			   					</c:when>
+																			   					<c:otherwise>
+																			   						 <div class="og-image" 
+																				        				style="background-image:url(${makeStepVo.urlOgTag.image })"></div>
+																			   					</c:otherwise>
+																			   				</c:choose>
+																				        <div class="og-text">
+																				          <p class="og-title">${makeStepVo.urlOgTag.title}</p>
+																				          <p class="og-desc">${makeStepVo.urlOgTag.desc}</p>
+																				          <p class="og-host">${makeStepVo.urlOgTag.url }</p>
+																				        </div>
+																				      </a>
+																				   	 </figure>
+																				</c:otherwise>
+																			</c:choose>
 																			    <p class="step_extra extra_link">
 																					${makeStepVo.link_desc}
 																		</c:if>

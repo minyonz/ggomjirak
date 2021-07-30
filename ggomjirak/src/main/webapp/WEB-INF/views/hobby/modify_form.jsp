@@ -804,8 +804,8 @@ ${hobbyVo }
 					</div>
 				 </div>
 				 <!-- //재료 부분 -->
-				<!-- 만들기 부분 -->
-				<div class="cont_box">
+				<!-- 만들기 완성 사진 부분 -->
+					<div class="cont_box">
 					<div class="row">
 						<div class="col-md-1">
 						</div>
@@ -828,6 +828,7 @@ ${hobbyVo }
 							<div class="row">
 								<div id="stepBoxWrap">
 									<c:forEach var="makeStepVo" items="${hobbyVo.makeSteps}" varStatus="vs">
+									<!-- stepBox -->
 										<div class="stepBox ${empty makeStepVo.make_step_img ? 'none_img' : ''}" id="stepBox_${vs.count}"> 
 										<!-- divStepItem -->
 										<!-- 이미지는 눌허용 -->
@@ -865,7 +866,7 @@ ${hobbyVo }
 														</c:when>
 														<c:otherwise>
 															<label class="stepImg_label" for="stepImg_file_${vs.count}">
-																<img id="previewImg_step_${vs.count}"" class="previewImg_step" src="${contextPath}/resources/images/preview_img.jpg" >
+																<img id="previewImg_step_${vs.count}" class="previewImg_step" src="${contextPath}/resources/images/preview_img.jpg" >
 															</label>
 															<input type="file" class="stepImg_file" 
 																 id="stepImg_file_${vs.count}" accept=".gif, .jpg, .png" 
@@ -957,7 +958,7 @@ ${hobbyVo }
 														style="width:24px;height:24px;vertical-align:top;"> 
 													<input type="text" value="${makeStepVo.link_url}"
 														 name="makeSteps[${vs.count - 1}].link_url"
-														 placeholder="사이트 주소를 입력해주세요"
+														 placeholder="사이트 주소를 입력해주세요."
 														 class="form-control stepLink_url" autocomplete="off"
 														 style="width:500px;resize:none; display: inline-block;">
 													<textarea 
@@ -975,7 +976,8 @@ ${hobbyVo }
 										<!-- //divStepItem -->
 									</div>
 									<!-- //stepBox -->
-									</c:forEach>
+									</c:forEach>			
+								</div>
 								<!-- //stepBoxWrap -->
 								<div style="padding:0 0 20px 180px; width:820px; text-align: center; margin: 27px 0 40px 0;"> <!-- stepBox추가 버튼 -->
 									<button type="button" class="btnAdd"
@@ -992,46 +994,41 @@ ${hobbyVo }
 							<!-- //셋째줄 -->
 							<!-- 넷째줄 -->
 							<div class="row" style="margin-top:10px; justify-content: center;">
-								<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs }" varStatus="vs">
+								<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
 									<div class="divCompleteImg" style="margin-right:20px; height: 140px;">
+									<label class="complImg_label" for="complImg_file_${vs.count}" style="border: 1px solid #e1e1e1;">
 										<c:choose>
 											<c:when test="${not empty completeImgVo.img_name}">
-												<label class="complImg_label" for="complImg_file_${vs.count}" style="border: 1px solid #e1e1e1;">
-													<img id="previewImg_compl_${vs.count}" class="previewImg_compl" 
-														src="/displayImage?filePath=${rootPath}${completeImgVo.img_name}" 
-														style="width:140px; height:140px;  cursor: pointer;">
-												</label>
-												<input type="file" class="complImg_file" 
-													 id="complImg_file_${vs.count}" accept=".gif, .jpg, .png" onchange="previewComplImg(this, ${v });"
-													style="display:none;width:0px;height:0px;font-size:0px;">
-												<input type="hidden" class="complImg_hidden" 
-													value="${completeImgVo.img_name}"
-													data-exist="1" data-num="${vs.count}"
-													id="completeImgs[${vs.count - 1}].img_name" 
-													name="completeImgs[${vs.count - 1}].img_name"/>
-												<input type="hidden" class="complImg_num" name="completeImgs[${vs.count - 1}].num" value="${vs.count}"/>
-												<div style="position: relative;bottom: 9.3rem;">
-													<a id="btnDelComplImg_${vs.count}" href="javascript:delComplImg(${vs.count})" 
-														class="btn_del btn_delComplImg" style="float:right;"></a>
-												</div>
+												<img id="previewImg_compl_${vs.count}" class="previewImg_compl" 
+													src="/displayImage?filePath=${rootPath}${completeImgVo.img_name}" style="width:140px; height:140px;  cursor: pointer;">
 											</c:when>
 											<c:otherwise>
-												<label class="complImg_label" for="complImg_file_${vs.count}" style="border: 1px solid #e1e1e1;">
-													<img id="previewImg_compl_${vs.count}" class="previewImg_compl" 
-														src="${contextPath}/resources/images/preview_img.jpg" style="width:140px; height:140px;  cursor: pointer;">
-												</label>
-												<input type="file" class="complImg_file" 
-													 id="complImg_file_${vs.count}" accept=".gif, .jpg, .png" onchange="previewComplImg(this, ${v });"
-													style="display:none;width:0px;height:0px;font-size:0px;">
-												<input type="hidden" class="complImg_hidden" data-exist="0" data-num="${vs.count}"
-													id="completeImgs[${vs.count - 1}].img_name" name="completeImgs[${vs.count - 1}].img_name"/>
-												<input type="hidden" class="complImg_num" name="completeImgs[${vs.count - 1}].num" value="${vs.count}"/>
-												<div style="position: relative;bottom: 9.3rem;">
-													<a id="btnDelComplImg_${vs.count}" href="javascript:delComplImg(${vs.count})" 
-														class="btn_del btn_delComplImg" style="float:right; display:none"></a>
-												</div>
+												<img id="previewImg_compl_${vs.count}" class="previewImg_compl" 
+													src="${contextPath}/resources/images/preview_img.jpg" style="width:140px; height:140px;  cursor: pointer;">
 											</c:otherwise>
 										</c:choose>
+									</label>
+									<input type="file" class="complImg_file" 
+										 id="complImg_file_${vs.count}" accept=".gif, .jpg, .png" onchange="previewComplImg(this, ${vs.count});"
+										style="display:none;width:0px;height:0px;font-size:0px;">
+									<c:choose>
+										<c:when test="${not empty completeImgVo.img_name}">
+											<input type="hidden" class="complImg_hidden" 
+												value="${completeImgVo.img_name}"
+												data-exist="1" 
+												id="completeImgs[${vs.count - 1}].img_name"
+												name="completeImgs[${vs.count - 1}].img_name"/>
+										</c:when>
+										<c:otherwise>
+											<input type="hidden" class="complImg_hidden" data-exist="0" 
+												id="completeImgs[${vs.count - 1}].img_name" name="completeImgs[${vs.count - 1}].img_name"/>
+										</c:otherwise>
+									</c:choose>
+									<input type="hidden" class="complImg_num" name="completeImgs[${vs.count - 1}].num" value="${vs.count}"/>
+									<div style="position: relative;bottom: 9.3rem;">
+										<a id="btnDelComplImg_${vs.count}" href="javascript:delComplImg(${vs.count})" 
+											class="btn_del btn_delComplImg" style="float:right; ${empty completeImgVo.img_name ? 'display:none' : ''}"></a>
+									</div>
 								</div>		
 								</c:forEach>
 							</div>
@@ -1042,7 +1039,7 @@ ${hobbyVo }
 						</div>
 					</div>
 				 </div>
-				 <!-- //만들기 부분 -->
+				 <!-- //만들기 완성사진 부분 -->
 				 <!-- 태그  -->
 <!-- 				 <div class="cont_box"> -->
 <!-- 					<div class="row"> -->
@@ -1145,7 +1142,7 @@ function calcFileName(thumbPath) {
 	// const home = 21;
 	// const yj = 12;
 	// const team;
-	var rootIndex = 21;
+	var rootIndex = 12;
 	// -> /test ~ 이런식으로 대쉬부터 시작하는 값으로 설정해놔야함 ! 
 	
 	console.log(thumbPath);
@@ -1216,15 +1213,23 @@ function previewMainImg(targetObj) {
 function delMainImg() {
 	console.log("삭제")
 	var fileName = $("#main_img").val();
-	console.log(fileName);
-	var url = "/deleteImg?fileName=" + fileName;
-	$.get(url, function(rData) {
-		if (rData == "success") {
+	$.get("/selectMainImg?hobby_no=${hobbyVo.hobby_no}", function(main_img) {
+		console.log("메인사진", main_img)
+		if(main_img == fileName) {
 			$("#main_img").val("");
 			$("#previewImg_main").attr("src", "${contextPath}/resources/images/main_img_btn.jpg");
 			$("#btnDelMainImg").css("display", "none");
+		} else {
+			$.get("/deleteFile?fileName=" + fileName, function(rData) {
+				if (rData == "success") {
+					$("#main_img").val("");
+					$("#previewImg_main").attr("src", "${contextPath}/resources/images/main_img_btn.jpg");
+					$("#btnDelMainImg").css("display", "none");
+				}
+			})
 		}
-	})
+	});
+	
 }
 function previewMakeStepImg(targetObj, seq) {
 	
@@ -1276,18 +1281,48 @@ function delStepImg(seq) {
 	var el = document.getElementById("makeSteps["+ (seq - 1) +"].make_step_img");
 	var fileName = $(el).val();
 	console.log(fileName);
-	var url = "/deleteImg?fileName=" + fileName;
-	$.get(url, function(rData) {
-		if (rData == "success") {
-			$(el).val("");
-			$(el).attr("data-exist", 0);
-			$("#stepBox_" + seq).addClass("none_img");
+	var makeStepVo = {
+			"hobby_no" : "${hobbyVo.hobby_no}",
+			"make_step_num" : seq,
+	}
+	console.log(makeStepVo);
+	$.ajax({
+		"url" : "/selectMakeStepImg",
+		"headers" : {
+			"Content-Type" : "application/json"
+		},
+		"method" : "post",
+		"dataType" : "text",
+		"data" : JSON.stringify(makeStepVo),
+		"success" : function(string) {
+			console.log("스탭사진 db", string);
+			// 디비 저장된게 아니라면 서버에서 삭제
+			if (string == "" || string == null) {
+				$.get("/deleteFile?fileName=" + fileName, function(rData) {
+					if (rData == "success") {
+						$(el).val("");
+						$(el).attr("data-exist", 0);
+						$("#stepBox_" + seq).addClass("none_img");
+		
+						$("#previewImg_step_" + seq).attr("src", "${contextPath}/resources/images/preview_img.jpg");
+						$("#btnDelStepImg_" + seq).css("display", "none");
+					}
+				})
+			} else {
+				// 디비에 있다면
+// 				서버에서 사진 삭제하지말고
+// 				프리뷰이미지만 없애기
+				$(el).val("");
+				$(el).attr("data-exist", 0);
+				$("#stepBox_" + seq).addClass("none_img");
+
+				$("#previewImg_step_" + seq).attr("src", "${contextPath}/resources/images/preview_img.jpg");
+				$("#btnDelStepImg_" + seq).css("display", "none");
+			} 
 			
-			$("#previewImg_step_" + seq).attr("src", "${contextPath}/resources/images/preview_img.jpg");
-			$("#btnDelStepImg_" + seq).css("display", "none");
-// 			console.log($("#previewImg_step_" + seq).parent().parent());
+			
 		}
-	})
+	});
 }
 // 다중파일 업로드
 var multifile_step = document.querySelector('#multifile_step');
@@ -1399,16 +1434,46 @@ function delComplImg(num) {
 	var el = document.getElementById("completeImgs["+ (num - 1) +"].img_name");
 	var fileName = $(el).val();
 	console.log(fileName);
-	var url = "/deleteImg?fileName=" + fileName;
-	$.get(url, function(rData) {
-		if (rData == "success") {
-			$(el).val("");
-			$(el).attr("data-exist", 0);
-			$("#previewImg_compl_" + num).attr("src", "${contextPath}/resources/images/preview_img.jpg");
-			$("#btnDelComplImg_" + num).css("display", "none");
+	var completeImgVo = {
+			"hobby_no" : "${hobbyVo.hobby_no}",
+			"num" : num,
+	}
+	console.log(completeImgVo);
+	$.ajax({
+		"url" : "/selectCompleteImgName",
+		"headers" : {
+			"Content-Type" : "application/json"
+		},
+		"method" : "post",
+		"dataType" : "text",
+		"data" : JSON.stringify(completeImgVo),
+		"success" : function(string) {
+			console.log("완성사진 db", string);
+			// 디비 저장된게 아니라면 서버에서 삭제
+			if (string == "" || string == null) {
+				$.get("/deleteFile?fileName=" + fileName, function(rData) {
+					if (rData == "success") {
+						$(el).val("");
+						$(el).attr("data-exist", 0);
+						$("#previewImg_compl_" + num).attr("src", "${contextPath}/resources/images/preview_img.jpg");
+						$("#btnDelComplImg_" + num).css("display", "none");
+					}
+				})
+			} else {
+				// 디비에 있다면
+// 				서버에서 사진 삭제하지말고
+// 				프리뷰이미지만 없애기
+				$(el).val("");
+				$(el).attr("data-exist", 0);
+				$("#previewImg_compl_" + num).attr("src", "${contextPath}/resources/images/preview_img.jpg");
+				$("#btnDelComplImg_" + num).css("display", "none");
+			} 
+			
+			
 		}
-	})
+	});
 }
+
 //* 준비물 부분
 $("#materialBoxWrap").sortable({
 	stop : function(event, ui) {

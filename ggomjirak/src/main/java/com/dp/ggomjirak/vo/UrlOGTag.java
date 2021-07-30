@@ -15,7 +15,9 @@ public class UrlOGTag {
 	private String title;
 	private String image;
 	private String desc;
-	
+	private int status;
+	private static final int NOT_FOUND = 0;
+	private static final int SUCCESS = 1;
 	
 	public UrlOGTag() {
 		super();
@@ -30,22 +32,29 @@ public class UrlOGTag {
 	        Elements ogTags = doc.select("meta[property^=og:]");
 	        if (ogTags.size() <= 0) {
 	        	System.out.println("ogTag못찾음");
+	        	this.status = NOT_FOUND;
+	        	this.url = url;
+	        } else {
+	        	 this.status = SUCCESS;
+	        	 for (int i = 0; i < ogTags.size(); i++) {
+	 	            Element tag = ogTags.get(i);
+	 	            String text = tag.attr("property");
+	 	            if ("og:url".equals(text)) {
+	 	            	this.url = tag.attr("content");
+	 	            } else if ("og:image".equals(text)) {
+	 	            	this.image = tag.attr("content");
+	 	            } else if ("og:description".equals(text)) {
+	 	            	this.desc = tag.attr("content");
+	 	            } else if ("og:title".equals(text)) {
+	 	            	this.title = tag.attr("content");
+	 	            }
+	 	        }
 	        }
-	        for (int i = 0; i < ogTags.size(); i++) {
-	            Element tag = ogTags.get(i);
-	            String text = tag.attr("property");
-	            if ("og:url".equals(text)) {
-	            	this.url = tag.attr("content");
-	            } else if ("og:image".equals(text)) {
-	            	this.image = tag.attr("content");
-	            } else if ("og:description".equals(text)) {
-	            	this.desc = tag.attr("content");
-	            } else if ("og:title".equals(text)) {
-	            	this.title = tag.attr("content");
-	            }
-	        }
-	    } catch (IOException e) {
+	       
+	    } catch (Exception e) {
 	    	e.printStackTrace();
+	    	this.status = NOT_FOUND;
+        	this.url = url;
 	    }
 	}
 	public static void main(String[] args) {
@@ -78,6 +87,14 @@ public class UrlOGTag {
 		this.desc = desc;
 	}
 
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 	public String getUrl() {
 		return url;
