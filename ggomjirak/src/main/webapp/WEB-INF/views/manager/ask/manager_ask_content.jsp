@@ -31,6 +31,10 @@
 			      <td style="width: 20%">${qnaVo.save_time}</td>
 			    </tr>
 			    <tr>
+			      <th scope="row">문의 유형</th>
+			      <td colspan=5 style="width: 90%">${qnaVo.qna_type_nm}</td>
+			    </tr>
+			    <tr>
 			      <th scope="row">제목</th>
 			      <td colspan=5 style="width: 90%">${qnaVo.title}</td>
 			    </tr>

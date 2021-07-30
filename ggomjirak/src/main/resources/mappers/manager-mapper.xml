@@ -293,8 +293,9 @@
 	</select>
 	
 	<select id="selectQnaByNo" resultType="QnAVo">
-		select * from tbl_QnA
-		where qna_no = #{qna_no}
+		select a.*, b.user_id "m_user_id", b.title "a_title", b.content "a_content", b.save_time "a_save_tiem" from tbl_qna a
+			left join tbl_qna b on a.qna_no = b.a_no
+		where a.qna_no = #{qna_no}
 	</select>
 	
 	<!-- 메인 -->
