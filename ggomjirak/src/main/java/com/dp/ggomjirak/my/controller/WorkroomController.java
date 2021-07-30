@@ -122,7 +122,6 @@ public class WorkroomController {
 		String user_id = memberVo.getUser_id();
 		pagingDto.setKeyword(keyword);
 		pagingDto.setUser_id(user_id);
-		// 나중에 삭제(hobbyVo에 hobby_writer = user_id)
 		pagingDto.setUser_id(user_id);
 		int hobbyCount = workroomService.searchHobbyCount(pagingDto);
 		int storyCount = workroomService.searchStoryCount(pagingDto);
@@ -169,6 +168,7 @@ public class WorkroomController {
 		map.put("unFollow", "unFollow");
 		return map;
 	}
+<<<<<<< HEAD
 
 
 }
@@ -185,8 +185,11 @@ public class WorkroomController {
 
 
 
+=======
+>>>>>>> c1d2dbfdfd6f96de4694324d9749c3ac0771b2d8
 
 
+}
 
 
 
