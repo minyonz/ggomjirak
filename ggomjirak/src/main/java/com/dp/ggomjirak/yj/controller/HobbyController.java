@@ -69,7 +69,6 @@ public class HobbyController {
 	public String update(Model model, @PathVariable("hobby_no") int hobby_no) throws Exception {
 		
 		HobbyVo hobbyVo = hobbyService.selectHobbyArticle(hobby_no, true);
-		System.out.println("hobbyVo:" + hobbyVo);
 		model.addAttribute("hobbyVo", hobbyVo);
 		model.addAttribute("rootPath", rootPath);
 		
@@ -86,8 +85,8 @@ public class HobbyController {
 	
 	@RequestMapping(value="/updateRun", method=RequestMethod.POST)
 	public String updateRun(HobbyVo hobbyVo) throws Exception {
-		System.out.println(hobbyVo);
-		
+		System.out.println("컨트롤러 hobbyMaterials: " + hobbyVo.getHobbyMaterials());
+		hobbyService.updateTest(hobbyVo);
 		
 		// 리다이렉트 자기글로 가기
 		return "redirect:/listAll";

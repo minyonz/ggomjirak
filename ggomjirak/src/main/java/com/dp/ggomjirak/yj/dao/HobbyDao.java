@@ -56,5 +56,5 @@ public interface HobbyDao {
 	public String selectMainImg(int hobby_no);
 	public String selectMakeStepImg(MakeStepVo makeStepVo);
 	
-	public void updateMakeStep(List<MakeStepVo> makeSteps);
+	public void updateHobbyMaterial(List<HobbyMaterialVo> hobbyMaterials);
 }

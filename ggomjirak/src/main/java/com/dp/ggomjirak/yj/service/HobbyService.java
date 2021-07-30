@@ -1,6 +1,9 @@
 package com.dp.ggomjirak.yj.service;
 
+import java.util.List;
+
 import com.dp.ggomjirak.vo.CompleteImgVo;
+import com.dp.ggomjirak.vo.HobbyMaterialVo;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.MakeStepVo;
 
@@ -16,4 +19,9 @@ public interface HobbyService {
 	public String selectCompleteImgName (CompleteImgVo completeImgVo);
 	public String selectMainImg(int hobby_no);
 	public String selectMakeStepImg(MakeStepVo makeStepVo);
+	
+	//* 수정작업
+	public void updateHobbyMaterial(List<HobbyMaterialVo> hobbyMaterials); 
+	
+	public void updateTest(HobbyVo hobbyVo);
 }

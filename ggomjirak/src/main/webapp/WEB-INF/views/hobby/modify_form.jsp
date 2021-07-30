@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -18,7 +17,6 @@
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
 
 <!-- 모달  -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> -->
 <script src="${contextPath}/resources/js/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="${contextPath}/resources/css/sweetalert2.min.css">
 
@@ -833,6 +831,8 @@ ${hobbyVo }
 									<c:forEach var="makeStepVo" items="${hobbyVo.makeSteps}" varStatus="vs">
 									<!-- stepBox -->
 										<div class="stepBox ${empty makeStepVo.make_step_img ? 'none_img' : ''}" id="stepBox_${vs.count}"> 
+										<input type="hidden" name="makeSteps[${vs.count -1}].step_no"
+											value="${makeStepVo.step_no}"/>
 										<!-- divStepItem -->
 										<!-- 이미지는 눌허용 -->
 										<div class="divStepItem">
@@ -1000,6 +1000,7 @@ ${hobbyVo }
 								<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
 									<div class="divCompleteImg" style="margin-right:20px; height: 140px;">
 									<label class="complImg_label" for="complImg_file_${vs.count}" style="border: 1px solid #e1e1e1;">
+										<input type="hidden" name="completeImgs[${vs.count - 1}].cimg_no" value="${completeImgVo.cimg_no}"/>
 										<c:choose>
 											<c:when test="${not empty completeImgVo.img_name}">
 												<img id="previewImg_compl_${vs.count}" class="previewImg_compl" 
@@ -1486,6 +1487,9 @@ $("#materialBoxWrap").sortable({
 function createMaterialBox() {
 	var box = $(".materialBox:eq(0)").clone();
 	console.log($(".materialBox:eq(0)"));
+	$(box).find(".hm_no").val("");
+	$(box).find(".materialName").val("");
+	$(box).find(".material_detail").val("");
 	$(box).find("input[type=text]").val("");
 	$(box).find("input[type=text]").attr("placeholder", "");
 	$(box)
@@ -1504,6 +1508,7 @@ function createMaterialBox() {
 function reorderMaterial() {
 	$(".materialBox").each(function(i, box) {
 	  	$(box).attr("id", "materialBox_" + (i + 1));
+	  	$(box).find(".hm_no").attr("name", "hobbyMaterials[" + i + "].hm_no");
         $(box).find(".seq").attr("name", "hobbyMaterials[" + i + "].seq").val(i + 1);
         $(box).find(".materialName").attr("name", "hobbyMaterials[" + i + "].materialName");
         $(box).find(".material_detail").attr("name", "hobbyMaterials[" + i + "].material_detail");

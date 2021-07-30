@@ -105,9 +105,10 @@ public class HobbyDaoImpl implements HobbyDao {
 	}
 
 	@Override
-	public void updateMakeStep(List<MakeStepVo> makeSteps) {
-		sqlSession.update(NAMESPACE + "updateMakeStep", makeSteps);
+	public void updateHobbyMaterial(List<HobbyMaterialVo> hobbyMaterials) {
+		sqlSession.update(NAMESPACE + "updateHobbyMaterial", hobbyMaterials);
 	}
+
 
 
 

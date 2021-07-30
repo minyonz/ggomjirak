@@ -25,13 +25,11 @@ $(document).ready(function() {
 <style>
 /* <내가 한 style> */
 /* 1. 전체 큰 영역 */
-
 /* 2. 후기 */
 .review-row{
  padding-top: 10px;
  border-bottom: 2px solid #c1c1c1;
 }
-
 .review-content p{
 /* 	max-height: 4.8em; */
 	overflow: hidden;
@@ -39,22 +37,17 @@ $(document).ready(function() {
 	-webkit-line-clamp: 6;
 	-webkit-box-orient: vertical;
 }
-
 .comment-row{
  padding-top: 10px;
  padding-bottom: 10px;
  border-bottom: 2px solid #c1c1c1;
 }
-
 .comment-row.recomment-row{
  padding-left: 60px;
  padding-top: 10px;
  padding-bottom: 10px;
  border-bottom: 2px solid #c1c1c1;
 }
-
-
-
 .btnMenu {
 	background: url("${contextPath}/resources/images/menu.png") no-repeat center; 
 	outline : none;
@@ -62,7 +55,6 @@ $(document).ready(function() {
 	width: 25px;
 	height: 25px;
 }
-
 .btnMenu_cmt {
 	background: url("${contextPath}/resources/images/menu.png") no-repeat center; 
 	background-size: 15px;
@@ -71,20 +63,16 @@ $(document).ready(function() {
 	width: 15px;
 	height: 15px;
 }
-
 .container_north {
 	border-bottom : 3px solid #1f5e43;
 }
-
 .body {
     margin-bottom: 40px;
     margin-top: 40px;
 }
-
 .green {
  color: #1f5e43;
 }
-
 .displayNone {
 display:none;
 }
@@ -94,24 +82,20 @@ color: #1f5e43;
 font-size: 27px;
 font-weight: 700;
 }
-
 #hobby_intro{
 text-align: center;
 color: #1f5e43;
 font-weight: 550;
 }
-
 #reg_date{
 color: #1f5e43;
 font-weight: 550;
 }
-
 #view_cnt{
 color: #1f5e43;
 float: right;
 font-weight: 550;
 }
-
 .mainImg_cont{
 	overflow: hidden;
     display: flex;
@@ -120,32 +104,25 @@ font-weight: 550;
     width: 500px;
     height: 400px;
 }
-
 #main_img{
 object-fit: cover;
 height: 100%;
 width: 100%;
 }
-
-
 .user_row, .time_row, .cost_row, 
 .level_row {
 height: 90px;
 }
-
 .sm_tit{
 font-weight:550;
 color: #1f5e43;
 }
-
-
 /* carousel 슬라이드 */
 .carousel {
 	margin: 0 auto;
 	width: 900px;
 /* 	height:1100px; */
 }
-
 .carousel-inner {
     position: relative;
     justify-content: center;
@@ -159,13 +136,11 @@ color: #1f5e43;
 /* 	height: 1100px; */
     overflow: hidden;
 }
-
 .slideImg{
 	width: 100%;
     height: 100%;
     object-fit: cover;
 }
-
 .extra_tip {
     background: url(/resources/images/lamp.png) left -2px no-repeat;
 /*     background-size: 26px 26px; */
@@ -185,7 +160,6 @@ color: #1f5e43;
     line-height: 1.6;
     margin: 14px 0 14px 0;
 }
-
 @media screen and (min-width: 1300px) {
 .container_north, .cotainer_south {
   display: grid; 
@@ -203,7 +177,6 @@ color: #1f5e43;
 .body { grid-area: body; }
 .side-right { grid-area: side-right; }
  }
-
 </style>
 <!-- 가져온 스타일 -->
 <style>
@@ -264,10 +237,6 @@ color: #1f5e43;
 /* .view_step_cont .carousel-control {padding:0;} */
 /* .view_step_cont .carousel-indicators {bottom:-36px;} */
 /* .view_step_cont .carousel-indicators li {width:10px; height:10px;} */
-
-
-
-
 /* 2. 탭 css (후기, 댓글) */
 .tab-head{
 padding-left: 0px !important;
@@ -304,40 +273,32 @@ border-left: 4px solid #5741A3;
 .tab-pane p{
 /* border-top: 1px solid #c1c1c1; */
 }
-
-
 /* 3. pagination */
 .pagination_rounded,
 .pagination_square {
     display: inline-block;
     padding-top: 20px;
 }
-
 .pagination_rounded ul {
     margin: 0;
     padding: 0;
     list-style: none
 }
-
 .pagination_rounded li:first-child {
     margin-left: 0px
 }
-
 .pagination_rounded ul li {
     float: left;
     margin-left: 10px
 }
-
 .pagination_rounded ul li a:hover {
     background: #4285f4;
     color: #fff;
     border: 1px solid #4285f4
 }
-
 a:link {
     text-decoration: none;
 }
-
 .pagination_rounded .prev {
     margin-left: 0px;
     border-radius: 35px;
@@ -345,7 +306,6 @@ a:link {
     height: 34px;
     line-height: 34px
 }
-
 .pagination_rounded ul li a {
     float: left;
     color: #4285f4;
@@ -357,22 +317,18 @@ a:link {
     margin-bottom: 40px;
     border: 1px solid #e0e0e0
 }
-
 .pagination_rounded .prev i {
     margin-right: 10px
 }
-
 .pagination_rounded .next {
     border-radius: 35px;
     width: 90px;
     height: 34px;
     line-height: 34px
 }
-
 .visible-xs {
     display: none !important;
 }
-
 /* URL*/
 figure[data-ke-type='opengraph'] a {
     box-sizing: border-box;
@@ -644,9 +600,6 @@ figure[data-ke-type='opengraph'] .og-desc {
 						            </div>
 						            <!-- //슬라이드 이미지 -->
 						            <!-- 만들기 컨테이너 -->
-						            <style>
-						            	
-						            </style>
 						            
 						            <div class="divStepView" style="display:none">
 						            <c:forEach var="makeStepVo" items="${hobbyVo.makeSteps}">
@@ -701,7 +654,6 @@ figure[data-ke-type='opengraph'] .og-desc {
 									</div>
 								</div>
 								<!-- 완성사진 영역 -->
-<!-- 								<div><b>완성사진</b><span>craft</span></div> -->
 								<div style="margin-top: 100px;">
 									<div class="carousel slide" id="craftSlide" style="width:700px">
 										<ol class="carousel-indicators">
@@ -982,10 +934,7 @@ function chgViewStep(step) {
         else if(step==4) $(this).addClass('none');
     });
 }
-
-
 //* 댓글 부분
-
 // 일반 댓글 작성
 function insertComment() {
 	var c_content = $("#c_content").val();
@@ -1014,7 +963,6 @@ function insertComment() {
 	});
 	
 }	
-
 //답댓글 작성
 function insertRecomment(el) {
 	var re_group = $(el).parent().parent().parent().parent().find(".re_group").val()
@@ -1047,7 +995,6 @@ function insertRecomment(el) {
 		}
 	});
 }
-
 // 답글 버튼 누를때 
 function doRecomment(c_no) {
 	var reply = '<div id="reply_div">'+$('#reply_div').html()+'</div>';
@@ -1056,9 +1003,7 @@ function doRecomment(c_no) {
     $('#reply_div').show();
     $("#parent_c_no").val(c_no);
 }	
-
 var hobby_writer = "${hobbyVo.hobby_writer}";
-
 // 댓글 리스트 조회
 function selectCommentList() {
 	$("#commentContainer > .comment-row:gt(0)").remove();
@@ -1108,7 +1053,6 @@ function selectCommentList() {
 		});
 	});
 }
-
 // 댓글 수정 버튼 누를때
 function doUpdateComment(c_no) {
 	console.log(c_no);
@@ -1117,7 +1061,6 @@ function doUpdateComment(c_no) {
     $("#updateCommentDiv_" + c_no).find(".c_content").val(c_content);
 	$("#view_comment_" + c_no).hide();
 }
-
 function updateComment(c_no) {
 	var c_content = $("#updateCommentDiv_" + c_no).find(".c_content").val();
 	var url = "/comment/updateComment";
@@ -1142,8 +1085,6 @@ function updateComment(c_no) {
 		}
 	});
 }
-
-
 // 댓글 삭제  
 function deleteComment(c_no) {
 	var url = "/comment/deleteComment/" + c_no;
@@ -1158,7 +1099,6 @@ function deleteComment(c_no) {
 		});
 	}
 }
-
 var commentOpens = 0;
 function moreViewToggle() {
 	if(commentOpens == 0) {

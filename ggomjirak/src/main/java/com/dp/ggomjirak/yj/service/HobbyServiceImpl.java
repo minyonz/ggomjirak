@@ -138,4 +138,29 @@ public class HobbyServiceImpl implements HobbyService {
 		return hobbyDao.selectMakeStepImg(makeStepVo);
 	}
 
+	@Override
+	public void updateHobbyMaterial(List<HobbyMaterialVo> hobbyMaterials) {
+		hobbyDao.updateHobbyMaterial(hobbyMaterials);
+	}
+	
+	@Transactional
+	@Override
+	public void updateTest(HobbyVo hobbyVo) {
+		int hobby_no = hobbyVo.getHobby_no();
+		List<HobbyMaterialVo> hobbyMaterials = hobbyVo.getHobbyMaterials();
+		// material 테이블 insert 작업 (새로운 준비물 있으면 넣고 아니면 안넣는 작업)
+		for (HobbyMaterialVo hobbyMaterialVo : hobbyMaterials) {
+			String materialName = hobbyMaterialVo.getMaterialName();
+			materialDao.insertMaterial(materialName);
+		}
+		// hobby_material 테이블 update작업
+		for (HobbyMaterialVo hobbyMaterialVo : hobbyMaterials) {
+			int material_no = materialDao.getMaterialNo(hobbyMaterialVo.getMaterialName());
+			//material_no 세팅
+			hobbyMaterialVo.setMaterial_no(material_no);
+		}
+		hobbyDao.updateHobbyMaterial(hobbyMaterials);
+		
+	}
+
 }
