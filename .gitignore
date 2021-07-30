@@ -3,6 +3,10 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,java
 
 root-context.xml
+<<<<<<< HEAD
+=======
+
+>>>>>>> 38c31c1c91e0b6f0692b176c9ce0cb3b67c39c90
 */src/test/
 Servers/
 
