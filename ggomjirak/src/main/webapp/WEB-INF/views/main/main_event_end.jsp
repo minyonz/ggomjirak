@@ -14,15 +14,15 @@
 	
 					<ul class="nav nav-tabs">
 						
-						<li class="nav-item"><a id="list" class="nav-link active" href="/main/mainEvent">진행중인 이벤트</a></li>
-						<li class="nav-item"><a id="listEnd" class="nav-link" href="/main/mainEventListEnd">종료된 이벤트</a></li>
+						<li class="nav-item"><a id="list" class="nav-link" href="/main/mainEvent">진행중인 이벤트</a></li>
+						<li class="nav-item"><a id="listEnd" class="nav-link active" href="/main/mainEventListEnd">종료된 이벤트</a></li>
 						<li class="nav-item"><a id="listAll" class="nav-link" href="/main/mainEventListAll">전체 이벤트</a></li>
 					</ul>
 				</div>
 				
 				<div style="padding: 20px; overflow: hidden;">
 				
-				<c:forEach var="event" items="${eventList}">
+				<c:forEach var="event" items="${eventListEnd}">
 				<div class="col-lg-6 col-md-12 col-sm-12" style="float:left; padding: 30px">
 					<div class="featured__item">
 						<div>
@@ -44,7 +44,7 @@
 				
 				<div class="product__pagination justify-content-center " style="display: flex">
 				<c:if test="${pagingDto.startPage != 1}">
-                        <a href="/main/mainEvent?page=${pagingDto.startPage - 1}&perPage=${pagingDto.perPage}"><i class="fa fa-long-arrow-left"></i></a>
+                        <a href="/main/mainEventListEnd?page=${pagingDto.startPage - 1}&perPage=${pagingDto.perPage}"><i class="fa fa-long-arrow-left"></i></a>
                 </c:if>
                 <c:forEach var="v" begin="${pagingDto.startPage}" end="${pagingDto.endPage}">
                 	<a
@@ -56,10 +56,10 @@
 						 		class="page-item"
 							</c:otherwise>
 						</c:choose>
-                        href="/main/mainEvent?page=${v}&perPage=${pagingDto.perPage}">${v}</a>
+                        href="/main/mainEventListEnd?page=${v}&perPage=${pagingDto.perPage}">${v}</a>
                 </c:forEach>
                 <c:if test="${pagingDto.endPage < pagingDto.totalPage}">
-                        <a href="/main/mainEvent?page=${pagingDto.endPage + 1}&perPage=${pagingDto.perPage}"><i class="fa fa-long-arrow-right green_background"></i></a>
+                        <a href="/main/mainEventListEnd?page=${pagingDto.endPage + 1}&perPage=${pagingDto.perPage}"><i class="fa fa-long-arrow-right green_background"></i></a>
                 </c:if>
                 </div>
 								

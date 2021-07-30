@@ -23,7 +23,26 @@ public class HobbyVo {
 	private String is_del;
 	private Timestamp reg_date;
 	private Timestamp mod_date;
+	private String user_nick;
 	
+	public String getUser_nick() {
+		return user_nick;
+	}
+
+
+
+	public void setUser_nick(String user_nick) {
+		this.user_nick = user_nick;
+	}
+
+
+
+	public void setIs_del(String is_del) {
+		this.is_del = is_del;
+	}
+
+
+
 	private MultipartFile mf_main_img;
 	
 	// has a
