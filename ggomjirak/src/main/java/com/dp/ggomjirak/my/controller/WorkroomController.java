@@ -72,7 +72,7 @@ public class WorkroomController {
 		// 스토리 목록
 		storyPagingDto.setUser_id(user_id);
 		List<StoryVo> storyList = storyService.StoryList(storyPagingDto);
-		pagingDto.setHobby_writer(user_id);
+		pagingDto.setUser_id(user_id);
 		
 //		System.out.println("storyList:" + storyList);
 		// 취미 목록
@@ -100,7 +100,7 @@ public class WorkroomController {
 		// pagingDto값 받고 sesseion값으로 아이디 설정 후 넘겨줌
 		int count = workroomService.hobbyCount(user_id);
 		pagingDto.setCount(count);
-		pagingDto.setHobby_writer(user_id);
+		pagingDto.setUser_id(user_id);
 		List<HobbyVo> hobbyList = workroomService.listHobby(pagingDto);
 		// 프로필 카드용
 		profileCommon(model, session);
@@ -122,8 +122,6 @@ public class WorkroomController {
 		String user_id = memberVo.getUser_id();
 		pagingDto.setKeyword(keyword);
 		pagingDto.setUser_id(user_id);
-		// 나중에 삭제(hobbyVo에 hobby_writer = user_id)
-		pagingDto.setHobby_writer(user_id);
 		int hobbyCount = workroomService.searchHobbyCount(pagingDto);
 		int storyCount = workroomService.searchStoryCount(pagingDto);
 		int count = 0;
@@ -172,21 +170,6 @@ public class WorkroomController {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

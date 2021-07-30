@@ -9,7 +9,7 @@ public class HobbyVo {
 	//db column
 	private int hobby_no;
 	private String hobby_title;
-	private String hobby_writer;
+	private String user_id;
 	private String main_img;
 	private String hobby_video;
 	private String hobby_intro;
@@ -59,26 +59,26 @@ public class HobbyVo {
 	
 	
 
-	public HobbyVo(String hobby_writer, String hobby_title) {
+	public HobbyVo(String user_id, String hobby_title) {
 		super();
-		this.hobby_writer = hobby_writer;
+		this.user_id = user_id;
 		this.hobby_title = hobby_title;
 	}
 
 
-	public HobbyVo(String hobby_writer, String hobby_title, List<MakeStepVo> makeSteps) {
+	public HobbyVo(String user_id, String hobby_title, List<MakeStepVo> makeSteps) {
 		super();
-		this.hobby_writer = hobby_writer;
+		this.user_id = user_id;
 		this.hobby_title = hobby_title;
 		this.makeSteps = makeSteps;
 	}
 
 
 
-	public HobbyVo(String hobby_writer, String hobby_title, List<MakeStepVo> makeSteps,
+	public HobbyVo(String user_id, String hobby_title, List<MakeStepVo> makeSteps,
 			List<HobbyMaterialVo> hobbyMaterials) {
 		super();
-		this.hobby_writer = hobby_writer;
+		this.user_id = user_id;
 		this.hobby_title = hobby_title;
 		this.makeSteps = makeSteps;
 		this.hobbyMaterials = hobbyMaterials;
@@ -86,9 +86,9 @@ public class HobbyVo {
 
 
 
-	public HobbyVo(String hobby_writer, String hobby_title, String main_img, String hobby_intro) {
+	public HobbyVo(String user_id, String hobby_title, String main_img, String hobby_intro) {
 		super();
-		this.hobby_writer = hobby_writer;
+		this.user_id = user_id;
 		this.hobby_title = hobby_title;
 		this.main_img = main_img;
 		this.hobby_intro = hobby_intro;
@@ -120,14 +120,14 @@ public class HobbyVo {
 
 
 
-	public String getHobby_writer() {
-		return hobby_writer;
+	public String getUser_id() {
+		return user_id;
 	}
 
 
 
-	public void setHobby_writer(String hobby_writer) {
-		this.hobby_writer = hobby_writer;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 
@@ -338,7 +338,7 @@ public class HobbyVo {
 
 	@Override
 	public String toString() {
-		return "HobbyVo [hobby_no=" + hobby_no + ", hobby_title=" + hobby_title + ", hobby_writer=" + hobby_writer
+		return "HobbyVo [hobby_no=" + hobby_no + ", hobby_title=" + hobby_title + ", user_id=" + user_id
 				+ ", main_img=" + main_img + ", hobby_video=" + hobby_video + ", hobby_intro=" + hobby_intro
 				+ ", l_cate_no=" + l_cate_no + ", m_cate_no=" + m_cate_no + ", level_no=" + level_no + ", cost_no="
 				+ cost_no + ", time_no=" + time_no + ", view_cnt=" + view_cnt + ", like_cnt=" + like_cnt
