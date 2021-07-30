@@ -773,7 +773,10 @@ ${hobbyVo }
 										<img src = "${contextPath}/resources/images/double-arrow.png"
 											style="width:15px; height:20px; opacity:0.75;"/>
 										<div class="divMaterialItem" style="display:inline-block;">
-											<input type="hidden" class="seq" name="hobbyMaterials[${vs.count -1}].seq" value="${hobbyMaterialVo.seq}"/>
+											<input type="hidden" class="hm_no" name="hobbyMaterials[${vs.count -1}].hm_no" 
+												value="${hobbyMaterialVo.hm_no}"/>
+											<input type="hidden" class="seq" name="hobbyMaterials[${vs.count -1}].seq" 
+												value="${hobbyMaterialVo.seq}"/>
 											<input type="text" value="${hobbyMaterialVo.materialName}"
 												style="width:200px; display: inline-block;" 
 												class="materialName form-control" 

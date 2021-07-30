@@ -69,6 +69,7 @@ public class HobbyController {
 	public String update(Model model, @PathVariable("hobby_no") int hobby_no) throws Exception {
 		
 		HobbyVo hobbyVo = hobbyService.selectHobbyArticle(hobby_no, true);
+		System.out.println("hobbyVo:" + hobbyVo);
 		model.addAttribute("hobbyVo", hobbyVo);
 		model.addAttribute("rootPath", rootPath);
 		

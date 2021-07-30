@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class MakeStepVo {
+	private int step_no;
 	private int hobby_no;
 	private int make_step_num;
 	private String make_step_text;
@@ -100,11 +101,21 @@ public class MakeStepVo {
 	}
 
 
+	public int getStep_no() {
+		return step_no;
+	}
+
+
+	public void setStep_no(int step_no) {
+		this.step_no = step_no;
+	}
+
+
 	@Override
 	public String toString() {
-		return "MakeStepVo [hobby_no=" + hobby_no + ", make_step_num=" + make_step_num + ", make_step_text="
-				+ make_step_text + ", make_step_img=" + make_step_img + ", tip=" + tip + ", note=" + note
-				+ ", link_url=" + link_url + ", link_desc=" + link_desc + ", urlOgTag=" + urlOgTag + "]";
+		return "MakeStepVo [step_no=" + step_no + ", hobby_no=" + hobby_no + ", make_step_num=" + make_step_num
+				+ ", make_step_text=" + make_step_text + ", make_step_img=" + make_step_img + ", tip=" + tip + ", note="
+				+ note + ", link_url=" + link_url + ", link_desc=" + link_desc + ", urlOgTag=" + urlOgTag + "]";
 	}
 
 

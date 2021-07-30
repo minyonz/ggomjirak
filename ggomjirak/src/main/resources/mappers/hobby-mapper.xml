@@ -21,18 +21,6 @@
  		)
  	</insert>
  	
- 	<!-- vo로 글 상세조회 -->
-	<select id="selectHobby2" parameterType="HobbyVo" resultType="HobbyVo">
-			select a.*, b.cate_name l_cate_name, c.cate_name m_cate_name, d.level_name, e.cost_name, f.time_name
-			from tbl_hobby a
-			join tbl_hobby_cate b on a.l_cate_no = b.cate_no
-			join tbl_hobby_cate c on a.m_cate_no = c.cate_no
-			join tbl_level_cate d on a.level_no = d.level_no
-			join tbl_cost_cate e on a.cost_no = e.cost_no 
-			join tbl_time_cate f on a.time_no = f.time_no
-			where a.hobby_no = #{hobby_no}
-	</select> 	
- 	
  	<!-- 글번호로 글 상세조회 -->
  	<select id="selectHobby" parameterType="int" resultType="HobbyVo">
 			SELECT 
@@ -49,13 +37,6 @@
 			WHERE a.hobby_no = #{hobby_no}
 	</select> 	
 	
-	<!-- vo로 make_step 상세조회 -->
-	<select id="selectMakeStepList2" parameterType="HobbyVo" resultType="MakeStepVo">
-			SELECT * FROM tbl_make_step
-	 		WHERE hobby_no = #{hobby_no}
-	 		ORDER BY make_step_num ASC
-	</select> 	
-	
  	<!-- 글번호로 make_step 조회 -->
  	<select id="selectMakeStepList" parameterType="int" resultType="MakeStepVo">
 			SELECT * FROM tbl_make_step
@@ -63,22 +44,11 @@
 	 		ORDER BY make_step_num ASC
 	</select> 	
 	
-	<!-- vo로 hobby_material 조회 -->
-	<select id="selectHobbyMaterialList2" parameterType="HobbyVo" resultType="HobbyMaterialVo">
-			SELECT 
-				b.hobby_no hobby_no, a.material_no material_no, a.material_name materialName, 
-				b.material_detail material_detail, b.seq seq
-			FROM 
-				tbl_material a, tbl_hobby_material b
-			WHERE a.material_no = b.material_no AND b.hobby_no = #{hobby_no}
-			ORDER BY seq
-	</select> 	
- 	
  	<!-- 글번호로 hobby_material 상세조회 -->
  	<select id="selectHobbyMaterialList" parameterType="int" resultType="HobbyMaterialVo">
 			SELECT 
-				b.hobby_no hobby_no, a.material_no material_no, a.material_name materialName, 
-				b.material_detail material_detail, b.seq seq
+				b.hm_no hm_no, b.hobby_no hobby_no, a.material_no material_no, 
+				a.material_name materialName, b.material_detail material_detail, b.seq seq
 			FROM 
 				tbl_material a, tbl_hobby_material b
 			WHERE a.material_no = b.material_no AND b.hobby_no = #{hobby_no}
@@ -86,22 +56,27 @@
 	</select> 	
 	
 	<!-- 글번호로 완성사진 조회 -->
+	<!-- 상세조회용 -->
  	<select id="selectCompleteImgListNotNull" parameterType="int" resultType="CompleteImgVo">
-	 		SELECT ROWNUM seq, A.* 
-	 		FROM (SELECT * FROM tbl_complete_img ORDER BY num) A
-			WHERE hobby_no = #{hobby_no} AND img_name IS NOT NULL
+	 		select *
+			from tbl_complete_img
+			where hobby_no = #{hobby_no} and img_name is not null
+			order by num
 	</select> 
-	
+	<!-- 수정용 보기용 -->
 	<select id="selectCompleteImgListAll" parameterType="int" resultType="CompleteImgVo">
-	 		SELECT ROWNUM seq, A.* 
-	 		FROM (SELECT * FROM tbl_complete_img ORDER BY num) A
-			WHERE hobby_no = #{hobby_no}
+	 		select *
+			from tbl_complete_img
+			where hobby_no = #{hobby_no}
+			order by num
 	</select> 
  	
  	<!-- 만들기 순서 -->
  	<insert id="insertMakeStep" parameterType="java.util.List">
-	    INSERT INTO tbl_make_step
-	    SELECT A.* FROM (
+	    INSERT INTO
+	    	 tbl_make_step (step_no, hobby_no, make_step_num, make_step_text,
+	    	 				make_step_img, tip, note, link_url, link_desc)
+	    SELECT seq_step_no.nextval, A.* FROM (
 	    <foreach item="item" collection="list" separator="UNION ALL" >
 	        select #{item.hobby_no} HOBBY_NO,
 	        #{item.make_step_num} MAKE_STEP_NUM,
@@ -117,8 +92,9 @@
 	
 	<!-- hobby_material insert -->
 	<insert id="insertHobbyMaterial"  parameterType="java.util.List">
-		INSERT INTO tbl_hobby_material
-	    SELECT A.* FROM (
+		INSERT INTO 
+			tbl_hobby_material (hm_no, hobby_no, material_no, material_detail, seq)
+	    SELECT seq_hm_no.nextval, A.* FROM (
 	    <foreach item="item" collection="list" separator="UNION ALL" >
 	        select #{item.hobby_no} HOBBY_NO,
 	        #{item.material_no} MATERIAL_NO,
@@ -130,8 +106,8 @@
 	
 	<!-- complete_img insert -->
 	<insert id="insertCompleteImg" parameterType="java.util.List">
-		INSERT INTO tbl_complete_img
-	    SELECT A.* FROM (
+		INSERT INTO tbl_complete_img (cimg_no, hobby_no, img_name, num)
+	    SELECT seq_cimg_no.nextval, A.* FROM (
 	    <foreach item="item" collection="list" separator="UNION ALL" >
 	        select #{item.hobby_no, jdbcType=VARCHAR} HOBBY_NO,
 	        #{item.img_name, jdbcType=VARCHAR} IMG_NAME,
@@ -176,7 +152,7 @@
 	</update>
 	
 	<!-- 만들기 순서 수정-->
-<!--  	<update id="updateMakeStep" parameterType="java.util.List"> -->
+ 	<update id="updateMakeStep" parameterType="java.util.List">
 <!--  		<foreach  item="item" collection="list"  index="index"  -->
 <!--     	  separator=";" open="DECLARE BEGIN" close="; END;" > -->
 <!-- 			UPDATE tbl_make_step -->
@@ -189,5 +165,5 @@
 <!-- 				link_desc = #{item.link_desc, jdbcType=VARCHAR} -->
 <!-- 			WHERE hobby_no = #{item.hobby_no} AND make_step_num = #{ite -->
 <!-- 		</foreach> -->
-<!-- 	</update> -->
+	</update>
  </mapper>

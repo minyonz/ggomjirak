@@ -705,16 +705,16 @@ figure[data-ke-type='opengraph'] .og-desc {
 								<div style="margin-top: 100px;">
 									<div class="carousel slide" id="craftSlide" style="width:700px">
 										<ol class="carousel-indicators">
-												<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}">
-														<li data-slide-to="${completeImgVo.seq - 1 }" 
+												<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
+														<li data-slide-to="${vs.index}" 
 															data-target="#craftSlide"
-															class="${completeImgVo.seq==1  ? 'active' : ''}">
+															class="${vs.index==0  ? 'active' : ''}">
 														</li>
 													</c:forEach>
 										</ol>
 										<div class="carousel-inner">
-											<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs }">
-											<div data-num="${completeImgVo.seq}" class="carousel-item ${completeImgVo.seq==1  ? 'active' : ''}">
+											<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}">
+											<div data-num="${vs.count}" class="carousel-item ${vs.index==0  ? 'active' : ''}">
 												<img class="d-block w-100" 
 													src="/displayImage?filePath=${rootPath}${completeImgVo.img_name}" />
 											</div>

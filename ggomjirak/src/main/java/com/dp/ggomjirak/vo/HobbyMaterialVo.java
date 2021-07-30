@@ -2,6 +2,7 @@ package com.dp.ggomjirak.vo;
 
 public class HobbyMaterialVo {
 	//db column
+	private int hm_no;
 	private int hobby_no;
 	private int material_no;
 	private String material_detail;
@@ -73,6 +74,16 @@ public class HobbyMaterialVo {
 	
 	
 
+	public int getHm_no() {
+		return hm_no;
+	}
+
+
+	public void setHm_no(int hm_no) {
+		this.hm_no = hm_no;
+	}
+
+
 	public String getMaterialName() {
 		return materialName;
 	}
@@ -81,11 +92,13 @@ public class HobbyMaterialVo {
 		this.materialName = materialName;
 	}
 
+
 	@Override
 	public String toString() {
-		return "HobbyMaterialVo [hobby_no=" + hobby_no + ", material_no=" + material_no + ", material_detail="
-				+ material_detail + ", seq=" + seq + ", materialName=" + materialName + "]";
+		return "HobbyMaterialVo [hm_no=" + hm_no + ", hobby_no=" + hobby_no + ", material_no=" + material_no
+				+ ", material_detail=" + material_detail + ", seq=" + seq + ", materialName=" + materialName + "]";
 	}
+
 
 	
 }
