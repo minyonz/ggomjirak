@@ -35,6 +35,9 @@
 		<beans:property name="maxUploadSize" value="104857560"/>	
 	</beans:bean>
 	
+	<!-- 임시인터셉터 -->
+	<beans:bean class="com.dp.ggomjirak.kty.interceptor.AuthInterceptor" id="authInterceptor"></beans:bean>
+	
 	<!-- 인터셉터 -->
 <!-- 	<beans:bean class="com.kh.sample01.interceptor.SampleInterceptor" -->
 <!-- 		id="sampleInterceptor"></beans:bean> -->

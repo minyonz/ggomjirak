@@ -50,6 +50,7 @@ public class MyPageServiceImpl implements MyPageService {
 
 	@Override
 	public MemberVo info(String user_id) {
+		System.out.println("MyPageServiceImpl MemberVo info 들어옴");
 		MemberVo memberVo = memberDao.info(user_id);
 		return memberVo;
 	}
@@ -57,6 +58,23 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public void modifyRun(MemberVo memberVo) {
 		memberDao.updateArticle(memberVo);
+	}
+
+	@Override
+	public boolean checkDupNick(String user_nick) {
+		return memberDao.checkDupNick(user_nick);
+	}
+
+	@Override
+	public void modifyProfileRun(MemberVo memberVo) {
+		memberDao.updateProfileArticle(memberVo);
+		
+	}
+
+	@Override
+	public void alarmSetUpRun(MemberVo memberVo) {
+		memberDao.updateSetupArticle(memberVo);
+		
 	}
 	
 }
