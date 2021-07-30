@@ -1,6 +1,8 @@
 package com.dp.ggomjirak.my.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -26,6 +28,25 @@ public class StoryCommentDaoImpl implements StoryCommentDao{
 	public List<StoryCommentVo> listComment(int st_no) {
 		List<StoryCommentVo> list = sqlSession.selectList(NAMESPACE + "listComment", st_no);
 		return list;
+	}
+	
+	@Override
+	public void updateComment(int st_c_no, String st_c_content) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("st_c_content", st_c_content);
+		map.put("st_c_no", st_c_no);
+		sqlSession.update(NAMESPACE + "updateComment", map);
+	}
+
+	@Override
+	public void deleteComment(int st_c_no) {
+		sqlSession.update(NAMESPACE + "deleteComment", st_c_no);
+	}
+
+	@Override
+	public int commentCount(int st_no) {
+		int count = sqlSession.selectOne(NAMESPACE + "commentCount", st_no);
+		return count;
 	}
 
 }
