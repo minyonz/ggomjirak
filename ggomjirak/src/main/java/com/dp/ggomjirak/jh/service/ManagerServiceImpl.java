@@ -218,8 +218,20 @@ public class ManagerServiceImpl implements ManagerService {
 		QnAVo qnaVo = managerDao.selectQnaByNo(qna_no);
 		return qnaVo;
 	}
-	
 
+	@Override
+	public void insertAnswer(QnAVo qnaVo) {
+		int nextval = managerDao.getNextVal();
+		qnaVo.setQna_no(nextval);
+		managerDao.insertAnswer(qnaVo);
+		System.out.println(nextval);
+		qnaVo.setQna_no(qnaVo.getA_no());
+		qnaVo.setA_no(nextval);
+		managerDao.updateAno(qnaVo);
+		System.out.println("service: " + qnaVo);
+	}
+
+	
 	@Override
 	public List<MemberVo> selectPopularMemberList() {
 		List<MemberVo> list = managerDao.selectPopularMemberList();
@@ -231,6 +243,10 @@ public class ManagerServiceImpl implements ManagerService {
 		int count = managerDao.getMemberCount();
 		return count;
 	}
+
+
+
+
 
 
 

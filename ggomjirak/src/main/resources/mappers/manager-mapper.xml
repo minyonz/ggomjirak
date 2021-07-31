@@ -291,23 +291,36 @@
 				</when>
 			</choose>
 	</select>
-	
+	<!-- 문의글, 답변 찾기 -->
 	<select id="selectQnaByNo" resultType="QnAVo">
-		select a.*, b.user_id "m_user_id", b.title "a_title", b.content "a_content", b.save_time "a_save_tiem" from tbl_qna a
-			left join tbl_qna b on a.qna_no = b.a_no
+		select a.*, b.qna_type_nm, c.qna_no "a_qna_no", c.user_id "m_user_id", c.title "a_title", c.content "a_content", c.save_time "a_save_time" from tbl_qna a
+            left join tbl_qnasort b on a.qna_sort_cd = b.qna_sort_cd
+			left join tbl_qna c on a.qna_no = c.a_no
 		where a.qna_no = #{qna_no}
 	</select>
+	<!-- 답변하기 -->
+	<select id="getNextVal" resultType="int" >
+		select seq_qna_no.nextval from dual
+		</select>
+	<insert id="insertAnswer">
+		insert into tbl_qna
+		values(#{qna_no}, #{a_no, jdbcType=NUMERIC}, 'A', #{qna_sort_cd, jdbcType=VARCHAR}, '답변: ' || #{title}, #{content}, #{user_id}, sysdate, null, 'N', null, null, null, null, null)
+	</insert>
+	<update id="updateAno">
+		update tbl_qna set
+			a_no = #{a_no, jdbcType=NUMERIC}
+		where qna_no = #{qna_no}
+	</update>
 	
 	<!-- 메인 -->
 	<!-- 인기 작가 리스트 -->
 	<select id="selectPopularMemberList" resultType="MemberVo">
 		select * from
-		(select rownum rnum, a.*, c.name from
-		        (select * from tbl_memberdetail where user_id in (select user_id from tbl_memberinfo where is_del = 'N') 
-		         order by follower_cnt desc) a 
-		         left join tbl_membergrade c on a.user_grade = c.cd
-                 where a.user_id not in(select user_id from tbl_manager_member)
-		         order by follower_cnt desc, user_grade desc)
+		(select a.*, c.name, rownum rnum from
+		        (select * from tbl_memberdetail where user_id in (select user_id from tbl_memberinfo where is_del = 'N')
+                and user_id not in(select user_id from tbl_manager_member)) a 
+                left join tbl_membergrade c on a.user_grade = c.cd
+                order by a.follower_cnt desc, a.user_grade desc)
 		where rnum between 1 and 10
 	</select>
 	<!-- 가입 회원 수 -->

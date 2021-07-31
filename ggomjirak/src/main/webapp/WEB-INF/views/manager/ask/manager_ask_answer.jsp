@@ -29,6 +29,10 @@
 			      <td style="width: 20%">${qnaVo.save_time}</td>
 			    </tr>
 			    <tr>
+			      <th scope="row">문의 유형</th>
+			      <td colspan=5 style="width: 90%">${qnaVo.qna_type_nm}</td>
+			    </tr>
+			    <tr>
 			      <th scope="row">제목</th>
 			      <td colspan=5 style="width: 90%">${qnaVo.title}</td>
 			    </tr>
@@ -50,7 +54,11 @@
 			<h6 class="m-0 font-weight-bold green_color">답변</h6>
 		</div>
 		<div class="card-body">
-			<form>
+			<form action="/manager/managerAskAnswerRun" method="post">
+			<input type="text" id="a_no" name="a_no" value="${qnaVo.qna_no}">
+			<input type="text" id="qna_sort_cd" name="qna_sort_cd" value="${qnaVo.qna_sort_cd}">
+			<input type="text" id="title" name="title" value="${qnaVo.title}">
+			<input type="text" id="user_id" name="user_id" value="dog">
 				<table class="table">
 				  <tbody>
 				    <tr>
@@ -60,7 +68,7 @@
 				    <tr>
 				      <th scope="row">내용</th>
 				      <td style="width: 90%">
-				      		<textarea class="form-control" id="exampleFormControlTextarea1" rows="10"></textarea>
+				      		<textarea class="form-control" id="content" name="content" rows="10"></textarea>
 				      </td>
 				    </tr>
 				  </tbody>

@@ -229,6 +229,25 @@ private static final String NAMESPACE = "com.dp.ggomjirak.manager.";
 		return qnaVo;
 	}
 
+	@Override
+	public int getNextVal() {
+		int nextval = sqlSession.selectOne(NAMESPACE + "getNextVal");
+		return nextval;
+	}
+
+	@Override
+	public void insertAnswer(QnAVo qnaVo) {
+		sqlSession.insert(NAMESPACE + "insertAnswer", qnaVo);
+		
+	}
+
+	@Override
+	public void updateAno(QnAVo qnaVo) {
+		sqlSession.update(NAMESPACE + "updateAno", qnaVo);
+		
+	}
+
+
 	// 메인
 	@Override
 	public List<MemberVo> selectPopularMemberList() {
@@ -241,6 +260,7 @@ private static final String NAMESPACE = "com.dp.ggomjirak.manager.";
 		int count = sqlSession.selectOne(NAMESPACE + "getMemberCount");
 		return count;
 	}
+
 
 
 

@@ -193,6 +193,16 @@ public class ManagerController {
 		model.addAttribute("qnaVo", qnaVo);
 		return "manager/ask/manager_ask_answer";
 	}
+	// 문의글 답변폼
+	@RequestMapping(value="/managerAskAnswerRun", method=RequestMethod.POST)
+	public String managerAskAnswerRun(QnAVo qnaVo, int a_no) throws Exception {		
+		System.out.println("controller : " + a_no);
+		managerService.insertAnswer(qnaVo);
+		System.out.println("controller : " + qnaVo.getQna_no());
+		System.out.println(qnaVo);
+		return "redirect:/manager/managerAskContent?qna_no=" + a_no;
+	}
+	
 	// 이벤트 리스트 (진행중)
 	@RequestMapping(value="/managerEvent", method=RequestMethod.GET)
 	public String managerEvent(Model model, PagingDto pagingDto) throws Exception {

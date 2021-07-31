@@ -61,21 +61,19 @@
 			  <tbody>
 			    <tr>
 			      <th scope="row">번호</th>
-			      <td>01</td>
+			      <td>${qnaVo.a_qna_no}</td>
 			      <th style="width: 15%; border-left: 1px solid lightgray">관리자</th>
-			      <td style="width: 20%">manager</td>
+			      <td style="width: 20%">${qnaVo.m_user_id}</td>
 			      <th style="width: 15%; border-left: 1px solid lightgray">작성일</th>
-			      <td style="width: 20%">2021/07/17 15:16:23</td>
+			      <td style="width: 20%">${qnaVo.a_save_time}</td>
 			    </tr>
 			    <tr>
 			      <th scope="row">제목</th>
-			      <td colspan=5 style="width: 90%">답변 : Jacob</td>
+			      <td colspan=5 style="width: 90%">${qnaVo.a_title}</td>
 			    </tr>
 			    <tr>
 			      <th scope="row">내용</th>
-			      <td colspan=5 style="width: 90%">내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-			      				내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-			      				내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</td>
+			      <td colspan=5 style="width: 90%">${qnaVo.a_content}</td>
 			      
 			    </tr>
 			  </tbody>

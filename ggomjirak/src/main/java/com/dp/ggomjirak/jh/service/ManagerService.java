@@ -57,6 +57,7 @@ public interface ManagerService {
 	public List<QnAVo> selectQnAList(PagingDto pagingDto);
 	public int getCountQnA(PagingDto pagingDto);
 	public QnAVo selectQnaByNo (int qna_no);
+	public void insertAnswer(QnAVo qnaVo);
 	
 	// 메인
 	public List<MemberVo> selectPopularMemberList();

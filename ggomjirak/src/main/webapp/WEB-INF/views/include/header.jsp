@@ -5,7 +5,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">								
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">								
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>								
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>								
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>	
@@ -203,17 +202,18 @@ $(document).ready(function() {
 								
 								
 								<div class="row" style="margin-bottom: 50px">
-									<div class="col-md-3">
+									<div class="col-lg-3">
 									<div class="input-group">
 
-										<select class="cate1 form-control btn btn-outline-light green_background shadow bg-body rounded"
-											style="margin-right: 10px"
+										<select class="cate1 btn btn-outline-light green_background shadow bg-body rounded"
+											style="margin-right: 10px; width:120px; height:38px"
 											aria-label="Default select example">
 											<option value="">카테고리</option>
 										</select>
 										
 										<div class="dropdown">
-									  <button class="form-control btn btn-outline-light green_background shadow bg-body rounded dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+									  <button class="form-control btn btn-outline-light green_background shadow bg-body rounded dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+									  style="width:120px; height:38px">
 									   카테고리
 									  </button>
 									  <ul class="cate2 dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -225,7 +225,7 @@ $(document).ready(function() {
 										
 									</div>
 									
-									<div class="col-md-9">
+									<div class="col-lg-9">
 									
 									<form id="frmSearch" action="/main/mainSearch" method="get">
 									<div class="input-group mb-3">

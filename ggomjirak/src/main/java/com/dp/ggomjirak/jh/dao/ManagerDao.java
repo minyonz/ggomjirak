@@ -60,6 +60,9 @@ public interface ManagerDao {
 	public List<QnAVo> selectQnAList(PagingDto pagingDto);
 	public int getCountQnA(PagingDto pagingDto);
 	public QnAVo selectQnaByNo (int qna_no);
+	public int getNextVal();
+	public void insertAnswer(QnAVo qnaVo);
+	public void updateAno(QnAVo qnaVo);
 	
 	// 메인
 	public List<MemberVo> selectPopularMemberList();

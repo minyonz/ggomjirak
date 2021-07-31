@@ -206,7 +206,7 @@
 					  <tbody>
 					  <c:forEach var="member" items="${popularMemberList}">
 					    <tr>
-					      <th>1</th>
+					      <th>${member.rnum}</th>
 					      <th><a href="/manager/managerMemberContent?user_id=${member.user_id}">${member.user_id}</a></th>
 					      <th>${member.user_nick}</th>
 					      <th>${member.name}</th>
