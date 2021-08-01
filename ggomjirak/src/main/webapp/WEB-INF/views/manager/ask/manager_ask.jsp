@@ -85,26 +85,26 @@ $(document).ready(function() {
 			<ul class="nav nav-tabs qCheck">
 			<li class="nav-item"><a 
 				<c:choose>
-					<c:when test="${pagingDto.qCheck == 0}"> class="nav-link active" </c:when>
-					<c:otherwise> class="nav-link" </c:otherwise>
+					<c:when test="${pagingDto.qCheck == 0}"> class="orange_color nav-link active" </c:when>
+					<c:otherwise> class="green_color nav-link" </c:otherwise>
 				</c:choose>
 			href="0">전체 문의</a></li>
 			<li class="nav-item"><a 
 			<c:choose>
-					<c:when test="${pagingDto.qCheck == 1}"> class="nav-link active" </c:when>
-					<c:otherwise> class="nav-link" </c:otherwise>
+					<c:when test="${pagingDto.qCheck == 1}"> class="orange_color nav-link active" </c:when>
+					<c:otherwise> class="green_color nav-link" </c:otherwise>
 				</c:choose>
 			href="1">미답변 문의</a></li>
 			<li class="nav-item"><a
 			<c:choose>
-					<c:when test="${pagingDto.qCheck == 2}"> class="nav-link active" </c:when>
-					<c:otherwise> class="nav-link" </c:otherwise>
+					<c:when test="${pagingDto.qCheck == 2}"> class="orange_color nav-link active" </c:when>
+					<c:otherwise> class="green_color nav-link" </c:otherwise>
 				</c:choose>
 			href="2">완료된 문의</a></li>
 			<li class="nav-item"><a
 			<c:choose>
-					<c:when test="${pagingDto.qCheck == 3}"> class="nav-link active" </c:when>
-					<c:otherwise> class="nav-link" </c:otherwise>
+					<c:when test="${pagingDto.qCheck == 3}"> class="orange_color nav-link active" </c:when>
+					<c:otherwise> class="green_color nav-link" </c:otherwise>
 				</c:choose>
 			href="3">삭제된 문의</a></li>
 		</ul>
@@ -150,7 +150,6 @@ $(document).ready(function() {
 		</div>
 	</div>
 	<!-- 페이징 -->
-	${pagingDto }
 	<div class="row  text-center">
 		<div class="col-md-12">
 			<nav class="pagination justify-content-center">

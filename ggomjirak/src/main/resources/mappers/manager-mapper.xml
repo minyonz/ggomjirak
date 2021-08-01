@@ -157,16 +157,41 @@
 	<!-- 이벤트 글 목록 (전체) -->
 	<select id="showEventListAll" resultType="EventVo">
 		select * from
-		    (select rownum rnum, a.* from
+		    (select rownum rnum, a.*, b.user_id from
 		        (select * from tbl_event
-		        where is_del = 'N'
-		        order by e_no desc) a)
+		        <choose>
+				<when test="qCheck == 1">
+				where is_del = 'N'
+				and end_date > sysdate
+				</when>
+				<when test="qCheck == 2">
+				where is_del = 'N'
+				and sysdate > end_date
+				</when>
+				<when test="qCheck == 3">
+				where is_del = 'Y'
+				</when>
+			</choose>
+		        order by e_no desc) a
+		        left join tbl_manager_member b on a.m_no = b.m_no)
 		where rnum between #{startRow} and #{endRow}
 	</select>
 	<!-- 글갯수 -->
 	<select id="getCountEventAll" resultType="int">
 		select count (*) from tbl_event
-		where is_del = 'N'
+		 <choose>
+				<when test="qCheck == 1">
+				where is_del = 'N'
+				and end_date > sysdate
+				</when>
+				<when test="qCheck == 2">
+				where is_del = 'N'
+				and sysdate > end_date
+				</when>
+				<when test="qCheck == 3">
+				where is_del = 'Y'
+				</when>
+			</choose>
 	</select>
 
 	<!-- 이벤트 글 목록 (진행중) -->

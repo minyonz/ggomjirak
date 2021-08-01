@@ -206,14 +206,14 @@ $(document).ready(function() {
 									<div class="input-group">
 
 										<select class="cate1 btn btn-outline-light green_background shadow bg-body rounded"
-											style="margin-right: 10px; width:120px; height:38px"
+											style="margin-right: 10px; width:110px; height:38px"
 											aria-label="Default select example">
 											<option value="">카테고리</option>
 										</select>
 										
 										<div class="dropdown">
 									  <button class="form-control btn btn-outline-light green_background shadow bg-body rounded dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
-									  style="width:120px; height:38px">
+									  style="width:110px; height:38px">
 									   카테고리
 									  </button>
 									  <ul class="cate2 dropdown-menu" aria-labelledby="dropdownMenuButton1">

@@ -14,75 +14,27 @@ $(document).ready(function() {
 		frmPaging.submit();
 		// -> 주소창에 : http://localhost/board/listAll?page=1&perPage=10&searchType=&keyword=
 	});
-	
-	$(".list").each(function() {
-		$(this).click(function() {
-			if ($(this).attr("id") == "listAll") {
-				$(".list").removeClass("active");
-				$(this).addClass("active");
-				var url = "/manager/getEventListAll";
-				$("#frmPaging").attr("action", "/manager/getEventListAll");
-				
-			} else if ($(this).attr("id") == "listEnd") {
-				$(".list").removeClass("active");
-				$(this).addClass("active");
-				var url = "/manager/getEventListEnd";
-				$("#frmPaging").attr("action", "/manager/getEventListEnd");
-				
-			} else if ($(this).attr("id") == "listDelete") {
-				$(".list").removeClass("active");
-				$(this).addClass("active");
-				var url = "/manager/getEventListDelete";
-				$("#frmPaging").attr("action", "/manager/getEventListDelete");
-			}
-			
-			$.get(url, function(receivedData) {
-				console.log(receivedData.pagingDto);
-				console.log(receivedData.eventList);
-				
-				var cloneTr;
-				// -> 기존에 달려있던 댓글들 모두 삭제
-				$("#eventTable > tbody > tr:gt(0)").remove();
-				$.each(receivedData.eventList, function() {
-					var cloneTr = $("#tr").clone();
-					var td = cloneTr.find("td");
-					td.eq(0).text(this.e_no);
-					td.eq(1).text(this.m_no);
-					td.eq(2).html("<a href='/manager/managerEventContent?e_no=" + this.e_no + "'>" + this.e_title + "</a>");
-					td.eq(3).text(this.start_date);
-					td.eq(4).text(this.end_date);
-					td.eq(5).text(this.reg_date);
-					td.eq(6).text(this.mod_date);
-					td.eq(7).text(this.e_img);
-					td.eq(8).text(this.del_date);
-					// 삭제버튼 만들때 data-cno = c_no 넣음
-					
-					$("#eventTable > tbody").append(cloneTr);
-					cloneTr.show("slow");
-					
-					$(".pagination > li > a").click(function(e) {
-						e.preventDefault(); // 페이지 이동 막기
-						var page = $(this).attr("href");
-						var frmPaging = $("#frmPaging");
-						frmPaging.find("[name=page]").val(page); // page에 페이지 숫자 넣어줌
-						console.log(page);
-						frmPaging.submit();
-						// -> 주소창에 : http://localhost/board/listAll?page=1&perPage=10&searchType=&keyword=
-					});
-				});
-				
-			});
-		});
+	$(".qCheck > li > a").click(function(e) {
+		e.preventDefault();
+		var qCheck = $(this).attr("href");
 		
+		console.log(qCheck);
+		$("#frmPaging > input[name=qCheck]").val(qCheck);
+		
+		$("#frmPaging > input[name=page]").val("1");
+
+		$("#frmPaging").submit();
+
 	});
-	
 
 	
 });
 </script>
-<form id="frmPaging" method="get">
+<form id="frmPaging" action="/manager/managerEvent" method="get">
 <input type="hidden" name="page" value="${pagingDto.page}"/>
 <input type="hidden" name="perPage" value="${pagingDto.perPage}"/>
+<input type="hidden" name="endRow" value="${pagingDto.endRow}"/>
+<input type="hidden" name="qCheck" value="${pagingDto.qCheck}"/>
 </form>
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -145,12 +97,31 @@ $(document).ready(function() {
 		
 		<div class="card-body">
 		
-		<ul class="nav nav-tabs">
-			
-			<li class="nav-item"><a type="button" href="/manager/managerEvent" id="list" class="green_color nav-link list active">진행중인 이벤트</a></li>
-			<li class="nav-item"><a type="button" id="listEnd" class="green_color nav-link list">종료된 이벤트</a></li>
-			<li class="nav-item"><a type="button" id="listAll" class="green_color nav-link list">전체 이벤트</a></li>
-			<li class="nav-item"><a type="button" id="listDelete" class="green_color nav-link list">삭제된 이벤트</a></li>
+		<ul class="nav nav-tabs qCheck">
+			<li class="nav-item"><a 
+				<c:choose>
+					<c:when test="${pagingDto.qCheck == 0}"> class="orange_color nav-link active" </c:when>
+					<c:otherwise> class="green_color nav-link" </c:otherwise>
+				</c:choose>
+			href="0">전체 이벤트</a></li>
+			<li class="nav-item"><a 
+			<c:choose>
+					<c:when test="${pagingDto.qCheck == 1}"> class="orange_color nav-link active" </c:when>
+					<c:otherwise> class="green_color nav-link" </c:otherwise>
+				</c:choose>
+			href="1">진행중인 이벤트</a></li>
+			<li class="nav-item"><a
+			<c:choose>
+					<c:when test="${pagingDto.qCheck == 2}"> class="orange_color nav-link active" </c:when>
+					<c:otherwise> class="green_color nav-link" </c:otherwise>
+				</c:choose>
+			href="2">종료된 이벤트</a></li>
+			<li class="nav-item"><a
+			<c:choose>
+					<c:when test="${pagingDto.qCheck == 3}"> class="orange_color nav-link active" </c:when>
+					<c:otherwise> class="green_color nav-link" </c:otherwise>
+				</c:choose>
+			href="3">삭제된 이벤트</a></li>
 		</ul>
 		
 		<table class="table" id="eventTable">
@@ -168,21 +139,11 @@ $(document).ready(function() {
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr  id="tr" style="display: none;">
-		      <td scope="row" ></td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		    </tr>
-		 	<c:forEach var="event" items="${eventList}">
+		    
+		 	<c:forEach var="event" items="${eventListAll}">
 		    <tr>
 		      <td scope="row">${event.e_no}</td>
-		      <td>${event.m_no}</td>
+		      <td>${event.user_id}</td>
 		      <td><a href="/manager/managerEventContent?e_no=${event.e_no}">${event.e_title}</a></td>
 		      <td>${event.start_date}</td>
 		      <td>${event.end_date}</td>
@@ -199,7 +160,6 @@ $(document).ready(function() {
 		
 	</div>
 	<!-- 페이징 -->
-	${pagingDto }
 	<div class="row  text-center">
 		<div class="col-md-12">
 			<nav class="pagination justify-content-center">

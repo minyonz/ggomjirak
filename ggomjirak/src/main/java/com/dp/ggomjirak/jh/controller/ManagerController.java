@@ -206,63 +206,19 @@ public class ManagerController {
 	// 이벤트 리스트 (진행중)
 	@RequestMapping(value="/managerEvent", method=RequestMethod.GET)
 	public String managerEvent(Model model, PagingDto pagingDto) throws Exception {
-		
-		int count = managerService.getCountEvent(pagingDto);
-		pagingDto.setCount(count);
-		
-		System.out.println("count: " + count);
-		System.out.println("pagingDto: " + pagingDto);
-		
-		List<EventVo> eventList = managerService.showEventList(pagingDto);
-		model.addAttribute("eventList", eventList);
-		return "manager/event/manager_event";
-	}
-	// 전체 이벤트
-	@ResponseBody
-	@RequestMapping(value="/getEventListAll", method=RequestMethod.GET)
-	public Map<String, Object> getEventListAll(PagingDto pagingDto) throws Exception {
 		int count = managerService.getCountEventAll(pagingDto);
+		pagingDto.setEndRow(10);
+		pagingDto.setPerPage(10);
+		pagingDto.setCount(count);
 		pagingDto.setCount(count);
 		
 		System.out.println("count: " + count);
 		System.out.println("pagingDto: " + pagingDto);
 		List<EventVo> eventListAll = managerService.showEventListAll(pagingDto);
-		Map<String, Object> map = new HashMap<>();
-		map.put("pagingDto", pagingDto);
-		map.put("eventList", eventListAll);
-		return map;
+		model.addAttribute("eventListAll", eventListAll);
+		return "manager/event/manager_event";
 	}
-	// 완료된 이벤트
-	@ResponseBody
-	@RequestMapping(value="/getEventListEnd", method=RequestMethod.GET)
-	public Map<String, Object> getEventListEnd(PagingDto pagingDto, Model model) throws Exception {
-		int count = managerService.getCountEventEnd(pagingDto);
-		pagingDto.setCount(count);
-		
-		System.out.println("count: " + count);
-		System.out.println("pagingDto: " + pagingDto);
-		List<EventVo> eventListEnd = managerService.showEventListEnd(pagingDto);
-		Map<String, Object> map = new HashMap<>();
-		map.put("pagingDto", pagingDto);
-		map.put("eventList", eventListEnd);
-		return map;
-	}
-	// 삭제된 이벤트
-	@ResponseBody
-	@RequestMapping(value="/getEventListDelete", method=RequestMethod.GET)
-	public Map<String, Object> getEventListDelete(PagingDto pagingDto) throws Exception {
-		
-		int count = managerService.getCountEventDelete(pagingDto);
-		pagingDto.setCount(count);
-		
-		System.out.println("count: " + count);
-		System.out.println("pagingDto: " + pagingDto);
-		List<EventVo> eventListDelete = managerService.showEventListDelete(pagingDto);
-		Map<String, Object> map = new HashMap<>();
-		map.put("pagingDto", pagingDto);
-		map.put("eventList", eventListDelete);
-		return map;
-	}
+	
 	// 이벤트 상세페이지
 	@RequestMapping(value="/managerEventContent", method=RequestMethod.GET)
 	public String managerEventContent(int e_no, Model model) throws Exception {
