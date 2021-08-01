@@ -129,109 +129,7 @@ public class ManagerServiceImpl implements ManagerService {
 		
 	}
 	
-	@Override
-	public List<EventVo> showEventListAll(PagingDto pagingDto) {
-		List<EventVo> list = managerDao.showEventListAll(pagingDto);
-		return list;
-	}
-	
-	@Override
-	public List<EventVo> showEventList(PagingDto pagingDto) {
-		List<EventVo> list = managerDao.showEventList(pagingDto);
-		return list; 
-	}
 
-	@Override
-	public List<EventVo> showEventListEnd(PagingDto pagingDto) {
-		List<EventVo> list = managerDao.showEventListEnd(pagingDto);
-		return list;
-	}
-
-	@Override
-	public List<EventVo> showEventListDelete(PagingDto pagingDto) {
-		List<EventVo> list = managerDao.showEventListDelete(pagingDto);
-		return list;
-	}
-
-	@Override
-	public int getCountEventAll(PagingDto pagingDto) {
-		int count = managerDao.getCountEventAll(pagingDto);
-		return count;
-	}
-
-	@Override
-	public int getCountEvent(PagingDto pagingDto) {
-		int count = managerDao.getCountEvent(pagingDto);
-		return count;
-	}
-
-	@Override
-	public int getCountEventEnd(PagingDto pagingDto) {
-		int count = managerDao.getCountEventEnd(pagingDto);
-		return count;
-	}
-
-	@Override
-	public int getCountEventDelete(PagingDto pagingDto) {
-		int count = managerDao.getCountEventDelete(pagingDto);
-		return count;
-	}
-
-	@Override
-	public EventVo selectByEno(int e_no) {
-		EventVo eventVo = managerDao.selectByEno(e_no);
-		return eventVo;
-	}
-
-	@Override
-	public void insertEvent(EventVo eventVo) {
-		managerDao.insertEvent(eventVo);
-	}
-
-	@Override
-	public void updateEvent(EventVo eventVo) {
-		managerDao.updateEvent(eventVo);
-		
-	}
-
-	@Override
-	public void deleteEvent(int e_no) {
-		managerDao.deleteEvent(e_no);
-	}
-	
-
-	// 문의
-	@Override
-	public List<QnAVo> selectQnAList(PagingDto pagingDto) {
-		List<QnAVo> list = managerDao.selectQnAList(pagingDto);
-		return list;
-	}
-
-	@Override
-	public int getCountQnA(PagingDto pagingDto) {
-		int count = managerDao.getCountQnA(pagingDto);
-		return count;
-	}
-
-	@Override
-	public QnAVo selectQnaByNo(int qna_no) {
-		QnAVo qnaVo = managerDao.selectQnaByNo(qna_no);
-		return qnaVo;
-	}
-
-	@Override
-	public void insertAnswer(QnAVo qnaVo) {
-		int nextval = managerDao.getNextVal();
-		qnaVo.setQna_no(nextval);
-		managerDao.insertAnswer(qnaVo);
-		System.out.println(nextval);
-		qnaVo.setQna_no(qnaVo.getA_no());
-		qnaVo.setA_no(nextval);
-		managerDao.updateAno(qnaVo);
-		System.out.println("service: " + qnaVo);
-	}
-
-	
 	@Override
 	public List<MemberVo> selectPopularMemberList() {
 		List<MemberVo> list = managerDao.selectPopularMemberList();
@@ -243,6 +141,9 @@ public class ManagerServiceImpl implements ManagerService {
 		int count = managerDao.getMemberCount();
 		return count;
 	}
+
+
+
 
 
 

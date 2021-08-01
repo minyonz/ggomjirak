@@ -9,7 +9,7 @@
 	<!-- Page Heading -->
 	<div style="display: flex;">
 		<h1 class="h3 mb-2 text-gray-800">1:1문의 답변</h1>
-		<a href="/manager/managerAsk" class="btn btn-success green_background" style="margin-left: auto; margin-bottom: 20px">목록</a>
+		<a href="/ask/managerAsk" class="btn btn-success green_background" style="margin-left: auto; margin-bottom: 20px">목록</a>
 	</div>
 
 
@@ -83,7 +83,7 @@
 	</div>
 	</c:when>
 	<c:otherwise>
-	<a href="/manager/managerAskAnswer?qna_no=${qnaVo.qna_no}" type="button" class="btn btn-success green_background">답변하기</a>
+	<a href="/ask/managerAskAnswer?qna_no=${qnaVo.qna_no}" type="button" class="btn btn-success green_background">답변하기</a>
 	</c:otherwise>
 	</c:choose>
 	

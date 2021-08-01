@@ -59,10 +59,9 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/main/mainHome" target="_blank">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon">
+                    <img src="/resources/img/logo06.png" alt="..." width="100px" >
                 </div>
-                <div class="sidebar-brand-text mx-3">꼼지락</div>
             </a>
 
             <!-- Divider -->
@@ -147,14 +146,22 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="/manager/managerEvent">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEvents"
+                    aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>이벤트</span></a>
+                    <div id="collapseEvents" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">이벤트 목록 관리</h6>
+                        <a class="collapse-item" href="/event/managerEvent">이벤트 목록</a>
+                        <a class="collapse-item" href="/event/managerMainEvent">이벤트 배너</a>
+                    </div>
+                </div>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="/manager/managerAsk">
+                <a class="nav-link" href="/ask/managerAsk">
                     <i class="fas fa-fw fa-table"></i>
                     <span>1:1문의 관리</span></a>
             </li>

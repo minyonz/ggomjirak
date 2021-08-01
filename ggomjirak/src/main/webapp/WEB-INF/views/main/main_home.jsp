@@ -20,42 +20,38 @@
 			<div class="col-md-8">
 				<div class="carousel slide" id="carousel-313760">
 					<ol class="carousel-indicators">
-						<li data-slide-to="0" data-target="#carousel-313760"
-							class="active"></li>
-						<li data-slide-to="1" data-target="#carousel-313760"></li>
-						<li data-slide-to="2" data-target="#carousel-313760"></li>
+					<c:forEach var="v" begin="${pagingDto.startPage}" end="${pagingDto.count}">
+						<li data-slide-to="${v}" data-target="#carousel-313760"
+							<c:if test="${v == pagingDto.page}">
+								class="active"
+						 	</c:if>
+							></li>
+					</c:forEach>
 					</ol>
+					
 					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<img class="d-block w-100" alt="Carousel Bootstrap First"
+					
+					<c:forEach var="event" items="${mainEvent}">
+						<div 
+						<c:choose>
+							<c:when test="${pagingDto.page == event.rnum}">
+								class="carousel-item active"
+						 	</c:when>
+						 	<c:otherwise>
+						 		class="carousel-item"
+							</c:otherwise>
+						</c:choose>
+						>
+							<img class="d-block w-100" alt="Event Banner"
 								src="/resources/img/event01.jpg" height="500"/>
 							<div class="carousel-caption">
-								<h4 class="white_color">First Thumbnail label</h4>
-								<p  class="white_color">Cras justo odio, dapibus ac facilisis in, egestas eget
-									quam. Donec id elit non mi porta gravida at eget metus. Nullam
-									id dolor id nibh ultricies vehicula ut id elit.</p>
+								<h4>${event.e_title}</h4>
+								<p>${event.start_date} ~ ${event.end_date}</p>
 							</div>
 						</div>
-						<div class="carousel-item">
-							<img class="d-block w-100" alt="Carousel Bootstrap Second"
-								src="https://www.layoutit.com/img/sports-q-c-1600-500-2.jpg" />
-							<div class="carousel-caption">
-								<h4>Second Thumbnail label</h4>
-								<p>Cras justo odio, dapibus ac facilisis in, egestas eget
-									quam. Donec id elit non mi porta gravida at eget metus. Nullam
-									id dolor id nibh ultricies vehicula ut id elit.</p>
-							</div>
-						</div>
-						<div class="carousel-item">
-							<img class="d-block w-100" alt="Carousel Bootstrap Third"
-								src="https://www.layoutit.com/img/sports-q-c-1600-500-3.jpg" />
-							<div class="carousel-caption">
-								<h4>Third Thumbnail label</h4>
-								<p>Cras justo odio, dapibus ac facilisis in, egestas eget
-									quam. Donec id elit non mi porta gravida at eget metus. Nullam
-									id dolor id nibh ultricies vehicula ut id elit.</p>
-							</div>
-						</div>
+					</c:forEach>
+						
+						
 					</div>
 					<a class="carousel-control-prev" href="#carousel-313760"
 						data-slide="prev"><span class="carousel-control-prev-icon"></span>

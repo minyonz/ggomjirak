@@ -1,5 +1,7 @@
 package com.dp.ggomjirak.vo;
 
+import java.sql.Date;
+
 public class PagingDto {
 	// 현재페이지
 	private int page = 1;
@@ -36,6 +38,18 @@ public class PagingDto {
 	//문의글
 	private int qCheck;
 	
+	private Date today;
+	
+	
+	
+	public Date getToday() {
+		return today;
+	}
+
+	public void setToday(Date today) {
+		this.today = today;
+	}
+
 	public PagingDto() {
 		super();
 		// TODO Auto-generated constructor stub

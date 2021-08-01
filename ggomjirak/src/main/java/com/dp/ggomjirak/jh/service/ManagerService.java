@@ -38,27 +38,6 @@ public interface ManagerService {
 	
 	public int getCountManager(PagingDto pagingDto);
 	
-	public List<EventVo> showEventListAll(PagingDto pagingDto);
-	public List<EventVo> showEventList(PagingDto pagingDto);
-	public List<EventVo> showEventListEnd(PagingDto pagingDto);
-	public List<EventVo> showEventListDelete(PagingDto pagingDto);
-	
-	public int getCountEventAll(PagingDto pagingDto);
-	public int getCountEvent(PagingDto pagingDto);
-	public int getCountEventEnd(PagingDto pagingDto);
-	public int getCountEventDelete(PagingDto pagingDto);
-	
-	public EventVo selectByEno(int e_no);
-	public void insertEvent(EventVo eventVo);
-	public void updateEvent(EventVo eventVo);
-	public void deleteEvent(int e_no);
-	
-	// 문의
-	public List<QnAVo> selectQnAList(PagingDto pagingDto);
-	public int getCountQnA(PagingDto pagingDto);
-	public QnAVo selectQnaByNo (int qna_no);
-	public void insertAnswer(QnAVo qnaVo);
-	
 	// 메인
 	public List<MemberVo> selectPopularMemberList();
 	public int getMemberCount();

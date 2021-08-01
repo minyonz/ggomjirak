@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.dp.ggomjirak.jh.dao.MainDao;
 import com.dp.ggomjirak.vo.CateVo;
+import com.dp.ggomjirak.vo.EventVo;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
@@ -18,7 +19,7 @@ public class MainServiceImpl implements MainService {
 	@Inject
 	private MainDao mainDao;
 
-
+	
 	@Override
 	public List<CateVo> selectCate() {
 		List<CateVo> list = mainDao.selectCate();
@@ -133,6 +134,7 @@ public class MainServiceImpl implements MainService {
 		int count = mainDao.getCountHobbyCate(pagingDto);
 		return count;
 	}
+
 
 
 	

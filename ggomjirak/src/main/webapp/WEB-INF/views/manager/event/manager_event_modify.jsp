@@ -8,7 +8,7 @@
 
 	<!-- Page Heading -->
 	<h1 class="h3 mb-2 text-gray-800">이벤트 글 수정</h1>
-	<form action="/manager/managerEventModifyRun" method="post">
+	<form action="/event/managerEventModifyRun" method="post">
 	<input type="text" id="e_no" name="e_no" value="${eventVo.e_no}">
 	<input type="text" id="e_img" name="e_img" value="테스트 이미지1">
 
@@ -61,7 +61,7 @@
 		<div class="card-body">
 				
 			<button type="submit" class="btn btn-success green_background">수정</button>	
-			<a href="/manager/managerEventContent?e_no=${eventVo.e_no}"type="button" class="btn btn-danger orange_background">취소</a>	
+			<a href="/event/managerEventContent?e_no=${eventVo.e_no}"type="button" class="btn btn-danger orange_background">취소</a>	
 		
 		</div>
 	</div>

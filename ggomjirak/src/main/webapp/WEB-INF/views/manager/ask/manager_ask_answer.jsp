@@ -7,7 +7,7 @@
 	<!-- Page Heading -->
 	<div style="display: flex;">
 		<h1 class="h3 mb-2 text-gray-800">1:1문의 답변</h1>
-		<a href="/manager/managerAsk" class="btn btn-success green_background" style="margin-left: auto; margin-bottom: 20px">목록</a>
+		<a href="/ask/managerAsk" class="btn btn-success green_background" style="margin-left: auto; margin-bottom: 20px">목록</a>
 	</div>
 
 
@@ -54,7 +54,7 @@
 			<h6 class="m-0 font-weight-bold green_color">답변</h6>
 		</div>
 		<div class="card-body">
-			<form action="/manager/managerAskAnswerRun" method="post">
+			<form action="/ask/managerAskAnswerRun" method="post">
 			<input type="text" id="a_no" name="a_no" value="${qnaVo.qna_no}">
 			<input type="text" id="qna_sort_cd" name="qna_sort_cd" value="${qnaVo.qna_sort_cd}">
 			<input type="text" id="title" name="title" value="${qnaVo.title}">
@@ -75,7 +75,7 @@
 				</table>
 				<div style="display: flex;">
 					<button type="submit" class="btn btn-success green_background" style="margin-left: auto">답변</button>
-					<a href="/manager/managerAsk" type="button" class="btn btn-danger orange_background" style="margin-left: 10px">취소</a>
+					<a href="/ask/managerAsk" type="button" class="btn btn-danger orange_background" style="margin-left: 10px">취소</a>
 				</div>
 				
 			</form>

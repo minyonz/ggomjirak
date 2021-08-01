@@ -1,8 +1,6 @@
 package com.dp.ggomjirak.jh.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -10,12 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dp.ggomjirak.jh.service.AskService;
 import com.dp.ggomjirak.jh.service.ManagerService;
 import com.dp.ggomjirak.vo.CateStrVo;
-import com.dp.ggomjirak.vo.EventVo;
 import com.dp.ggomjirak.vo.ManagerVo;
 import com.dp.ggomjirak.vo.MemberActivVo;
 import com.dp.ggomjirak.vo.MemberVo;
@@ -30,13 +27,20 @@ public class ManagerController {
 	@Inject
 	private ManagerService managerService;
 	
+	@Inject
+	private AskService askService;
+	
 	// 홈
 	@RequestMapping(value="/managerHome", method=RequestMethod.GET)
 	public String managerHome(Model model) throws Exception {
 		List<MemberVo> popularMemberList = managerService.selectPopularMemberList();
 		int memberCount = managerService.getMemberCount();
+		
+		int askCount = askService.getCountQnAMain();
+		System.out.println(askCount);
 		model.addAttribute("popularMemberList", popularMemberList);
 		model.addAttribute("memberCount", memberCount);
+		model.addAttribute("askCount", askCount);
 		return "manager/manager_home";
 	}
 	
@@ -166,103 +170,6 @@ public class ManagerController {
 	}
 	
 	
-	// 문의글 리스트
-	@RequestMapping(value="/managerAsk", method=RequestMethod.GET)
-	public String managerAsk(Model model, PagingDto pagingDto) throws Exception {
-		int count = managerService.getCountQnA(pagingDto);
-		pagingDto.setEndRow(10);
-		pagingDto.setPerPage(10);
-		pagingDto.setCount(count);
-		
-		List<QnAVo> qnaVo = managerService.selectQnAList(pagingDto);
-		model.addAttribute("qnaVo", qnaVo);
-		model.addAttribute("pagingDto", pagingDto);
-		return "manager/ask/manager_ask";
-	}
-	// 문의글 상세페이지
-	@RequestMapping(value="/managerAskContent", method=RequestMethod.GET)
-	public String managerAskContent(Model model, int qna_no) throws Exception {
-		QnAVo qnaVo = managerService.selectQnaByNo(qna_no);
-		model.addAttribute("qnaVo", qnaVo);
-		return "manager/ask/manager_ask_content";
-	}
-	// 문의글 답변폼
-	@RequestMapping(value="/managerAskAnswer", method=RequestMethod.GET)
-	public String managerAskAnswer(Model model, int qna_no) throws Exception {
-		QnAVo qnaVo = managerService.selectQnaByNo(qna_no);
-		model.addAttribute("qnaVo", qnaVo);
-		return "manager/ask/manager_ask_answer";
-	}
-	// 문의글 답변폼
-	@RequestMapping(value="/managerAskAnswerRun", method=RequestMethod.POST)
-	public String managerAskAnswerRun(QnAVo qnaVo, int a_no) throws Exception {		
-		System.out.println("controller : " + a_no);
-		managerService.insertAnswer(qnaVo);
-		System.out.println("controller : " + qnaVo.getQna_no());
-		System.out.println(qnaVo);
-		return "redirect:/manager/managerAskContent?qna_no=" + a_no;
-	}
-	
-	// 이벤트 리스트 (진행중)
-	@RequestMapping(value="/managerEvent", method=RequestMethod.GET)
-	public String managerEvent(Model model, PagingDto pagingDto) throws Exception {
-		int count = managerService.getCountEventAll(pagingDto);
-		pagingDto.setEndRow(10);
-		pagingDto.setPerPage(10);
-		pagingDto.setCount(count);
-		pagingDto.setCount(count);
-		
-		System.out.println("count: " + count);
-		System.out.println("pagingDto: " + pagingDto);
-		List<EventVo> eventListAll = managerService.showEventListAll(pagingDto);
-		model.addAttribute("eventListAll", eventListAll);
-		return "manager/event/manager_event";
-	}
-	
-	// 이벤트 상세페이지
-	@RequestMapping(value="/managerEventContent", method=RequestMethod.GET)
-	public String managerEventContent(int e_no, Model model) throws Exception {
-		EventVo eventVo = managerService.selectByEno(e_no);
-		model.addAttribute("eventVo", eventVo);
-		return "manager/event/manager_event_content";
-	}
-	// 이벤트 작성폼
-	@RequestMapping(value="/managerEventWrite", method=RequestMethod.GET)
-	public String managerEventWrite() throws Exception {
-		return "manager/event/manager_event_write";
-	}
-	// 이벤트 작성 실행
-	@RequestMapping(value="/managerEventWriteRun", method=RequestMethod.POST)
-	public String managerEventWriteRun(EventVo eventVo, RedirectAttributes rttr) throws Exception {
-		managerService.insertEvent(eventVo);
-		rttr.addFlashAttribute("writeMsg", "success");
-		return "redirect:/manager/managerEvent";
-	}
-	// 이벤트 수정 페이지
-	@RequestMapping(value="/managerEventModify", method=RequestMethod.GET)
-	public String managerEventModify(int e_no, Model model) throws Exception {
-		EventVo eventVo = managerService.selectByEno(e_no);
-		model.addAttribute("eventVo", eventVo);
-		return "manager/event/manager_event_modify";
-	}
-	// 이벤트 수정 실행
-	@RequestMapping(value="/managerEventModifyRun", method=RequestMethod.POST)
-	public String managerEventModifyRun(EventVo eventVo, RedirectAttributes rttr) throws Exception {
-		managerService.updateEvent(eventVo);
-		rttr.addFlashAttribute("modifyMsg", "success");
-		return "redirect:/manager/managerEvent";
-	}
-	// 이벤트 삭제 실행
-	@RequestMapping(value="/managerEventDeleteRun", method=RequestMethod.GET)
-	public String managerEventDeleteRun(int e_no, RedirectAttributes rttr) throws Exception {
-		managerService.deleteEvent(e_no);
-		rttr.addFlashAttribute("deleteMsg", "success");
-		return "redirect:/manager/managerEvent";
-	}
-	
-	@RequestMapping(value="/test", method=RequestMethod.GET)
-	public String test() throws Exception {
-		return "manager/test";
-	}
+
 
 }

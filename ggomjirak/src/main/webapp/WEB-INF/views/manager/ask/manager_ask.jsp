@@ -28,7 +28,7 @@ $(document).ready(function() {
 	});
 });
 </script>
-<form id="frmPaging" action="/manager/managerAsk" method="get">
+<form id="frmPaging" action="/ask/managerAsk" method="get">
 <input type="hidden" name="page" value="${pagingDto.page}"/>
 <input type="hidden" name="perPage" value="${pagingDto.perPage}"/>
 <input type="hidden" name="endRow" value="${pagingDto.endRow}"/>
@@ -126,14 +126,14 @@ $(document).ready(function() {
 						<tr>
 							<td>${qna.qna_no}</td>
 							<td>${qna.user_id}</td>
-							<td><a href="/manager/managerAskContent?qna_no=${qna.qna_no}">${qna.title}</a></td>
+							<td><a href="/ask/managerAskContent?qna_no=${qna.qna_no}">${qna.title}</a></td>
 							<td>${qna.save_time}</td>
 							<td>${qna.is_del}</td>
 							<td>${qna.delete_time}</td>
 							<td>
 							<c:choose>
 							<c:when test="${qna.a_no == 0}">
-							<a href="/manager/managerAskAnswer?qna_no=${qna.qna_no}" type="button" class="btn btn-success green_background">답변하기</a>
+							<a href="/ask/managerAskAnswer?qna_no=${qna.qna_no}" type="button" class="btn btn-success green_background">답변하기</a>
 							</c:when>
 							<c:otherwise>
 							답변 완료
