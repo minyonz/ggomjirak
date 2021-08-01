@@ -1,17 +1,26 @@
 package com.dp.ggomjirak.jh.controller;
 
+import java.io.FileInputStream;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.commons.io.IOUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dp.ggomjirak.jh.service.EventService;
 import com.dp.ggomjirak.jh.service.ManagerService;
+import com.dp.ggomjirak.jh.util.MyFileUploadUtil;
 import com.dp.ggomjirak.vo.CateStrVo;
 import com.dp.ggomjirak.vo.EventVo;
 import com.dp.ggomjirak.vo.ManagerVo;
@@ -27,6 +36,10 @@ public class EventController {
 	
 	@Inject
 	private EventService eventService;
+	
+	private static final String MAIN_IMG_UPLOAD_PATH = "/test/main_img";
+	private static final String STEP_IMG_UPLOAD_PATH = "/test/make_step";
+	private static final String COMPLETE_IMG_UPLOAD_PATH = "/test/complete_img";
 	
 	
 	// 이벤트 리스트 (진행중)
@@ -65,6 +78,64 @@ public class EventController {
 		rttr.addFlashAttribute("writeMsg", "success");
 		return "redirect:/event/managerEvent";
 	}
+	
+	
+	//이미지 출력
+		@RequestMapping(value="/displayImage", method=RequestMethod.GET)
+		@ResponseBody
+		public ResponseEntity<byte[]> displayImage(String filePath) throws Exception {
+			FileInputStream fis = new FileInputStream(filePath);
+			HttpHeaders header = new HttpHeaders();
+	        header.setContentType(MediaType.IMAGE_JPEG);
+	        ResponseEntity<byte[]> entity = new ResponseEntity<byte[]>(
+	        		 IOUtils.toByteArray(fis), 
+	        		 header,
+	        		 HttpStatus.CREATED);
+	        fis.close();
+			return entity;
+		}
+		
+		
+		//이미지 파일 업로드
+		@RequestMapping(value="/uploadImg", method=RequestMethod.POST, produces="application/text;charset=utf-8")
+		@ResponseBody
+		public String uploadImg(MultipartFile file, String sort) throws Exception {
+			System.out.println("file:" + file);
+			System.out.println("sort:" + sort);
+			String orgFileName = file.getOriginalFilename();
+			System.out.println("orgFileName:" + orgFileName);
+			String thumbPath = null;
+			switch (sort) {
+			case "mainImg":
+				thumbPath = MyFileUploadUtil.uploadImage(MAIN_IMG_UPLOAD_PATH, 
+						 orgFileName, file.getBytes(), 300, 260);
+				break;
+
+			case "stepImg":
+				thumbPath = MyFileUploadUtil.uploadImage(STEP_IMG_UPLOAD_PATH, 
+						 orgFileName, file.getBytes(), 170, 170);
+				break;
+			case "complImg":
+				thumbPath = MyFileUploadUtil.uploadImage(COMPLETE_IMG_UPLOAD_PATH, 
+						 orgFileName, file.getBytes(), 140, 140);
+				break;
+			}
+			return thumbPath;
+		}
+
+		
+		//첨부파일 서버에서 삭제
+		@RequestMapping(value="/deleteFile", method=RequestMethod.GET)
+		@ResponseBody
+		public String deleteImg(String fileName) throws Exception {
+			if (MyFileUploadUtil.deleteFile(fileName)) {
+				return "success";
+			};
+			return "fail";
+		}
+		
+		
+	
 	
 	// 이벤트 수정 페이지
 	@RequestMapping(value="/managerEventModify", method=RequestMethod.GET)
