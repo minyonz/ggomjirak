@@ -43,10 +43,11 @@
 						</c:choose>
 						>
 							<img class="d-block w-100" alt="Event Banner"
-								src="/resources/img/event01.jpg" height="500"/>
-							<div class="carousel-caption">
-								<h4>${event.e_title}</h4>
+								src="/event/displayImage?filePath=${rootPath}${event.e_img}" height="500"/>
+							<div class="carousel-caption text-right">
+								<h4><a href="/main/mainEventContent?e_no=${event.e_no}">${event.e_title}</a></h4>
 								<p>${event.start_date} ~ ${event.end_date}</p>
+								<a href="/main/mainEventContent?e_no=${event.e_no}" class="btn btn-success green_background">이벤트 보기</a>
 							</div>
 						</div>
 					</c:forEach>

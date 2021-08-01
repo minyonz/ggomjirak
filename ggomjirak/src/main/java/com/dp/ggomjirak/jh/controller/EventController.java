@@ -40,6 +40,9 @@ public class EventController {
 	private static final String MAIN_IMG_UPLOAD_PATH = "/test/main_img";
 	private static final String STEP_IMG_UPLOAD_PATH = "/test/make_step";
 	private static final String COMPLETE_IMG_UPLOAD_PATH = "/test/complete_img";
+	private static final String EVENT_IMG_UPLOAD_PATH = "/test/event_img";
+	
+	String rootPath = MyFileUploadUtil.YJ_ACADEMY_FOLDER;
 	
 	
 	// 이벤트 리스트 (진행중)
@@ -62,6 +65,7 @@ public class EventController {
 	public String managerEventContent(int e_no, Model model) throws Exception {
 		EventVo eventVo = eventService.selectByEno(e_no);
 		model.addAttribute("eventVo", eventVo);
+		model.addAttribute("rootPath", rootPath);
 		return "manager/event/manager_event_content";
 	}
 	
@@ -81,58 +85,62 @@ public class EventController {
 	
 	
 	//이미지 출력
-		@RequestMapping(value="/displayImage", method=RequestMethod.GET)
-		@ResponseBody
-		public ResponseEntity<byte[]> displayImage(String filePath) throws Exception {
-			FileInputStream fis = new FileInputStream(filePath);
-			HttpHeaders header = new HttpHeaders();
-	        header.setContentType(MediaType.IMAGE_JPEG);
-	        ResponseEntity<byte[]> entity = new ResponseEntity<byte[]>(
-	        		 IOUtils.toByteArray(fis), 
-	        		 header,
-	        		 HttpStatus.CREATED);
-	        fis.close();
-			return entity;
-		}
-		
-		
-		//이미지 파일 업로드
-		@RequestMapping(value="/uploadImg", method=RequestMethod.POST, produces="application/text;charset=utf-8")
-		@ResponseBody
-		public String uploadImg(MultipartFile file, String sort) throws Exception {
-			System.out.println("file:" + file);
-			System.out.println("sort:" + sort);
-			String orgFileName = file.getOriginalFilename();
-			System.out.println("orgFileName:" + orgFileName);
-			String thumbPath = null;
-			switch (sort) {
-			case "mainImg":
-				thumbPath = MyFileUploadUtil.uploadImage(MAIN_IMG_UPLOAD_PATH, 
-						 orgFileName, file.getBytes(), 300, 260);
-				break;
+	@RequestMapping(value="/displayImage", method=RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<byte[]> displayImage(String filePath) throws Exception {
+		FileInputStream fis = new FileInputStream(filePath);
+		HttpHeaders header = new HttpHeaders();
+        header.setContentType(MediaType.IMAGE_JPEG);
+        ResponseEntity<byte[]> entity = new ResponseEntity<byte[]>(
+        		 IOUtils.toByteArray(fis), 
+        		 header,
+        		 HttpStatus.CREATED);
+        fis.close();
+		return entity;
+	}
+	
+	
+	//이미지 파일 업로드
+	@RequestMapping(value="/uploadImg", method=RequestMethod.POST, produces="application/text;charset=utf-8")
+	@ResponseBody
+	public String uploadImg(MultipartFile file, String sort) throws Exception {
+		System.out.println("file:" + file);
+		System.out.println("sort:" + sort);
+		String orgFileName = file.getOriginalFilename();
+		System.out.println("orgFileName:" + orgFileName);
+		String thumbPath = null;
+		switch (sort) {
+		case "mainImg":
+			thumbPath = MyFileUploadUtil.uploadImage(MAIN_IMG_UPLOAD_PATH, 
+					 orgFileName, file.getBytes(), 300, 260);
+			break;
 
-			case "stepImg":
-				thumbPath = MyFileUploadUtil.uploadImage(STEP_IMG_UPLOAD_PATH, 
-						 orgFileName, file.getBytes(), 170, 170);
-				break;
-			case "complImg":
-				thumbPath = MyFileUploadUtil.uploadImage(COMPLETE_IMG_UPLOAD_PATH, 
-						 orgFileName, file.getBytes(), 140, 140);
-				break;
-			}
-			return thumbPath;
+		case "stepImg":
+			thumbPath = MyFileUploadUtil.uploadImage(STEP_IMG_UPLOAD_PATH, 
+					 orgFileName, file.getBytes(), 170, 170);
+			break;
+		case "complImg":
+			thumbPath = MyFileUploadUtil.uploadImage(COMPLETE_IMG_UPLOAD_PATH, 
+					 orgFileName, file.getBytes(), 140, 140);
+			break;
+		case "eventImg":
+			thumbPath = MyFileUploadUtil.uploadImage(EVENT_IMG_UPLOAD_PATH, 
+					orgFileName, file.getBytes(), 500, 300);
+			break;
 		}
+		return thumbPath;
+	}
 
-		
-		//첨부파일 서버에서 삭제
-		@RequestMapping(value="/deleteFile", method=RequestMethod.GET)
-		@ResponseBody
-		public String deleteImg(String fileName) throws Exception {
-			if (MyFileUploadUtil.deleteFile(fileName)) {
-				return "success";
-			};
-			return "fail";
-		}
+	
+	//첨부파일 서버에서 삭제
+	@RequestMapping(value="/deleteFile", method=RequestMethod.GET)
+	@ResponseBody
+	public String deleteImg(String fileName) throws Exception {
+		if (MyFileUploadUtil.deleteFile(fileName)) {
+			return "success";
+		};
+		return "fail";
+	}
 		
 		
 	
@@ -142,6 +150,7 @@ public class EventController {
 	public String managerEventModify(int e_no, Model model) throws Exception {
 		EventVo eventVo = eventService.selectByEno(e_no);
 		model.addAttribute("eventVo", eventVo);
+		model.addAttribute("rootPath", rootPath);
 		return "manager/event/manager_event_modify";
 	}
 	

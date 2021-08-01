@@ -51,19 +51,19 @@ $(document).ready(function() {
 					<div class="divMainImg card-img rounded" style="position: relative;">
 						<label for="mainImg_file" id="mainImg_label" style="overflow: hidden;">
 							<img class="card-img rounded" id="previewImg_main"
-							src="/resources/img/eximage.png"
+							src="${contextPath}/resources/images/main_img_btn.jpg"
 							style="object-fit: cover; cursor: pointer; border: 1px solid #e1e1e1;">
 						</label>
 						<input type="file" class="mainImg_file" name="mainImg_file"
 							id="mainImg_file" accept=".gif, .jpg, .png"
 							onchange="previewMainImg(this);"
 							style="display: none; width: 0px; height: 0px; font-size: 0px;" />
-						<input type="hidden" name="main_img" id="main_img" />
+						<input type="hidden" name="e_img" id="e_img" />
 						<a id="btnDelMainImg" href="javascript:delMainImg()" class="btn_del"
 							style="display: none; position: absolute; top: 0; right: 0.1rem;"></a>
-						
-						
 				</div>
+				
+				
 				<div class="form-group">
 			    <label for="e_content">내용</label>
 			    <textarea class="form-control" id="e_content" name="e_content" rows="10"></textarea>
@@ -121,7 +121,7 @@ function previewMainImg(targetObj) {
 	if (targetObj.files.length == 0){
 		// hidden에 값변화 없게하기 (그대로 두기 일단 값 확인해보고)
 		// 보여주는건(미리보기) 파일선택취소 누르기전이미지로 
-		console.log("$('#main_img').val()", $('#main_img').val());
+		console.log("$('#e_img').val()", $('#e_img').val());
 		return false;
 	}
 	
@@ -129,7 +129,7 @@ function previewMainImg(targetObj) {
 	console.log("파일존재");
 	var formData = new FormData();
 	formData.append("file", file);
-	formData.append("sort", "mainImg");
+	formData.append("sort", "eventImg");
 	
 	var url = "/event/uploadImg";
 	
@@ -143,10 +143,10 @@ function previewMainImg(targetObj) {
 			var fileName = calcFileName(thumbPath);
 			console.log("fileName:" + fileName);
 			// 1. hidden에 값 넣기 
-			$("#main_img").val(fileName);
+			$("#e_img").val(fileName);
 			//2. 프리뷰이미지 보여주기 
-			$("#previewImg_main").attr("src", "/displayImage?filePath=" + thumbPath);
-			console.log("$('#main_img').val()", $('#main_img').val());
+			$("#previewImg_main").attr("src", "/event/displayImage?filePath=" + thumbPath);
+			console.log("$('#e_img').val()", $('#e_img').val());
 			$("#btnDelMainImg").show();
 		},
 		"error" : function() {
@@ -163,12 +163,12 @@ function previewMainImg(targetObj) {
 	
 function delMainImg() {
 	console.log("삭제")
-	var fileName = $("#main_img").val();
+	var fileName = $("#e_img").val();
 	console.log(fileName);
 	var url = "/event/deleteFile?fileName=" + fileName;
 	$.get(url, function(rData) {
 		if (rData == "success") {
-			$("#main_img").val("");
+			$("#e_img").val("");
 			$("#previewImg_main").attr("src", "${contextPath}/resources/images/main_img_btn.jpg");
 			$("#btnDelMainImg").css("display", "none");
 		}
@@ -205,7 +205,7 @@ function previewMakeStepImg(targetObj, seq) {
 			$(el).attr("data-exist", 1);
 			$("#stepBox_" + seq).removeClass("none_img");
 			//2. 프리뷰이미지 보여주기 
-			$("#previewImg_step_" + seq).attr("src", "/displayImage?filePath=" + thumbPath);
+			$("#previewImg_step_" + seq).attr("src", "/event/displayImage?filePath=" + thumbPath);
 			console.log("val", $(el).val());
 			$("#btnDelStepImg_" + seq).show();
 			

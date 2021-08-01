@@ -29,11 +29,11 @@
 		        <choose>
 				<when test="qCheck == 1">
 				where is_del = 'N'
-				and end_date > sysdate
+				and end_date + 1 > sysdate
 				</when>
 				<when test="qCheck == 2">
 				where is_del = 'N'
-				and sysdate > end_date
+				and sysdate > end_date + 1
 				</when>
 				<when test="qCheck == 3">
 				where is_del = 'Y'
@@ -50,11 +50,11 @@
 		 <choose>
 				<when test="qCheck == 1">
 				where is_del = 'N'
-				and end_date > sysdate
+				and end_date + 1 > sysdate
 				</when>
 				<when test="qCheck == 2">
 				where is_del = 'N'
-				and sysdate > end_date
+				and sysdate > end_date + 1
 				</when>
 				<when test="qCheck == 3">
 				where is_del = 'Y'
@@ -67,7 +67,7 @@
 		select * from
 		    (select rownum rnum, a.* from
 		        (select * from tbl_event
-		        where end_date > sysdate
+		        where end_date + 1 > sysdate
 		        and is_del = 'N'
 		        order by e_no desc) a)
 		where rnum between #{startRow} and #{endRow}
@@ -76,7 +76,7 @@
 	<select id="getCountEvent" resultType="int">
 		select count (*) from tbl_event
 		where is_del = 'N'
-		and end_date > sysdate
+		and end_date + 1 > sysdate
 	</select>
 	
 	<!-- 이벤트 글 목록 (종료) -->
@@ -84,7 +84,7 @@
 		select * from
 		    (select rownum rnum, a.* from
 		        (select * from tbl_event
-		        where sysdate > end_date
+		        where sysdate > end_date + 1
 		        and is_del = 'N'
 		        order by e_no desc) a)
 		where rnum between #{startRow} and #{endRow}
@@ -93,7 +93,7 @@
 	<select id="getCountEventEnd" resultType="int">
 		select count (*) from tbl_event
 		where is_del = 'N'
-		and sysdate > end_date
+		and sysdate > end_date + 1
 	</select>
 	
 	<!-- 이벤트 글 목록 (삭제) -->
@@ -140,7 +140,8 @@
 	<!-- 이벤트 글 삭제 -->
 	<update id="deleteEvent">
 		update tbl_event set
-			is_del = 'Y'
+			is_del = 'Y',
+			del_date = sysdate
 		where e_no = #{e_no}	
 	</update>
 	
@@ -162,10 +163,10 @@
 		        and is_del = 'N'
 		        <choose>
 				<when test="qCheck == 1">
-				and end_date > sysdate
+				and end_date + 1 > sysdate
 				</when>
 				<when test="qCheck == 2">
-				and sysdate > end_date
+				and sysdate > end_date + 1
 				</when>
 			</choose>
              	) a
@@ -180,10 +181,10 @@
 		    and is_del = 'N'
 		        <choose>
 				<when test="qCheck == 1">
-				and end_date > sysdate
+				and end_date + 1 > sysdate
 				</when>
 				<when test="qCheck == 2">
-				and sysdate > end_date
+				and sysdate > end_date + 1
 				</when>
 			</choose>)
 	</select>

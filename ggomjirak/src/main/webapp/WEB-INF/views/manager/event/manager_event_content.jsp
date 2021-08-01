@@ -47,7 +47,7 @@
 					</tr>
 					<tr>
 						<td colspan="2"><img class="card-img-top rounded"
-							alt="EventImage" src="/resources/img/eximage.png" /></td>
+							alt="EventImage" src="/event/displayImage?filePath=${rootPath}${eventVo.e_img}" /></td>
 					</tr>
 					<tr>
 						<td colspan="2">${eventVo.e_content}</td>

@@ -11,8 +11,8 @@ import javax.imageio.ImageIO;
 import org.imgscalr.Scalr;
 import org.springframework.util.FileCopyUtils;
 
-//import com.mortennobel.imagescaling.AdvancedResizeOp;
-//import com.mortennobel.imagescaling.MultiStepRescaleOp;
+import com.mortennobel.imagescaling.AdvancedResizeOp;
+import com.mortennobel.imagescaling.MultiStepRescaleOp;
 
 public class MyFileUploadUtil {
 	public static final String GGOMJIRAK_FOLDER = "//192.168.0.217/ggomjirak";
@@ -93,11 +93,11 @@ public class MyFileUploadUtil {
         BufferedImage img = ImageIO.read(orgFile);
         
         // java-image-scaling 라이브러리
-//        MultiStepRescaleOp rescale = new MultiStepRescaleOp(dw, dh);
-//        rescale.setUnsharpenMask(AdvancedResizeOp.UnsharpenMask.Soft);
-//        BufferedImage resizedImage = rescale.filter(img, null);
+        MultiStepRescaleOp rescale = new MultiStepRescaleOp(dw, dh);
+        rescale.setUnsharpenMask(AdvancedResizeOp.UnsharpenMask.Soft);
+        BufferedImage resizedImage = rescale.filter(img, null);
         
-//        ImageIO.write(resizedImage, getExtName(thumbPath), thumbFile);
+        ImageIO.write(resizedImage, getExtName(thumbPath), thumbFile);
 		return thumbPath;
 	}
 	
