@@ -40,7 +40,7 @@
  	<!-- 글번호로 make_step 조회 -->
  	<select id="selectMakeStepList" parameterType="int" resultType="MakeStepVo">
 			SELECT * FROM tbl_make_step
-	 		WHERE hobby_no = #{hobby_no}
+	 		WHERE hobby_no = #{hobby_no} AND is_del = 'N'
 	 		ORDER BY make_step_num ASC
 	</select> 	
 	
@@ -48,10 +48,11 @@
  	<select id="selectHobbyMaterialList" parameterType="int" resultType="HobbyMaterialVo">
 			SELECT 
 				b.hm_no hm_no, b.hobby_no hobby_no, a.material_no material_no, 
-				a.material_name materialName, b.material_detail material_detail, b.seq seq
+				a.material_name materialName, b.material_detail material_detail, 
+				b.seq seq, b.is_del is_del
 			FROM 
 				tbl_material a, tbl_hobby_material b
-			WHERE a.material_no = b.material_no AND b.hobby_no = #{hobby_no}
+			WHERE a.material_no = b.material_no AND b.hobby_no = #{hobby_no} AND b.is_del = 'N'
 			ORDER BY seq
 	</select> 	
 	
@@ -106,8 +107,8 @@
 	
 	<!-- complete_img insert -->
 	<insert id="insertCompleteImg" parameterType="java.util.List">
-		INSERT INTO tbl_complete_img (cimg_no, hobby_no, img_name, num)
-	    SELECT seq_cimg_no.nextval, A.* FROM (
+		INSERT INTO tbl_complete_img (hobby_no, img_name, num)
+	    SELECT A.* FROM (
 	    <foreach item="item" collection="list" separator="UNION ALL" >
 	        select #{item.hobby_no, jdbcType=VARCHAR} HOBBY_NO,
 	        #{item.img_name, jdbcType=VARCHAR} IMG_NAME,
@@ -133,7 +134,7 @@
 	<!-- 스탭사진 디비 -->
 	<select id="selectMakeStepImg" parameterType="MakeStepVo" resultType="java.lang.String">
 		SELECT make_step_img FROM tbl_make_step
-		WHERE hobby_no = #{hobby_no} AND make_step_num = #{make_step_num}
+		WHERE hobby_no = #{hobby_no} AND step_no = #{step_no}
 	</select>
 	
 	<update id="updateHobby" parameterType="HobbyVo">
@@ -147,21 +148,31 @@
  			time_no = #{time_no},
  			level_no = #{level_no},
  			cost_no = #{cost_no},
- 			mode_date = sysdate
+ 			mod_date = sysdate
  		WHERE hobby_no = #{hobby_no}
+	</update>
+	
+	<!-- 준비물 삭제 (수정) -->
+	<update id="deleteHobbyMaterial" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
+      	 	UPDATE tbl_hobby_material
+      	   	SET is_del = 'Y'
+      	   	WHERE hobby_no = #{item.hobby_no} AND hm_no = #{item.hm_no}
+    	</foreach>
 	</update>
 	
 	<!-- 준비물 수정 -->
 	<update id="updateHobbyMaterial" parameterType="java.util.List">
 		MERGE INTO tbl_hobby_material A
 		USING (
-			<foreach collection="list" item="item" open=""  separator="union">
+			<foreach collection="list" item="item" open="" close="" index="index" separator="UNION">
 				SELECT
-					#{item.hm_no} as hm_no
+					#{item.hm_no} as hm_no,
 					#{item.hobby_no} as hobby_no,
 					#{item.material_no} as material_no,
-					#{item.material_detail} as material_detail,
-					#{item.seq} as seq
+					#{item.material_detail, jdbcType=VARCHAR} as material_detail,
+					#{item.seq} as seq,
+					#{item.is_del} as is_del
 				FROM DUAL
 			</foreach>
 		) B
@@ -171,7 +182,8 @@
 			SET 
 				A.MATERIAL_NO = B.material_no,
 				A.MATERIAL_DETAIL = B.material_detail,
-				A.SEQ = B.seq
+				A.SEQ = B.seq,
+				A.is_del = B.is_del
 			WHERE A.HOBBY_NO = B.hobby_no
 		WHEN NOT MATCHED THEN
 		INSERT (
@@ -190,7 +202,78 @@
 		)
 	</update>
 	
+	<!-- 만들기 순서 삭제 (수정) -->
+	<update id="deleteMakeStep" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
+      	 	UPDATE tbl_make_step
+      	   	SET is_del = 'Y'
+      	   	WHERE hobby_no = #{item.hobby_no} AND step_no = #{item.step_no}
+    	</foreach>
+	</update>
+	
 	<!-- 만들기 순서 수정-->
  	<update id="updateMakeStep" parameterType="java.util.List">
+	 	MERGE INTO tbl_make_step A
+			USING (
+				<foreach collection="list" item="item" open="" close="" index="index" separator="UNION">
+					SELECT
+						#{item.step_no} as step_no,
+						#{item.hobby_no} as hobby_no,
+						#{item.make_step_num} as make_step_num,
+						#{item.make_step_text} as make_step_text,
+						#{item.make_step_img, jdbcType=VARCHAR} as make_step_img,
+						#{item.tip, jdbcType=VARCHAR} as tip,
+						#{item.note, jdbcType=VARCHAR} as note,
+						#{item.link_url, jdbcType=VARCHAR} as link_url,
+						#{item.link_desc, jdbcType=VARCHAR} as link_desc,
+						#{item.is_del} is_del
+					FROM DUAL
+				</foreach>
+			) B
+			ON (A.STEP_NO = B.step_no)
+			WHEN MATCHED THEN
+			UPDATE 
+				SET 
+					A.MAKE_STEP_NUM = B.make_step_num,
+					A.MAKE_STEP_TEXT = B.make_step_text,
+					A.MAKE_STEP_IMG = B.make_step_img,
+					A.TIP = B.tip,
+					A.NOTE = B.note,
+					A.LINK_URL = B.link_url,
+					A.LINK_DESC = link_desc,
+					A.IS_DEL = B.is_del
+				WHERE A.HOBBY_NO = B.hobby_no
+			WHEN NOT MATCHED THEN
+			INSERT (
+				STEP_NO,
+				HOBBY_NO,
+				MAKE_STEP_NUM,
+				MAKE_STEP_TEXT,
+				MAKE_STEP_IMG,
+				TIP,
+				NOTE,
+				LINK_URL,
+				LINK_DESC
+			)
+			VALUES (
+				seq_step_no.nextval,
+				B.hobby_no,
+				B.make_step_num,
+				B.make_step_text,
+				B.make_step_img,
+				B.tip,
+				B.note,
+				B.link_url,
+				B.link_desc
+			)
+	</update>
+	
+	<!-- 완성사진 수정 -->
+	<update id="updateCompleteImg" parameterType="java.util.List">
+		<foreach collection="list" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
+      	 	UPDATE tbl_complete_img
+      	   	SET img_name = #{item.img_name, jdbcType=VARCHAR}
+      	   	WHERE hobby_no = #{item.hobby_no} AND num = #{item.num}
+    	</foreach>
 	</update>
  </mapper>

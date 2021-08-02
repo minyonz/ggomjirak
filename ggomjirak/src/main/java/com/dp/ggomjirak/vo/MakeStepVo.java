@@ -14,6 +14,7 @@ public class MakeStepVo {
 	private String note;
 	private String link_url;
 	private String link_desc;
+	private String is_del;
 	
 	
 	// not db Column
@@ -111,11 +112,22 @@ public class MakeStepVo {
 	}
 
 
+	public String getIs_del() {
+		return is_del;
+	}
+
+
+	public void setIs_del(String is_del) {
+		this.is_del = is_del;
+	}
+
+
 	@Override
 	public String toString() {
 		return "MakeStepVo [step_no=" + step_no + ", hobby_no=" + hobby_no + ", make_step_num=" + make_step_num
 				+ ", make_step_text=" + make_step_text + ", make_step_img=" + make_step_img + ", tip=" + tip + ", note="
-				+ note + ", link_url=" + link_url + ", link_desc=" + link_desc + ", urlOgTag=" + urlOgTag + "]";
+				+ note + ", link_url=" + link_url + ", link_desc=" + link_desc + ", is_del=" + is_del + ", urlOgTag="
+				+ urlOgTag + "]";
 	}
 
 

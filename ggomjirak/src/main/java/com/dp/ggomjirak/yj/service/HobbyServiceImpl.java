@@ -1,7 +1,10 @@
 package com.dp.ggomjirak.yj.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -70,7 +73,8 @@ public class HobbyServiceImpl implements HobbyService {
 	@Override // isUpdate 수정폼에 뿌릴데이터인지아닌지 여부 true이면 수정용(사용자가 입력한 원본그대로 줘야함)
 	public HobbyVo selectHobbyArticle(int hobby_no, boolean isUpdate) {
 		HobbyVo hobbyVo = hobbyDao.selectHobby(hobby_no);
-		
+//		SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" , Locale.KOREA );
+//		String reg_date = sdf.format( new Date(hobbyVo.getReg_date().getTime()));
 		// 준비물
 		List<HobbyMaterialVo> hobbyMaterials = hobbyDao.selectHobbyMaterialList(hobby_no);
 		hobbyVo.setHobbyMaterials(hobbyMaterials);
@@ -133,33 +137,80 @@ public class HobbyServiceImpl implements HobbyService {
 		return hobbyDao.selectMainImg(hobby_no);
 	}
 
-	@Override
-	public String selectMakeStepImg(MakeStepVo makeStepVo) {
-		return hobbyDao.selectMakeStepImg(makeStepVo);
-	}
-
-	@Override
-	public void updateHobbyMaterial(List<HobbyMaterialVo> hobbyMaterials) {
-		hobbyDao.updateHobbyMaterial(hobbyMaterials);
-	}
 	
 	@Transactional
 	@Override
-	public void updateTest(HobbyVo hobbyVo) {
+	public void updateHobbyArticle(HobbyVo hobbyVo) {
+		
+		//* hobby update
+		hobbyDao.updateHobby(hobbyVo);
+		
 		int hobby_no = hobbyVo.getHobby_no();
+		// *준비물
 		List<HobbyMaterialVo> hobbyMaterials = hobbyVo.getHobbyMaterials();
-		// material 테이블 insert 작업 (새로운 준비물 있으면 넣고 아니면 안넣는 작업)
+		
+		// 삭제된거랑 존재하는거 분리 작업
+		List<HobbyMaterialVo> deletedMaterials = new ArrayList<HobbyMaterialVo>();
+		List<HobbyMaterialVo> existMaterials = new ArrayList<HobbyMaterialVo>();
 		for (HobbyMaterialVo hobbyMaterialVo : hobbyMaterials) {
+			// hobby_no 세팅
+			hobbyMaterialVo.setHobby_no(hobby_no);
+			if (hobbyMaterialVo.getIs_del().equals("Y")) {
+				deletedMaterials.add(hobbyMaterialVo);
+			} else {
+				existMaterials.add(hobbyMaterialVo);
+			}
+		}
+		System.out.println(deletedMaterials);
+		// 기존거 삭제된거 삭제작업(업데이트)
+		if (deletedMaterials.size() > 0) {
+			hobbyDao.deleteHobbyMaterial(deletedMaterials);
+		}
+		
+		// material 테이블 insert 작업 (새로운 준비물 있으면 넣고 아니면 안넣는 작업)
+		for (HobbyMaterialVo hobbyMaterialVo : existMaterials) {
 			String materialName = hobbyMaterialVo.getMaterialName();
 			materialDao.insertMaterial(materialName);
 		}
+		
 		// hobby_material 테이블 update작업
-		for (HobbyMaterialVo hobbyMaterialVo : hobbyMaterials) {
+		for (HobbyMaterialVo hobbyMaterialVo : existMaterials) {
 			int material_no = materialDao.getMaterialNo(hobbyMaterialVo.getMaterialName());
 			//material_no 세팅
 			hobbyMaterialVo.setMaterial_no(material_no);
 		}
-		hobbyDao.updateHobbyMaterial(hobbyMaterials);
+		hobbyDao.updateHobbyMaterial(existMaterials);
+
+		// * 만들기 작업
+		List<MakeStepVo> makeSteps = hobbyVo.getMakeSteps();
+		
+		// 삭제된거랑 존재하는거 분리 작업
+		List<MakeStepVo> deletedMakeSteps = new ArrayList<MakeStepVo>();
+		List<MakeStepVo> existMakeSteps = new ArrayList<MakeStepVo>();
+		for (MakeStepVo makeStepVo : makeSteps) {
+			// hobby_no 세팅
+			makeStepVo.setHobby_no(hobby_no);
+			if (makeStepVo.getIs_del().equals("Y")) {
+				deletedMakeSteps.add(makeStepVo);
+			} else {
+				existMakeSteps.add(makeStepVo);
+			}
+		}
+		System.out.println(deletedMakeSteps);
+		// 기존거 삭제된거 삭제작업(업데이트)
+		if (deletedMakeSteps.size() > 0) {
+			hobbyDao.deleteMakeStep(deletedMakeSteps);
+		}
+		
+		// exist update작업
+		hobbyDao.updateMakeStep(existMakeSteps);
+		
+		// * 완성사진 작업
+		List<CompleteImgVo> completeImgs = hobbyVo.getCompleteImgs();
+		for(CompleteImgVo completeImgVo : completeImgs) {
+			completeImgVo.setHobby_no(hobby_no);
+		}
+		hobbyDao.updateCompleteImg(completeImgs);
 		
 	}
 

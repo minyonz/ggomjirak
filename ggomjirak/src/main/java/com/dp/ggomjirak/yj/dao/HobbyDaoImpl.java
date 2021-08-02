@@ -99,14 +99,36 @@ public class HobbyDaoImpl implements HobbyDao {
 		return sqlSession.selectOne(NAMESPACE + "selectMainImg", hobby_no);
 	}
 
-	@Override
-	public String selectMakeStepImg(MakeStepVo makeStepVo) {
-		return sqlSession.selectOne(NAMESPACE + "selectMakeStepImg", makeStepVo);
-	}
 
 	@Override
 	public void updateHobbyMaterial(List<HobbyMaterialVo> hobbyMaterials) {
 		sqlSession.update(NAMESPACE + "updateHobbyMaterial", hobbyMaterials);
+	}
+
+	@Override
+	public void updateMakeStep(List<MakeStepVo> makeSteps) {
+		sqlSession.update(NAMESPACE + "updateMakeStep", makeSteps);
+	}
+
+	@Override
+	public void deleteHobbyMaterial(List<HobbyMaterialVo> hobbyMaterials) {
+		sqlSession.update(NAMESPACE + "deleteHobbyMaterial", hobbyMaterials);
+	}
+
+	@Override
+	public void deleteMakeStep(List<MakeStepVo> makeSteps) {
+		sqlSession.update(NAMESPACE + "deleteMakeStep", makeSteps);
+	}
+
+	@Override
+	public void updateCompleteImg(List<CompleteImgVo> completeImgs) {
+		sqlSession.update(NAMESPACE + "updateCompleteImg", completeImgs);
+	}
+
+	@Override
+	public void updateHobby(HobbyVo hobbyVo) {
+		sqlSession.update(NAMESPACE + "updateHobby", hobbyVo);
+		
 	}
 
 

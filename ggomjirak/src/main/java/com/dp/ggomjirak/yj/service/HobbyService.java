@@ -18,10 +18,8 @@ public interface HobbyService {
 	
 	public String selectCompleteImgName (CompleteImgVo completeImgVo);
 	public String selectMainImg(int hobby_no);
-	public String selectMakeStepImg(MakeStepVo makeStepVo);
+//	public String selectMakeStepImg(MakeStepVo makeStepVo);
 	
 	//* 수정작업
-	public void updateHobbyMaterial(List<HobbyMaterialVo> hobbyMaterials); 
-	
-	public void updateTest(HobbyVo hobbyVo);
+	public void updateHobbyArticle(HobbyVo hobbyVo);
 }

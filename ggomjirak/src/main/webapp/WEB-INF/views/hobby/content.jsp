@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta property="og:title" content="${hobbyVo.hobby_title }" />
 <meta property="og:url" content="${url}" />
-<meta property="og:image" content="/displayImage?filePath=${rootPath}${hobbyVo.main_img}" />
+<meta property="og:image" content="/displayImage?filePath=${hobbyVo.main_img}" />
 <meta property="og:description" content="${hobbyVo.hobby_intro}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -69,6 +69,7 @@ $(document).ready(function() {
 .body {
     margin-bottom: 40px;
     margin-top: 40px;
+    padding: 0 100px;	
 }
 .green {
  color: #1f5e43;
@@ -98,10 +99,10 @@ font-weight: 550;
 }
 .mainImg_cont{
 	overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 500px;
+/*     display: flex; */
+/*     align-items: center; */
+/*     justify-content: center; */
+    width: 550px;
     height: 400px;
 }
 #main_img{
@@ -383,11 +384,16 @@ figure[data-ke-type='opengraph'] .og-desc {
     -webkit-box-orient: vertical;
     display: -webkit-box;
 }
+
+/* 오늘 수정 */
+a {
+color:black;
+}
 </style>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
-
+${hobbyVo.reg_date }
 <!-- id4로 로그인 한상태라고 가정 -->
 <input type="hidden" name="user_id" value="ID4"/>
 <div class="container-fluid">
@@ -421,7 +427,7 @@ figure[data-ke-type='opengraph'] .og-desc {
 				<div class="row">
 					<div class="col-md-7">
 						<div class="mainImg_cont">
-							<img id="main_img" src="/displayImage?filePath=${rootPath}${hobbyVo.main_img}"/>
+							<img id="main_img" src="/displayImage?filePath=${hobbyVo.main_img}"/>
 						</div>
 					</div>
 					<div class="col-md-5">
@@ -431,9 +437,9 @@ figure[data-ke-type='opengraph'] .og-desc {
 							</div>
 							<a href="#프로필링크">
 							<img class="rounded-circle circle-image" 
-								src="/displayImage?filePath=${rootPath}${hobbyVo.user_img}"
+								src="/displayImage?filePath=${hobbyVo.user_img}"
 								style="width:2.2rem;"/> 
-								${hobbyVo.user_name} >
+								<span>${hobbyVo.user_name} ></span>
 							</a>
 						</div>
 						<div class="time_row">
@@ -456,13 +462,13 @@ figure[data-ke-type='opengraph'] .og-desc {
 						</div>
 						<div class="respon_row">
 							<button type="button" class="btn green_background">
-								<span class="fa fa-heart-o"></span>
+								<span style="color:white;" class="fa fa-heart-o"></span>
 							</button>
 							<button type="button" class="btn green_background">
-								<span class="fa fa-bookmark-o"></span>
+								<span style="color:white;" class="fa fa-bookmark-o"></span>
 							</button>
 							<button type="button" class="btn green_background">
-								<span class="fa fa-share-alt"></span>
+								<span style="color:white;" class="fa fa-share-alt"></span>
 							</button>
 						</div>
 					</div>
@@ -525,7 +531,7 @@ figure[data-ke-type='opengraph'] .og-desc {
 														<div data-num="${makeStepVo.make_step_num}" class="carousel-item ${makeStepVo.make_step_num==1  ? 'active' : ''}">
 															<div style="width:900px; height:500px">
 																<img class="slideImg" 
-																src="/displayImage?filePath=${rootPath}${makeStepVo.make_step_img }" />
+																src="/displayImage?filePath=${makeStepVo.make_step_img }" />
 															</div>
 															<div class="carousel-caption">
 																	<div id="stepDiv${makeStepVo.make_step_num}" 
@@ -605,8 +611,10 @@ figure[data-ke-type='opengraph'] .og-desc {
 						            <c:forEach var="makeStepVo" items="${hobbyVo.makeSteps}">
 										<div id="stepDiv${makeStepVo.make_step_num}" class="view_step_cont step${makeStepVo.make_step_num}">
 											<div id="stepimg${makeStepVo.make_step_num}" class="media-left">
+												<c:if test="${not empty makeStepVo.make_step_img}">
 												<img class="make_step_img" style="margin-top: 0px;"
-													src="/displayImage?filePath=${rootPath}${makeStepVo.make_step_img }">
+													src="/displayImage?filePath=${makeStepVo.make_step_img }">
+												</c:if>
 											</div>
 											<div id="stepdescr${makeStepVo.make_step_num}" class="media-body">
 												${makeStepVo.make_step_text }
@@ -668,7 +676,7 @@ figure[data-ke-type='opengraph'] .og-desc {
 											<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}">
 											<div data-num="${vs.count}" class="carousel-item ${vs.index==0  ? 'active' : ''}">
 												<img class="d-block w-100" 
-													src="/displayImage?filePath=${rootPath}${completeImgVo.img_name}" />
+													src="/displayImage?filePath=${completeImgVo.img_name}" />
 											</div>
 											</c:forEach>
 										</div> 
@@ -1028,7 +1036,7 @@ function selectCommentList() {
 			cloneDiv.find(".c_no").val(this.c_no);
 			cloneDiv.find(".re_group").val(this.re_group);
 			cloneDiv.find(".user_link").attr("href", "프로필링크/개인작업실코드(조인하기)");
-			cloneDiv.find(".user_img").attr("src", "/displayImage?filePath=${rootPath}" + this.user_img);
+			cloneDiv.find(".user_img").attr("src", "/displayImage?filePath=" + this.user_img);
 			cloneDiv.find(".c_user_name").text(this.user_name);
 			if (this.user_id == hobby_writer) {
 				cloneDiv.find(".is_hobby_writer").show();

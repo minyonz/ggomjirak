@@ -25,3 +25,8 @@
 학원 : makestep, complete, material에 고유번호 추가 (seq)
 
 maetrial수정작업중.. 자꾸 value복사됨.
+
+
+8/1
+HOBBY_MATERIAL, MAKE_STEP에 IS_DEL칼럼 추가
+completeIMg cimg_no칼럼삭제

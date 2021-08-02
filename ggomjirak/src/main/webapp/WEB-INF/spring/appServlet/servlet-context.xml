@@ -35,6 +35,12 @@
 		<beans:property name="maxUploadSize" value="104857560"/>	
 	</beans:bean>
 	
+	<!-- 업로드 경로 -->
+	<beans:bean
+		id="rootPath" class="java.lang.String">
+		<beans:constructor-arg value="C:/Users/user/Desktop" />	
+	</beans:bean>
+	
 	<!-- 임시인터셉터 -->
 	<beans:bean class="com.dp.ggomjirak.kty.interceptor.AuthInterceptor" id="authInterceptor"></beans:bean>
 	
