@@ -49,6 +49,7 @@ public class WorkroomController {
 	@Inject
 	private MainService mainService;
 	
+	// 카테고리 공통 메서드
 	public void category(Model model) throws Exception {
 		List<CateVo> category = mainService.selectCate();
 		model.addAttribute("cates", JSONArray.fromObject(category));
