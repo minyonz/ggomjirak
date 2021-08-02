@@ -103,6 +103,8 @@ $(document).ready(function() {
 		}
 		
 	});
+	$("#keyword").val("${pagingDto.keyword}");
+	
 	
 });
 </script>

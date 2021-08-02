@@ -2,10 +2,7 @@ package com.dp.ggomjirak.jh.dao;
 
 import java.util.List;
 
-import com.dp.ggomjirak.vo.CateVo;
 import com.dp.ggomjirak.vo.EventVo;
-import com.dp.ggomjirak.vo.HobbyVo;
-import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
 
 public interface EventDao {

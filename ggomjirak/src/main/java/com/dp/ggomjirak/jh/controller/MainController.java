@@ -3,6 +3,7 @@ package com.dp.ggomjirak.jh.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +39,10 @@ public class MainController {
 	String rootPath = MyFileUploadUtil.YJ_ACADEMY_FOLDER;
 
 	@RequestMapping(value="/mainHome", method=RequestMethod.GET)
-	public String mainHome(Model model, PagingDto pagingDto) throws Exception {
+	public String mainHome(Model model, PagingDto pagingDto, HttpSession session) throws Exception {
+		//MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");
+		//String user_id = memberVo.getUser_id();
+		String user_id = "hong";
 		List<CateVo> category = mainService.selectCate();
 
 
@@ -52,7 +56,6 @@ public class MainController {
 		model.addAttribute("mainEvent", mainEvent);
 		model.addAttribute("pagingDto", pagingDto);
 		
-		String user_id = "hong";
 		List<HobbyVo> suggestHobby = mainService.getSuggestHobby(user_id);
 		List<HobbyVo> popularHobby = mainService.getPopularHobbyList();
 		List<HobbyVo> monthHobby = mainService.getMonthHobbyList();

@@ -1,16 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../manager_include/manager_header.jsp" %>
+<!-- 모달  -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> -->
+<script src="../resources/js/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="../resources/css/sweetalert2.min.css">
 <script>
 $(document).ready(function() {
-	$("#frmEventWrite").submit(function() {
-		
-		
+	$("#btnCancel").click(function() {
+		var result = confirm("페이지에서 나가면 작성하시던 글이 사라집니다.");
+		if(result){
+		    $(this).attr("href", "/event/managerEvent");
+		}else{
+		    return false;
+		}
 	});
-	
-	
+});
 </script>
-
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -18,7 +24,6 @@ $(document).ready(function() {
 	<h1 class="h3 mb-2 text-gray-800">이벤트 글 작성</h1>
 	<form role="form" id="frmEventWrite" action="/event/managerEventWriteRun" method="post">
 	<input type="text" id="m_no" name="m_no" value="1001">
-	<input type="text" id="e_img" name="e_img" value="테스트 이미지1">
 		<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 		<div
@@ -36,19 +41,19 @@ $(document).ready(function() {
 			  <div class="form-group row">
 			  <div class="col-lg-6 col-md-6 mb-3" style="float:left;">
 			      <label for="start_date">이벤트 시작일</label>
-			      <input type="date" class="form-control" id="start_date" name="start_date">
+			      <input type="date" class="form-control" id="start_date" name="start_date" required>
 			      
 			    </div>
 			    <div class="col-lg-6 col-md-6 mb-3">
 			      <label for="end_date">이벤트 종료일</label>
-			      <input type="date" class="form-control" id="end_date" name="end_date">
+			      <input type="date" class="form-control" id="end_date" name="end_date" required>
 			      </div>
 			    </div>
 
 				<div class="form-group">
 					<label for="mainImg_file">이미지</label>
 
-					<div class="divMainImg card-img rounded" style="position: relative;">
+				<div class="divMainImg card-img rounded" style="position: relative;">
 						<label for="mainImg_file" id="mainImg_label" style="overflow: hidden;">
 							<img class="card-img rounded" id="previewImg_main"
 							src="${contextPath}/resources/images/main_img_btn.jpg"
@@ -58,7 +63,7 @@ $(document).ready(function() {
 							id="mainImg_file" accept=".gif, .jpg, .png"
 							onchange="previewMainImg(this);"
 							style="display: none; width: 0px; height: 0px; font-size: 0px;" />
-						<input type="hidden" name="e_img" id="e_img" />
+						<input type="hidden" name="e_img" id="e_img"  required/>
 						<a id="btnDelMainImg" href="javascript:delMainImg()" class="btn_del"
 							style="display: none; position: absolute; top: 0; right: 0.1rem;"></a>
 				</div>
@@ -78,7 +83,7 @@ $(document).ready(function() {
 		<div class="card-body">
 				
 			<button id="btnInsert" type="submit" class="btn btn-success green_background">등록</button>	
-			<a href="/event/managerEvent" type="button" class="btn btn-danger orange_background">취소</a>	
+			<a id="btnCancel" type="button" class="btn btn-danger orange_background">취소</a>	
 		
 		</div>
 	</div>
@@ -88,6 +93,8 @@ $(document).ready(function() {
 
 <%@ include file="../manager_include/manager_footer.jsp" %>
 <script>
+
+	
 function calcFileName(thumbPath) {
 	// var rootIndex;
 	// const home = 21;
@@ -237,4 +244,5 @@ function delStepImg(seq) {
 		}
 	});
 }
+
 </script>

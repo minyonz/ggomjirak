@@ -5,7 +5,6 @@
   
 <mapper namespace="com.dp.ggomjirak.manager">
 
-	
 	<!-- 회원 정보 목록 (활동중) -->
 	<select id="showMemberList" resultType="MemberVo">
 		select * from
@@ -63,11 +62,7 @@
 		where w.user_id = #{user_id}
 	</select>
 	
-	<!-- 회원 취미 카테고리 리스트 -->
-	<select id="showCateList">
 		
-	</select>
-	
 	<!-- 회원 등급정보 조회 -->
 	<select id="selectGradeById" resultType="String">
 		select b.name

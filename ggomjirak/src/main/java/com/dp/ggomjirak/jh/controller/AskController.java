@@ -8,19 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dp.ggomjirak.jh.service.AskService;
-import com.dp.ggomjirak.jh.service.EventService;
-import com.dp.ggomjirak.jh.service.ManagerService;
-import com.dp.ggomjirak.vo.CateStrVo;
-import com.dp.ggomjirak.vo.EventVo;
-import com.dp.ggomjirak.vo.ManagerVo;
-import com.dp.ggomjirak.vo.MemberActivVo;
-import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
 import com.dp.ggomjirak.vo.QnAVo;
-import com.dp.ggomjirak.vo.WorkroomVo;
 
 @Controller
 @RequestMapping("ask")

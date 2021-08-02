@@ -10,7 +10,7 @@
 	<h1 class="h3 mb-2 text-gray-800">이벤트 글 수정</h1>
 	<form action="/event/managerEventModifyRun" method="post">
 	<input type="text" id="e_no" name="e_no" value="${eventVo.e_no}">
-	<input type="text" id="e_img" name="e_img" value="테스트 이미지1">
+	<input type="text" id="m_no" name="m_no" value="1001">
 
 		<!-- DataTales Example -->
 	<div class="card shadow mb-4">

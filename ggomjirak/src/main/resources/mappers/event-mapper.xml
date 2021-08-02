@@ -120,14 +120,15 @@
 	<!-- 이벤트글 작성 -->
 	<insert id="insertEvent">
 		insert into tbl_event
-		values(seq_e_no.nextval, #{m_no}, #{e_title}, #{e_content, jdbcType=VARCHAR}, 
+		values(seq_e_no.nextval, #{m_no, jdbcType=NUMERIC}, #{e_title}, #{e_content, jdbcType=VARCHAR}, 
 			#{e_img, jdbcType=VARCHAR}, sysdate, #{mod_date, jdbcType=TIMESTAMP}, 'N', 
-			#{start_date, jdbcType=DATE}, #{end_date, jdbcType=DATE})
+			#{start_date, jdbcType=DATE}, #{end_date, jdbcType=DATE}, #{del_date, jdbcType=TIMESTAMP})
 	</insert>
 	
 	<!-- 이벤트 글 수정 -->
 	<update id="updateEvent">
 		update tbl_event set
+			m_no = #{m_no, jdbcType=NUMERIC}
 			e_title = #{e_title},
 			e_content = #{e_content, jdbcType=VARCHAR},
 			e_img = #{e_img, jdbcType=VARCHAR},

@@ -41,15 +41,6 @@ public class PagingDto {
 	private Date today;
 	
 	
-	
-	public Date getToday() {
-		return today;
-	}
-
-	public void setToday(Date today) {
-		this.today = today;
-	}
-
 	public PagingDto() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -57,7 +48,7 @@ public class PagingDto {
 	
 	public PagingDto(int page, int startRow, int endRow, int count, int startPage, int endPage, int totalPage,
 			int perPage, String user_id, String searchType, String keyword,
-			int parent_cate_no, int m_cate_no, int qCheck) {
+			int parent_cate_no, int m_cate_no, int qCheck, Date today) {
 		super();
 		this.page = page;
 		this.startRow = startRow;
@@ -73,6 +64,7 @@ public class PagingDto {
 		this.parent_cate_no = parent_cate_no;
 		this.m_cate_no = m_cate_no;
 		this.qCheck = qCheck;
+		this.today = today;
 	}
 	
 	public int getPage() {
@@ -203,6 +195,14 @@ public class PagingDto {
 
 	public void setqCheck(int qCheck) {
 		this.qCheck = qCheck;
+	}
+	
+	public Date getToday() {
+		return today;
+	}
+
+	public void setToday(Date today) {
+		this.today = today;
 	}
 
 	@Override

@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dp.ggomjirak.jh.service.AskService;
+import com.dp.ggomjirak.jh.service.EventService;
 import com.dp.ggomjirak.jh.service.ManagerService;
 import com.dp.ggomjirak.vo.CateStrVo;
 import com.dp.ggomjirak.vo.ManagerVo;
 import com.dp.ggomjirak.vo.MemberActivVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
-import com.dp.ggomjirak.vo.QnAVo;
 import com.dp.ggomjirak.vo.WorkroomVo;
 
 @Controller
@@ -30,17 +30,22 @@ public class ManagerController {
 	@Inject
 	private AskService askService;
 	
+	@Inject
+	private EventService eventService;
+	
 	// 홈
 	@RequestMapping(value="/managerHome", method=RequestMethod.GET)
-	public String managerHome(Model model) throws Exception {
+	public String managerHome(Model model, PagingDto pagingDto) throws Exception {
 		List<MemberVo> popularMemberList = managerService.selectPopularMemberList();
 		int memberCount = managerService.getMemberCount();
-		
 		int askCount = askService.getCountQnAMain();
-		System.out.println(askCount);
+		int eventCount = eventService.getCountBanner(pagingDto);
+		
+		System.out.println(eventCount);
 		model.addAttribute("popularMemberList", popularMemberList);
 		model.addAttribute("memberCount", memberCount);
 		model.addAttribute("askCount", askCount);
+		model.addAttribute("eventCount", eventCount);
 		return "manager/manager_home";
 	}
 	

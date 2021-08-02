@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.dp.ggomjirak.jh.dao.MainDao;
 import com.dp.ggomjirak.vo.CateVo;
-import com.dp.ggomjirak.vo.EventVo;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
