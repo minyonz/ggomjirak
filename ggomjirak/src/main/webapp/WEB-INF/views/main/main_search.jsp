@@ -4,6 +4,7 @@
 <%@ include file="../include/header.jsp" %>
 <script>
 $(document).ready(function() {
+	
 	$(".pagination > a").click(function(e) {
 		e.preventDefault(); // 페이지 이동 막기
 		var page = $(this).attr("href");
@@ -13,6 +14,7 @@ $(document).ready(function() {
 		frmPaging.submit();
 		// -> 주소창에 : http://localhost/board/listAll?page=1&perPage=10&searchType=&keyword=
 	});
+	
 });
 </script>
 <form id="frmPaging" action="/main/mainSearch" method="get">

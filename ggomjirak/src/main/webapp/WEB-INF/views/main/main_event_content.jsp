@@ -22,7 +22,7 @@
 				    </tr>
 				    <tr>
 				      <td colspan="2">
-				      	<img src="/resources/img/logo.png" class="rounded mx-auto d-block" alt="..."
+				      	<img src="/event/displayImage?filePath=${rootPath}${eventVo.e_img}" class="rounded mx-auto d-block" alt="..."
 							width="1200px" height="400px">
 				      </td>
 				    </tr>

@@ -16,6 +16,10 @@ public class EventVo {
 	private Date start_date;
 	private Date end_date;
 	
+	private String user_id;
+	
+	private int rnum;
+	
 	
 	public EventVo() {
 		super();
@@ -23,7 +27,8 @@ public class EventVo {
 
 
 	public EventVo(int e_no, int m_no, String e_title, String e_content, String e_img, Timestamp reg_date,
-			Timestamp mod_date, String is_del, Timestamp del_date, Date start_date, Date end_date) {
+			Timestamp mod_date, String is_del, Timestamp del_date, Date start_date, Date end_date, String user_id,
+			int rnum) {
 		super();
 		this.e_no = e_no;
 		this.m_no = m_no;
@@ -36,6 +41,8 @@ public class EventVo {
 		this.del_date = del_date;
 		this.start_date = start_date;
 		this.end_date = end_date;
+		this.user_id = user_id;
+		this.rnum = rnum;
 	}
 
 
@@ -149,11 +156,36 @@ public class EventVo {
 	}
 
 
+	public String getUser_id() {
+		return user_id;
+	}
+
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	
+
+	public int getRnum() {
+		return rnum;
+	}
+
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
+
+
 	@Override
 	public String toString() {
 		return "EventVo [e_no=" + e_no + ", m_no=" + m_no + ", e_title=" + e_title + ", e_content=" + e_content
 				+ ", e_img=" + e_img + ", reg_date=" + reg_date + ", mod_date=" + mod_date + ", is_del=" + is_del
-				+ ", del_date=" + del_date + ", start_date=" + start_date + ", end_date=" + end_date + "]";
+				+ ", del_date=" + del_date + ", start_date=" + start_date + ", end_date=" + end_date + ", user_id="
+				+ user_id + ", rnum=" + rnum + "]";
 	}
 
-}
+
+
+	
+	}
+

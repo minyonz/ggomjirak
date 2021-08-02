@@ -4,54 +4,37 @@
 <%@ include file="../manager_include/manager_header.jsp" %>
 <script>
 $(document).ready(function() {
-	var today = new Date();
-	var dd = today.getDate();
-	var mm = today.getMonth() + 1; //January is 0!
-	var yyyy = today.getFullYear();
-	if (dd < 10) {
-	  dd = '0' + dd;
-	}
-	if (mm < 10) {
-	  mm = '0' + mm;
-	}
-	var today = yyyy + '-' + mm + '-' + dd;
-	console.log(today);
 	
 	$(".pagination > li > a").click(function(e) {
 		e.preventDefault(); // 페이지 이동 막기
 		var page = $(this).attr("href");
 		var frmPaging = $("#frmPaging");
 		frmPaging.find("[name=page]").val(page); // page에 페이지 숫자 넣어줌
-		$("#frmPaging > input[name=today]").val(today);
 		console.log(page);
 		frmPaging.submit();
 		// -> 주소창에 : http://localhost/board/listAll?page=1&perPage=10&searchType=&keyword=
 	});
 	$(".qCheck > li > a").click(function(e) {
 		e.preventDefault();
-		
 		var qCheck = $(this).attr("href");
 		
+		console.log(qCheck);
 		$("#frmPaging > input[name=qCheck]").val(qCheck);
 		
 		$("#frmPaging > input[name=page]").val("1");
-		
-		$("#frmPaging > input[name=today]").val(today);
 
 		$("#frmPaging").submit();
 
 	});
-	
 
 	
 });
 </script>
-<form id="frmPaging" action="/event/managerEvent" method="get">
+<form id="frmPaging" action="/event/managerMainEvent" method="get">
 <input type="hidden" name="page" value="${pagingDto.page}"/>
 <input type="hidden" name="perPage" value="${pagingDto.perPage}"/>
 <input type="hidden" name="endRow" value="${pagingDto.endRow}"/>
 <input type="hidden" name="qCheck" value="${pagingDto.qCheck}"/>
-<input type="hidden" name="today" value="${pagingDto.today}"/>
 </form>
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -96,7 +79,7 @@ $(document).ready(function() {
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
-			<h6 class="m-0 font-weight-bold green_color" style="float:left;">이벤트</h6>
+			<h6 class="m-0 font-weight-bold green_color" style="float:left;">이벤트 배너</h6>
 			<select name="category"
 				class="btn btn-outline-light green_background dropdown-toggle"
 				data-bs-toggle="dropdown" aria-expanded="false">
@@ -104,11 +87,7 @@ $(document).ready(function() {
 				<option class="dropdown-item" value="1">이벤트 시작일 순</option>
 				<option class="dropdown-item" value="2">이벤트 종료일 순</option>
 			</select>
-			<a href="/event/managerEventWrite" type="button" class="btn btn-success green_background float-right">
-			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-			  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-			</svg>
-			글쓰기</a>
+			
 					
 		</div>
 		
@@ -120,25 +99,20 @@ $(document).ready(function() {
 					<c:when test="${pagingDto.qCheck == 0}"> class="orange_color nav-link active" </c:when>
 					<c:otherwise> class="green_color nav-link" </c:otherwise>
 				</c:choose>
-			href="0">전체 이벤트</a></li>
+			href="0">전체 베너</a></li>
 			<li class="nav-item"><a 
 			<c:choose>
 					<c:when test="${pagingDto.qCheck == 1}"> class="orange_color nav-link active" </c:when>
 					<c:otherwise> class="green_color nav-link" </c:otherwise>
 				</c:choose>
-			href="1">진행중인 이벤트</a></li>
+			href="1">진행중인 베너</a></li>
 			<li class="nav-item"><a
 			<c:choose>
 					<c:when test="${pagingDto.qCheck == 2}"> class="orange_color nav-link active" </c:when>
 					<c:otherwise> class="green_color nav-link" </c:otherwise>
 				</c:choose>
-			href="2">종료된 이벤트</a></li>
-			<li class="nav-item"><a
-			<c:choose>
-					<c:when test="${pagingDto.qCheck == 3}"> class="orange_color nav-link active" </c:when>
-					<c:otherwise> class="green_color nav-link" </c:otherwise>
-				</c:choose>
-			href="3">삭제된 이벤트</a></li>
+			href="2">종료된 베너</a></li>
+			
 		</ul>
 		
 		<table class="table" id="eventTable">
@@ -152,29 +126,24 @@ $(document).ready(function() {
 		      <th scope="col">작성일</th>
 		      <th scope="col">수정일</th>
 		      <th scope="col">첨부파일</th>
-		      <th scope="col">삭제일</th>
+		      <th scope="col">등록 취소</th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		    
-		 	<c:forEach var="event" items="${eventListAll}">
+		 	<c:forEach var="event" items="${mainEvent}">
 		    <tr>
 		      <td scope="row">${event.e_no}</td>
 		      <td>${event.user_id}</td>
 		      <td><a href="/event/managerEventContent?e_no=${event.e_no}">${event.e_title}</a></td>
 		      <td>${event.start_date}</td>
-		      <td 
-		      <c:choose>
-					<c:when test="${event.end_date < pagingDto.today}"> class="orange_color" </c:when>
-					<c:otherwise> class="green_color" </c:otherwise>
-				</c:choose>
-		      class="orange_color">
-		      ${event.end_date}
-		      </td>
+		      <td>${event.end_date}</td>
 		      <td>${event.reg_date}</td>
 		      <td>${event.mod_date}</td>
 		      <td>${event.e_img}</td>
-		      <td>${event.del_date}</td>
+		      <td>
+		      	<a href="/event/managerMainEventDeleteRun?e_no=${event.e_no}" type="button" class="btn btn-danger orange_background">취소</a>
+		      </td>
 		    </tr>
 		    </c:forEach>
 		  </tbody>
