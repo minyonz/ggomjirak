@@ -31,7 +31,10 @@ $(document).ready(function(){
 	}
 	
 	var isCheckDupId = false;
-	var checkId = "";
+	var checkedId = "";
+	
+	var isCheckDupNick = false;
+	var checkedNick = "";
 	
 	// 회원 가입 폼 전송
 	$("#frmJoin").submit(function(){
@@ -47,9 +50,15 @@ $(document).ready(function(){
 			return false;
 		}
 		
-		if(isCheckDupId == false || $("#user_id").val() != checkId){
+		if(isCheckDupId == false || $("#user_id").val() != checkedId){
 			alert("아이디 중복 체크를 해주세요.");
 			$("#btnCheckDupId").focus();
+			return false;
+		}
+		
+		if(isCheckDupNick == false || $("#user_nick").val() != checkedNick){
+			alert("별명을 중복 체크를 해주세요.");
+			$("#btnCheckDupNick").focus();
 			return false;
 		}
 	});
@@ -73,13 +82,40 @@ $(document).ready(function(){
 		$.get(url, sendData, function(rData) {
 			console.log(rData);
 			if(rData == "true"){
-				$("#checkDupIdResult").text("사용중인 아이디").css("color", "red");
+				$("#checkDupIdResult").text("사용 중인 아이디").css("color", "red");
 				isCheckDupId = false;
 			} else {
 				$("#checkDupIdResult").text("사용 가능한 아이디").css("color", "blue");
 				isCheckDupId = true;
 			}
-			checkId = user_id;
+			checkedId = user_id;
+		});
+	});
+	
+	// 닉네임 중복 확인 버튼
+	$("#btnCheckDupNick").click(function(){
+		
+		if($("#user_nick").val() == ""){
+			$("#checkDupNickResult").text("별명을  입력해주세요.").css("color", "red");
+			$("#user_nick").focus();
+			return false;
+		}
+		
+		var url = "/mypage/checkDupNick";
+		var user_nick = $("#user_nick").val();
+		var sendData = {
+				"user_nick" : user_nick
+		};
+		$.get(url, sendData, function(rData) {
+			console.log(rData);
+			if(rData == "true"){
+				$("#checkDupNickResult").text("사용 중인 별명").css("color", "red");
+				isCheckDupNick = false;
+			} else {
+				$("#checkDupNickResult").text("사용 가능한 별명").css("color", "blue");
+				isCheckDupNick = true;
+			}
+			checkedNick = user_nick;
 		});
 	});
 	
@@ -114,7 +150,7 @@ ${list}
 							<div class="form-group">
 								<label for="user_id">아이디*</label> 
 								<input type="text" class="form-control" id="user_id" name="user_id" /> 
-								<br />
+								<br/>
 								<button type="button" class="btn btn-small btn-danger" id="btnCheckDupId">아이디 중복 확인</button>
 								 <span class="error_next_box" id="idMsg" style="display:none" aria-live="assertive"></span>
 								<span id="checkDupIdResult"></span>
@@ -130,6 +166,14 @@ ${list}
 							<div class="form-group">
 								<label for="user_name">이름</label>
 								<input type="text" class="form-control" id="user_name" name="user_name" />
+							</div>
+							<div class="form-group">
+								<label for="user_nick">닉네임</label>
+								<input type="text" class="form-control" id="user_nick" name="user_nick" />
+								<br>
+								<button type="button" class="btn btn-small btn-danger"
+									id="btnCheckDupNick">닉네임 중복 확인</button>
+								<span id="checkDupNickResult"></span>
 							</div>
 							<div class="form-group">
 								<label for="user_email">이메일*</label>

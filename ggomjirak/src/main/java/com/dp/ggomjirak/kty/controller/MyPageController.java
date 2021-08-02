@@ -1,5 +1,6 @@
 package com.dp.ggomjirak.kty.controller;
 
+import java.io.FileInputStream;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.util.Date;
@@ -9,20 +10,25 @@ import java.util.Locale;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.omg.CORBA.TIMEOUT;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dp.ggomjirak.HomeController;
 import com.dp.ggomjirak.kty.service.MyPageService;
+import com.dp.ggomjirak.kty.util.MyFileUploadUtil;
 import com.dp.ggomjirak.vo.CateVo;
 import com.dp.ggomjirak.vo.LoginVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.twelvemonkeys.util.Time;
+
+import net.sf.json.JSONArray;
 
 
 @Controller
@@ -144,9 +150,9 @@ public class MyPageController {
 		System.out.println("회원 가입 대분류 선택하면 연결되는 중분류만 나타나는 부분 추가 중...");
 		System.out.println("parent_cate_no:" + parent_cate_no);
 				
-		List<CateVo> list2 = myPageService.listHobbyCate2(parent_cate_no);
-		model.addAttribute("list2", list2);
-		System.out.println("list2:" + list2);
+//		List<CateVo> list2 = myPageService.listHobbyCate2(parent_cate_no);
+//		model.addAttribute("list2", list2);
+//		System.out.println("list2:" + list2);
 		return "mypage/member_join";
 	}
 		
@@ -167,6 +173,17 @@ public class MyPageController {
 	public String checkDupNick(String user_nick) throws Exception {
 		System.out.println("마이 페이지 컨트롤러의 닉네임 중복 확인 들어갑니다.");
 		boolean result = myPageService.checkDupNick(user_nick);
+		return String.valueOf(result);
+	}
+	
+	// 마이 페이지 - 회원 프로필 수정 - 닉네임 중복 확인 버튼 클릭시 비동기 방식으로 요청 확인 부분 
+	@RequestMapping(value="/checkDupNickProfile", method=RequestMethod.GET)
+	@ResponseBody
+	public String checkDupNickProfile(String user_id, String user_nick) throws Exception {
+		System.out.println("마이 페이지 컨트롤러 프로필 수정 닉네임 중복 확인 들어갑니다.");
+		System.out.println("user_id: " + user_id);
+		System.out.println("user_nick: " + user_nick);
+		boolean result = myPageService.checkDupNickProfile(user_id, user_nick);
 		return String.valueOf(result);
 	}
 	
@@ -228,35 +245,101 @@ public class MyPageController {
 		return "success";
 	}
 		
-		
-		
 	// 마이 페이지 - 나의 프로필 수정 폼
 	@RequestMapping(value = "/profileForm", method = RequestMethod.GET)
 	public String profileForm(MemberVo memberVo, HttpSession session, Model model) throws Exception {
 		System.out.println("마이 페이지 프로필 수정에 들어감");
-		System.out.println("마이 페이지 프로필 내용 읽어오는 추가 중");
+		
+		// 취미 카테고리 선택 추가
+		List<CateVo> category = myPageService.selectCate();
+//		List<CateVo> bigSort = myPageService.cateBigSort();
+//		List<CateVo> smallSort = myPageService.cateSmallSort();
 		
 		memberVo = (MemberVo)session.getAttribute("loginVo");
 		memberVo = myPageService.info(memberVo.getUser_id());
 		System.out.println(memberVo);
 		
 		model.addAttribute("memberVo", memberVo); // ??? 
+		model.addAttribute("cates", JSONArray.fromObject(category));
 
+//		model.addAttribute("bigSort", bigSort);
+//		model.addAttribute("smallSort", smallSort);
 		return "mypage/member_profile";
 	}
 
+	/*@RequestMapping(value="/memberJoinRun", method=RequestMethod.POST)
+	public String memberJoinRun(MemberVo memberVo, MultipartFile file,
+			RedirectAttributes rttr) throws Exception {
+		String orgFileName = file.getOriginalFilename();
+		System.out.println("orgFileName: " + orgFileName);
+		
+		String filePath = MyFileUploadUtil.uploadFile(
+				"D:/user_pic", orgFileName, file.getBytes());
+		memberVo.setUser_pic(filePath);
+		System.out.println("memberVo: " + memberVo);
+		memberService.insertMember(memberVo);
+		rttr.addFlashAttribute("msg", "success");
+		return "redirect:/loginForm";
+	}*/
+	
 	// 마이 페이지 - 나의 프로필 수정 실행
 	@RequestMapping(value = "/modifyProfileRun", method = RequestMethod.POST)
-	public String modifyProfileRun(MemberVo memberVo, HttpSession session, RedirectAttributes rttr, Model model) throws Exception {
+	public String modifyProfileRun(MemberVo memberVo, HttpSession session,
+			RedirectAttributes rttr) throws Exception {
 		System.out.println("나의 프로필 수정 실행 들어옴...");
+
+//		String orgFileName = file.getOriginalFilename();
+//		System.out.println("orgFileName: " + orgFileName);
+//		
+//		String filePath = MyFileUploadUtil.uploadFile("C:/user_img", orgFileName, file.getBytes());
+//		memberVo.setUser_img(filePath);
+		
 		//memberVo.setUser_id((MemberVo)session.getAttribute("loginVo"));
 		System.out.println("로그인 아이디 memberVo.getUser_id(): " + memberVo.getUser_id());
 		System.out.println("memberVo.getUser_nick(): " + memberVo.getUser_nick());
 		System.out.println("memberVo.getCate_etc(): " + memberVo.getCate_etc());
-		myPageService.modifyProfileRun(memberVo);
+		System.out.println("memberVo: " + memberVo);
 
-		model.addAttribute("memberVo", memberVo);
-		return "redirect:/mypage/infoForm?user_id=" + memberVo.getUser_id();
+		myPageService.modifyProfileRun(memberVo);
+		rttr.addFlashAttribute("msg", "success");
+		
+		//model.addAttribute("memberVo", memberVo);
+//		return "redirect:/mypage/infoForm?user_id=" + memberVo.getUser_id();
+//		return "redirect:/mypage/profileForm?user_id=" + memberVo.getUser_id();
+		return "redirect:/mypage/profileForm";
+	}
+	
+	// 프로필 이미지 첨부파일 추가 - 경로 임의로 사용 중 
+	@RequestMapping(value = "/uploadAjax", method = RequestMethod.POST, produces = "application/text;charset=utf-8")
+	@ResponseBody
+	public String uploadAjax(MultipartFile file) throws Exception {
+		System.out.println("file: " + file);
+		String originalFilename = file.getOriginalFilename();
+		System.out.println("originalFilename:" + originalFilename);
+		String filePath = MyFileUploadUtil.uploadFile("C:/upload", originalFilename, file.getBytes());
+		// String filePath = MyFileUploadUtil.uploadFile("//192.168.0.217/git2",
+		// originalFilename, file.getBytes());
+		return filePath;
+	}
+
+	// 썸네일 이미지 요청
+	@RequestMapping(value = "/displayImage", method = RequestMethod.GET)
+	@ResponseBody
+	public byte[] displayImage(String fileName) throws Exception {
+		FileInputStream fis = new FileInputStream(fileName);
+		byte[] bytes = IOUtils.toByteArray(fis); // ???
+		fis.close(); // close가 안되어서 파일 삭제가 바로 안되는 것 처럼 보였던거 같음...
+		// 입력 스트림에서 close를 하지 않으면 로컬에서는 잘되는것 같은데 서버에서는 안되고
+		// 삭제 할 때는 메모리 해제 문제가 발생해서 오류가 날 수 있다...
+		return bytes;
+	}
+
+	// 첨부파일 삭제
+	@RequestMapping(value = "/deleteFile", method = RequestMethod.GET)
+	@ResponseBody
+	public String deleteFile(String fileName) throws Exception {
+		MyFileUploadUtil.deleteFile(fileName);
+		return "success";
 	}
 		
 	// 마이 페이지 - 회원 탈퇴 - 추가하게 될지 미정
