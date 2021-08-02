@@ -43,7 +43,6 @@ $(document).ready(function() {
 	
 	// 작업실 소개 
 	// 수정 버튼 클릭 시 텍스트 입력으로 변경(수정버튼 비활성화)
-	// input type="text"말ㄹ고 TEXTAREA로 변경해
 	$("#btnIntro").click(function() {
 		$("#wrIntro").replaceWith("<textarea id='wrIntro' class='form-control'>${workroomVo.wr_intro}</textarea>");
 		$("#btnIntro").attr("style", "margin-left:10px; height:20px; border:none; background:none; padding: 0; display:none");
@@ -79,13 +78,31 @@ $(document).ready(function() {
 		});
 	});
 	
-	// 팔로우취소
+	// 언팔로우
 	$(".unfollow").click(function() {
-		console.log("언팔로우");	
-		var user_id = $(".user_nick").attr("data-id");
-		console.log(user_id);
+		var that = $(this);
+		var user_id = $(this).parent().parent().parent().find("span").attr("data-id");
+		var url = "/workroom/follow/" + user_id;
+		console.log(url);
+		$.get(url, function(rData) {
+			if (rData.unFollow) {
+				that.replaceWith("<button type='button' class='btn btn-primary follow'>팔로우</button>");
+			}
+		});
 	});
 	
+	// 언팔로우 후 다시 팔로우
+	$(".divUnfollow").on("click", ".follow", function() {
+		var that = $(this);
+		var user_id = $(this).parent().parent().parent().find("span").attr("data-id");
+		var url = "/workroom/follow/" + user_id;
+		console.log(url);
+		$.get(url, function(rData) {
+			if (rData.follow) {
+				that.replaceWith("<button type='button' class='btn btn-outline-primary unfollow'>언팔로우</button>");
+			}
+		});
+	});
 	
 });
 </script>
@@ -94,7 +111,7 @@ $(document).ready(function() {
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
 			<div style="text-align: center; margin-top: 12px;">
-				<h2 style="font-weight: 700">내 작업실 설정<a href="/workroom/main" class="fa fa-home" style="font-size:30px; margin-left:10px;"></a></h2>
+				<h2 style="font-weight: 700">내 작업실 설정<a href="/workroom/main/${page_id}" class="fa fa-home" style="font-size:30px; margin-left:10px;"></a></h2>
 			</div>
 			<div class="checkout__order">
 				<div class="workroom_box row">
@@ -137,12 +154,12 @@ $(document).ready(function() {
 									<a href="#"><img src="/resources/img/test/littleduck.png" alt=""></a>
 								</div>
 								<div class="blog__details__author__text">
-									<span class="user_nick" data-id="${followVo.following}">${followVo.user_nick}</span>
+									<span data-id="${followVo.following}">${followVo.user_nick}</span>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-2">
-							<div style="text-align: right">
+							<div style="text-align: right" class="divUnfollow">
 								<button type="button" class="btn btn-outline-primary unfollow">언팔로우</button> 
 							</div>
 						</div>

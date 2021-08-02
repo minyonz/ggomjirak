@@ -26,20 +26,20 @@ import com.dp.ggomjirak.vo.StoryVo;
 public class StoryController {
 	
 	@Inject
-	StoryService storyService;
+	private StoryService storyService;
 	
 	@Inject
-	StoryCommentService storyCommentService;
+	private StoryCommentService storyCommentService;
 	
 	@Inject
-	WorkroomController wrController = new WorkroomController();
+	private WorkroomController wrController = new WorkroomController();
 	
 	// 스토리
-	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String wrStoryList(Model model, StoryPagingDto storyPagingDto, HttpSession session) throws Exception {
-		MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");
-		String user_id = memberVo.getUser_id();
-		storyPagingDto.setUser_id(user_id);
+	@RequestMapping(value="/list/{user_id}", method=RequestMethod.GET)
+	public String wrStoryList(@PathVariable("user_id") String page_id, Model model, StoryPagingDto storyPagingDto, HttpSession session) throws Exception {
+//		MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");
+//		String user_id = memberVo.getUser_id();
+		storyPagingDto.setUser_id(page_id);
 		int count = storyService.storyCount(storyPagingDto);
 		storyPagingDto.setCount(count);
 		List<StoryVo> list = storyService.StoryList(storyPagingDto);
@@ -54,31 +54,38 @@ public class StoryController {
 //		}
 //		System.out.println(list);
 		// 카드프로필 공통 메서드
-		wrController.profileCommon(model, session);
+		wrController.profileCommon(page_id, model, session);
+		wrController.category(model);
 		model.addAttribute("list", list);
 		model.addAttribute("storyPagingDto", storyPagingDto);
 		return "workroom/wr_story";
 	}
 	
 	// 스토리 상세
-	@RequestMapping(value="/detail", method=RequestMethod.GET)
-	public String wrStoryDetail(int st_no, Model model, HttpSession session) throws Exception {
+	@RequestMapping(value="/detail/{user_id}", method=RequestMethod.GET)
+	public String wrStoryDetail(@PathVariable("user_id") String page_id, int st_no, Model model, HttpSession session) throws Exception {
 		MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");
 		String user_id = memberVo.getUser_id();
 		StoryVo storyVo = storyService.StorySelect(st_no);
 		List<StoryCommentVo> list = storyCommentService.listComment(st_no);
-		wrController.profileCommon(model, session);
+		wrController.profileCommon(page_id, model, session);
 		int likeCheck = storyService.likeCheck(st_no, user_id);
+		
+		wrController.category(model);
 		model.addAttribute("likeCheck", likeCheck);
 		model.addAttribute("storyVo", storyVo);
 		model.addAttribute("list", list);
 		return "workroom/wr_story_detail";
 	}
 	
+	// 작성, 수정 -> page_id받을 필요 없이  session값 받아서 실행
 	// 스토리 작성 폼
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String wrStoryWrite(Model model, HttpSession session) throws Exception {
-		wrController.profileCommon(model, session);
+		MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");
+		String user_id = memberVo.getUser_id();
+		wrController.profileCommon(user_id, model, session);
+		wrController.category(model);
 		return "workroom/wr_story_write";
 	}
 	
@@ -86,19 +93,25 @@ public class StoryController {
 	@RequestMapping(value="/write_run", method=RequestMethod.POST)
 	public String wrStoryWriteRun(StoryVo storyVo, Model model, HttpSession session) throws Exception {
 		// 세션 아이디값 받기
-		storyVo.setUser_id("cat");
+		MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");
+		String user_id = memberVo.getUser_id();
+		storyVo.setUser_id(user_id);
 		storyService.StoryWrite(storyVo);
-		wrController.profileCommon(model, session);
-		return "redirect:/workroom/main";
+		wrController.profileCommon(user_id, model, session);
+		wrController.category(model);
+		return "redirect:/workroom/main/" + user_id;
 	}
 	
 	// 스토리 수정폼
 	@RequestMapping(value="/update", method=RequestMethod.GET)
 	public String wrStoryUpdate(int st_no, Model model, HttpSession session) throws Exception {
+		// 세션 아이디값 받기
+		MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");
+		String user_id = memberVo.getUser_id();
 		StoryVo storyVo = storyService.StorySelect(st_no);
-		wrController.profileCommon(model, session);
+		wrController.profileCommon(user_id, model, session);
+		wrController.category(model);
 		model.addAttribute("storyVo", storyVo);
-//		System.out.println(storyVo);
 		return "workroom/wr_story_update";
 	}
 	
@@ -109,8 +122,7 @@ public class StoryController {
 		String user_id = memberVo.getUser_id();
 		storyVo.setUser_id(user_id);
 		storyService.StoryUpdate(storyVo);
-//		System.out.println(storyVo);
-		return "redirect:/workroom/main";
+		return "redirect:/workroom/main/" + user_id;
 	}
 	
 	// 스토리 삭제 실행
@@ -137,20 +149,8 @@ public class StoryController {
 		map.put("cancel", "cancel");
 		return map;
 	}
-	
-//	@RequestMapping(value="/like/check", method=RequestMethod.GET)
-//	public String likeCheck(int st_no, HttpSession session) throws Exception {
-//		
-//		return null;
-//	}
+
 }
-
-
-
-
-
-
-
 
 
 
