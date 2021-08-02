@@ -8,7 +8,7 @@
 <script>
 $(document).ready(function() {
 	$("#btnCancel").click(function() {
-		var result = confirm("페이지에서 나가면 작성하시던 글이 사라집니다.");
+		var result = confirm("페이지에서 나가시면 작성하시던 글이 사라집니다.");
 		if(result){
 		    $(this).attr("href", "/event/managerEvent");
 		}else{
@@ -179,70 +179,8 @@ function delMainImg() {
 			$("#previewImg_main").attr("src", "${contextPath}/resources/images/main_img_btn.jpg");
 			$("#btnDelMainImg").css("display", "none");
 		}
-	})
-}
-function previewMakeStepImg(targetObj, seq) {
-	
-	var el = document.getElementById("makeSteps["+ (seq - 1) +"].make_step_img");
-	if (targetObj.files.length == 0){
-		// hidden에 값변화 없게하기 (그대로 두기 일단 값 확인해보고)
-		// 보여주는건(미리보기) 파일선택취소 누르기전이미지로 
-		console.log("val", $(el).val());
-		return false;
-	}
-	var file = targetObj.files[0];
-	console.log("파일존재");
-	var formData = new FormData();
-	formData.append("file", file);
-	formData.append("sort", "stepImg");
-	
-	var url = "/event/uploadImg";
-	
-	$.ajax({
-		"processData" : false,
-		"contentType" : false,
-		"url" : url,
-		"method" : "post",
-		"data" : formData,
-		"success" : function(thumbPath) {
-			var fileName = calcFileName(thumbPath);
-			console.log(fileName);
-			// 1. hidden에 값 넣기 
-			$(el).val(fileName);
-			$(el).attr("data-exist", 1);
-			$("#stepBox_" + seq).removeClass("none_img");
-			//2. 프리뷰이미지 보여주기 
-			$("#previewImg_step_" + seq).attr("src", "/event/displayImage?filePath=" + thumbPath);
-			console.log("val", $(el).val());
-			$("#btnDelStepImg_" + seq).show();
-			
-		},
-		"error" : function() {
-			alert("파일 업로드 실패!");
-		},
-		"beforeSend" : function() {
-			$("#previewImg_step_" + seq).attr("src", "${contextPath}/resources/images/loading.gif");
-		}
 	});
-    
-}
-function delStepImg(seq) {
-	console.log("삭제")
-	var el = document.getElementById("makeSteps["+ (seq - 1) +"].make_step_img");
-	var fileName = $(el).val();
-	console.log(fileName);
-	var url = "/event/deleteFile?fileName=" + fileName;
-	$.get(url, function(rData) {
-		if (rData == "success") {
-			$(el).val("");
-			$(el).attr("data-exist", 0);
-			$("#stepBox_" + seq).addClass("none_img");
-			
-			$("#previewImg_step_" + seq).attr("src", "${contextPath}/resources/images/preview_img.jpg");
-			$("#btnDelStepImg_" + seq).css("display", "none");
-// 			console.log($("#previewImg_step_" + seq).parent().parent());
-		}
-	});
+
 }
 
 </script>

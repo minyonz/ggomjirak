@@ -120,6 +120,7 @@ public class MainController {
 		System.out.println("pagingDto: " + pagingDto);
 		List<EventVo> eventList = eventService.showEventList(pagingDto);
 		model.addAttribute("eventList", eventList);
+		model.addAttribute("rootPath", rootPath);
 		return "main/main_event";
 	}
 	// 전체 이벤트
@@ -135,6 +136,7 @@ public class MainController {
 		System.out.println("pagingDto: " + pagingDto);
 		List<EventVo> eventListAll = eventService.showEventListAll(pagingDto);
 		model.addAttribute("eventListAll", eventListAll);
+		model.addAttribute("rootPath", rootPath);
 		return "main/main_event_all";
 	}
 	
@@ -151,6 +153,7 @@ public class MainController {
 		System.out.println("pagingDto: " + pagingDto);
 		List<EventVo> eventListEnd = eventService.showEventListEnd(pagingDto);
 		model.addAttribute("eventListEnd", eventListEnd);
+		model.addAttribute("rootPath", rootPath);
 		return "main/main_event_end";
 	}
 

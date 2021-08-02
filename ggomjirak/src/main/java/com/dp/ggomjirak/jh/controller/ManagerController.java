@@ -80,7 +80,7 @@ public class ManagerController {
 	}
 	// 회원 상세페이지
 	@RequestMapping(value="/managerMemberContent", method=RequestMethod.GET)
-	public String managerMemberContent(String user_id, Model model) throws Exception {
+	public String managerMemberContent(String user_id, Model model, PagingDto pagingDto) throws Exception {
 		MemberVo memberVo = managerService.selectMemberById(user_id);
 		CateStrVo cateVo = managerService.selectCateStr(user_id);
 		String grade = managerService.selectGradeById(user_id);
@@ -91,6 +91,7 @@ public class ManagerController {
 		model.addAttribute("grade", grade);
 		model.addAttribute("activVo", activVo);
 		model.addAttribute("intro", intro);
+		model.addAttribute("pagingDto", pagingDto);
 		return "manager/member/manager_member_content";
 	}
 	// 회원 상세 정보 수정

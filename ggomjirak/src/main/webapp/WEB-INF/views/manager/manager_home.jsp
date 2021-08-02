@@ -2,7 +2,131 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="manager_include/manager_header.jsp" %>
+<script>
+$(document).ready(function() {
+	var ctx = document.getElementById("myPieChart2");
+	var myPieChart = new Chart(ctx, {
+	  type: 'doughnut',
+	  data: {
+	    labels: ["금손", "은손", "곰손", "맨손"],
+	    datasets: [{
+	      data: ["${memberCount}", 2, 3, 100],
+	      backgroundColor: ['#f6c23e', '#858796', '#1cc88a', '#36b9cc'],
+	      hoverBackgroundColor: ['#987B3B', '#5E6068', '#3A7C5F', '#3B7C82'],
+	      hoverBorderColor: "rgba(234, 236, 244, 1)",
+	    }],
+	  },
+	  options: {
+	    maintainAspectRatio: false,
+	    tooltips: {
+	      backgroundColor: "rgb(255,255,255)",
+	      bodyFontColor: "#858796",
+	      borderColor: '#dddfeb',
+	      borderWidth: 1,
+	      xPadding: 15,
+	      yPadding: 15,
+	      displayColors: false,
+	      caretPadding: 10,
+	    },
+	    legend: {
+	      display: false
+	    },
+	    cutoutPercentage: 80,
+	  },
+	});
+	
+	var ctx = document.getElementById("myAreaChart2");
+	var myLineChart = new Chart(ctx, {
+	  type: 'line',
+	  data: {
+	    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+	    datasets: [{
+	      label: "접속 회원 현황",
+	      lineTension: 0.3,
+	      backgroundColor: "rgba(32, 94, 67, 0.05)",
+	      borderColor: "rgba(32, 94, 67, 1)",
+	      pointRadius: 3,
+	      pointBackgroundColor: "rgba(32, 94, 67, 1)",
+	      pointBorderColor: "rgba(32, 94, 67, 1)",
+	      pointHoverRadius: 3,
+	      pointHoverBackgroundColor: "rgba(32, 94, 67, 1)",
+	      pointHoverBorderColor: "rgba(32, 94, 67, 1)",
+	      pointHitRadius: 10,
+	      pointBorderWidth: 2,
+	      data: ["${memberCount}", 0, 0, 0, 0, 0, 0, 5, 10, 15, 20, 20],
+	    }],
+	  },
+	  options: {
+	    maintainAspectRatio: false,
+	    layout: {
+	      padding: {
+	        left: 10,
+	        right: 25,
+	        top: 25,
+	        bottom: 0
+	      }
+	    },
+	    scales: {
+	      xAxes: [{
+	        time: {
+	          unit: 'date'
+	        },
+	        gridLines: {
+	          display: false,
+	          drawBorder: false
+	        },
+	        ticks: {
+	          maxTicksLimit: 12
+	        }
+	      }],
+	      yAxes: [{
+	        ticks: {
+	          maxTicksLimit: 5,
+	          padding: 10,
+	          // Include a dollar sign in the ticks
+	          callback: function(value, index, values) {
+	            return number_format(value) + '명';
+	          }
+	        },
+	        gridLines: {
+	          color: "rgb(234, 236, 244)",
+	          zeroLineColor: "rgb(234, 236, 244)",
+	          drawBorder: false,
+	          borderDash: [2],
+	          zeroLineBorderDash: [2]
+	        }
+	      }],
+	    },
+	    legend: {
+	      display: false
+	    },
+	    tooltips: {
+	      backgroundColor: "rgb(255,255,255)",
+	      bodyFontColor: "#858796",
+	      titleMarginBottom: 10,
+	      titleFontColor: '#6e707e',
+	      titleFontSize: 14,
+	      borderColor: '#dddfeb',
+	      borderWidth: 1,
+	      xPadding: 15,
+	      yPadding: 15,
+	      displayColors: false,
+	      intersect: false,
+	      mode: 'index',
+	      caretPadding: 10,
+	      callbacks: {
+	        label: function(tooltipItem, chart) {
+	          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+	          return datasetLabel + number_format(tooltipItem.yLabel) + '명';
+	        }
+	      }
+	    }
+	  }
+	});
 
+});
+
+</script>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -144,7 +268,7 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="chart-area">
-                        <canvas id="myAreaChart"></canvas>
+                        <canvas id="myAreaChart2"></canvas>
                     </div>
                 </div>
             </div>
@@ -175,7 +299,7 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="chart-pie pt-4 pb-2">
-                        <canvas id="myPieChart"></canvas>
+                        <canvas id="myPieChart2"></canvas>
                     </div>
                     <div class="mt-4 text-center small">
                         <span class="mr-2">

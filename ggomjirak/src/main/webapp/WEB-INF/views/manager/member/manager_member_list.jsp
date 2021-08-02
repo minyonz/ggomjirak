@@ -20,7 +20,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		var searchType = $(this).attr("href");
 		$("#frmPaging > input[name=searchType]").val(searchType);
-		$("#dropdownMenuButton").text($(this).text());
+		$("#btnSearchType").text($(this).text());
 	});
 	
 	// 검색
@@ -41,6 +41,17 @@ $(document).ready(function() {
 		// 제목4검색하고 3페이지 넘어간 후에 제목5 검색했을 때 페이지가 뜨지 않는 경우(제목5의 글 수가 3페이지까지 없는경우)를 대비해 만들어줌
 		// 검색버튼 눌렀을 때 1페이지부터 보여주게 함
 		$("#frmPaging > input[name=page]").val("1");
+		$("#btnSearchType").text("${pagingDto.searchType}");
+		$("#frmPaging").submit();
+	});
+	
+	$(".a_id").click(function(e) {
+		// 페이지 이동을 막아놓음
+		e.preventDefault();
+		// $(this) -> .a_title이 10개가 있는데 그 중에서 클릭한 .a_title
+		var user_id = $(this).attr("data-id");
+		$("#frmPaging > input[name=user_id]").val(user_id);
+		$("#frmPaging").attr("action", "/manager/managerMemberContent");
 		$("#frmPaging").submit();
 	});
 });
@@ -51,6 +62,7 @@ $(document).ready(function() {
 <input type="hidden" name="endRow" value="${pagingDto.endRow}"/>
 <input type="hidden" name="searchType" value="${pagingDto.searchType}"/>
 <input type="hidden" name="keyword" value="${pagingDto.keyword}"/>
+<input type="hidden" name="user_id" value="${pagingDto.user_id}"/>
 </form>
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -64,7 +76,7 @@ $(document).ready(function() {
 
 				<div class="dropdown">
 				<button class="btn btn-success green_background dropdown-toggle" type="button"
-					id="dropdownMenuButton" data-toggle="dropdown">검색옵션</button> 
+					id="btnSearchType" data-toggle="dropdown">검색옵션</button> 
 					<c:choose>
 						<c:when test="${pagingDto.searchType == 'i'}">아이디</c:when>
 						<c:when test="${pagingDto.searchType == 'n'}">닉네임</c:when>
@@ -81,8 +93,7 @@ $(document).ready(function() {
 					<a class="dropdown-item searchType" href="in">아이디 + 닉네임</a> 
 					<a class="dropdown-item searchType" href="inm">아이디 + 닉네임 + 이름</a>
 				</div>
-				<form
-					class="d-sm-inline-block form-inline navbar-search">
+				<form class="d-inline-block form-inline navbar-search">
 					<div class="input-group">
 						<input type="text" class="form-control bg-light border-0"
 							placeholder="검색어를 입력하세요" aria-label="Search"
@@ -152,7 +163,7 @@ $(document).ready(function() {
 						<tr>
 							<td>${member.rnum}</td>
 							<td>${member.user_name}</td>
-							<td><a href="/manager/managerMemberContent?user_id=${member.user_id}">${member.user_id}</a></td>
+							<td><a class="a_id" href="#" data-id="${member.user_id}">${member.user_id}</a></td>
 							<td>${member.user_pw}</td>
 							<td>${member.user_email}</td>
 							<td>${member.user_tel}</td>

@@ -152,7 +152,7 @@ public class EventController {
 	public String managerEventModifyRun(EventVo eventVo, RedirectAttributes rttr) throws Exception {
 		eventService.updateEvent(eventVo);
 		rttr.addFlashAttribute("modifyMsg", "success");
-		return "redirect:/event/managerEvent";
+		return "redirect:/event/managerEventContent?e_no=" + eventVo.getE_no();
 	}
 	
 	// 이벤트 삭제 실행

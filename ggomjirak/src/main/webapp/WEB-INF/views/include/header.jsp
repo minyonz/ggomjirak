@@ -16,8 +16,7 @@
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/elegant-icons.css" type="text/css">
-<!-- 삭제된 파일 -->
-<!-- <link rel="stylesheet" href="/resources/css/nice-select.css" type="text/css"> -->
+<link rel="stylesheet" href="/resources/css/nice-select.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/jquery-ui.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/css/slicknav.min.css" type="text/css">
@@ -63,12 +62,12 @@ $(document).ready(function() {
 	 }
 	}
 	// 1차 분류 셀렉트 박스에 데이터 삽입
-	var cate1Select = $("select.cate1")
+	var cate1Select = $("select.cate3")
 	for(var i = 0; i < cate1Arr.length; i++) {
 		 cate1Select.append("<option id='parent_cate_no' name='parent_cate_no' value='" + cate1Arr[i].cate_no + "'>"
 	      + cate1Arr[i].cate_name + "</option>"); 
 	}
-	$(document).on("change", "select.cate1", function(){
+	$(document).on("change", "select.cate3", function(){
 		 var cate2Arr = new Array();
 		 var cate2Obj = new Object();
 		 // 2차 분류 셀렉트 박스에 삽입할 데이터 준비
@@ -81,7 +80,7 @@ $(document).ready(function() {
 		   cate2Arr.push(cate2Obj);
 		  }
 		 }
-		 var cate2Select = $("ul.cate2");
+		 var cate2Select = $("ul.cate4");
 		 cate2Select.children().remove();
 		 $("option:selected", this).each(function(){
 		  var selectVal = $(this).val();  
@@ -203,35 +202,31 @@ $(document).ready(function() {
 
 								<!-- 검색 -->
 								
-								
-								<div class="row" style="margin-bottom: 50px">
-									<div class="col-lg-3">
-									<div class="input-group">
-
-										<select class="cate1 btn btn-outline-light green_background shadow bg-body rounded"
-											style="margin-right: 10px; width:110px; height:38px"
-											aria-label="Default select example">
-											<option value="">카테고리</option>
-										</select>
-										
-										<div class="dropdown">
-									  <button class="form-control btn btn-outline-light green_background shadow bg-body rounded dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
-									  style="width:110px; height:38px">
+								<form id="frmSearch" action="/main/mainSearch" method="get" class="needs-validation" novalidate>
+								<div class="form-row">
+							    
+							    <div class="col-lg-2 col-md-3 mb-3">
+<!-- 							      <label for="validationCustom04">대분류</label> -->
+							      <select style="padding-top: 2px !important; text-align-last: center; text-align: center;" class="cate3 form-control btn btn-outline-light green_background white_color shadow bg-body rounded" id="validationCustom04" required>
+							        <option selected disabled value="">카테고리</option>
+							      </select>
+							      <div class="invalid-feedback">
+							      </div>
+							    </div>
+							    <div class="col-lg-2 col-md-3 mb-3">
+<!-- 							      <label for="validationCustom04">중분류</label> -->
+							      <button class="form-control btn btn-outline-light green_background shadow bg-body rounded dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 									   카테고리
 									  </button>
-									  <ul class="cate2 dropdown-menu" aria-labelledby="dropdownMenuButton1">
+									  <ul class="cate4 dropdown-menu" aria-labelledby="dropdownMenuButton1">
 									    <li><a class="dropdown-item" href="#">중분류</a></li>
 									  </ul>
-									</div>
-
-									</div>
-										
-									</div>
-									
-									<div class="col-lg-9">
-									
-									<form id="frmSearch" action="/main/mainSearch" method="get">
-									<div class="input-group mb-3">
+							      <div class="invalid-feedback">
+							      </div>
+							    </div>
+							    <div class="col-lg-8 col-md-6 mb-3">
+<!-- 							      <label for="validationCustom05">검색</label> -->
+							      <div class="input-group mb-3">
 									  <input id="keyword" name="keyword" type="text" class="form-control shadow bg-body rounded" placeholder="나의 취미를 찾아보세요" aria-label="Recipient's username" aria-describedby="button-addon2">
 									  <div class="input-group-append">
 									    <button type="submit" class="btn btn-outline-light shadow bg-body rounded" id="btnSearch">
@@ -241,8 +236,11 @@ $(document).ready(function() {
 										</svg>검색</button>
 									  </div>
 									</div>
-									</form>
-									</div>
+							      <div class="invalid-feedback">
+							      </div>
+							    </div>
+							  </div>
+							  </form>
 								</div>
 								<!-- 검색 끝 -->
 								
