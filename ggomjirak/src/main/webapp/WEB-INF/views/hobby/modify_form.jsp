@@ -627,7 +627,7 @@ margin-right: 15px;
   	    <div class="body">
   				<form method="post" action="/updateRun" onsubmit="return validate();">
   				<input type="hidden" name="hobby_no" value="${hobbyVo.hobby_no}"/>
-				<input type="hidden" name="hobby_writer" value="${hobbyVo.hobby_writer}"/>
+				<input type="hidden" name="user_id" value="${hobbyVo.user_id}"/>
 				<div style="background: #f8f8f8; border-bottom: 1px solid #e6e7e8; 
 					padding: 14px 18px; position: relative;">
 					<span class="lg_tit">취미 작성</span>

@@ -1011,7 +1011,7 @@ function doRecomment(c_no) {
     $('#reply_div').show();
     $("#parent_c_no").val(c_no);
 }	
-var hobby_writer = "${hobbyVo.hobby_writer}";
+var user_id = "${hobbyVo.user_id}";
 // 댓글 리스트 조회
 function selectCommentList() {
 	$("#commentContainer > .comment-row:gt(0)").remove();
@@ -1038,7 +1038,7 @@ function selectCommentList() {
 			cloneDiv.find(".user_link").attr("href", "프로필링크/개인작업실코드(조인하기)");
 			cloneDiv.find(".user_img").attr("src", "/displayImage?filePath=" + this.user_img);
 			cloneDiv.find(".c_user_name").text(this.user_name);
-			if (this.user_id == hobby_writer) {
+			if (this.user_id == user_id) {
 				cloneDiv.find(".is_hobby_writer").show();
 			}
 			cloneDiv.find(".doUpdateComment").attr("onclick", "doUpdateComment(" + this.c_no + ")");

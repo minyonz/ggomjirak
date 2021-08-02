@@ -562,7 +562,7 @@ margin-right: 15px;
 	  	</div>
   	    <div class="body">
   				<form method="post" action="/insertRun" onsubmit="return validate();">
-				<input type="hidden" name="hobby_writer" value="wendy"/>
+				<input type="hidden" name="user_id" value="wendy"/>
 				<div style="background: #f8f8f8; border-bottom: 1px solid #e6e7e8; 
 					padding: 14px 18px; position: relative;">
 					<span class="lg_tit">취미 작성</span>

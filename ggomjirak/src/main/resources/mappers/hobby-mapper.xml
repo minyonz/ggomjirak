@@ -11,11 +11,11 @@
  		</selectKey>
  		
  		INSERT INTO 
- 			tbl_hobby (hobby_no, hobby_writer, hobby_title, main_img,
+ 			tbl_hobby (hobby_no, user_id, hobby_title, main_img,
  				hobby_intro, hobby_video, l_cate_no, m_cate_no, 
  				time_no, level_no, cost_no 
  			)
- 		VALUES (#{hobby_no}, #{hobby_writer}, #{hobby_title}, #{main_img},
+ 		VALUES (#{hobby_no}, #{user_id}, #{hobby_title}, #{main_img},
  			#{hobby_intro}, #{hobby_video, jdbcType=VARCHAR}, #{l_cate_no}, #{m_cate_no},
  			#{time_no}, #{level_no}, #{cost_no}
  		)
@@ -33,7 +33,7 @@
 			JOIN tbl_level_cate d ON a.level_no = d.level_no
 			JOIN tbl_cost_cate e ON a.cost_no = e.cost_no 
 			JOIN tbl_time_cate f ON a.time_no = f.time_no
-			JOIN tbl_member g ON a.hobby_writer = g.user_id
+			JOIN tbl_member g ON a.user_id = g.user_id
 			WHERE a.hobby_no = #{hobby_no}
 	</select> 	
 	
