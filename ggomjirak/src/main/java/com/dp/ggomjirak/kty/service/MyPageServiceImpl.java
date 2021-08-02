@@ -7,8 +7,6 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.dp.ggomjirak.kty.dao.MemberDao;
-import com.dp.ggomjirak.kty.dao.CateDao;
-import com.dp.ggomjirak.vo.CateVo;
 import com.dp.ggomjirak.vo.MemberVo;
 
 @Service
@@ -16,9 +14,6 @@ public class MyPageServiceImpl implements MyPageService {
 
 	@Inject
 	private MemberDao memberDao;
-	
-	@Inject
-	private CateDao cateDao;
 	
 	@Override
 	public MemberVo login(String user_id, String user_pw) {
@@ -34,18 +29,6 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public void insertMember(MemberVo memberVo) {
 		memberDao.insertMember(memberVo);
-	}
-
-	@Override
-	public List<CateVo> listHobbyCate1() {
-		List<CateVo> list = cateDao.listAll();
-		return list;
-	}
-
-	@Override
-	public List<CateVo> listHobbyCate2(int parent_cate_no) {
-		List<CateVo> list = cateDao.listPart(parent_cate_no);
-		return list;
 	}
 
 	@Override
