@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta property="og:title" content="${hobbyVo.hobby_title }" />
 <meta property="og:url" content="${url}" />
-<meta property="og:image" content="/displayImage?filePath=${rootPath}${hobbyVo.main_img}" />
+<meta property="og:image" content="/displayImage?filePath=${hobbyVo.main_img}" />
 <meta property="og:description" content="${hobbyVo.hobby_intro}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -19,18 +20,16 @@ $(document).ready(function() {
 	selectCommentList();
 });
 </script>
-<title>상세보기 테스트</title>
+<title>상세보기</title>
 <!-- 내가 설정한 style -->
 <style>
 /* <내가 한 style> */
 /* 1. 전체 큰 영역 */
-
 /* 2. 후기 */
 .review-row{
  padding-top: 10px;
  border-bottom: 2px solid #c1c1c1;
 }
-
 .review-content p{
 /* 	max-height: 4.8em; */
 	overflow: hidden;
@@ -38,22 +37,17 @@ $(document).ready(function() {
 	-webkit-line-clamp: 6;
 	-webkit-box-orient: vertical;
 }
-
 .comment-row{
  padding-top: 10px;
  padding-bottom: 10px;
  border-bottom: 2px solid #c1c1c1;
 }
-
 .comment-row.recomment-row{
  padding-left: 60px;
  padding-top: 10px;
  padding-bottom: 10px;
  border-bottom: 2px solid #c1c1c1;
 }
-
-
-
 .btnMenu {
 	background: url("${contextPath}/resources/images/menu.png") no-repeat center; 
 	outline : none;
@@ -61,7 +55,6 @@ $(document).ready(function() {
 	width: 25px;
 	height: 25px;
 }
-
 .btnMenu_cmt {
 	background: url("${contextPath}/resources/images/menu.png") no-repeat center; 
 	background-size: 15px;
@@ -70,20 +63,17 @@ $(document).ready(function() {
 	width: 15px;
 	height: 15px;
 }
-
 .container_north {
 	border-bottom : 3px solid #1f5e43;
 }
-
 .body {
     margin-bottom: 40px;
     margin-top: 40px;
+    padding: 0 100px;	
 }
-
 .green {
  color: #1f5e43;
 }
-
 .displayNone {
 display:none;
 }
@@ -93,58 +83,47 @@ color: #1f5e43;
 font-size: 27px;
 font-weight: 700;
 }
-
 #hobby_intro{
 text-align: center;
 color: #1f5e43;
 font-weight: 550;
 }
-
 #reg_date{
 color: #1f5e43;
 font-weight: 550;
 }
-
 #view_cnt{
 color: #1f5e43;
 float: right;
 font-weight: 550;
 }
-
 .mainImg_cont{
 	overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 500px;
+/*     display: flex; */
+/*     align-items: center; */
+/*     justify-content: center; */
+    width: 550px;
     height: 400px;
 }
-
 #main_img{
 object-fit: cover;
 height: 100%;
 width: 100%;
 }
-
-
 .user_row, .time_row, .cost_row, 
 .level_row {
 height: 90px;
 }
-
 .sm_tit{
 font-weight:550;
 color: #1f5e43;
 }
-
-
 /* carousel 슬라이드 */
 .carousel {
 	margin: 0 auto;
 	width: 900px;
 /* 	height:1100px; */
 }
-
 .carousel-inner {
     position: relative;
     justify-content: center;
@@ -158,13 +137,11 @@ color: #1f5e43;
 /* 	height: 1100px; */
     overflow: hidden;
 }
-
 .slideImg{
 	width: 100%;
     height: 100%;
     object-fit: cover;
 }
-
 .extra_tip {
     background: url(/resources/images/lamp.png) left -2px no-repeat;
 /*     background-size: 26px 26px; */
@@ -184,7 +161,6 @@ color: #1f5e43;
     line-height: 1.6;
     margin: 14px 0 14px 0;
 }
-
 @media screen and (min-width: 1300px) {
 .container_north, .cotainer_south {
   display: grid; 
@@ -202,7 +178,6 @@ color: #1f5e43;
 .body { grid-area: body; }
 .side-right { grid-area: side-right; }
  }
-
 </style>
 <!-- 가져온 스타일 -->
 <style>
@@ -263,10 +238,6 @@ color: #1f5e43;
 /* .view_step_cont .carousel-control {padding:0;} */
 /* .view_step_cont .carousel-indicators {bottom:-36px;} */
 /* .view_step_cont .carousel-indicators li {width:10px; height:10px;} */
-
-
-
-
 /* 2. 탭 css (후기, 댓글) */
 .tab-head{
 padding-left: 0px !important;
@@ -303,40 +274,32 @@ border-left: 4px solid #5741A3;
 .tab-pane p{
 /* border-top: 1px solid #c1c1c1; */
 }
-
-
 /* 3. pagination */
 .pagination_rounded,
 .pagination_square {
     display: inline-block;
     padding-top: 20px;
 }
-
 .pagination_rounded ul {
     margin: 0;
     padding: 0;
     list-style: none
 }
-
 .pagination_rounded li:first-child {
     margin-left: 0px
 }
-
 .pagination_rounded ul li {
     float: left;
     margin-left: 10px
 }
-
 .pagination_rounded ul li a:hover {
     background: #4285f4;
     color: #fff;
     border: 1px solid #4285f4
 }
-
 a:link {
     text-decoration: none;
 }
-
 .pagination_rounded .prev {
     margin-left: 0px;
     border-radius: 35px;
@@ -344,7 +307,6 @@ a:link {
     height: 34px;
     line-height: 34px
 }
-
 .pagination_rounded ul li a {
     float: left;
     color: #4285f4;
@@ -356,22 +318,18 @@ a:link {
     margin-bottom: 40px;
     border: 1px solid #e0e0e0
 }
-
 .pagination_rounded .prev i {
     margin-right: 10px
 }
-
 .pagination_rounded .next {
     border-radius: 35px;
     width: 90px;
     height: 34px;
     line-height: 34px
 }
-
 .visible-xs {
     display: none !important;
 }
-
 /* URL*/
 figure[data-ke-type='opengraph'] a {
     box-sizing: border-box;
@@ -426,11 +384,16 @@ figure[data-ke-type='opengraph'] .og-desc {
     -webkit-box-orient: vertical;
     display: -webkit-box;
 }
+
+/* 오늘 수정 */
+a {
+color:black;
+}
 </style>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
-
+${hobbyVo.reg_date }
 <!-- id4로 로그인 한상태라고 가정 -->
 <input type="hidden" name="user_id" value="ID4"/>
 <div class="container-fluid">
@@ -464,7 +427,7 @@ figure[data-ke-type='opengraph'] .og-desc {
 				<div class="row">
 					<div class="col-md-7">
 						<div class="mainImg_cont">
-							<img id="main_img" src="/displayImage?filePath=${rootPath}${hobbyVo.main_img}"/>
+							<img id="main_img" src="/displayImage?filePath=${hobbyVo.main_img}"/>
 						</div>
 					</div>
 					<div class="col-md-5">
@@ -474,9 +437,9 @@ figure[data-ke-type='opengraph'] .og-desc {
 							</div>
 							<a href="#프로필링크">
 							<img class="rounded-circle circle-image" 
-								src="/displayImage?filePath=${rootPath}${hobbyVo.user_img}"
+								src="/displayImage?filePath=${hobbyVo.user_img}"
 								style="width:2.2rem;"/> 
-								${hobbyVo.user_name} >
+								<span>${hobbyVo.user_name} ></span>
 							</a>
 						</div>
 						<div class="time_row">
@@ -499,13 +462,13 @@ figure[data-ke-type='opengraph'] .og-desc {
 						</div>
 						<div class="respon_row">
 							<button type="button" class="btn green_background">
-								<span class="fa fa-heart-o"></span>
+								<span style="color:white;" class="fa fa-heart-o"></span>
 							</button>
 							<button type="button" class="btn green_background">
-								<span class="fa fa-bookmark-o"></span>
+								<span style="color:white;" class="fa fa-bookmark-o"></span>
 							</button>
 							<button type="button" class="btn green_background">
-								<span class="fa fa-share-alt"></span>
+								<span style="color:white;" class="fa fa-share-alt"></span>
 							</button>
 						</div>
 					</div>
@@ -568,7 +531,7 @@ figure[data-ke-type='opengraph'] .og-desc {
 														<div data-num="${makeStepVo.make_step_num}" class="carousel-item ${makeStepVo.make_step_num==1  ? 'active' : ''}">
 															<div style="width:900px; height:500px">
 																<img class="slideImg" 
-																src="/displayImage?filePath=${rootPath}${makeStepVo.make_step_img }" />
+																src="/displayImage?filePath=${makeStepVo.make_step_img }" />
 															</div>
 															<div class="carousel-caption">
 																	<div id="stepDiv${makeStepVo.make_step_num}" 
@@ -589,19 +552,35 @@ figure[data-ke-type='opengraph'] .og-desc {
 																			</p>
 																		</c:if>
 																		<c:if test="${not empty makeStepVo.urlOgTag}">
-																				<figure data-ke-type="opengraph" data-og-title="${makeStepVo.urlOgTag.title}" 
+																			<c:choose>
+																				<c:when test="${makeStepVo.urlOgTag.status == 0}">
+																					<a href="${makeStepVo.urlOgTag.url }">${makeStepVo.urlOgTag.url}</a>
+																				</c:when>
+																				<c:otherwise>
+																					<figure data-ke-type="opengraph" data-og-title="${makeStepVo.urlOgTag.title}" 
 																					data-og-description="${makeStepVo.urlOgTag.desc}"  data-og-url="${makeStepVo.urlOgTag.url }" 
 																					data-og-image="${makeStepVo.urlOgTag.image}"> 
-																			      <a href="${makeStepVo.urlOgTag.url }">
-																			        <div class="og-image" 
-																			        	style="background-image:url(${makeStepVo.urlOgTag.image })"></div>
-																			        <div class="og-text">
-																			          <p class="og-title">${makeStepVo.urlOgTag.title}</p>
-																			          <p class="og-desc">${makeStepVo.urlOgTag.desc}</p>
-																			          <p class="og-host">${makeStepVo.urlOgTag.url }</p>
-																			        </div>
-																			      </a>
-																			    </figure>
+																				      <a href="${makeStepVo.urlOgTag.url }">
+																			   			<c:set var = "image" value = "${makeStepVo.urlOgTag.image }"/>
+																			   				<c:choose>
+																			   					<c:when test="${fn:contains(image, 'blogthumb')}">
+																			   						<div class="og-image" 
+																				        			style="background-image:url(${contextPath}/resources/images/sad.png)"></div>
+																			   					</c:when>
+																			   					<c:otherwise>
+																			   						 <div class="og-image" 
+																				        				style="background-image:url(${makeStepVo.urlOgTag.image })"></div>
+																			   					</c:otherwise>
+																			   				</c:choose>
+																				        <div class="og-text">
+																				          <p class="og-title">${makeStepVo.urlOgTag.title}</p>
+																				          <p class="og-desc">${makeStepVo.urlOgTag.desc}</p>
+																				          <p class="og-host">${makeStepVo.urlOgTag.url }</p>
+																				        </div>
+																				      </a>
+																				   	 </figure>
+																				</c:otherwise>
+																			</c:choose>
 																			    <p class="step_extra extra_link">
 																					${makeStepVo.link_desc}
 																		</c:if>
@@ -627,16 +606,15 @@ figure[data-ke-type='opengraph'] .og-desc {
 						            </div>
 						            <!-- //슬라이드 이미지 -->
 						            <!-- 만들기 컨테이너 -->
-						            <style>
-						            	
-						            </style>
 						            
 						            <div class="divStepView" style="display:none">
 						            <c:forEach var="makeStepVo" items="${hobbyVo.makeSteps}">
 										<div id="stepDiv${makeStepVo.make_step_num}" class="view_step_cont step${makeStepVo.make_step_num}">
 											<div id="stepimg${makeStepVo.make_step_num}" class="media-left">
+												<c:if test="${not empty makeStepVo.make_step_img}">
 												<img class="make_step_img" style="margin-top: 0px;"
-													src="/displayImage?filePath=${rootPath}${makeStepVo.make_step_img }">
+													src="/displayImage?filePath=${makeStepVo.make_step_img }">
+												</c:if>
 											</div>
 											<div id="stepdescr${makeStepVo.make_step_num}" class="media-body">
 												${makeStepVo.make_step_text }
@@ -657,8 +635,17 @@ figure[data-ke-type='opengraph'] .og-desc {
 															data-og-description="${makeStepVo.urlOgTag.desc}"  data-og-url="${makeStepVo.urlOgTag.url }" 
 															data-og-image="${makeStepVo.urlOgTag.image}"> 
 													      <a href="${makeStepVo.urlOgTag.url }">
-													        <div class="og-image" 
-													        	style="background-image:url(${makeStepVo.urlOgTag.image })"></div>
+													        <c:set var = "image" value = "${makeStepVo.urlOgTag.image }"/>
+												   				<c:choose>
+												   					<c:when test="${fn:contains(image, 'blogthumb')}">
+												   						<div class="og-image" 
+													        			style="background-image:url(${contextPath}/resources/images/sad.png)"></div>
+												   					</c:when>
+												   					<c:otherwise>
+												   						 <div class="og-image" 
+													        				style="background-image:url(${makeStepVo.urlOgTag.image })"></div>
+												   					</c:otherwise>
+												   				</c:choose>
 													        <div class="og-text">
 													          <p class="og-title">${makeStepVo.urlOgTag.title}</p>
 													          <p class="og-desc">${makeStepVo.urlOgTag.desc}</p>
@@ -675,22 +662,21 @@ figure[data-ke-type='opengraph'] .og-desc {
 									</div>
 								</div>
 								<!-- 완성사진 영역 -->
-<!-- 								<div><b>완성사진</b><span>craft</span></div> -->
 								<div style="margin-top: 100px;">
 									<div class="carousel slide" id="craftSlide" style="width:700px">
 										<ol class="carousel-indicators">
-												<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs }">
-														<li data-slide-to="${completeImgVo.seq - 1 }" 
+												<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
+														<li data-slide-to="${vs.index}" 
 															data-target="#craftSlide"
-															class="${completeImgVo.seq==1  ? 'active' : ''}">
+															class="${vs.index==0  ? 'active' : ''}">
 														</li>
 													</c:forEach>
 										</ol>
 										<div class="carousel-inner">
-											<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs }">
-											<div data-num="${completeImgVo.seq}" class="carousel-item ${completeImgVo.seq==1  ? 'active' : ''}">
+											<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}">
+											<div data-num="${vs.count}" class="carousel-item ${vs.index==0  ? 'active' : ''}">
 												<img class="d-block w-100" 
-													src="/displayImage?filePath=${rootPath}${completeImgVo.img_name}" />
+													src="/displayImage?filePath=${completeImgVo.img_name}" />
 											</div>
 											</c:forEach>
 										</div> 
@@ -856,7 +842,8 @@ figure[data-ke-type='opengraph'] .og-desc {
 													/>
 												</a>
 												<span class="c_user_name"> 하윤지</span>
-												<span class="is_hobby_writer" style="display:none; font-weight:550; color:#1f5e43;"> 글주인</span>
+												<span class="is_hobby_writer badge badge-pill badge-success" 
+													style="display:none; background: #1f5e43; padding-top: 5px;"> 글주인</span>
 												<div class="dropdown" style="float:right">
 													<button class="btnMenu_cmt" type="button" id="dropdownMenuButton" data-toggle="dropdown">
 													</button>
@@ -955,10 +942,7 @@ function chgViewStep(step) {
         else if(step==4) $(this).addClass('none');
     });
 }
-
-
 //* 댓글 부분
-
 // 일반 댓글 작성
 function insertComment() {
 	var c_content = $("#c_content").val();
@@ -987,7 +971,6 @@ function insertComment() {
 	});
 	
 }	
-
 //답댓글 작성
 function insertRecomment(el) {
 	var re_group = $(el).parent().parent().parent().parent().find(".re_group").val()
@@ -1020,7 +1003,6 @@ function insertRecomment(el) {
 		}
 	});
 }
-
 // 답글 버튼 누를때 
 function doRecomment(c_no) {
 	var reply = '<div id="reply_div">'+$('#reply_div').html()+'</div>';
@@ -1029,15 +1011,18 @@ function doRecomment(c_no) {
     $('#reply_div').show();
     $("#parent_c_no").val(c_no);
 }	
-
 var hobby_writer = "${hobbyVo.hobby_writer}";
-
 // 댓글 리스트 조회
 function selectCommentList() {
 	$("#commentContainer > .comment-row:gt(0)").remove();
 // 	$("#moreViewDiv > .comment-row").remove();
 	var url = "/comment/selectCommentList/${hobbyVo.hobby_no}";
 	$.get(url, function(rData) {
+		if (rData == 0) {
+			$("#btnMoreComments").hide();
+		} else {
+			$("#btnMoreComments").show();
+		}
 		$("#comment_cnt").text(rData.length);
 		
 		$.each(rData, function(i) {
@@ -1051,7 +1036,7 @@ function selectCommentList() {
 			cloneDiv.find(".c_no").val(this.c_no);
 			cloneDiv.find(".re_group").val(this.re_group);
 			cloneDiv.find(".user_link").attr("href", "프로필링크/개인작업실코드(조인하기)");
-			cloneDiv.find(".user_img").attr("src", "/displayImage?filePath=${rootPath}" + this.user_img);
+			cloneDiv.find(".user_img").attr("src", "/displayImage?filePath=" + this.user_img);
 			cloneDiv.find(".c_user_name").text(this.user_name);
 			if (this.user_id == hobby_writer) {
 				cloneDiv.find(".is_hobby_writer").show();
@@ -1076,7 +1061,6 @@ function selectCommentList() {
 		});
 	});
 }
-
 // 댓글 수정 버튼 누를때
 function doUpdateComment(c_no) {
 	console.log(c_no);
@@ -1085,7 +1069,6 @@ function doUpdateComment(c_no) {
     $("#updateCommentDiv_" + c_no).find(".c_content").val(c_content);
 	$("#view_comment_" + c_no).hide();
 }
-
 function updateComment(c_no) {
 	var c_content = $("#updateCommentDiv_" + c_no).find(".c_content").val();
 	var url = "/comment/updateComment";
@@ -1110,8 +1093,6 @@ function updateComment(c_no) {
 		}
 	});
 }
-
-
 // 댓글 삭제  
 function deleteComment(c_no) {
 	var url = "/comment/deleteComment/" + c_no;
@@ -1126,7 +1107,6 @@ function deleteComment(c_no) {
 		});
 	}
 }
-
 var commentOpens = 0;
 function moreViewToggle() {
 	if(commentOpens == 0) {

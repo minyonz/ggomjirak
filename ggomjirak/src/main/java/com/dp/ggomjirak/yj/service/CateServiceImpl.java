@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.dp.ggomjirak.vo.CateVo;
@@ -16,6 +17,7 @@ import com.dp.ggomjirak.yj.dao.CateDao;
 public class CateServiceImpl implements CateService {
 	
 	@Inject
+	@Qualifier("yj.CateDaoImpl")
 	private CateDao cateDao;
 	
 	@Override

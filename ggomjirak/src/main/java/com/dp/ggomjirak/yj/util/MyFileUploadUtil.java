@@ -3,9 +3,11 @@ package com.dp.ggomjirak.yj.util;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 
 import org.imgscalr.Scalr;
@@ -15,149 +17,74 @@ import com.mortennobel.imagescaling.AdvancedResizeOp;
 import com.mortennobel.imagescaling.MultiStepRescaleOp;
 
 public class MyFileUploadUtil {
-	public static final String GGOMJIRAK_FOLDER = "//192.168.0.217/ggomjirak";
-	public static final String YJ_ACADEMY_FOLDER = "D:/ggomjirak";
-	public static final String YJ_HOME_FOLDER = "C:/Users/user/Desktop";
-	private static String rootPath = YJ_HOME_FOLDER;
 	
-	
-	public static String uploadImage(String uploadPath, String fileName, byte[] fileData, int dw, int dh) throws Exception {
-		String filePath = makeUploadPath(uploadPath) + calcUuidFileName(fileName);
-		File target = new File(filePath);
-		FileCopyUtils.copy(fileData, target); // fileData를 target에 복사
-		String thumbPath = makeThumbImg(filePath, dw, dh);
-		return thumbPath;
-	}
-	
-	
-//	/**
-//	 * @param uploadPath 업로드할 경로
-//	 * @param orgFileName 업로드할 파일의 이름.확장자
-//	 * @param fileData 
-//	 * @param dw 만들 썸네일이미지 가로 길이
-//	 * @param dh 만들 썸네일 이미지 세로 길이
-//	 * @return thumnailPath 썸네일경로 
-//	 * @throws Exception
-//	 */
-//	public static String uploadImage(String uploadPath, String orgFileName, byte[] fileData, int dw, int dh) throws Exception {
-//		String orgFilePath = getOrgFilePath(uploadPath, orgFileName);
-//		File target = new File(orgFilePath);
-//		FileCopyUtils.copy(fileData, target); // fileData를 target에 복사
-//		String thumbnailPath = makeThumnailImg(orgFilePath, dw, dh);
-//		return thumbnailPath;
-//	}
-	
-	
-	/** 파일 올라갈 폴더들 만들기 
+	/**
 	 * @param uploadPath
-	 * @return 만든 폴더들 경로 리턴
+	 * @param orgFileName
+	 * @param fileData
+	 * @return rootPath제외한 파일경로 리턴
+	 * @throws Exception
 	 */
-	private static String makeUploadPath(String uploadPath) {
-		Calendar cal = Calendar.getInstance();
-		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH) + 1;
-		int date = cal.get(Calendar.DATE);
+	public static String uploadImage (String rootPath, String uploadPath, 
+				String orgFileName, byte[] fileData) throws Exception {
 		
-		String datePath = "/" +  year + "/" + month + "/" + date + "/"; // 2021/7/20/ 
-		uploadPath = rootPath + uploadPath + datePath; // D:/ggomjirak + /hobby/main_img + /2021/7/20/ +
+		String datePath = getDatePath();
+		// -> 2021/07/31
+	
+		String dateDirPath = makeDateDir(rootPath, uploadPath, datePath);
+		// -> D:/ggomjirak/hobby/main_img/2021/07/31
 		
-		File f = new File(uploadPath);
+		String uuidFileName = getUUIDFileName(orgFileName); // -> uuid_메인이미지.jpg
+		String fullFilePath = dateDirPath + "/" + uuidFileName;
+		// -> D:/ggomjirak/hobby/main_img/2021/07/31 + "/" + uuid_메인이미지.jpg
+		
+		File target = new File(fullFilePath);
+		FileCopyUtils.copy(fileData, target); // fileData를 target에 복사
+		
+		String filePath = uploadPath + "/" + datePath + "/" + uuidFileName;
+		// -> hobby/main_img/2021/07/31 + "/" + uuid_메인이미지.jpg
+		return filePath;
+	}
+
+	private static String makeDateDir(String rootPath, String uploadPath, String datePath) {
+		String dateDirPath = rootPath + "/" + uploadPath + "/" + datePath;
+		// -> D:/ggomjirak + / +  hobby/main_img + / + 2021/07/31
+		
+		//날짜별 폴더 생성
+		File f = new File(dateDirPath);
 		if (!f.exists()) {
 			f.mkdirs();
-		}
-		return uploadPath;
+		} 
+		return dateDirPath;
 	}
-	
-	private static String calcUuidFileName(String fileName) {
-		UUID uuid = UUID.randomUUID(); // 중복되지 않는 고유한 값
-		String uuidFileName = uuid + "_" + fileName;
+
+	private static String getDatePath() {
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		String month = new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+		String date = new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		
+		String datePath = year + "/" + month + "/" + date; 
+		return datePath;
+	}
+
+	private static String getUUIDFileName(String orgFileName) {
+		UUID uuid = UUID.randomUUID(); 
+		String uuidFileName = uuid + "_" + orgFileName;
 		return uuidFileName;
 	}
 	
-	private static String calcThumnailPath(String orgPath) {
-		int slashIndex = orgPath.lastIndexOf("/");
-		String front = orgPath.substring(0, slashIndex + 1);
-		// -> D:/ggomjirak/hobby/main_img/2021/07/20/
-		String rear = orgPath.substring(slashIndex + 1);
-		// -> uuid_메인이미지.png
-		return front + "sm_" + rear;
-	}
-	
-	//파일의 확장명 얻기
-	private static String getExtName(String fileName) {
-		int dotIndex = fileName.lastIndexOf(".");
-		String ext = fileName.substring(dotIndex + 1);
-		return ext.toUpperCase();
-	}
-	
-	private static String makeThumbImg(String orgPath, int dw, int dh) throws Exception {
-		String thumbPath = calcThumnailPath(orgPath);
-		File orgFile = new File(orgPath);
-		File thumbFile = new File(thumbPath);
-        BufferedImage img = ImageIO.read(orgFile);
-        
-        // java-image-scaling 라이브러리
-        MultiStepRescaleOp rescale = new MultiStepRescaleOp(dw, dh);
-        rescale.setUnsharpenMask(AdvancedResizeOp.UnsharpenMask.Soft);
-        BufferedImage resizedImage = rescale.filter(img, null);
-        
-        ImageIO.write(resizedImage, getExtName(thumbPath), thumbFile);
-		return thumbPath;
-	}
-	
-//	private static String makeThumnailImg(String orgFilePath, int dw, int dh) {
-//		String thumbnailPath = getThumnailPath(orgFilePath);
-//		File orgFile = new File(orgFilePath);
-//		File thumbFile = new File(thumbnailPath);
-//		
-//		try {
-//			// 저장된 원본 파일로부터 BufferedImage객체 생성
-//			BufferedImage srcImg = ImageIO.read(orgFile);
-//			
-//			//썸네일의 너비와 높이
-////			int dw = 300, dh = 260;
-//			
-//			//원본이미지의 너비와 높이
-//			int ow = srcImg.getWidth();
-//			int oh = srcImg.getHeight();
-//			
-//			// 원본 너비를 기준으로 하여 썸네일의 비율로 높이를 계산
-//			//(비례식)
-//			int nw = ow;
-//			int nh = (ow * dh) / dw;
-//			
-//			// 계산된 높이가 원본보다 높다면 crop이 안되므로 
-//			// 원본 높이를 기준으로 썸네일의 비율로 너비를 계산
-//			if(nh > oh) {
-//				nw = (oh * dw) / dh;
-//				nh = oh;
-//			}
-//			
-//			// 계산된 크기로 원본이미지를 가운데에서 crop
-//			BufferedImage cropImg = Scalr.crop(srcImg, (ow-nw)/2, (oh-nh)/2, nw, nh);
-//			
-//			// 원본에서 crop된 이미지로 썸네일을 생성
-//			BufferedImage destImg = Scalr.resize(cropImg, dw, dh);
-//			ImageIO.write(destImg, getExtName(thumbnailPath), thumbFile);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return thumbnailPath;
-//	}
-	
-	
 	// 첨부파일 삭제
-	public static boolean deleteFile(String fileName) throws Exception {
-		File orgFile = new File(rootPath + fileName) ;
-		String prefix = fileName.substring(0, fileName.lastIndexOf("/") + 1);
-		String suffix = "sm_" + fileName.substring(fileName.lastIndexOf("/") + 1);
-		File thumbFile = new File(rootPath + prefix + suffix);
-		if(orgFile.exists()) {
-			if (orgFile.delete() && thumbFile.delete()) {
+	public static boolean deleteFile(String rootPath, String filePath) throws Exception {
+		String fullFilePath = rootPath + "/" + filePath;
+		System.out.println(fullFilePath);
+		File file = new File(fullFilePath);
+		if(file.exists()) {
+			if (file.delete()) {
 				return true;
 			}
 		}
 		return false;
 	}
+	
 }

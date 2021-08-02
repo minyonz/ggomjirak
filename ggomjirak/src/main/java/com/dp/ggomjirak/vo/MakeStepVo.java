@@ -1,10 +1,11 @@
 package com.dp.ggomjirak.vo;
 
-import java.util.List;
 
-import org.springframework.web.multipart.MultipartFile;
+
+import com.dp.ggomjirak.yj.util.UrlOGTag;
 
 public class MakeStepVo {
+	private int step_no;
 	private int hobby_no;
 	private int make_step_num;
 	private String make_step_text;
@@ -13,6 +14,7 @@ public class MakeStepVo {
 	private String note;
 	private String link_url;
 	private String link_desc;
+	private String is_del;
 	
 	
 	// not db Column
@@ -100,11 +102,32 @@ public class MakeStepVo {
 	}
 
 
+	public int getStep_no() {
+		return step_no;
+	}
+
+
+	public void setStep_no(int step_no) {
+		this.step_no = step_no;
+	}
+
+
+	public String getIs_del() {
+		return is_del;
+	}
+
+
+	public void setIs_del(String is_del) {
+		this.is_del = is_del;
+	}
+
+
 	@Override
 	public String toString() {
-		return "MakeStepVo [hobby_no=" + hobby_no + ", make_step_num=" + make_step_num + ", make_step_text="
-				+ make_step_text + ", make_step_img=" + make_step_img + ", tip=" + tip + ", note=" + note
-				+ ", link_url=" + link_url + ", link_desc=" + link_desc + ", urlOgTag=" + urlOgTag + "]";
+		return "MakeStepVo [step_no=" + step_no + ", hobby_no=" + hobby_no + ", make_step_num=" + make_step_num
+				+ ", make_step_text=" + make_step_text + ", make_step_img=" + make_step_img + ", tip=" + tip + ", note="
+				+ note + ", link_url=" + link_url + ", link_desc=" + link_desc + ", is_del=" + is_del + ", urlOgTag="
+				+ urlOgTag + "]";
 	}
 
 

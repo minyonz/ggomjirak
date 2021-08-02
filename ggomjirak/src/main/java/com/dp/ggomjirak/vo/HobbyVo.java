@@ -9,7 +9,7 @@ public class HobbyVo {
 	//db column
 	private int hobby_no;
 	private String hobby_title;
-	private String hobby_writer;
+	private String user_id;
 	private String main_img;
 	private String hobby_video;
 	private String hobby_intro;
@@ -40,7 +40,9 @@ public class HobbyVo {
 	private String user_img;
 	
 	// 나중에 합치고나서...
-	private int workroom; 
+	private int workroom;
+	
+	private String user_nick;
 	
 	public HobbyVo() {
 		super();
@@ -63,12 +65,12 @@ public class HobbyVo {
 		this.hobby_title = hobby_title;
 	}
 
-	public String getHobby_writer() {
-		return hobby_writer;
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setHobby_writer(String hobby_writer) {
-		this.hobby_writer = hobby_writer;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getMain_img() {
@@ -271,22 +273,33 @@ public class HobbyVo {
 		this.workroom = workroom;
 	}
 
+	public String getUser_nick() {
+		return user_nick;
+	}
+
+	public void setUser_nick(String user_nick) {
+		this.user_nick = user_nick;
+	}
+
 	@Override
 	public String toString() {
-		return "HobbyVo [hobby_no=" + hobby_no + ", hobby_title=" + hobby_title + ", hobby_writer=" + hobby_writer
-				+ ", main_img=" + main_img + ", hobby_video=" + hobby_video + ", hobby_intro=" + hobby_intro
-				+ ", l_cate_no=" + l_cate_no + ", m_cate_no=" + m_cate_no + ", level_no=" + level_no + ", cost_no="
-				+ cost_no + ", time_no=" + time_no + ", view_cnt=" + view_cnt + ", like_cnt=" + like_cnt + ", is_del="
-				+ is_del + ", reg_date=" + reg_date + ", mod_date=" + mod_date + ", del_date=" + del_date
-				+ ", makeSteps=" + makeSteps + ", hobbyMaterials=" + hobbyMaterials + ", completeImgs=" + completeImgs
-				+ ", l_cate_name=" + l_cate_name + ", m_cate_name=" + m_cate_name + ", level_name=" + level_name
-				+ ", cost_name=" + cost_name + ", time_name=" + time_name + ", user_name=" + user_name + ", user_img="
-				+ user_img + ", workroom=" + workroom + "]";
+		return "HobbyVo [hobby_no=" + hobby_no + ", hobby_title=" + hobby_title + ", user_id=" + user_id + ", main_img="
+				+ main_img + ", hobby_video=" + hobby_video + ", hobby_intro=" + hobby_intro + ", l_cate_no="
+				+ l_cate_no + ", m_cate_no=" + m_cate_no + ", level_no=" + level_no + ", cost_no=" + cost_no
+				+ ", time_no=" + time_no + ", view_cnt=" + view_cnt + ", like_cnt=" + like_cnt + ", is_del=" + is_del
+				+ ", reg_date=" + reg_date + ", mod_date=" + mod_date + ", del_date=" + del_date + ", makeSteps="
+				+ makeSteps + ", hobbyMaterials=" + hobbyMaterials + ", completeImgs=" + completeImgs + ", l_cate_name="
+				+ l_cate_name + ", m_cate_name=" + m_cate_name + ", level_name=" + level_name + ", cost_name="
+				+ cost_name + ", time_name=" + time_name + ", user_name=" + user_name + ", user_img=" + user_img
+				+ ", workroom=" + workroom + ", user_nick=" + user_nick + "]";
 	}
 
 
 
 
+
+
+	
 
 
 

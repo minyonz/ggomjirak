@@ -36,7 +36,8 @@ public interface HobbyDao {
 	public List<HobbyMaterialVo> selectHobbyMaterialList(int hobby_no);
 	public List<MakeStepVo> selectMakeStepList2(HobbyVo hobbyVo);
 	public List<MakeStepVo> selectMakeStepList(int hobby_no);
-	public List<CompleteImgVo> selectCompleteImgList(int hobby_no);
+	public List<CompleteImgVo> selectCompleteImgListNotNull(int hobby_no);
+	public List<CompleteImgVo> selectCompleteImgListAll(int hobby_no);
 	/**
 	 * @param makeSteps
 	 */
@@ -49,4 +50,19 @@ public interface HobbyDao {
 	
 	public void insertCompleteImg (List<CompleteImgVo> completeImgs);
 	
+	
+	// * 수정 작업
+	public String selectCompleteImgName(CompleteImgVo completeImgVo);
+	public String selectMainImg(int hobby_no);
+//	public String selectMakeStepImg(MakeStepVo makeStepVo);
+	
+	public void updateHobby(HobbyVo hobbyVo);
+	
+	public void deleteHobbyMaterial(List<HobbyMaterialVo> hobbyMaterials);
+	public void updateHobbyMaterial(List<HobbyMaterialVo> hobbyMaterials);
+	
+	public void deleteMakeStep(List<MakeStepVo> makeSteps);
+	public void updateMakeStep(List<MakeStepVo> makeSteps);
+	
+	public void updateCompleteImg(List<CompleteImgVo> completeImgs);
 }
