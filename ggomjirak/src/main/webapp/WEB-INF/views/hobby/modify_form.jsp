@@ -1091,26 +1091,6 @@ margin-right: 15px;
 						</div>
 					</div>
 				 <!-- //만들기 부분 -->
-				 <!-- 태그  -->
-<!-- 				 <div class="cont_box"> -->
-<!-- 					<div class="row"> -->
-<!-- 						<div class="col-md-1"> -->
-<!-- 						</div> -->
-<!-- 						태그 내용 -->
-<!-- 						<div class="col-md-10"> -->
-<!-- 							<div class="cont_tit"> -->
-<!-- 								태그  -->
-<!-- 							</div> -->
-<!-- 							<div> -->
-<!-- 								<input type="text" class="form-control" placeholder="태그1, 태그2, 태그3 쉼표로 구분해주세요"/> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						// 태그 내용 -->
-<!-- 						<div class="col-md-1"> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				 </div> -->
-				 <!-- //태그  -->
 				 <!-- 저장/완료/닫기 버튼 부분 -->
 				 <div class="cont_box">
 						<div style="text-align: center;">

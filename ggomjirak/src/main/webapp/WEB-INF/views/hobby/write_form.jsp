@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -17,14 +16,11 @@
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
 
 <!-- 모달  -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> -->
 <script src="${contextPath}/resources/js/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="${contextPath}/resources/css/sweetalert2.min.css">
 
 <script defer>
 	$(document).ready(function() {
-		$("[data-toggle=tooltip").tooltip();
-
 		//* 카테고리 부분
 		var jsonData = JSON.parse('${cates}');
 		var cate1Arr = new Array();
@@ -45,6 +41,7 @@
 			 cate1Select.append("<option value='" + cate1Arr[i].cate_no + "'>"
 		      + cate1Arr[i].cate_name + "</option>"); 
 		}
+		
 		$(document).on("change", "select.cate1", function(){
 		
 			 var cate2Arr = new Array();
@@ -153,7 +150,10 @@
 			}
 		);
 		
+		
 	});
+	
+	
 	
 	function showNote(seq) {
 		$("#divStepNote_" + seq).toggle();
@@ -520,18 +520,6 @@ margin-right: 15px;
 	background:#1f5e43; 
 	color:#fff;
 	}
-/* 	.btn_delMainImg { */
-/*     right: 1rem; */
-/*     top: 0; */
-/* 	} */
-	
-/* 	.btn_delStepImg { */
-/*     left: 8rem; */
-/*     bottom: 10.5rem; */
-/*     position: relative; */
-/*     display: block; */
-/* 	} */
-
 
 @media screen and (min-width: 1300px) {
 .myContainer {
@@ -550,6 +538,8 @@ margin-right: 15px;
 .body { grid-area: body; }
 .side-right { grid-area: side-right; }
  }
+ 
+ 
 </style>
 <title>취미 글쓰기</title>
 </head>
@@ -942,26 +932,6 @@ margin-right: 15px;
 					</div>
 				 </div>
 				 <!-- //만들기 부분 -->
-				 <!-- 태그  -->
-<!-- 				 <div class="cont_box"> -->
-<!-- 					<div class="row"> -->
-<!-- 						<div class="col-md-1"> -->
-<!-- 						</div> -->
-<!-- 						태그 내용 -->
-<!-- 						<div class="col-md-10"> -->
-<!-- 							<div class="cont_tit"> -->
-<!-- 								태그  -->
-<!-- 							</div> -->
-<!-- 							<div> -->
-<!-- 								<input type="text" class="form-control" placeholder="태그1, 태그2, 태그3 쉼표로 구분해주세요"/> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						// 태그 내용 -->
-<!-- 						<div class="col-md-1"> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				 </div> -->
-				 <!-- //태그  -->
 				 <!-- 저장/완료/닫기 버튼 부분 -->
 				 <div class="cont_box">
 						<div style="text-align: center;">

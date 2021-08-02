@@ -50,35 +50,35 @@
 $(document).ready(function() {
 	
 	//* 카테고리 부분
-	var jsonData = JSON.parse('${cates}');
-	var cate1Arr = new Array();
-	var cate1Obj = new Object();
+	var jsonData2 = JSON.parse('${cates}');
+	var cate3Arr = new Array();
+	var cate3Obj = new Object();
 	// 1차 분류 셀렉트 박스에 삽입할 데이터 준비
-	for(var i = 0; i < jsonData.length; i++) {
-	 if(jsonData[i].cate_level == "1") {
-	  cate1Obj = new Object();  //초기화
-	  cate1Obj.cate_no = jsonData[i].cate_no;
-	  cate1Obj.cate_name = jsonData[i].cate_name;
-	  cate1Arr.push(cate1Obj);
+	for(var i = 0; i < jsonData2.length; i++) {
+	 if(jsonData2[i].cate_level == "1") {
+	  cate3Obj = new Object();  //초기화
+	  cate3Obj.cate_no = jsonData2[i].cate_no;
+	  cate3Obj.cate_name = jsonData2[i].cate_name;
+	  cate3Arr.push(cate3Obj);
 	 }
 	}
 	// 1차 분류 셀렉트 박스에 데이터 삽입
-	var cate1Select = $("select.cate1")
-	for(var i = 0; i < cate1Arr.length; i++) {
-		 cate1Select.append("<option id='parent_cate_no' name='parent_cate_no' value='" + cate1Arr[i].cate_no + "'>"
-	      + cate1Arr[i].cate_name + "</option>"); 
+	var cate3Select = $("select.cate3")
+	for(var i = 0; i < cate3Arr.length; i++) {
+		 cate3Select.append("<option id='parent_cate_no' name='parent_cate_no' value='" + cate3Arr[i].cate_no + "'>"
+	      + cate3Arr[i].cate_name + "</option>"); 
 	}
-	$(document).on("change", "select.cate1", function(){
-		 var cate2Arr = new Array();
-		 var cate2Obj = new Object();
+	$(document).on("change", "select.cate3", function(){
+		 var cate4Arr = new Array();
+		 var cate4Obj = new Object();
 		 // 2차 분류 셀렉트 박스에 삽입할 데이터 준비
-		 for(var i = 0; i < jsonData.length; i++) {
-		  if(jsonData[i].cate_level == "2") {
-		   cate2Obj = new Object();  //초기화
-		   cate2Obj.cate_no = jsonData[i].cate_no;
-		   cate2Obj.cate_name = jsonData[i].cate_name;
-		   cate2Obj.parent_cate_no = jsonData[i].parent_cate_no;
-		   cate2Arr.push(cate2Obj);
+		 for(var i = 0; i < jsonData2.length; i++) {
+		  if(jsonData2[i].cate_level == "2") {
+		   cate4Obj = new Object();  //초기화
+		   cate4Obj.cate_no = jsonData2[i].cate_no;
+		   cate4Obj.cate_name = jsonData2[i].cate_name;
+		   cate4Obj.parent_cate_no = jsonData2[i].parent_cate_no;
+		   cate4Arr.push(cate4Obj);
 		  }
 		 }
 		 var cate2Select = $("ul.cate2");
@@ -86,12 +86,12 @@ $(document).ready(function() {
 		 $("option:selected", this).each(function(){
 		  var selectVal = $(this).val();  
 		  cate2Select.append("<li class='dropdown-item'>중분류</li>");
-		  for(var i = 0; i < cate2Arr.length; i++) {
-		   if(selectVal == cate2Arr[i].parent_cate_no) {
-		    cate2Select.append("<li><a class='dropdown-item' value='" + cate2Arr[i].cate_no 
-		    	+ "' data-cate='" + cate2Arr[i].parent_cate_no 
-		    	+ "' href='/main/mainHobby?parent_cate_no=" + cate2Arr[i].parent_cate_no + "&m_cate_no=" + cate2Arr[i].cate_no + "'>"
-		         + cate2Arr[i].cate_name + "</a></li>");
+		  for(var i = 0; i < cate4Arr.length; i++) {
+		   if(selectVal == cate4Arr[i].parent_cate_no) {
+		    cate2Select.append("<li><a class='dropdown-item' value='" + cate4Arr[i].cate_no 
+		    	+ "' data-cate='" + cate4Arr[i].parent_cate_no 
+		    	+ "' href='/main/mainHobby?parent_cate_no=" + cate4Arr[i].parent_cate_no + "&m_cate_no=" + cate4Arr[i].cate_no + "'>"
+		         + cate4Arr[i].cate_name + "</a></li>");
 		   }
 		  }
 		 });
@@ -208,7 +208,7 @@ $(document).ready(function() {
 									<div class="col-lg-3">
 									<div class="input-group">
 
-										<select class="cate1 btn btn-outline-light green_background shadow bg-body rounded"
+										<select class="cate3 btn btn-outline-light green_background shadow bg-body rounded"
 											style="margin-right: 10px; width:110px; height:38px"
 											aria-label="Default select example">
 											<option value="">카테고리</option>

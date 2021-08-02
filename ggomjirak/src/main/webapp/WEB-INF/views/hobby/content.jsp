@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,6 +58,7 @@ $(document).ready(function() {
 	width: 25px;
 	height: 25px;
 }
+
 .btnMenu_cmt {
 	background: url("${contextPath}/resources/images/menu.png") no-repeat center; 
 	background-size: 15px;
@@ -168,6 +170,8 @@ color: #1f5e43;
     line-height: 1.6;
     margin: 14px 0 14px 0;
 }
+
+
 @media screen and (min-width: 1300px) {
 .container_north, .cotainer_south {
   display: grid; 
@@ -297,9 +301,9 @@ border-left: 4px solid #1f5e43;
     margin-left: 10px
 }
 .pagination_rounded ul li a:hover {
-    background: #4285f4;
+    background: #1f5e43;
     color: #fff;
-    border: 1px solid #4285f4
+    border: 1px solid #1f5e43
 }
 a:link {
     text-decoration: none;
@@ -313,7 +317,7 @@ a:link {
 }
 .pagination_rounded ul li a {
     float: left;
-    color: #4285f4;
+    color: #1f5e43;
     border-radius: 50%;
     line-height: 30px;
     height: 30px;
@@ -434,15 +438,17 @@ color:black;
 				<div class="dropdown" style="float:right">
 					<button class="btnMenu" type="button" id="dropdownMenuButton" data-toggle="dropdown">
 					</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						 <a class="dropdown-item" href="/hobby/update/${hobbyVo.hobby_no}">수정</a> 
-						 <a class="dropdown-item" href="javascript:doDelete();">삭제</a>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" 
+						style="min-width: 4rem;font-size: 13px;">
+						 <a class="dropdown-item mydr" href="/hobby/update/${hobbyVo.hobby_no}">수정</a>
+						  <div class="dropdown-divider"></div> 
+						 <a class="dropdown-item mydr" href="javascript:doDelete();">삭제</a>
 					</div>
 				</div>
 				<!--//  수정/ 삭제 버튼을 위한 메뉴 -->
 				<div id="hobby_title">${hobbyVo.hobby_title}</div>
 				<div id="hobby_intro">${hobbyVo.hobby_intro}</div>
-				<div><span id="reg_date">작성일  : ${hobbyVo.reg_date }</span><span id="view_cnt">조회수 : ${hobbyVo.view_cnt }</span></div>
+				<div><span id="reg_date">작성일  : <fmt:formatDate value="${hobbyVo.reg_date}" pattern="yyyy-MM-dd KK:mm:ss"/></span><span id="view_cnt">조회수 : ${hobbyVo.view_cnt }</span></div>
 				<div class="row">
 					<div class="col-md-7">
 						<div class="mainImg_cont">
@@ -481,13 +487,13 @@ color:black;
 						</div>
 						<div class="respon_row">
 							<button type="button" class="btn green_background">
-								<span style="color:white;" class="fa fa-heart-o"></span>
+								<span style="color:white;" class="fa fa-heart-o"> 좋아요</span>
 							</button>
 							<button type="button" class="btn green_background">
-								<span style="color:white;" class="fa fa-bookmark-o"></span>
+								<span style="color:white;" class="fa fa-bookmark-o"> 북마크</span>
 							</button>
 							<button type="button" class="btn green_background">
-								<span style="color:white;" class="fa fa-share-alt"></span>
+								<span style="color:white;" class="fa fa-envelope-o"> 쪽지</span>
 							</button>
 						</div>
 					</div>
@@ -501,7 +507,7 @@ color:black;
 		<div class="side side-left"></div>
 		<div class="body">
 			<div><b>준비물</b><span>Material</span></div>
-							<table class="table table-hover table-sm">
+							<table class="table table-hover table-sm" style="cursor: pointer;">
 								<tbody>
 									<c:forEach var="hobbyMaterialVo" items="${hobbyVo.hobbyMaterials}">
 										<tr>
@@ -728,7 +734,7 @@ color:black;
 			<div class="side side-left"></div>
 			<div class="body">
 				<div><b>동영상</b><span>Video</span></div>
-				<div>
+				<div style="text-align: center;">
 					<iframe width="560" height="315" 
 					src="https://www.youtube.com/embed/${hobbyVo.hobby_video}" 
 					title="YouTube video player"></iframe>
@@ -809,7 +815,7 @@ color:black;
 		</div>
 		<!-- //review-container -->
 		<!-- pagination-container -->
-		<div class="pagination-container">
+		<div class="pagination-container" style="text-align: center;">
 			<div class="pagination_rounded">
 			    <ul>
 			        <li> <a href="#" class="prev"> <i class="fa fa-angle-left" aria-hidden="true"></i> Prev </a> </li>
@@ -864,7 +870,8 @@ color:black;
 								<div class="dropdown" style="float:right">
 									<button class="btnMenu_cmt" type="button" id="dropdownMenuButton" data-toggle="dropdown">
 									</button>
-									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+										style="min-width: 4rem;font-size: 13px;">
 										 <a class="dropdown-item doUpdateComment" 
 										 	href="javascript:void(0);" >수정</a> 
 										 <a class="dropdown-item deleteComment" 
@@ -888,6 +895,7 @@ color:black;
 							</div>
 					</div>
 					<div class="row replyCommentDiv" style="padding-left:50px;">
+					
 					</div>
 				</div>
 				<!-- //comment-row -->
