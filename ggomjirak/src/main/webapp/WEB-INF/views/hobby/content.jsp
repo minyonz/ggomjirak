@@ -15,6 +15,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+<script src="${contextPath}/resources/js/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="${contextPath}/resources/css/sweetalert2.min.css">
 <script>
 $(document).ready(function() {
 	selectCommentList();
@@ -119,18 +121,23 @@ font-weight:550;
 color: #1f5e43;
 }
 /* carousel 슬라이드 */
-.carousel {
+.stepCarousel {
 	margin: 0 auto;
 	width: 900px;
 /* 	height:1100px; */
 }
-.carousel-inner {
+.craftCarousel {
+	margin: 0 auto;
+	width: 550px;
+/* 	height:1100px; */
+}
+.craftCarousel-inner {
     position: relative;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     border: hidden;
-    width: 900px;
+    width: 550px;
     height: auto;
 }
 .carousel-item{
@@ -256,23 +263,20 @@ padding-left: 28px;
 padding-right: 28px;
 }
 .nav-item .active{
-color: #5741A3 !important;
+color: #1f5e43 !important;
 border:none !important;
-border-bottom: 3px solid #5741A3 !important;
+border-bottom: 3px solid #1f5e43 !important;
 font-weight: 600;
 }
 .nav-item .active:hover{
 border:none !important;
-border-bottom: 3px solid #5741A3 !important;
+border-bottom: 3px solid #1f5e43 !important;
 }
 .nav-tabs{
 border-bottom: none !important;
 }
 .tab-pane h5{
-border-left: 4px solid #5741A3;
-}
-.tab-pane p{
-/* border-top: 1px solid #c1c1c1; */
+border-left: 4px solid #1f5e43;
 }
 /* 3. pagination */
 .pagination_rounded,
@@ -393,7 +397,22 @@ color:black;
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
-${hobbyVo.reg_date }
+<c:if test="${swalIcon == 'success' }">
+	<script>
+		Swal.fire({
+			icon : "${swalIcon}",
+			title : "${swalTitle}",
+		}).then(function(){close()});
+	</script>
+</c:if>
+<c:if test="${swalIcon == 'error' }">
+	<script>
+		Swal.fire({
+			icon : "${swalIcon}",
+			title : "${swalTitle}",
+		});
+	</script>
+</c:if>
 <!-- id4로 로그인 한상태라고 가정 -->
 <input type="hidden" name="user_id" value="ID4"/>
 <div class="container-fluid">
@@ -416,8 +435,8 @@ ${hobbyVo.reg_date }
 					<button class="btnMenu" type="button" id="dropdownMenuButton" data-toggle="dropdown">
 					</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						 <a class="dropdown-item" href="#">수정</a> 
-						 <a class="dropdown-item" href="#">삭제</a>
+						 <a class="dropdown-item" href="/hobby/update/${hobbyVo.hobby_no}">수정</a> 
+						 <a class="dropdown-item" href="javascript:doDelete();">삭제</a>
 					</div>
 				</div>
 				<!--//  수정/ 삭제 버튼을 위한 메뉴 -->
@@ -517,7 +536,7 @@ ${hobbyVo.reg_date }
 						            	<div class="divSlideView" style="margin-top: 60px;">
 						            		<!-- data-interval=false -> 자동 슬라이드 취소 -->
 						            		<!-- 이미지 슬라이드 -->
-					            			<div class="carousel slide" id="stepSlide" data-interval="false">
+					            			<div class="carousel stepCarousel slide" id="stepSlide" data-interval="false" >
 												<ol class="carousel-indicators" style="top: 460px; height: 30px;">
 													<c:forEach var="makeStepVo" items="${hobbyVo.makeSteps }">
 														<li data-slide-to="${makeStepVo.make_step_num - 1 }" 
@@ -526,12 +545,18 @@ ${hobbyVo.reg_date }
 														</li>
 													</c:forEach>
 												</ol>
-												<div class="carousel-inner">
+												<div class="carousel-inner stepCarousel-inner">
 													<c:forEach var="makeStepVo" items="${hobbyVo.makeSteps }">
 														<div data-num="${makeStepVo.make_step_num}" class="carousel-item ${makeStepVo.make_step_num==1  ? 'active' : ''}">
 															<div style="width:900px; height:500px">
-																<img class="slideImg" 
-																src="/displayImage?filePath=${makeStepVo.make_step_img }" />
+																<c:choose>
+																	<c:when test="${not empty makeStepVo.make_step_img}">
+																		<img class="slideImg" src="/displayImage?filePath=${makeStepVo.make_step_img }" />
+																	</c:when>
+																	<c:otherwise>
+																		<img class="slideImg" src="${contextPath}/resources/images/no-img.png" />
+																	</c:otherwise>
+																</c:choose>
 															</div>
 															<div class="carousel-caption">
 																	<div id="stepDiv${makeStepVo.make_step_num}" 
@@ -663,32 +688,34 @@ ${hobbyVo.reg_date }
 								</div>
 								<!-- 완성사진 영역 -->
 								<div style="margin-top: 100px;">
-									<div class="carousel slide" id="craftSlide" style="width:700px">
-										<ol class="carousel-indicators">
-												<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
-														<li data-slide-to="${vs.index}" 
-															data-target="#craftSlide"
-															class="${vs.index==0  ? 'active' : ''}">
-														</li>
-													</c:forEach>
-										</ol>
-										<div class="carousel-inner">
-											<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}">
-											<div data-num="${vs.count}" class="carousel-item ${vs.index==0  ? 'active' : ''}">
-												<img class="d-block w-100" 
-													src="/displayImage?filePath=${completeImgVo.img_name}" />
+									<div class="carousel craftCarousel slide" id="craftSlide">
+									<ol class="carousel-indicators">
+										<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
+											<li data-slide-to="${vs.index}" 
+												data-target="#craftSlide"
+												class="${vs.index==0  ? 'active' : ''}">
+											</li>
+										</c:forEach>
+									</ol>
+									<div class="carousel-inner craftCarousel-inner">
+										<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
+											<div data-num="${vs.count}" class="carousel-item ${vs.count==1  ? 'active' : ''}">
+												<div style="width:550px; height:300px">
+													<img class="slideImg" src="/displayImage?filePath=${completeImgVo.img_name}" />
+												</div>
 											</div>
-											</c:forEach>
-										</div> 
-										<a class="carousel-control-prev" 
-											href="#craftSlide" data-slide="prev">
-											<span class="carousel-control-prev-icon"></span> 
-											<span class="sr-only">Previous</span></a> 
-										<a class="carousel-control-next" href="#craftSlide"
-										 data-slide="next">
-										 	<span class="carousel-control-next-icon"></span> 
-										 	<span class="sr-only">Next</span>
-										 	</a>
+										</c:forEach>
+									</div> 
+									<a class="carousel-control-prev" href="#craftSlide" 
+										data-slide="prev" style="height:300px">
+										<span class="carousel-control-prev-icon"></span> 
+										<span class="sr-only">Previous</span>
+									</a> 
+									<a class="carousel-control-next" href="#craftSlide" 
+										data-slide="next"  style="height:300px">
+										<span class="carousel-control-next-icon"></span> 
+										<span class="sr-only">Next</span>
+									</a>
 									</div>
 								</div>
 							</div>
@@ -726,195 +753,183 @@ ${hobbyVo.reg_date }
 		<div class="side side-left"></div>
 		<div class="body">
 			<!-- 후기, 댓글 컨테이너 -->
-				<div class="col-lg-4 offset-lg-2 col-12 bg-white rounded-top tab-head">
-					<ul class="nav nav-tabs" id="myTab" role="tablist">
-						<li class="nav-item">
-							<a class="nav-link active" id="home-tab" data-toggle="tab" 
-								href="#madeByMe" role="tab" 
-								aria-controls="madeByMe" aria-selected="true">made by me</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" id="profile-tab" data-toggle="tab"
-							 href="#comment" role="tab" 
-							 aria-controls="comment" aria-selected="false">comment</a>
-						</li>
-					</ul>
+		  <ul class="nav nav-tabs">
+		    <li class="nav-item">
+		      <a class="nav-link active" data-toggle="tab" href="#madeByMe">made by me</a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" data-toggle="tab" href="#comment">comment</a>
+		    </li>
+		  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="madeByMe" class="container tab-pane active"><br>
+<!--       <h5 class="pl-2">made by me</h5> -->
+		<a style="float:right" href="#"><span class="fa fa-pencil-square"></span>후기작성</a>
+		<!-- review-container -->
+		<div class="review-container">
+		<c:forEach begin="1" end="4">
+		<!-- review-row -->
+		<div class="review-row">
+			<div class="row">
+				<div class="col-md-1">
+					<img class="rounded-circle circle-image" 
+					src="https://recipe1.ezmember.co.kr/img/df/pf_100_100.png"
+					style="width:2.2rem;"/> 
 				</div>
-				<div class="col-lg-8 offset-lg-2 bg-white p-3">
-					<div class="tab-content mt-4" id="myTabContent">
-						<!-- made by me -->
-						<div class="tab-pane fade show active" id="madeByMe" role="tabpanel" aria-labelledby="home-tab">
-							<h5 class="pl-2">made by me</h5>
-							<a href="#"><span class="fa fa-pencil-square"></span>후기작성</a>
-							<p>여기는 후기 부분~</p>
-							<!-- review-container -->
-							<div class="review-container">
-							<c:forEach begin="1" end="4">
-							<!-- review-row -->
-							<div class="review-row">
-								<div class="row">
-									<div class="col-md-1">
-										<img class="rounded-circle circle-image" 
-										src="https://recipe1.ezmember.co.kr/img/df/pf_100_100.png"
-										style="width:2.2rem;"/> 
-									</div>
-									<div class="col-md-11">
-										<div class="row">
-											홍길동
-										</div>
-										<div class="row">
-											2021.07.20
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-4">
-										<img src="/resources/images/madeByMeThum.jpg"/> 
-									</div>
-									<div class="col-md-8">
-										<div>
-											<div class="row">체감 난이도: 최상</div>
-											<div class="row">소요시간: 1시간</div>
-											<div class="row">비용: 3만원</div>
-										</div>
-										<div class="row review-content">
-											<p>후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							</c:forEach>
-							<!-- // review-row -->
-							</div>
-							<!-- //review-container -->
-							<!-- pagination-container -->
-							<div class="pagination-container">
-								<div class="pagination_rounded">
-								    <ul>
-								        <li> <a href="#" class="prev"> <i class="fa fa-angle-left" aria-hidden="true"></i> Prev </a> </li>
-								        <li><a href="#">1</a> </li>
-								        <li class="hidden-xs"><a href="#">2</a> </li>
-								        <li class="hidden-xs"><a href="#">3</a> </li>
-								        <li class="hidden-xs"><a href="#">4</a> </li>
-								        <li class="hidden-xs"><a href="#">5</a> </li>
-								        <li class="visible-xs"><a href="#">...</a> </li>
-								        <li><a href="#">6</a> </li>
-								        <li><a href="#" class="next"> Next <i class="fa fa-angle-right" aria-hidden="true"></i></a> </li>
-								    </ul>
-								</div>
-							</div>
-							<!--// pagination-container -->
-						</div>
-						<!-- // made by me -->
-						<!-- // comment -->
-						<div class="tab-pane fade" id="comment" role="tabpanel" aria-labelledby="profile-tab">
-							<h5 class="pl-2">comment</h5>
-							<p>여기는 댓글 부분 ~</p>
-							<div class="sm_tit">댓글 <span id="comment_cnt">3</span></div>
-							<!--commentList-container -->
-							<div class="commentList-container" id="commentContainer">
-							<!-- comment-row-->
-								<div class="comment-row" style="display:none">
-									<input type="hidden" class="c_no" value=""/>
-									<input type="hidden" class="re_group" value=""/>
-									<div class="updateCommentDiv" style="display:none">
-										<div class="c_info_area">
-											<img class="rounded-circle circle-image user_img" 
-												src="/resources/images/profile.png" style="width:35px; height:35px;"/>
-											<span class="c_user_name"> 하윤지</span>
-											<a class="cancel" href="#" style="float:right">취소</a>
-										</div>
-										<div class="input-group" style="width:680px;">
-										<!-- 아이디부분 로그인기능 생기면 삭제 -->
-											<textarea name="c_content" class="form-control c_content"
-													 style="height:100px; width:100%; resize:none;"></textarea>
-											<!-- 로그인 기능 생기면 insertComment함수 인자안에 세션으로 얻은${user_id}넣기 -->
-											<button class="btn btn-outline-light green_background updateBtn" type="button" 
-													onclick="updateComment()" style="height:100px; width:100px;">등록</button>
-										</div>
-									</div>
-									<div class="view_comment">
-										<div class="c_info_area">
-												<a class="user_link" href="#프로필링크">
-													<img class="rounded-circle circle-image user_img" 
-													src="/resources/images/profile.png" style="width:35px; height:35px;"
-													/>
-												</a>
-												<span class="c_user_name"> 하윤지</span>
-												<span class="is_hobby_writer badge badge-pill badge-success" 
-													style="display:none; background: #1f5e43; padding-top: 5px;"> 글주인</span>
-												<div class="dropdown" style="float:right">
-													<button class="btnMenu_cmt" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-													</button>
-													<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-														 <a class="dropdown-item doUpdateComment" 
-														 	href="javascript:void(0);" >수정</a> 
-														 <a class="dropdown-item deleteComment" 
-														 	href="javascript:void(0);">삭제</a>
-													</div>
-												</div>
-											</div>
-											<div class="c_content_area">
-												<span class="c_parent_user_name" style="display:none">@하윤지 </span> 
-												<span class="c_content">댓글내용 댓글댓글내용 댓글댓글내용 11</span>
-											</div>
-											<div class="c_etc_area">
-												<span class="c_reg_date">2021-07-20 11:43</span>
-													<span>|</span>
-													<a href="javascript:void(0);" class="신고"
-														 onclick="신고()">신고</a>
-											</div>
-											<div class="c_btn_area">
-												<button class="doRecomment btn btn-sm btn-outline-light green_background"
-														 onclick="doRecomment()">답글</button>
-											</div>
-									</div>
-									<div class="row replyCommentDiv" style="padding-left:50px;">
-									</div>
-								</div>
-								<!-- //comment-row -->
-								<div id="moreViewDiv" style="display:none"></div>
-							</div>
-							<!--//  댓글 리스트 컨테이너 -->
-								
-									<!-- 답댓작성 -->
-									<div id="reply_div" style="display:none">
-										<div class="input-group" style="width:640px;">
-											<input type="text" id="re_user_id" name="user_id" placeholder="댓글작성자 id(테스트를 위한)"/>
-											<input type="hidden" id="parent_c_no" value=""/>
-											<textarea id="re_c_content" class="form-control"
-												 style="height:100px; width:100%; resize:none;"></textarea>
-											<button class="btn btn-outline-light green_background insertRecomment" type="button" 
-												onclick="insertRecomment(this)" style="height:100px; width:100px;">등록</button>
-										</div>
-									</div>
-									<!--// 답댓작성 -->
-										
-								<div style="text-align:center; margin: 20px 0 20px 0;">
-									<button type="button" id="btnMoreComments"
-										onclick="moreViewToggle(this);"
-										class="btn btn-sm btn-outline-light green_background">댓글 더보기</button>
-								</div>
-							
-							<!--//commentList-container -->
-							<!--commentWrite-container -->
-							<div class="commentWrite-container">
-								<div class="input-group" style="width:680px;">
-									<!-- 아이디부분 로그인기능 생기면 삭제 -->
-									<input type="text" id="user_id" name="user_id" placeholder="댓글작성자 id(테스트를 위한)"/>
-									<textarea id="c_content" name="c_content" class="form-control" placeholder="댓글을 남겨주세요."
-										 style="height:100px; width:100%; resize:none;"></textarea>
-									<!-- 로그인 기능 생기면 insertComment함수 인자안에 세션으로 얻은${user_id}넣기 -->
-									<button class="btn btn-outline-light green_background" type="button" 
-										onclick="insertComment(this)" style="height:100px; width:100px;">등록</button>
-								</div>
-							</div>
-							<!--// commentWrite-container -->
+				<div class="col-md-11">
+					<div class="row">
+						홍길동
 					</div>
-					<!-- // comment -->
-				</div>																		
+					<div class="row">
+						2021.07.20
+					</div>
+				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-4">
+					<img src="/resources/images/madeByMeThum.jpg"/> 
+				</div>
+				<div class="col-md-8">
+					<div>
+						<div class="row">체감 난이도: 최상</div>
+						<div class="row">소요시간: 1시간</div>
+						<div class="row">비용: 3만원</div>
+					</div>
+					<div class="row review-content">
+						<p>후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		</c:forEach>
+		<!-- // review-row -->
+		</div>
+		<!-- //review-container -->
+		<!-- pagination-container -->
+		<div class="pagination-container">
+			<div class="pagination_rounded">
+			    <ul>
+			        <li> <a href="#" class="prev"> <i class="fa fa-angle-left" aria-hidden="true"></i> Prev </a> </li>
+			        <li><a href="#">1</a> </li>
+			        <li class="hidden-xs"><a href="#">2</a> </li>
+			        <li class="hidden-xs"><a href="#">3</a> </li>
+			        <li class="hidden-xs"><a href="#">4</a> </li>
+			        <li class="hidden-xs"><a href="#">5</a> </li>
+			        <li class="visible-xs"><a href="#">...</a> </li>
+			        <li><a href="#">6</a> </li>
+			        <li><a href="#" class="next"> Next <i class="fa fa-angle-right" aria-hidden="true"></i></a> </li>
+			    </ul>
+			</div>
+		</div>
+		<!--// pagination-container --> 
+	 </div>
+    <div id="comment" class="container tab-pane fade"><br>
+<!--     		<h5 class="pl-2">comment</h5> -->
+			<div class="sm_tit">댓글 <span id="comment_cnt">3</span></div>
+			<!--commentList-container -->
+			<div class="commentList-container" id="commentContainer">
+			<!-- comment-row-->
+				<div class="comment-row" style="display:none">
+					<input type="hidden" class="c_no" value=""/>
+					<input type="hidden" class="re_group" value=""/>
+					<div class="updateCommentDiv" style="display:none">
+						<div class="c_info_area">
+							<img class="rounded-circle circle-image user_img" 
+								src="/resources/images/profile.png" style="width:35px; height:35px;"/>
+							<span class="c_user_name"> 하윤지</span>
+							<a class="cancel" href="#" style="float:right">취소</a>
+						</div>
+						<div class="input-group" style="width:680px;">
+						<!-- 아이디부분 로그인기능 생기면 삭제 -->
+							<textarea name="c_content" class="form-control c_content"
+									 style="height:100px; width:100%; resize:none;"></textarea>
+							<!-- 로그인 기능 생기면 insertComment함수 인자안에 세션으로 얻은${user_id}넣기 -->
+							<button class="btn btn-outline-light green_background updateBtn" type="button" 
+									onclick="updateComment()" style="height:100px; width:100px;">등록</button>
+						</div>
+					</div>
+					<div class="view_comment">
+						<div class="c_info_area">
+								<a class="user_link" href="#프로필링크">
+									<img class="rounded-circle circle-image user_img" 
+									src="/resources/images/profile.png" style="width:35px; height:35px;"
+									/>
+								</a>
+								<span class="c_user_name"> 하윤지</span>
+								<span class="is_hobby_writer badge badge-pill badge-success" 
+									style="display:none; background: #1f5e43; padding-top: 5px;"> 글주인</span>
+								<div class="dropdown" style="float:right">
+									<button class="btnMenu_cmt" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+									</button>
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										 <a class="dropdown-item doUpdateComment" 
+										 	href="javascript:void(0);" >수정</a> 
+										 <a class="dropdown-item deleteComment" 
+										 	href="javascript:void(0);">삭제</a>
+									</div>
+								</div>
+							</div>
+							<div class="c_content_area">
+								<span class="c_parent_user_name" style="display:none">@하윤지 </span> 
+								<span class="c_content">댓글내용 댓글댓글내용 댓글댓글내용 11</span>
+							</div>
+							<div class="c_etc_area">
+								<span class="c_reg_date">2021-07-20 11:43</span>
+									<span>|</span>
+									<a href="javascript:void(0);" class="신고"
+										 onclick="신고()">신고</a>
+							</div>
+							<div class="c_btn_area">
+								<button class="doRecomment btn btn-sm btn-outline-light green_background"
+										 onclick="doRecomment()">답글</button>
+							</div>
+					</div>
+					<div class="row replyCommentDiv" style="padding-left:50px;">
+					</div>
+				</div>
+				<!-- //comment-row -->
+				<div id="moreViewDiv" style="display:none"></div>
+			</div>
+			<!--//  댓글 리스트 컨테이너 -->
+				
+					<!-- 답댓작성 -->
+					<div id="reply_div" style="display:none">
+						<div class="input-group" style="width:640px;">
+							<input type="text" id="re_user_id" name="user_id" placeholder="댓글작성자 id(테스트를 위한)"/>
+							<input type="hidden" id="parent_c_no" value=""/>
+							<textarea id="re_c_content" class="form-control"
+								 style="height:100px; width:100%; resize:none;"></textarea>
+							<button class="btn btn-outline-light green_background insertRecomment" type="button" 
+								onclick="insertRecomment(this)" style="height:100px; width:100px;">등록</button>
+						</div>
+					</div>
+					<!--// 답댓작성 -->
+						
+				<div style="text-align:center; margin: 20px 0 20px 0;">
+					<button type="button" id="btnMoreComments"
+						onclick="moreViewToggle(this);"
+						class="btn btn-sm btn-outline-light green_background">댓글 더보기</button>
+				</div>
+			
+			<!--//commentList-container -->
+			<!--commentWrite-container -->
+			<div class="commentWrite-container">
+				<div class="input-group" style="width:680px;">
+					<!-- 아이디부분 로그인기능 생기면 삭제 -->
+					<input type="text" id="user_id" name="user_id" placeholder="댓글작성자 id(테스트를 위한)"/>
+					<textarea id="c_content" name="c_content" class="form-control" placeholder="댓글을 남겨주세요."
+						 style="height:100px; width:100%; resize:none;"></textarea>
+					<!-- 로그인 기능 생기면 insertComment함수 인자안에 세션으로 얻은${user_id}넣기 -->
+					<button class="btn btn-outline-light green_background" type="button" 
+						onclick="insertComment(this)" style="height:100px; width:100px;">등록</button>
+				</div>
+			</div>
+			<!--// commentWrite-container -->
+		    </div>
+		  </div>
 		<div class="side side-right"></div>
 		</div>
 	</div>
@@ -942,6 +957,25 @@ function chgViewStep(step) {
         else if(step==4) $(this).addClass('none');
     });
 }
+
+
+function doDelete() {
+	Swal.fire({
+		text: '삭제하시겠습니까?', 
+		allowOutsideClick: false,
+		iconColor: "#1f5e43",
+		icon: 'question', 
+		confirmButtonText: "확인",
+		confirmButtonColor: "#1f5e43",
+		cancelButtonText: "취소",
+		showCancelButton: true,
+	}).then(function(result) {
+		if(result.isConfirmed) {
+			location.href = "${contextPath}/hobby/delete/${hobbyVo.hobby_no}";
+		} 
+	});
+}
+
 //* 댓글 부분
 // 일반 댓글 작성
 function insertComment() {

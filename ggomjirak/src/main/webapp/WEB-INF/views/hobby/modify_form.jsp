@@ -625,7 +625,7 @@ margin-right: 15px;
 	  
 	  	</div>
   	    <div class="body">
-  				<form method="post" action="/updateRun" onsubmit="return validate();">
+  			<form id="modFrm" method="post" action="/hobby/updateRun">
   				<input type="hidden" name="hobby_no" value="${hobbyVo.hobby_no}"/>
 				<input type="hidden" name="user_id" value="${hobbyVo.user_id}"/>
 				<div style="background: #f8f8f8; border-bottom: 1px solid #e6e7e8; 
@@ -1114,8 +1114,8 @@ margin-right: 15px;
 				 <!-- 저장/완료/닫기 버튼 부분 -->
 				 <div class="cont_box">
 						<div style="text-align: center;">
-							<button type="submit" class="btn btn-outline-light btn-lg green_background">완료</button>
-							<button type="button" class="btn btn-outline-light btn-lg green_background">닫기</button>
+							<button type="button" onclick="doSubmit();" class="btn btn-outline-light btn-lg green_background">완료</button>
+							<button type="button" onclick="history.back();" class="btn btn-outline-light btn-lg green_background">닫기</button>
 						</div>
 				 </div>
 				 <!-- //저장/완료/닫기 버튼 -->
@@ -1721,7 +1721,7 @@ function validate() {
 		
 		var stepUrlJ = /(http(s)?:\/\/)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}/g; //기본 url패턴인지 검사
 		var httpJ = /^(https?:\/\/)(.*)/g;
-		console.log(link_url);
+// 		console.log(link_url);
 		if (typeof link_url != "undefined" && link_url.trim() != "" && link_url !=  null) {
 			if(!link_url.match(empJ)) {
 				if(!link_url.match(stepUrlJ)) {
@@ -1789,10 +1789,38 @@ function validate() {
 		return false;
 	}
 	
+	return true;
 	
 }
 // validate끝
 
+function doSubmit() {
+	valResult = validate();
+	console.log(valResult);
+    if (!valResult) {
+        return false;
+    } 
+    console.log("확인");
+    
+ 	//수정하시겠습니까?
+	Swal.fire({
+		text: '수정하시겠습니까?', 
+		allowOutsideClick: false,
+		iconColor: "#1f5e43",
+		icon: 'question', 
+		confirmButtonText: "확인",
+		confirmButtonColor: "#1f5e43",
+		cancelButtonText: "취소",
+		showCancelButton: true,
+	}).then(function(result) {
+		if(result.isConfirmed) {
+			 $("#modFrm").submit();
+		} else {
+			return false;
+		}
+	});
+    
+}
 </script>
 </body>
 </html>

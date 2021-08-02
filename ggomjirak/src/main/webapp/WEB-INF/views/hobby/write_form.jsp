@@ -561,7 +561,7 @@ margin-right: 15px;
 		<div class="side side-left">
 	  	</div>
   	    <div class="body">
-  				<form method="post" action="/insertRun" onsubmit="return validate();">
+  				<form id="istFrm" method="post" action="${contextPath}/hobby/insertRun">
 				<input type="hidden" name="user_id" value="wendy"/>
 				<div style="background: #f8f8f8; border-bottom: 1px solid #e6e7e8; 
 					padding: 14px 18px; position: relative;">
@@ -965,8 +965,8 @@ margin-right: 15px;
 				 <!-- 저장/완료/닫기 버튼 부분 -->
 				 <div class="cont_box">
 						<div style="text-align: center;">
-							<button type="submit" class="btn btn-outline-light btn-lg green_background">완료</button>
-							<button type="button" class="btn btn-outline-light btn-lg green_background">닫기</button>
+							<button type="button" onclick="doSubmit();" class="btn btn-outline-light btn-lg green_background">완료</button>
+							<button type="button" onclick="history.back();" class="btn btn-outline-light btn-lg green_background">닫기</button>
 						</div>
 				 </div>
 				 <!-- //저장/완료/닫기 버튼 -->
@@ -1545,8 +1545,35 @@ function validate() {
 		return false;
 	}
 	
-	
-	
+	return true;
+}
+
+function doSubmit() {
+	valResult = validate();
+	console.log(valResult);
+    if (!valResult) {
+        return false;
+    } 
+    console.log("확인");
+    
+ 	//등록하시겠습니까?
+	Swal.fire({
+		text: '등록하시겠습니까?', 
+		allowOutsideClick: false,
+		iconColor: "#1f5e43",
+		icon: 'question', 
+		confirmButtonText: "확인",
+		confirmButtonColor: "#1f5e43",
+		cancelButtonText: "취소",
+		showCancelButton: true,
+	}).then(function(result) {
+		if(result.isConfirmed) {
+			 $("#istFrm").submit();
+		} else {
+			return false;
+		}
+	});
+    
 }
 </script>
 </body>

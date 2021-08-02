@@ -34,7 +34,7 @@
 			JOIN tbl_cost_cate e ON a.cost_no = e.cost_no 
 			JOIN tbl_time_cate f ON a.time_no = f.time_no
 			JOIN tbl_member g ON a.user_id = g.user_id
-			WHERE a.hobby_no = #{hobby_no}
+			WHERE a.hobby_no = #{hobby_no} and a.is_del = 'N'
 	</select> 	
 	
  	<!-- 글번호로 make_step 조회 -->
@@ -275,5 +275,15 @@
       	   	SET img_name = #{item.img_name, jdbcType=VARCHAR}
       	   	WHERE hobby_no = #{item.hobby_no} AND num = #{item.num}
     	</foreach>
+	</update>
+	
+	
+	<!-- *삭제작업 -->
+	<!--  게시글 삭제 -->
+	<update id="deleteHobby" parameterType="int">
+		UPDATE tbl_hobby 
+		SET is_del = 'Y',
+			del_date = sysdate
+		WHERE hobby_no = #{hobby_no}
 	</update>
  </mapper>
