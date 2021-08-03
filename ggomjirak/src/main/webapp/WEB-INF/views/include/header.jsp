@@ -139,7 +139,7 @@ $(document).ready(function() {
 								  		</ul>
 								    
 								    <ul class="nav navbar-nav navbar-right">
-										<li class="nav-item"><a class="nav-link flex-item" href="/workroom/main">내 작업실</a></li>
+										<li class="nav-item"><a class="nav-link flex-item" href="/workroom/main/${user_id}">내 작업실</a></li>
 										<li class="nav-item"><a class="nav-link" href="/mypage/login">로그인</a></li>
 										<li class="nav-item"><a class="nav-link flex-item" href="/workroom/main">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">

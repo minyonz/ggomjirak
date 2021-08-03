@@ -30,7 +30,7 @@
 								<img 
 									<c:choose>
 										<c:when test="${event.e_img != null}">
-											src="/event/displayImage?filePath=${rootPath}${event.e_img}" 
+											src="/eventImg/displayImage?filePath=${event.e_img}" 
 											alt="Event Image"
 										</c:when>
 										<c:otherwise>

@@ -59,7 +59,7 @@ $(document).ready(function() {
 							<img class="card-img rounded" id="previewImg_main"
 							<c:choose>
 							<c:when test="${eventVo.e_img != null}">
-								src="/event/displayImage?filePath=${rootPath}${eventVo.e_img}"
+								src="/eventImg/displayImage?filePath=${eventVo.e_img}"
 							</c:when>
 							<c:otherwise>
 								src="${contextPath}/resources/images/main_img_btn.jpg"

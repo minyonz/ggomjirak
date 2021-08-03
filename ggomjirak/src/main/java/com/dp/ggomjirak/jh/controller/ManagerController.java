@@ -20,6 +20,8 @@ import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
 import com.dp.ggomjirak.vo.WorkroomVo;
 
+import net.sf.json.JSONArray;
+
 @Controller
 @RequestMapping("manager")
 public class ManagerController {
@@ -40,12 +42,14 @@ public class ManagerController {
 		int memberCount = managerService.getMemberCount();
 		int askCount = askService.getCountQnAMain();
 		int eventCount = eventService.getCountBanner(pagingDto);
+		List<Integer> gradeList = managerService.getAllUserGrade();
 		
 		System.out.println(eventCount);
 		model.addAttribute("popularMemberList", popularMemberList);
 		model.addAttribute("memberCount", memberCount);
 		model.addAttribute("askCount", askCount);
 		model.addAttribute("eventCount", eventCount);
+		model.addAttribute("gradeList", JSONArray.fromObject(gradeList));
 		return "manager/manager_home";
 	}
 	

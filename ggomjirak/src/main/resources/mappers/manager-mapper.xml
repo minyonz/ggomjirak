@@ -363,6 +363,18 @@
 		where is_del = 'N'
 		and user_id not in(select user_id from tbl_manager_member)
 	</select>
+	<!-- 회원 등급 그래프 -->
+	<select id="getAllUserGrade" resultType="int">
+		select * from (
+		select count(*) as from tbl_memberdetail
+		where user_grade = 4 union all
+		select count(*) as from tbl_memberdetail
+		where user_grade = 3 union all
+		select count(*) as from tbl_memberdetail
+		where user_grade = 2 union all
+		select count(*) as from tbl_memberdetail
+		where user_grade = 1)
+	</select>
 
 
 </mapper>

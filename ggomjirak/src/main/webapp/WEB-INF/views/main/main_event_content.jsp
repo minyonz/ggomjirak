@@ -24,7 +24,7 @@
 				    <tr>
 				      <td colspan="2">
 				      <c:if test="${eventVo.e_img != null}">
-				      	<img src="/event/displayImage?filePath=${rootPath}${eventVo.e_img}"
+				      	<img src="/eventImg/displayImage?filePath=${eventVo.e_img}"
 				      		class="rounded mx-auto d-block" alt="EventImage"
 							width="1200px" height="600px">
 				      </c:if>

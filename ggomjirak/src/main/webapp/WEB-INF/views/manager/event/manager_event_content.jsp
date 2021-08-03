@@ -81,7 +81,7 @@ $(document).ready(function() {
 					<tr>
 						<td colspan="2">
 						<c:if test="${eventVo.e_img != null}">
-				      	<img src="/event/displayImage?filePath=${rootPath}${eventVo.e_img}"
+				      	<img src="/eventImg/displayImage?filePath=${eventVo.e_img}"
 				      		class="card-img-top rounded mx-auto d-block" alt="EventImage"
 							width="1000px" height="800px">
 				      </c:if>

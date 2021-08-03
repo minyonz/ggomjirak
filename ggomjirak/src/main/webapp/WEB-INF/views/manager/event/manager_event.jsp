@@ -160,9 +160,13 @@ $(document).ready(function() {
 		    
 		 	<c:forEach var="event" items="${eventListAll}">
 		    <tr>
-		      <td scope="row"><input type="checkBox"
-		      <c:if test="${event.banner != 0}"> checked</c:if>
-		      ></td>
+		      <td scope="row">
+		      <c:if test="${event.banner != 0}">
+		      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="orange_color bi bi-check" viewBox="0 0 16 16">
+				  <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z"/>
+				</svg>
+		      </c:if>
+		      </td>
 		      <td>${event.e_no}</td>
 		      <td>${event.user_id}</td>
 		      <td><a href="/event/managerEventContent?e_no=${event.e_no}"
@@ -175,7 +179,7 @@ $(document).ready(function() {
 		      <td 
 		      <c:choose>
 					<c:when test="${event.end_date < pagingDto.today}"> class="orange_color" </c:when>
-					<c:otherwise> class="text-dark font-weight-bold" </c:otherwise>
+					<c:otherwise> class="text-dark" </c:otherwise>
 				</c:choose>
 		      class="orange_color">
 		      ${event.end_date}
