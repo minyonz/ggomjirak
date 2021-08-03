@@ -93,11 +93,11 @@
 		insert into tbl_memberSetup (user_id) values (#{user_id}) 
 	</insert>
 	
-	<insert id="insertWorkRoom-이전내용">
+	<insert id="insertWorkRoom">
 		insert into tbl_workroom (user_id, wr_name, wr_intro) values (#{user_id}, #{user_id} || '의 작업실','안녕하세요~')
 	</insert>
 	
-	<insert id="insertWorkRoom">
+	<insert id="insertWorkRoom-추가했던">
 		insert into tbl_workroom (wr_no, user_id, wr_name, wr_intro) 
  			values 
  		( seq_wr_no.nextval, 
