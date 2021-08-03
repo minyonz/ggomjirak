@@ -35,7 +35,7 @@ $(document).ready(function() {
 				$("#follow").attr("class", "btn btn-outline-primary");
 				$("#follow").text("언팔로우");
 			} else if (rData.unFollow) {
-				$("#follow").attr("class", "btn btn-primary");
+				$("#follow").attr("class", "btn green_background white_color");
 				$("#follow").text("팔로우");
 			}
 			$("#follower_cnt").text(rData.countFollow);
