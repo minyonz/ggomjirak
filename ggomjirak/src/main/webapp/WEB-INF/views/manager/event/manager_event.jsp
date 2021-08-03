@@ -4,85 +4,54 @@
 <%@ include file="../manager_include/manager_header.jsp" %>
 <script>
 $(document).ready(function() {
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth() + 1; //January is 0!
+	var yyyy = today.getFullYear();
+	if (dd < 10) {
+	  dd = '0' + dd;
+	}
+	if (mm < 10) {
+	  mm = '0' + mm;
+	}
+	var today = yyyy + '-' + mm + '-' + dd;
+	console.log(today);
 	
 	$(".pagination > li > a").click(function(e) {
 		e.preventDefault(); // 페이지 이동 막기
 		var page = $(this).attr("href");
 		var frmPaging = $("#frmPaging");
 		frmPaging.find("[name=page]").val(page); // page에 페이지 숫자 넣어줌
+		$("#frmPaging > input[name=today]").val(today);
 		console.log(page);
 		frmPaging.submit();
 		// -> 주소창에 : http://localhost/board/listAll?page=1&perPage=10&searchType=&keyword=
 	});
-	
-	$(".list").each(function() {
-		$(this).click(function() {
-			if ($(this).attr("id") == "listAll") {
-				$(".list").removeClass("active");
-				$(this).addClass("active");
-				var url = "/manager/getEventListAll";
-				$("#frmPaging").attr("action", "/manager/getEventListAll");
-				
-			} else if ($(this).attr("id") == "listEnd") {
-				$(".list").removeClass("active");
-				$(this).addClass("active");
-				var url = "/manager/getEventListEnd";
-				$("#frmPaging").attr("action", "/manager/getEventListEnd");
-				
-			} else if ($(this).attr("id") == "listDelete") {
-				$(".list").removeClass("active");
-				$(this).addClass("active");
-				var url = "/manager/getEventListDelete";
-				$("#frmPaging").attr("action", "/manager/getEventListDelete");
-			}
-			
-			$.get(url, function(receivedData) {
-				console.log(receivedData.pagingDto);
-				console.log(receivedData.eventList);
-				
-				var cloneTr;
-				// -> 기존에 달려있던 댓글들 모두 삭제
-				$("#eventTable > tbody > tr:gt(0)").remove();
-				$.each(receivedData.eventList, function() {
-					var cloneTr = $("#tr").clone();
-					var td = cloneTr.find("td");
-					td.eq(0).text(this.e_no);
-					td.eq(1).text(this.m_no);
-					td.eq(2).html("<a href='/manager/managerEventContent?e_no=" + this.e_no + "'>" + this.e_title + "</a>");
-					td.eq(3).text(this.start_date);
-					td.eq(4).text(this.end_date);
-					td.eq(5).text(this.reg_date);
-					td.eq(6).text(this.mod_date);
-					td.eq(7).text(this.e_img);
-					td.eq(8).text(this.del_date);
-					// 삭제버튼 만들때 data-cno = c_no 넣음
-					
-					$("#eventTable > tbody").append(cloneTr);
-					cloneTr.show("slow");
-					
-					$(".pagination > li > a").click(function(e) {
-						e.preventDefault(); // 페이지 이동 막기
-						var page = $(this).attr("href");
-						var frmPaging = $("#frmPaging");
-						frmPaging.find("[name=page]").val(page); // page에 페이지 숫자 넣어줌
-						console.log(page);
-						frmPaging.submit();
-						// -> 주소창에 : http://localhost/board/listAll?page=1&perPage=10&searchType=&keyword=
-					});
-				});
-				
-			});
-		});
+	$(".qCheck > li > a").click(function(e) {
+		e.preventDefault();
 		
+		var qCheck = $(this).attr("href");
+		
+		$("#frmPaging > input[name=qCheck]").val(qCheck);
+		
+		$("#frmPaging > input[name=page]").val("1");
+		
+		$("#frmPaging > input[name=today]").val(today);
+
+		$("#frmPaging").submit();
+
 	});
 	
 
 	
 });
 </script>
-<form id="frmPaging" method="get">
+<form id="frmPaging" action="/event/managerEvent" method="get">
 <input type="hidden" name="page" value="${pagingDto.page}"/>
 <input type="hidden" name="perPage" value="${pagingDto.perPage}"/>
+<input type="hidden" name="endRow" value="${pagingDto.endRow}"/>
+<input type="hidden" name="qCheck" value="${pagingDto.qCheck}"/>
+<input type="hidden" name="today" value="${pagingDto.today}"/>
 </form>
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -135,7 +104,7 @@ $(document).ready(function() {
 				<option class="dropdown-item" value="1">이벤트 시작일 순</option>
 				<option class="dropdown-item" value="2">이벤트 종료일 순</option>
 			</select>
-			<a href="/manager/managerEventWrite" type="button" class="btn btn-success green_background float-right">
+			<a href="/event/managerEventWrite" type="button" class="btn btn-success green_background float-right">
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
 			  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
 			</svg>
@@ -145,12 +114,31 @@ $(document).ready(function() {
 		
 		<div class="card-body">
 		
-		<ul class="nav nav-tabs">
-			
-			<li class="nav-item"><a type="button" href="/manager/managerEvent" id="list" class="green_color nav-link list active">진행중인 이벤트</a></li>
-			<li class="nav-item"><a type="button" id="listEnd" class="green_color nav-link list">종료된 이벤트</a></li>
-			<li class="nav-item"><a type="button" id="listAll" class="green_color nav-link list">전체 이벤트</a></li>
-			<li class="nav-item"><a type="button" id="listDelete" class="green_color nav-link list">삭제된 이벤트</a></li>
+		<ul class="nav nav-tabs qCheck">
+			<li class="nav-item"><a 
+				<c:choose>
+					<c:when test="${pagingDto.qCheck == 0}"> class="orange_color nav-link active" </c:when>
+					<c:otherwise> class="green_color nav-link" </c:otherwise>
+				</c:choose>
+			href="0">전체 이벤트</a></li>
+			<li class="nav-item"><a 
+			<c:choose>
+					<c:when test="${pagingDto.qCheck == 1}"> class="orange_color nav-link active" </c:when>
+					<c:otherwise> class="green_color nav-link" </c:otherwise>
+				</c:choose>
+			href="1">진행중인 이벤트</a></li>
+			<li class="nav-item"><a
+			<c:choose>
+					<c:when test="${pagingDto.qCheck == 2}"> class="orange_color nav-link active" </c:when>
+					<c:otherwise> class="green_color nav-link" </c:otherwise>
+				</c:choose>
+			href="2">종료된 이벤트</a></li>
+			<li class="nav-item"><a
+			<c:choose>
+					<c:when test="${pagingDto.qCheck == 3}"> class="orange_color nav-link active" </c:when>
+					<c:otherwise> class="green_color nav-link" </c:otherwise>
+				</c:choose>
+			href="3">삭제된 이벤트</a></li>
 		</ul>
 		
 		<table class="table" id="eventTable">
@@ -168,24 +156,21 @@ $(document).ready(function() {
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr  id="tr" style="display: none;">
-		      <td scope="row" ></td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		      <td></td>
-		    </tr>
-		 	<c:forEach var="event" items="${eventList}">
+		    
+		 	<c:forEach var="event" items="${eventListAll}">
 		    <tr>
 		      <td scope="row">${event.e_no}</td>
-		      <td>${event.m_no}</td>
-		      <td><a href="/manager/managerEventContent?e_no=${event.e_no}">${event.e_title}</a></td>
+		      <td>${event.user_id}</td>
+		      <td><a href="/event/managerEventContent?e_no=${event.e_no}">${event.e_title}</a></td>
 		      <td>${event.start_date}</td>
-		      <td>${event.end_date}</td>
+		      <td 
+		      <c:choose>
+					<c:when test="${event.end_date < pagingDto.today}"> class="orange_color" </c:when>
+					<c:otherwise> class="green_color" </c:otherwise>
+				</c:choose>
+		      class="orange_color">
+		      ${event.end_date}
+		      </td>
 		      <td>${event.reg_date}</td>
 		      <td>${event.mod_date}</td>
 		      <td>${event.e_img}</td>
@@ -199,7 +184,6 @@ $(document).ready(function() {
 		
 	</div>
 	<!-- 페이징 -->
-	${pagingDto }
 	<div class="row  text-center">
 		<div class="col-md-12">
 			<nav class="pagination justify-content-center">

@@ -19,7 +19,8 @@
 	<div class="checkout__order" id="hobby">
 		<div class="workroom_box row" style="height: 39px;">
 			<h4>꼼지락</h4>
-			<a href="/workroom/hobby">더보기</a>
+			<p style="text-align:right;">
+			<a href="/workroom/hobby/${page_id}" class="btn btn-outline-dark btn-sm" style="margin-left:700px;">더보기</a></p>
 		</div>
 		<hr>
 		<div>
@@ -43,7 +44,11 @@
 	<div class="checkout__order" id="story">
 		<div class="workroom_box row" style="height: 39px;">
 			<h4>Story</h4>
-			<a href="/story/list">더보기</a>
+			<p style="text-align:right;">
+				<c:if test="${user_id == page_id}">
+					<a href="/story/write" class="fa fa-pencil" style="margin-top: 5px; margin-left: 10px;"></a>
+				</c:if>
+				<a href="/story/list/${page_id}" class="btn btn-outline-dark btn-sm" style="margin-left:700px;">더보기</a>
 		</div>
 		<div class="workroom_box">
 			<hr>
@@ -52,11 +57,11 @@
 					<div class="row">
 						<div class="col-md-10" style="padding: 0px; margin: auto;">
 							<p style="font-size: 14px; margin: 10px" class="story_detail">
-								<a href="/story/detail?st_no=${storyVo.st_no}">
+								<a href="/story/detail/${page_id}?st_no=${storyVo.st_no}">
 									${storyVo.st_content}</a><br> 
-									<a class="fa fa-heart-o" href="#" style="margin-right: 5px">
-									${storyVo.st_like_count}</a> 
-									<a class="fa fa-comment-o" href="/story/detail?st_no=${storyVo.st_no}">
+									<a class="fa fa-heart-o" href="/story/detail/${page_id}?st_no=${storyVo.st_no}" 
+									style="margin-right: 5px"> ${storyVo.st_like_count}</a> 
+									<a class="fa fa-comment-o" href="/story/detail/${page_id}?st_no=${storyVo.st_no}">
 									${storyVo.st_c_count}</a>
 							</p>
 						</div>
@@ -73,7 +78,7 @@
 	<div class="checkout__order" id="mbm">
 		<div class="workroom_box row" style="height: 39px;">
 			<h4>MadeByMe</h4>
-			<a href="/workroom/mbm">더보기</a>
+			<a href="/workroom/mbm/${page_id}">더보기</a>
 		</div>
 		<hr>
 		<div>

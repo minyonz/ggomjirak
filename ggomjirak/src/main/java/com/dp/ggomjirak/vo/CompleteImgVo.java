@@ -1,7 +1,6 @@
 package com.dp.ggomjirak.vo;
 
 public class CompleteImgVo {
-	private int cimg_no;
 	private int hobby_no;
 	private String img_name;
 	private int num;
@@ -54,21 +53,12 @@ public class CompleteImgVo {
 	}
 
 
-	public int getCimg_no() {
-		return cimg_no;
-	}
-
-
-	public void setCimg_no(int cimg_no) {
-		this.cimg_no = cimg_no;
-	}
-
-
 	@Override
 	public String toString() {
-		return "CompleteImgVo [cimg_no=" + cimg_no + ", hobby_no=" + hobby_no + ", img_name=" + img_name
-				+ ", num=" + num + ", seq=" + seq + "]";
+		return "CompleteImgVo [hobby_no=" + hobby_no + ", img_name=" + img_name + ", num=" + num + ", seq=" + seq + "]";
 	}
+
+
 
 
 

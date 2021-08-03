@@ -10,8 +10,13 @@
 	<bean id="dataSource" 
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+<<<<<<< HEAD
 		<property name="url" value="jdbc:log4jdbc:oracle:thin:@192.168.0.217:1521:xe"/>
 		<property name="username" value="ggomjirak"/>
+=======
+		<property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="ggomjirak_test"/>
+>>>>>>> 317c0fc56105da5c7b223350368238450006fdbc
 		<property name="password" value="1234"/>
 	</bean>
 	

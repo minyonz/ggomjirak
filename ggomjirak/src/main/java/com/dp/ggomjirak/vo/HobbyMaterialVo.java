@@ -7,6 +7,7 @@ public class HobbyMaterialVo {
 	private int material_no;
 	private String material_detail;
 	private int seq;
+	private String is_del;
 	
 	//not db column
 	private String materialName;
@@ -87,11 +88,23 @@ public class HobbyMaterialVo {
 	}
 
 
+	public String getIs_del() {
+		return is_del;
+	}
+
+
+	public void setIs_del(String is_del) {
+		this.is_del = is_del;
+	}
+
+
 	@Override
 	public String toString() {
 		return "HobbyMaterialVo [hm_no=" + hm_no + ", hobby_no=" + hobby_no + ", material_no=" + material_no
-				+ ", material_detail=" + material_detail + ", seq=" + seq + ", materialName=" + materialName + "]";
+				+ ", material_detail=" + material_detail + ", seq=" + seq + ", is_del=" + is_del + ", materialName="
+				+ materialName + "]";
 	}
+
 
 
 

@@ -12,7 +12,7 @@ import com.dp.ggomjirak.vo.CostVo;
 import com.dp.ggomjirak.vo.LevelVo;
 import com.dp.ggomjirak.vo.TimeVo;
 
-@Repository
+@Repository("yj.CateDaoImpl")
 public class CateDaoImpl implements CateDao {
 	private static final String NAMESPACE = "com.dp.ggomjirak.cate.";
 	
