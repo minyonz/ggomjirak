@@ -207,7 +207,7 @@ $(document).ready(function() {
 							    
 							    <div class="col-lg-2 col-md-3 mb-3">
 <!-- 							      <label for="validationCustom04">대분류</label> -->
-							      <select style="padding-top: 2px !important; text-align-last: center; text-align: center;" class="cate3 form-control btn btn-outline-light green_background white_color shadow bg-body rounded" id="validationCustom04" required>
+							      <select style="height: 38px; padding-top: 2px !important; text-align-last: center; text-align: center;" class="cate3 form-control btn btn-outline-light green_background white_color shadow bg-body rounded" id="validationCustom04" required>
 							        <option selected disabled value="">카테고리</option>
 							      </select>
 							      <div class="invalid-feedback">

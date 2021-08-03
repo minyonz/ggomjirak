@@ -182,7 +182,7 @@ public class EventController {
 	@RequestMapping(value="/managerMainEventInsertRun", method=RequestMethod.GET)
 	public String managerMainEventInsertRun(Model model, int e_no) throws Exception {
 		eventService.insertMainEvent(e_no);
-		return "redirect:/event/managerMainEvent";
+		return "redirect:/event/managerEvent";
 	}
 	
 	// 메인 이벤트  삭제

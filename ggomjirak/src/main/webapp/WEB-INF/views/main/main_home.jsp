@@ -18,6 +18,8 @@
 		<div class="row"  style="position: relative; top: -400px;">
 			<div class="col-md-2"></div>
 			<div class="col-md-8">
+			
+							
 				<div class="carousel slide" id="carousel-313760">
 					<ol class="carousel-indicators">
 					<c:forEach var="v" begin="${pagingDto.startPage}" end="${pagingDto.count}">
@@ -44,7 +46,7 @@
 						>
 							<img class="d-block w-100" alt="Event Banner"
 								src="/event/displayImage?filePath=${rootPath}${event.e_img}" height="500"/>
-							<div class="carousel-caption text-right">
+							<div class="carousel-caption green_background">
 								<h4><a href="/main/mainEventContent?e_no=${event.e_no}">${event.e_title}</a></h4>
 								<p>${event.start_date} ~ ${event.end_date}</p>
 								<a href="/main/mainEventContent?e_no=${event.e_no}" class="btn btn-success green_background">이벤트 보기</a>
