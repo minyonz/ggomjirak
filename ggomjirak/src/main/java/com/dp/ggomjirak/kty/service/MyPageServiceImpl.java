@@ -7,7 +7,9 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.dp.ggomjirak.kty.dao.MemberDao;
+
 import com.dp.ggomjirak.vo.CateVo;
+
 import com.dp.ggomjirak.vo.MemberVo;
 
 @Service
@@ -15,8 +17,7 @@ public class MyPageServiceImpl implements MyPageService {
 
 	@Inject
 	private MemberDao memberDao;
-	
-	
+
 	@Override
 	public MemberVo login(String user_id, String user_pw) {
 		MemberVo memberVo = memberDao.login(user_id, user_pw);
@@ -32,7 +33,6 @@ public class MyPageServiceImpl implements MyPageService {
 	public void insertMember(MemberVo memberVo) {
 		memberDao.insertMember(memberVo);
 	}
-
 
 	@Override
 	public MemberVo info(String user_id) {

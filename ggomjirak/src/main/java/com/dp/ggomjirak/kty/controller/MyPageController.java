@@ -139,10 +139,6 @@ public class MyPageController {
 	public String changeCate(int parent_cate_no, Model model) throws Exception {
 		System.out.println("회원 가입 대분류 선택하면 연결되는 중분류만 나타나는 부분 추가 중...");
 		System.out.println("parent_cate_no:" + parent_cate_no);
-				
-//		List<CateVo> list2 = myPageService.listHobbyCate2(parent_cate_no);
-//		model.addAttribute("list2", list2);
-//		System.out.println("list2:" + list2);
 		return "mypage/member_join";
 	}
 		
