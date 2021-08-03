@@ -24,11 +24,8 @@ $(document).ready(function() {
 });
 </script>
 <title>상세보기</title>
-<!-- 내가 설정한 style -->
+
 <style>
-/* <내가 한 style> */
-/* 1. 전체 큰 영역 */
-/* 2. 후기 */
 .review-row{
  padding-top: 10px;
  border-bottom: 2px solid #c1c1c1;
@@ -180,6 +177,7 @@ color: #1f5e43;
 }
 
 
+/* 화면 width 1300px부터 이렇게 하겠다.라는 뜻*/
 @media screen and (min-width: 1300px) {
 .container_north, .cotainer_south {
   display: grid; 
@@ -198,8 +196,9 @@ color: #1f5e43;
 .side-right { grid-area: side-right; }
  }
  
+ /* 화면 width 1300px까지 이렇게 하겠다.라는 뜻*/
  @media screen and (max-width: 1300px) {
-.body { padding: 0 100px; }
+.body { padding: 0 80px; }
  }
   	
 </style>
@@ -266,13 +265,8 @@ color: #1f5e43;
 /* .view_step_tip.st2 dd {padding:14px 28px 0; font-size:16px; line-height:1.6;} */
 .view_step .carousel .carouItem img {max-width:100%;}
 .view_step_cont .none {display:none;}
-/* .view_step_cont .carousel.slide {border:none; box-shadow:none; margin:0; padding:0;} */
-/* .view_step_cont .media-left .carousel.slide {width:300px;} */
 .view_step_cont .media-left {width:300px;}
-/* .view_step_cont .carousel-control {padding:0;} */
-/* .view_step_cont .carousel-indicators {bottom:-36px;} */
-/* .view_step_cont .carousel-indicators li {width:10px; height:10px;} */
-/* 2. 탭 css (후기, 댓글) */
+
 .tab-head{
 padding-left: 0px !important;
 padding-right: 0px !important;
@@ -375,8 +369,8 @@ figure[data-ke-type='opengraph'] a {
 }
 figure[data-ke-type='opengraph'] div.og-image {
    border-right: solid 1px rgba(0, 0, 0, 0.06);
-    width: 100px;
-    height: 100px;
+    width: 8.3rem;
+    height: 8.3rem;
     background-size: cover;
     background-position: center;
 }
@@ -385,38 +379,39 @@ figure[data-ke-type='opengraph'] div {
 }
 figure[data-ke-type='opengraph'] div.og-text {
     flex-grow: 1;
-/* height: 130px; */
-padding-left: 40px;
+    height: 8rem;
+    padding-left: 1.5rem;
+    padding-top: 1rem;
 }
 figure[data-ke-type='opengraph'] p.og-title {
 color: #000000;
-padding-bottom: 10px;
+padding-bottom: 0.2rem;
 max-width: 467px;
 text-overflow: ellipsis;
 white-space: nowrap;
 margin: 0px;
-    overflow: hidden;
+overflow: hidden;
 }
 figure[data-ke-type='opengraph'] .og-desc {
     margin: 0px;
     max-width: 467px;
     text-overflow: ellipsis;
     overflow: hidden;
-    font-family: 'Noto Sans', 'Noto Sans KR';
+/*     font-family: 'Noto Sans', 'Noto Sans KR'; */
     font-size: 14px;
     font-weight: 300;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
+/*     font-style: normal; */
+/*     font-stretch: normal; */
+    line-height: unset;
+/*     letter-spacing: normal; */
     color: #909090;
-    max-height: 42px;
+    min-height: 2.8rem;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     display: -webkit-box;
 }
 
-/* 오늘 수정 */
+/*임시 */
 a {
 color:black;
 }
@@ -562,6 +557,15 @@ color:black;
 	            <div>
 	            	<div class="divSlideView" style="margin-top: 60px;">
 	            		<!-- data-interval=false -> 자동 슬라이드 취소 -->
+	            		<!-- 이미지 슬라이드 순환을 개시 -->
+						<button id="carousel_cycle">순환</button><br />
+						<!-- 이미지 슬라이드 순환을 정지 -->
+						<button id="carousel_pause">정지</button><br />
+						<!-- 이미지 슬라이드를 이동할 수 -->
+						<input type="number" id="carousel_number" min=1 max=5 value="1" >
+						<!-- 이미지 슬라이드 이동 -->
+						<button id="carousel_move">이동</button><br />
+
 	            		<!-- 이미지 슬라이드 -->
             			<div class="carousel stepCarousel slide" id="stepSlide" data-interval="false" >
 							<ol class="carousel-indicators" style="top: 460px; height: 30px;">
@@ -715,7 +719,7 @@ color:black;
 			</div>
 			<!-- 완성사진 영역 -->
 			<div style="margin-top: 100px;">
-				<div class="carousel craftCarousel slide" id="craftSlide">
+				<div class="carousel craftCarousel slide" id="craftSlide" style="box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);">
 				<ol class="carousel-indicators">
 					<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
 						<li data-slide-to="${vs.index}" 
@@ -958,6 +962,45 @@ color:black;
 </div>
 <%@ include file="../include/footer.jsp" %>
 <script>
+//이미지 슬라이드 설정
+$('#carousel-example-generic').carousel({
+// 순환 설정
+interval: 1000
+// 순환을 정지시킨다.
+}).carousel('pause');
+});
+// 이미지 슬라이드 순환을 개시
+$("#carousel_cycle").on("click", function() {
+$('#carousel-example-generic').carousel('cycle');
+});
+// 이미지 슬라이드 순환을 정지
+$("#carousel_pause").on("click", function() {
+$('#carousel-example-generic').carousel('pause');
+});
+// 이미지 슬라이드 이동
+$("#carousel_move").on("click", function() {
+var num = Number($("#carousel_number").val()) - 1;
+$('#carousel-example-generic').carousel(num);
+});
+// 이미지 슬라이드 전 페이지 이동
+$("#carousel_prev").on("click", function() {
+$('#carousel-example-generic').carousel('prev');
+});
+// 이미지 슬라이드 다음 페이지 이동
+$("#carousel_next").on("click", function() {
+$('#carousel-example-generic').carousel('next');
+});
+$('#carousel-example-generic').on('slide.bs.carousel', function () {
+// 슬라이드 인스턴스 메서드가 호출되면 호출된다.
+});
+$('#carousel-example-generic').on('slid.bs.carousel', function () {
+// 회전식 슬라이드가 완료되면 호출된다.
+});
+
+
+
+
+
 function chgViewStep(step) {	
 	if (step == 1) {
 		$(".divStepView").hide();

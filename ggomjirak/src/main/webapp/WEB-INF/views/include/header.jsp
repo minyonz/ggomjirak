@@ -45,6 +45,7 @@
 .orange_color {
 	color:  rgb(231, 112, 92);
 }
+
 </style>
 <script>
 $(document).ready(function() {
