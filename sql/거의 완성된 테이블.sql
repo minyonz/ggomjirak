@@ -41,7 +41,7 @@ CREATE TABLE tbl_hobby_material (
     hm_no number not null,
     hobby_no NUMBER NOT NULL,
     material_no NUMBER NOT NULL,
-    material_detail VARCHAR2(200) NOT NULL,
+    material_detail VARCHAR2(200),
     seq NUMBER(2) NOT NULL, 
     is_del VARCHAR2(1) DEFAULT 'N' NOT NULL CHECK(is_delete IN('N','Y')),
     CONSTRAINT hobby_material_pk PRIMARY KEY (hm_no),

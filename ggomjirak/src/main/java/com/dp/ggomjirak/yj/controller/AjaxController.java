@@ -31,9 +31,9 @@ public class AjaxController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AjaxController.class);
 	
-	private static final String MAIN_IMG_UPLOAD_PATH = "test/main_img";
-	private static final String STEP_IMG_UPLOAD_PATH = "test/make_step";
-	private static final String COMPLETE_IMG_UPLOAD_PATH = "test/complete_img";
+	private static final String MAIN_IMG_UPLOAD_PATH = "main_img";
+	private static final String STEP_IMG_UPLOAD_PATH = "make_step";
+	private static final String COMPLETE_IMG_UPLOAD_PATH = "complete_img";
 	
 	@Inject
 	private HobbyService hobbyService;

@@ -35,14 +35,6 @@ public class HobbyDaoTest {
 	
 	@Test
 	public void testSelectHobbyByVo() {
-		HobbyVo hobbyVo = new HobbyVo();
-		hobbyVo.setHobby_no(1);
-		HobbyVo h = hobbyDao.selectHobby2(hobbyVo);
-		List<HobbyMaterialVo> hobbyMaterials = hobbyDao.selectHobbyMaterialList2(h);
-		List<MakeStepVo> makeSteps = hobbyDao.selectMakeStepList2(h);
-		h.setHobbyMaterials(hobbyMaterials);
-		h.setMakeSteps(makeSteps);
-		System.out.println(h);
 	}
 	
 	@Test

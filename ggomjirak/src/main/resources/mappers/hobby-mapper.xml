@@ -26,14 +26,14 @@
 			SELECT 
 				a.*, b.cate_name l_cate_name, c.cate_name m_cate_name,
 			    d.level_name, e.cost_name, f.time_name, 
-			    g.user_name user_name, g.user_img user_img
+			    g.user_nick user_nick, g.user_img user_img
 			FROM tbl_hobby a
 			JOIN tbl_hobby_cate b ON a.l_cate_no = b.cate_no
 			JOIN tbl_hobby_cate c ON a.m_cate_no = c.cate_no
 			JOIN tbl_level_cate d ON a.level_no = d.level_no
 			JOIN tbl_cost_cate e ON a.cost_no = e.cost_no 
 			JOIN tbl_time_cate f ON a.time_no = f.time_no
-			JOIN tbl_member g ON a.user_id = g.user_id
+			JOIN tbl_memberdetail g ON a.user_id = g.user_id
 			WHERE a.hobby_no = #{hobby_no} and a.is_del = 'N'
 	</select> 	
 	

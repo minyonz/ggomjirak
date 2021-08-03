@@ -552,11 +552,11 @@ margin-right: 15px;
 	  	</div>
   	    <div class="body">
   				<form id="istFrm" method="post" action="${contextPath}/hobby/insertRun">
-				<input type="hidden" name="user_id" value="wendy"/>
 				<div style="background: #f8f8f8; border-bottom: 1px solid #e6e7e8; 
 					padding: 14px 18px; position: relative;">
 					<span class="lg_tit">취미 작성</span>
 					<span class="star">*</span><span style="font-size:15px; font-weight:550;">필수입력</span>
+					<input type="text" name="user_id"  placeholder="로그인했다고 가정할아이디 입력" style="width:300px;"/>
 				</div>
 			<!-- 취미 메인 정보 박스 -->			
 				<div class="cont_box" >
@@ -1002,6 +1002,36 @@ function previewMainImg(targetObj) {
 	}
 	
 	var file = targetObj.files[0];
+	
+	// 이미지파일체크, 파일 사이즈 체크
+	var imgJ = /(.*?)\.(jpg|jpeg|png|gif)$/;
+	var maxSize = 10 * 1024 * 1024;
+    
+	console.log(file.name);
+	console.log(file.size);
+    if(!file.name.match(imgJ)) {
+    	Swal.fire({
+			text: '이미지 파일만 업로드 가능합니다.', 
+			allowOutsideClick: false,
+			iconColor: "#1f5e43",
+			icon: 'warning', 
+			confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43",
+		});
+        return;
+    } else if(file.size > maxSize) {
+    	Swal.fire({
+			text: '파일 크기는 10MB까지 가능합니다.', 
+			allowOutsideClick: false,
+			iconColor: "#1f5e43",
+			icon: 'warning', 
+			confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43",
+		});
+        return;
+    }
+ 	// 이미지파일체크, 파일 사이즈 체크   end
+	    
 	var formData = new FormData();
 	formData.append("file", file);
 	formData.append("sort", "mainImg");
@@ -1060,6 +1090,36 @@ function previewMakeStepImg(targetObj, seq) {
 		return false;
 	}
 	var file = targetObj.files[0];
+	
+	// 이미지파일체크, 파일 사이즈 체크   
+	var imgJ = /(.*?)\.(jpg|jpeg|png|gif)$/;
+	var maxSize = 10 * 1024 * 1024;
+    
+	console.log(file.name);
+	console.log(file.size);
+    if(!file.name.match(imgJ)) {
+    	Swal.fire({
+			text: '이미지 파일만 업로드 가능합니다.', 
+			allowOutsideClick: false,
+			iconColor: "#1f5e43",
+			icon: 'warning', 
+			confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43",
+		});
+        return;
+    } else if(file.size > maxSize) {
+    	Swal.fire({
+			text: '파일 크기는 10MB까지 가능합니다.', 
+			allowOutsideClick: false,
+			iconColor: "#1f5e43",
+			icon: 'warning', 
+			confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43",
+		});
+        return;
+    }
+ 	// 이미지파일체크, 파일 사이즈 체크   end
+ 	
 	console.log("파일존재");
 	var formData = new FormData();
 	formData.append("file", file);
@@ -1105,6 +1165,39 @@ multifile_step.onchange = function () {
 	if (files.length == 0) {
 		return false;
 	}
+	
+	// 이미지파일체크, 파일 사이즈 체크   
+	var imgJ = /(.*?)\.(jpg|jpeg|png|gif)$/;
+	var maxSize = 10 * 1024 * 1024;
+    
+	console.log(files);
+	for (var v = 0; v < files.length; v++) {
+		console.log("이름:", files[v].name);
+		console.log("크기:", files[v].size);
+	    if(!files[v].name.match(imgJ)) {
+	    	Swal.fire({
+				text: '이미지 파일만 업로드 가능합니다.', 
+				allowOutsideClick: false,
+				iconColor: "#1f5e43",
+				icon: 'warning', 
+				confirmButtonText: "확인",
+				confirmButtonColor: "#1f5e43",
+			});
+	        return;
+	    } else if(files[v].size > maxSize) {
+	    	Swal.fire({
+				text: '파일 크기는 10MB까지 가능합니다.', 
+				allowOutsideClick: false,
+				iconColor: "#1f5e43",
+				icon: 'warning', 
+				confirmButtonText: "확인",
+				confirmButtonColor: "#1f5e43",
+			});
+	        return;
+	    }
+	}
+ 	// 이미지파일체크, 파일 사이즈 체크   end
+ 	
 	console.log("사용자가 올리려고 선택한 파일들", files);
 	var emptys = $("#stepBoxWrap").find('.none_img');
 	// 멀티파일개수 - 사진 안올라간거 > 0 때만 박스 생성
@@ -1186,6 +1279,36 @@ function previewComplImg(targetObj, num) {
 		return false;
 	}
 	var file = targetObj.files[0];
+	
+	// 이미지파일체크, 파일 사이즈 체크   
+	var imgJ = /(.*?)\.(jpg|jpeg|png|gif)$/;
+	var maxSize = 10 * 1024 * 1024;
+    
+	console.log(file.name);
+	console.log(file.size);
+    if(!file.name.match(imgJ)) {
+    	Swal.fire({
+			text: '이미지 파일만 업로드 가능합니다.', 
+			allowOutsideClick: false,
+			iconColor: "#1f5e43",
+			icon: 'warning', 
+			confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43",
+		});
+        return;
+    } else if(file.size > maxSize) {
+    	Swal.fire({
+			text: '파일 크기는 10MB까지 가능합니다.', 
+			allowOutsideClick: false,
+			iconColor: "#1f5e43",
+			icon: 'warning', 
+			confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43",
+		});
+        return;
+    }
+ 	// 이미지파일체크, 파일 사이즈 체크   end
+	
 	console.log("파일존재");
 	var formData = new FormData();
 	formData.append("file", file);
