@@ -10,7 +10,7 @@
 $(document).ready(function(){
 	var msg = "${msg}";
 	if (msg == "success") {
-		alert("회원 가입을 환영합니다~");
+		alert("회원 가입을 환영합니다! \n 로그인하고 사용해주세요.");
 	}
 });
 </script>

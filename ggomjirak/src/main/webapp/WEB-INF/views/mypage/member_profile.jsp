@@ -16,7 +16,7 @@
 	height: left;
 }
 </style>
-<script src="/resources/js/my-script.js"></script>
+<script src="/resources/js/ty-script.js"></script>
 <script>
 $(document).ready(function(){
 	var isCheckDupNick = false;
@@ -90,17 +90,14 @@ $(document).ready(function(){
 				var img = cloneDiv.find("img");
 				// 이미지인 경우
 				if(isImage(fileName)){
-					img.attr("src", "http://localhost/mypage/displayImage?fileName=" + receivedData);
+					//img.attr("src", "http://localhost/mypage/displayImage?fileName=" + receivedData);
+					img.attr("src", "/mypage/displayImage?fileName=" + receivedData);
+					console.log("receivedData: " + receivedData);
 				}
 				cloneDiv.find("span").text(fileName);
 				cloneDiv.find(".a_times").attr("href", receivedData);
-// 				// 모달창 띄우기
-// 				$("#modal-167712").trigger("click");
-// 				// 2초 뒤에 실행 되는 함수
-// 				setTimeout(function(){
-// 					$("#modal-167712 .close").trigger("click");
-// 					$("#uploadedList").append(cloneDiv.show());
-// 				}, 2000);
+				console.log(cloneDiv);
+
 				$("#uploadedList").append(cloneDiv.show());
 			}
 		});
@@ -121,19 +118,6 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
-/* 	// 폼전송
-	$("#frmWrite").submit(function(){
-		var div = $("#uploadedList .divUploaded");
-		$(this).find("[names^=files]").remove(); // 더블클릭할 수 있어서 추가한 부분...?
-		div.each(function(index){
-			var fileName = $(this).find(".a_times").attr("href");
-			var html = "<input type='hidden' name = 'files["+ index +"]' value='"+ fileName +"'/>";
-			$("#frmWrite").prepend(html);
-		});
-		
-		return false;
-	}); */
 	
  	// 폼전송
 	$("#frmMemberProfile").submit(function() {
@@ -217,7 +201,7 @@ $(document).ready(function(){
 });
 </script>
 ${memberVo}
-${cates}
+<%-- ${cates} --%>
 <!-- 파일 업로드 안내 모달-->
 <div class="container-fluid">
 	<div class="row">
@@ -269,6 +253,7 @@ ${cates}
 						<!-- 내부 패널 메인 -->
 						<form role="form" id="frmMemberProfile" action="/mypage/modifyProfileRun" method="post" enctype="multipart/form-data">
 							<input type="hidden" id="user_id" name="user_id" value="${memberVo.user_id}"/> 
+							
 							<div class="form-group">
 								<label for="user_nick">닉네임</label> 
 								<input type="text" class="form-control" id="user_nick" name="user_nick" 
@@ -281,9 +266,10 @@ ${cates}
 							
 						<div class="form-group">
 							<label for="exampleInputFile">프로필 이미지</label> 
-							<!-- <input type="file" class="form-control-file" id="file" name="file" /> -->
-							<img height = "100" id="user_img" 
-							src="http://localhost/mypage/displayImage?fileName=${memberVo.user_img}" class ="img-rounded"/>
+							<%-- <img height = "100" id="user_img" name="user_img" 
+							src="http://localhost/mypage/displayImage?fileName=${memberVo.user_img}" class ="img-rounded"/> --%>
+							<img height= "100" id="user_img" name="user_img" 
+							src="/mypage/displayImage?fileName=${memberVo.user_img}" class ="img-rounded"/>
 						</div>
 						<!-- 첨부 파일  -->
 						<div class="form-group">
@@ -296,31 +282,92 @@ ${cates}
 
 						<!-- 상단 폼전송 클릭에서 맞추는 부분 var div = $("#uploadedList .divUploaded");  -->
 						<div style ="display:none" class="divUploaded"> 
-							<img height = "100" src="/resources/img/default_image.png" class ="img-rounded"/><br>
+							<img height="100" src="/resources/img/default_image.png" class="img-rounded"/><br>
 							<br>
 								<span>default</span> 
 								<a href = "#" class="a_times">&times;</a>
 						</div>
 						
-						<div id ="uploadedList">
+						
+						<div id="uploadedList">
 						
 						</div>
-						
 <!-- 						<div class="sc-1xjzf4m-0 bXMjXX"></div> -->
 <!-- 						<div class="sc-1ov8bm8-2 dMXdMC">이미지를 여기로 끌어다 놓거나, 여기를 눌러 파일을 선택하세요.</div> -->
 <!-- 						<input type="file" accept="image/*" multiple="" class="sc-5d51x-0 gSOqCo"/></div> -->
-						<select class="cate1 form-control btn btn-outline-light green_background shadow bg-body rounded
-						"style="margin-right: 10px" aria-label="Default select example">
-						<option value="">대분류</option>
-						</select>
-						<select class="cate2 form-control btn btn-outline-light green_background shadow bg-body rounded
-						"style="margin-right: 10px" aria-label="Default select example">
-						<option value="">중분류</option>
-						</select>
-						
 						<!-- // 첨부 파일  -->
-						
-<!-- 							<div class="form-group"> -->
+
+						<div class="form-group">
+							<label for="user_details">부가 정보</label>
+						</div>
+						<div class="form-group">
+							<label for="user_hobbys">관심 취미 선택</label>
+						</div>
+<%-- 							<input type="text" id="cate_no1" name="cate_no1" value="${memberVo.cate_no1}"/>  --%>
+<%-- 							<input type="text" id="cate_no2" name="cate_no2" value="${memberVo.cate_no2}"/>  --%>
+<%-- 							<input type="text" id="cate_no3" name="cate_no3" value="${memberVo.cate_no3}"/>  --%>
+<%-- 							<input type="text" id="cate_name1" name="cate_name1" value="${memberVo.cate_name1}"/>  --%>
+<%-- 							<input type="text" id="cate_name2" name="cate_name2" value="${memberVo.cate_name2}"/>  --%>
+<%-- 							<input type="text" id="cate_name3" name="cate_name3" value="${memberVo.cate_name3}"/>  --%>
+						<table>
+<!-- 							<tr>
+								<td>
+									<select	class="cate1 form-control btn btn-outline-light green_background shadow bg-body rounded" 
+									        style="margin-right: 10px" aria-label="Default select example">
+									<option value="">대분류</option>
+									</select>
+								</td>
+								<td>
+									<select	class="cate2 form-control btn btn-outline-light green_background shadow bg-body rounded" 
+									        style="margin-right: 10px" aria-label="Default select example">
+									<option value="">중분류</option>
+								    </select>
+								</td>
+							</tr> -->
+							<tr>
+								<td>
+									<select	class="cate1 form-control btn btn-outline-light green_background shadow bg-body rounded" 
+									        style="margin-right: 10px" aria-label="Default select example">
+									<option value="" id="">대분류</option>
+									</select>
+								</td>
+								<td>
+									<select	class="cate2 form-control btn btn-outline-light green_background shadow bg-body rounded" 
+									        style="margin-right: 10px" aria-label="Default select example">
+									<option value="${memberVo.cate_no1}" id="cate_no1" name="cate_no1" >${memberVo.cate_name1}</option>
+								    </select>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<select	class="cate1 form-control btn btn-outline-light green_background shadow bg-body rounded" 
+									        style="margin-right: 10px" aria-label="Default select example" >
+									<option value="" id="">대분류</option>
+									</select>
+								</td>
+								<td>
+									<select	class="cate2 form-control btn btn-outline-light green_background shadow bg-body rounded" 
+									        style="margin-right: 10px" aria-label="Default select example">
+									<option value="${memberVo.cate_no2}" id="cate_no2" name="cate_no2">${memberVo.cate_name2}</option>
+								    </select>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<select	class="cate1 form-control btn btn-outline-light green_background shadow bg-body rounded" 
+									        style="margin-right: 10px" aria-label="Default select example">
+									<option value="" id="">대분류</option>
+									</select>
+								</td>
+								<td>
+									<select	class="cate2 form-control btn btn-outline-light green_background shadow bg-body rounded" 
+									        style="margin-right: 10px" aria-label="Default select example">
+									<option value="${memberVo.cate_no3}" id="cate_no3" name="cate_no3">${memberVo.cate_name3}</option>
+								    </select>
+								</td>
+							</tr>
+						</table>
+								<!-- <div class="form-group"> -->
 <!-- 								<label for="user_details">부가 정보</label> -->
 <!-- 							</div> -->
 <!-- 							<div class="form-group"> -->

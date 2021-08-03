@@ -99,17 +99,9 @@ public class MyPageController {
 	@RequestMapping(value = "/infoForm", method = RequestMethod.GET)
 	public String infoForm(String user_id, MemberVo memberVo, Model model, HttpSession session) throws Exception {
 		System.out.println("마이 페이지 컨트롤러의 회원 정보 폼 입장");
-		//System.out.println("받아온 user_id: " + user_id);
-		//if(user_id == null) {
-		//	memberVo = (MemberVo)session.getAttribute("loginVo");
-//		} else {
-//			memberVo = myPageService.info(user_id);
-//		}
-		//System.out.println(memberVo);
-		
 		System.out.println("loginVo라는 세션에 저장한 내용 memberVo에 다시 저장");
+
 		memberVo = (MemberVo)session.getAttribute("loginVo");
-		
 		memberVo = myPageService.info(memberVo.getUser_id());
 		System.out.println(memberVo);
 		
@@ -121,14 +113,12 @@ public class MyPageController {
 	@RequestMapping(value="/joinForm", method = RequestMethod.GET)
 	public String joinForm(Model model) throws Exception {
 		System.out.println("마이 페이지 컨트롤러의 회원 가입폼 들어감");
-	
 		// 회원 프로필로 옮겨야 될 내용
 		//List<CateVo> list1 = myPageService.listHobbyCate1();
 		//model.addAttribute("list1", list1);
 		//System.out.println(list1);
 		return "mypage/member_join";
 	}
-	
 	
 	// 마이 페이지 - 회원 가입 처리 /mypage/joinRun
 	@RequestMapping(value="/joinRun", method = RequestMethod.POST)
@@ -195,7 +185,6 @@ public class MyPageController {
 		model.addAttribute("memberVo", memberVo); // ??? 
 		return "mypage/member_modify";
 	}
-	
 
 	// 마이 페이지 - 회원 정보 수정 폼
 	@RequestMapping(value = "/modifyRun", method = RequestMethod.POST)
@@ -259,45 +248,34 @@ public class MyPageController {
 		memberVo = myPageService.info(memberVo.getUser_id());
 		System.out.println(memberVo);
 		
-		model.addAttribute("memberVo", memberVo); // ??? 
+		model.addAttribute("memberVo", memberVo);
 		model.addAttribute("cates", JSONArray.fromObject(category));
 
 //		model.addAttribute("bigSort", bigSort);
 //		model.addAttribute("smallSort", smallSort);
 		return "mypage/member_profile";
 	}
-
-	/*@RequestMapping(value="/memberJoinRun", method=RequestMethod.POST)
-	public String memberJoinRun(MemberVo memberVo, MultipartFile file,
-			RedirectAttributes rttr) throws Exception {
-		String orgFileName = file.getOriginalFilename();
-		System.out.println("orgFileName: " + orgFileName);
-		
-		String filePath = MyFileUploadUtil.uploadFile(
-				"D:/user_pic", orgFileName, file.getBytes());
-		memberVo.setUser_pic(filePath);
-		System.out.println("memberVo: " + memberVo);
-		memberService.insertMember(memberVo);
-		rttr.addFlashAttribute("msg", "success");
-		return "redirect:/loginForm";
-	}*/
 	
 	// 마이 페이지 - 나의 프로필 수정 실행
 	@RequestMapping(value = "/modifyProfileRun", method = RequestMethod.POST)
 	public String modifyProfileRun(MemberVo memberVo, HttpSession session,
-			RedirectAttributes rttr) throws Exception {
+			RedirectAttributes rttr, String fileName) throws Exception {
 		System.out.println("나의 프로필 수정 실행 들어옴...");
 
 //		String orgFileName = file.getOriginalFilename();
 //		System.out.println("orgFileName: " + orgFileName);
 //		
 //		String filePath = MyFileUploadUtil.uploadFile("C:/user_img", orgFileName, file.getBytes());
-//		memberVo.setUser_img(filePath);
+		
+		System.out.println("fileName: " + fileName);
+		memberVo.setUser_img(fileName);
 		
 		//memberVo.setUser_id((MemberVo)session.getAttribute("loginVo"));
 		System.out.println("로그인 아이디 memberVo.getUser_id(): " + memberVo.getUser_id());
 		System.out.println("memberVo.getUser_nick(): " + memberVo.getUser_nick());
+		System.out.println("memberVo.getCate_no1(): " + memberVo.getCate_no1());
 		System.out.println("memberVo.getCate_etc(): " + memberVo.getCate_etc());
+		System.out.println("memberVo.getUser_img(): " + memberVo.getUser_img());
 		System.out.println("memberVo: " + memberVo);
 
 		myPageService.modifyProfileRun(memberVo);
@@ -309,15 +287,28 @@ public class MyPageController {
 		return "redirect:/mypage/profileForm";
 	}
 	
-	// 프로필 이미지 첨부파일 추가 - 경로 임의로 사용 중 
+	// 프로필 이미지 첨부파일 추가
 	@RequestMapping(value = "/uploadAjax", method = RequestMethod.POST, produces = "application/text;charset=utf-8")
 	@ResponseBody
 	public String uploadAjax(MultipartFile file) throws Exception {
+		System.out.println("/uploadAjax 프로필 이미지 첨부파일 추가 들어옴...");
 		System.out.println("file: " + file);
 		String originalFilename = file.getOriginalFilename();
+		
 		System.out.println("originalFilename:" + originalFilename);
-		String filePath = MyFileUploadUtil.uploadFile("C:/upload", originalFilename, file.getBytes());
+		//String filePath = MyFileUploadUtil.uploadFile("C:/upload", originalFilename, file.getBytes());
 		// String filePath = MyFileUploadUtil.uploadFile("//192.168.0.217/git2",
+//		String filePath = MyFileUploadUtil.uploadFile(MyFileUploadUtil.serverFilePath , originalFilename, file.getBytes());
+//		String filePath = MyFileUploadUtil.uploadFile(MyFileUploadUtil.serverFilePath 
+//													+ MyFileUploadUtil.serverUploadPath_Profile, 
+//				                                      originalFilename, file.getBytes());
+		
+	//	String filePath = MyFileUploadUtil.uploadFile(MyFileUploadUtil.serverUploadPath_Profile, 
+ //                 originalFilename, file.getBytes());
+		String filePath = MyFileUploadUtil.uploadFile(MyFileUploadUtil.serverUploadPath_Profile, 
+                originalFilename, file.getBytes());
+		
+		System.out.println("filePath:" + filePath);
 		// originalFilename, file.getBytes());
 		return filePath;
 	}
@@ -326,11 +317,10 @@ public class MyPageController {
 	@RequestMapping(value = "/displayImage", method = RequestMethod.GET)
 	@ResponseBody
 	public byte[] displayImage(String fileName) throws Exception {
-		FileInputStream fis = new FileInputStream(fileName);
-		byte[] bytes = IOUtils.toByteArray(fis); // ???
-		fis.close(); // close가 안되어서 파일 삭제가 바로 안되는 것 처럼 보였던거 같음...
-		// 입력 스트림에서 close를 하지 않으면 로컬에서는 잘되는것 같은데 서버에서는 안되고
-		// 삭제 할 때는 메모리 해제 문제가 발생해서 오류가 날 수 있다...
+//		FileInputStream fis = new FileInputStream(fileName);
+		FileInputStream fis = new FileInputStream(MyFileUploadUtil.serverFilePath + "/" + fileName);
+		byte[] bytes = IOUtils.toByteArray(fis);
+		fis.close();
 		return bytes;
 	}
 

@@ -102,11 +102,11 @@ public class MemberDaoImpl implements MemberDao {
 		sqlSession.update(NAMESPACE + "updateMemberSetup", memberVo); 
 	}
 	
-	@Override
+	/*@Override
 	public List<CateVo> selectCate() {
 		List<CateVo> list = sqlSession.selectList(NAMESPACE + "selectCate");
 		return list;
-	}
+	}*/
 
 	@Override
 	public List<CateVo> cateBigSort() {
@@ -136,5 +136,13 @@ public class MemberDaoImpl implements MemberDao {
 				sqlSession.insert(NAMESPACE + "updateAttach", map);
 			}
 		}
+		
 	}
+
+	@Override
+	public List<CateVo> selectCate() {
+		List<CateVo> list = sqlSession.selectList(NAMESPACE + "selectCate");
+		return list;
+	}
+	
 }
