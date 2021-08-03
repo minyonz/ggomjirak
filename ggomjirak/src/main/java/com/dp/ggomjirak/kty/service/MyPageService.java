@@ -2,6 +2,7 @@ package com.dp.ggomjirak.kty.service;
 
 import java.util.List;
 
+import com.dp.ggomjirak.vo.CateVo;
 import com.dp.ggomjirak.vo.MemberVo;
 
 public interface MyPageService {
