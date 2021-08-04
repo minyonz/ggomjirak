@@ -6,8 +6,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">								
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>								
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>								
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>	
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>								 -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>	 -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" ></script> -->
 
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -81,17 +82,17 @@ $(document).ready(function() {
 		   cate2Arr.push(cate2Obj);
 		  }
 		 }
-		 var cate2Select = $("ul.cate4");
+		 var cate2Select = $("div.cate4");
 		 cate2Select.children().remove();
 		 $("option:selected", this).each(function(){
 		  var selectVal = $(this).val();  
-		  cate2Select.append("<li class='dropdown-item'>중분류</li>");
+		  cate2Select.append("<a class='dropdown-item'>중분류</li>");
 		  for(var i = 0; i < cate2Arr.length; i++) {
 		   if(selectVal == cate2Arr[i].parent_cate_no) {
-		    cate2Select.append("<li><a class='dropdown-item' value='" + cate2Arr[i].cate_no 
+		    cate2Select.append("<a class='dropdown-item' value='" + cate2Arr[i].cate_no 
 		    	+ "' data-cate='" + cate2Arr[i].parent_cate_no 
 		    	+ "' href='/main/mainHobby?parent_cate_no=" + cate2Arr[i].parent_cate_no + "&m_cate_no=" + cate2Arr[i].cate_no + "'>"
-		         + cate2Arr[i].cate_name + "</a></li>");
+		         + cate2Arr[i].cate_name + "</a>");
 		   }
 		  }
 		 });
@@ -148,23 +149,37 @@ $(document).ready(function() {
 										</svg>
 										</a></li>
 										<li class="nav-item dropdown">
-										<div class="dropdown">
-										  <a class="btn nav-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-										   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
-											  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+									        <a class="btn nav-link" href="#" id="dropdownMenuButton1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+												<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
 											</svg>
-										  </a>
-										  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><hr class="dropdown-divider"></li>
-										    <li><a class="dropdown-item" href="#">알림함</a></li>
-										  </ul>
-										</div>
+									        </a>
+									        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+									          <a class="dropdown-item" href="#">알림내용</a>
+									          <a class="dropdown-item" href="#">알림내용</a>
+									          <a class="dropdown-item" href="#">알림내용</a>
+									          <a class="dropdown-item" href="#">알림내용</a>
+									          <a class="dropdown-item" href="#">알림내용</a>
+									          <div class="dropdown-divider"></div>
+												<a class="dropdown-item" href="#">알림함</a>
+									        </div>
+<!-- 										<div class="dropdown"> -->
+<!-- 										  <a class="btn nav-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"> -->
+<!-- 										   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16"> -->
+<!-- 											  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/> -->
+<!-- 											</svg> -->
+<!-- 										  </a> -->
+<!-- 										  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"> -->
+<!-- 										    <li><a class="dropdown-item" href="#">알림내용</a></li> -->
+<!-- 										    <li><a class="dropdown-item" href="#">알림내용</a></li> -->
+<!-- 										    <li><a class="dropdown-item" href="#">알림내용</a></li> -->
+<!-- 										    <li><a class="dropdown-item" href="#">알림내용</a></li> -->
+<!-- 										    <li><a class="dropdown-item" href="#">알림내용</a></li> -->
+<!-- 										    <li><a class="dropdown-item" href="#">알림내용</a></li> -->
+<!-- 										    <li><hr class="dropdown-divider"></li> -->
+<!-- 										    <li><a class="dropdown-item" href="#">알림함</a></li> -->
+<!-- 										  </ul> -->
+<!-- 										</div> -->
 										</li>
 										
 										<li class="nav-item dropdown ml-md-auto">
@@ -216,12 +231,22 @@ $(document).ready(function() {
 							    </div>
 							    <div class="col-lg-2 col-md-3 mb-3">
 <!-- 							      <label for="validationCustom04">중분류</label> -->
-							      <button class="form-control btn btn-outline-light green_background shadow bg-body rounded dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-									   카테고리
-									  </button>
-									  <ul class="cate4 dropdown-menu" aria-labelledby="dropdownMenuButton1">
-									    <li><a class="dropdown-item" href="#">중분류</a></li>
-									  </ul>
+										<div class="dropdown">
+										  <a class="btn btn-outline-light green_background shadow bg-body rounded dropdown-toggle" href="#" role="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										   	 카테고리
+										  </a>
+										
+										  <div class="cate4 dropdown-menu" aria-labelledby="dropdownMenuButton1">
+										    <a class="dropdown-item" href="#">중분류</a>
+										    
+										  </div>
+										</div>
+<!-- 							      <button class="form-control btn btn-outline-light green_background shadow bg-body rounded dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"> -->
+<!-- 									   카테고리 -->
+<!-- 									  </button> -->
+<!-- 									  <ul class="cate4 dropdown-menu" aria-labelledby="dropdownMenuButton1"> -->
+<!-- 									    <li><a class="dropdown-item" href="#">중분류</a></li> -->
+<!-- 									  </ul> -->
 							      <div class="invalid-feedback">
 							      </div>
 							    </div>
