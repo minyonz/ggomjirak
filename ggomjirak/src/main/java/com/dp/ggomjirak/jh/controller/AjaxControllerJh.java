@@ -26,7 +26,7 @@ import com.dp.ggomjirak.yj.util.MyFileUploadUtil;
 @RequestMapping("eventImg")
 @RestController
 public class AjaxControllerJh {
-	
+  	
 	@Resource(name="rootPath")
 	private String rootPath;
 	
