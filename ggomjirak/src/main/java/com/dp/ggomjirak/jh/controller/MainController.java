@@ -3,17 +3,14 @@ package com.dp.ggomjirak.jh.controller;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.dp.ggomjirak.jh.service.EventService;
 import com.dp.ggomjirak.jh.service.MainService;
 import com.dp.ggomjirak.jh.service.ManagerService;
-import com.dp.ggomjirak.jh.util.MyFileUploadUtil;
 import com.dp.ggomjirak.vo.CateStrVo;
 import com.dp.ggomjirak.vo.CateVo;
 import com.dp.ggomjirak.vo.EventVo;
@@ -32,30 +29,11 @@ public class MainController {
 	
 	@Inject
 	private ManagerService managerService;
-	
-	@Inject
-	private EventService eventService;
-	
-	String rootPath = MyFileUploadUtil.YJ_ACADEMY_FOLDER;
 
 	@RequestMapping(value="/mainHome", method=RequestMethod.GET)
-	public String mainHome(Model model, PagingDto pagingDto, HttpSession session) throws Exception {
-		//MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");
-		//String user_id = memberVo.getUser_id();
-		String user_id = "hong";
+	public String mainHome(Model model) throws Exception {
 		List<CateVo> category = mainService.selectCate();
-
-
-		int count = eventService.getCountBanner(pagingDto);
-		pagingDto.setCount(count);
-		
-		
-		System.out.println("count: " + count);
-		System.out.println("pagingDto: " + pagingDto);
-		List<EventVo> mainEvent = eventService.getEventBannerList();
-		model.addAttribute("mainEvent", mainEvent);
-		model.addAttribute("pagingDto", pagingDto);
-		
+		String user_id = "cat";
 		List<HobbyVo> suggestHobby = mainService.getSuggestHobby(user_id);
 		List<HobbyVo> popularHobby = mainService.getPopularHobbyList();
 		List<HobbyVo> monthHobby = mainService.getMonthHobbyList();
@@ -65,6 +43,8 @@ public class MainController {
 		List<MemberVo> popularMember4 = mainService.getPopularMemberList4();
 		CateStrVo cateStrVo = managerService.selectCateStr(user_id);
 
+		// 추가한부분
+		model.addAttribute("user_id", user_id);
 		model.addAttribute("cates", JSONArray.fromObject(category));
 		model.addAttribute("suggestHobby", suggestHobby);
 		model.addAttribute("popularHobby", popularHobby);
@@ -74,7 +54,6 @@ public class MainController {
 		model.addAttribute("popularMember3", popularMember3);
 		model.addAttribute("popularMember4", popularMember4);
 		model.addAttribute("cateStrVo", cateStrVo);
-		model.addAttribute("rootPath", rootPath);
 		return "main/main_home";
 	}
 	
@@ -113,12 +92,12 @@ public class MainController {
 		List<CateVo> category = mainService.selectCate();
 		model.addAttribute("cates", JSONArray.fromObject(category));
 		
-		int count = eventService.getCountEvent(pagingDto);
+		int count = managerService.getCountEvent(pagingDto);
 		pagingDto.setCount(count);
 		
 		System.out.println("count: " + count);
 		System.out.println("pagingDto: " + pagingDto);
-		List<EventVo> eventList = eventService.showEventList(pagingDto);
+		List<EventVo> eventList = managerService.showEventList(pagingDto);
 		model.addAttribute("eventList", eventList);
 		return "main/main_event";
 	}
@@ -128,12 +107,12 @@ public class MainController {
 		List<CateVo> category = mainService.selectCate();
 		model.addAttribute("cates", JSONArray.fromObject(category));
 		
-		int count = eventService.getCountEventAll(pagingDto);
+		int count = managerService.getCountEventAll(pagingDto);
 		pagingDto.setCount(count);
 		
 		System.out.println("count: " + count);
 		System.out.println("pagingDto: " + pagingDto);
-		List<EventVo> eventListAll = eventService.showEventListAll(pagingDto);
+		List<EventVo> eventListAll = managerService.showEventListAll(pagingDto);
 		model.addAttribute("eventListAll", eventListAll);
 		return "main/main_event_all";
 	}
@@ -144,12 +123,12 @@ public class MainController {
 		List<CateVo> category = mainService.selectCate();
 		model.addAttribute("cates", JSONArray.fromObject(category));
 		
-		int count = eventService.getCountEventEnd(pagingDto);
+		int count = managerService.getCountEventEnd(pagingDto);
 		pagingDto.setCount(count);
 		
 		System.out.println("count: " + count);
 		System.out.println("pagingDto: " + pagingDto);
-		List<EventVo> eventListEnd = eventService.showEventListEnd(pagingDto);
+		List<EventVo> eventListEnd = managerService.showEventListEnd(pagingDto);
 		model.addAttribute("eventListEnd", eventListEnd);
 		return "main/main_event_end";
 	}
@@ -159,9 +138,8 @@ public class MainController {
 	public String mainEventContent(int e_no, Model model) throws Exception {
 		List<CateVo> category = mainService.selectCate();
 		model.addAttribute("cates", JSONArray.fromObject(category));
-		EventVo eventVo = eventService.selectByEno(e_no);
+		EventVo eventVo = managerService.selectByEno(e_no);
 		model.addAttribute("eventVo", eventVo);
-		model.addAttribute("rootPath", rootPath);
 		return "main/main_event_content";
 	}
 	

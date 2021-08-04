@@ -3,7 +3,6 @@ package com.dp.ggomjirak.jh.dao;
 import java.util.List;
 
 import com.dp.ggomjirak.vo.CateVo;
-import com.dp.ggomjirak.vo.EventVo;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
@@ -11,7 +10,6 @@ import com.dp.ggomjirak.vo.PagingDto;
 public interface MainDao {
 
 	public List<CateVo> selectCate();
-	public List<EventVo> getEventBannerList();
 	
 	
 	public List<HobbyVo> getSuggestHobby(String user_id);

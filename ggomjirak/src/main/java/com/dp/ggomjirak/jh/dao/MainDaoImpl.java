@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.dp.ggomjirak.vo.CateVo;
-import com.dp.ggomjirak.vo.EventVo;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
@@ -23,12 +22,6 @@ public class MainDaoImpl implements MainDao {
 
 	
 
-	@Override
-	public List<EventVo> getEventBannerList() {
-		List<EventVo> list = sqlSession.selectList(NAMESPACE + "getEventBannerList");
-		return list;
-	}
-	
 	@Override
 	public List<HobbyVo> getSuggestHobby(String user_id) {
 		List<HobbyVo> list = sqlSession.selectList(NAMESPACE + "getSuggestHobby", user_id);
@@ -143,7 +136,6 @@ public class MainDaoImpl implements MainDao {
 		int count = sqlSession.selectOne(NAMESPACE + "getCountHobbyCate", pagingDto);
 		return count;
 	}
-
 
 
 

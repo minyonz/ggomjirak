@@ -23,11 +23,11 @@
 				<div
 					class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
 					aria-labelledby="dropdownMenuLink">
-					<div class="dropdown-header">이벤트 설정</div>
-					<a class="dropdown-item" href="/event/managerEventModify?e_no=${eventVo.e_no}">이벤트 수정</a>
-					<a class="dropdown-item" href="/event/managerEventDeleteRun?e_no=${eventVo.e_no}">이벤트 삭제</a>
+					<div class="dropdown-header">Dropdown Header:</div>
+					<a class="dropdown-item" href="/manager/managerEventModify?e_no=${eventVo.e_no}">이벤트 수정</a>
+					<a class="dropdown-item" href="/manager/managerEventDeleteRun?e_no=${eventVo.e_no}">이벤트 삭제</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="/event/managerMainEventInsertRun?e_no=${eventVo.e_no}">메인 배너 설정</a>
+					<a class="dropdown-item" href="#">Something else here</a>
 				</div>
 			</div>
 		</div>
@@ -47,7 +47,7 @@
 					</tr>
 					<tr>
 						<td colspan="2"><img class="card-img-top rounded"
-							alt="EventImage" src="/event/displayImage?filePath=${rootPath}${eventVo.e_img}" /></td>
+							alt="EventImage" src="/resources/img/eximage.png" /></td>
 					</tr>
 					<tr>
 						<td colspan="2">${eventVo.e_content}</td>
@@ -61,7 +61,7 @@
 	<div class="card shadow mb-4">
 		<div class="card-body">
 
-			<a href="/event/managerEvent" type="button" class="btn btn-success green_background">목록</a>
+			<a href="/manager/managerEvent" type="button" class="btn btn-success green_background">목록</a>
 
 		</div>
 	</div>

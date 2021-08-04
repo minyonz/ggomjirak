@@ -9,7 +9,7 @@
 	<!-- Page Heading -->
 	<div style="display: flex;">
 		<h1 class="h3 mb-2 text-gray-800">1:1문의 답변</h1>
-		<a href="/ask/managerAsk" class="btn btn-success green_background" style="margin-left: auto; margin-bottom: 20px">목록</a>
+		<a href="/manager/managerAsk" class="btn btn-success green_background" style="margin-left: auto; margin-bottom: 20px">목록</a>
 	</div>
 
 
@@ -29,10 +29,6 @@
 			      <td style="width: 20%">${qnaVo.user_id}</td>
 			      <th style="width: 15%; border-left: 1px solid lightgray">작성일</th>
 			      <td style="width: 20%">${qnaVo.save_time}</td>
-			    </tr>
-			    <tr>
-			      <th scope="row">문의 유형</th>
-			      <td colspan=5 style="width: 90%">${qnaVo.qna_type_nm}</td>
 			    </tr>
 			    <tr>
 			      <th scope="row">제목</th>
@@ -61,19 +57,21 @@
 			  <tbody>
 			    <tr>
 			      <th scope="row">번호</th>
-			      <td>${qnaVo.a_qna_no}</td>
+			      <td>01</td>
 			      <th style="width: 15%; border-left: 1px solid lightgray">관리자</th>
-			      <td style="width: 20%">${qnaVo.m_user_id}</td>
+			      <td style="width: 20%">manager</td>
 			      <th style="width: 15%; border-left: 1px solid lightgray">작성일</th>
-			      <td style="width: 20%">${qnaVo.a_save_time}</td>
+			      <td style="width: 20%">2021/07/17 15:16:23</td>
 			    </tr>
 			    <tr>
 			      <th scope="row">제목</th>
-			      <td colspan=5 style="width: 90%">${qnaVo.a_title}</td>
+			      <td colspan=5 style="width: 90%">답변 : Jacob</td>
 			    </tr>
 			    <tr>
 			      <th scope="row">내용</th>
-			      <td colspan=5 style="width: 90%">${qnaVo.a_content}</td>
+			      <td colspan=5 style="width: 90%">내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+			      				내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+			      				내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용</td>
 			      
 			    </tr>
 			  </tbody>
@@ -83,7 +81,7 @@
 	</div>
 	</c:when>
 	<c:otherwise>
-	<a href="/ask/managerAskAnswer?qna_no=${qnaVo.qna_no}" type="button" class="btn btn-success green_background">답변하기</a>
+	<a href="/manager/managerAskAnswer?qna_no=${qnaVo.qna_no}" type="button" class="btn btn-success green_background">답변하기</a>
 	</c:otherwise>
 	</c:choose>
 	
