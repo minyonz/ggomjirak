@@ -133,7 +133,7 @@
 						<div class="row">
 							<div class="section-title">
 								<h5>인기 취미
-								<a href="/main/mainHobby" type="button" class="btn green_background white_color">더보기</a>
+								<a href="/main/mainHobby?qCheck=0" type="button" class="btn green_background white_color">더보기</a>
 								</h5>
 							</div>
 
@@ -347,7 +347,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="section-title">
-								<h5>이달의 취미<button type="button" class="btn green_background white_color">더보기</button></h5>
+								<h5>이달의 취미<a href="/main/mainHobby?qCheck=2" type="button" class="btn green_background white_color">더보기</a></h5>
 							</div>
 
 							<div class="categories__slider owl-carousel">

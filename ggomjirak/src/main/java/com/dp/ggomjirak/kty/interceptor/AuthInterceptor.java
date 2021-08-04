@@ -21,6 +21,9 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		String uri = request.getRequestURI();
 		String queryString = request.getQueryString();
 		String requestPath = null;
+		if (uri == "/manager/**/*") {
+			uri = "/main/mainHome";
+		
 		if(queryString == null) {
 			requestPath = uri;
 		} else {
@@ -34,6 +37,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		if (memberVo == null) {
 			response.sendRedirect("/mypage/login");
 			return false; // 요청 처리를 중단
+		}
 		}
 		return true; // 요청 처리를 계속함
 	}	

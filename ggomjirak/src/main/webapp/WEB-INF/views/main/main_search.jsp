@@ -22,7 +22,7 @@ $(document).ready(function() {
 <input type="hidden" name="perPage" value="${pagingDto.perPage}"/>
 <input type="hidden" name="keyword" value="${pagingDto.keyword}"/>
 </form>
-<div class="row">
+<div class="row top">
 	<div class="col-md-12">
 		<div class="row">
 			<div class="col-md-1 col-lg-2"></div>

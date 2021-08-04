@@ -46,6 +46,9 @@
 .orange_color {
 	color:  rgb(231, 112, 92);
 }
+.top {
+	margin-top: 25px;
+}
 
 </style>
 <script>
@@ -83,17 +86,17 @@ $(document).ready(function() {
 		   cate2Arr.push(cate2Obj);
 		  }
 		 }
-		 var cate2Select = $("ul.cate4");
+		 var cate2Select = $("div.cate4");
 		 cate2Select.children().remove();
 		 $("option:selected", this).each(function(){
 		  var selectVal = $(this).val();  
-		  cate2Select.append("<li><a class='dropdown-item'>중분류<a></li>");
+		  cate2Select.append("<a class='dropdown-item'>중분류</li>");
 		  for(var i = 0; i < cate2Arr.length; i++) {
 		   if(selectVal == cate2Arr[i].parent_cate_no) {
-		    cate2Select.append("<li><a class='dropdown-item' value='" + cate2Arr[i].cate_no 
+		    cate2Select.append("<a class='dropdown-item' value='" + cate2Arr[i].cate_no 
 		    	+ "' data-cate='" + cate2Arr[i].parent_cate_no 
 		    	+ "' href='/main/mainHobby?parent_cate_no=" + cate2Arr[i].parent_cate_no + "&m_cate_no=" + cate2Arr[i].cate_no + "'>"
-		         + cate2Arr[i].cate_name + "</a></li>");
+		         + cate2Arr[i].cate_name + "</a>");
 		   }
 		  }
 		 });
@@ -208,7 +211,7 @@ $(document).ready(function() {
 										    <li><a class="dropdown-item" href="#">쪽지함</a></li>
 										    <li><a class="dropdown-item" href="#">1:1문의</a></li>
 										    <li><hr class="dropdown-divider"></li>
-										    <li><a class="dropdown-item" href="#">로그아웃</a></li>
+										    <li><a class="dropdown-item" href="/mypage/logout">로그아웃</a></li>
 										  </ul>
 										</div>
 										</li>
@@ -245,12 +248,13 @@ $(document).ready(function() {
 							    </div>
 							    <div class="col-lg-2 col-md-3 mb-3">
 									<div class="dropdown">
-									  <button class="form-control btn btn-outline-light green_background shadow bg-body rounded dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+									  <button class="form-control btn btn-outline-light green_background shadow bg-body rounded dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									    카테고리
 									  </button>
-									  <ul class="cate4 dropdown-menu" aria-labelledby="dropdownMenuButton1">
-									    <li><a class="dropdown-item" href="#">중분류</a></li>
-									  </ul>
+									  <div class="cate4 dropdown-menu" aria-labelledby="dropdownMenuButton">
+									    <a class="dropdown-item" href="#">중분류</a>
+									    
+									  </div>
 									</div>
 							      <div class="invalid-feedback">
 							      </div>

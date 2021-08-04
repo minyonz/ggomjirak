@@ -152,6 +152,14 @@
 				<when test="qCheck == 1">
 				order by hobby_no desc
 				</when>
+				<when test="m_cate_no != 0 and qCheck == 2">
+	                and to_char(a.reg_date, 'mm') = to_char(sysdate, 'mm')
+					order by like_cnt desc, view_cnt desc
+				</when>
+				<when test="m_cate_no == 0 and qCheck == 2">
+	                where to_char(a.reg_date, 'mm') = to_char(sysdate, 'mm')
+					order by like_cnt desc, view_cnt desc
+				</when>
 				</choose>
 		        )
 		where rnum between #{startRow} and #{endRow}
@@ -165,8 +173,25 @@
 		        and user_id not in(select user_id from tbl_manager_member)))a
                 left join tbl_memberdetail c on a.user_id = c.user_id
                 <if test="m_cate_no != 0">
-                where m_cate_no = #{m_cate_no}
+                	where m_cate_no = #{m_cate_no}
                 </if>
+                
+                <choose>
+				<when test="qCheck == 0">
+					order by like_cnt desc, view_cnt desc
+				</when>
+				<when test="qCheck == 1">
+					order by hobby_no desc
+				</when>
+				<when test="m_cate_no != 0 and qCheck == 2">
+	                and to_char(a.reg_date, 'mm') = to_char(sysdate, 'mm')
+					order by like_cnt desc, view_cnt desc
+				</when>
+				<when test="m_cate_no == 0 and qCheck == 2">
+	                where to_char(a.reg_date, 'mm') = to_char(sysdate, 'mm')
+					order by like_cnt desc, view_cnt desc
+				</when>
+				</choose>
 	</select>
 	
 	<!-- 검색(취미) -->

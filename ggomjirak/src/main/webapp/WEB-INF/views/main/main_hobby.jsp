@@ -27,6 +27,20 @@ $(document).ready(function() {
 
 	});
 	
+	$(".qCheck > li > a").click(function(e) {
+		e.preventDefault();
+		var searchType = $(this).text();
+		$("#btnOption").text(searchType);
+		console.log(searchType);
+		console.log(searchType);
+		var qCheck = $(this).attr("href");
+		
+		$("#frmPaging > input[name=qCheck]").val(qCheck);
+		$("#frmPaging > input[name=page]").val("1");
+		$("#frmPaging").submit();
+
+	});
+	
 
 });
 </script>
@@ -36,8 +50,9 @@ $(document).ready(function() {
 <input type="hidden" name="endRow" value="${pagingDto.endRow}"/>
 <input type="hidden" name="parent_cate_no" value="${pagingDto.parent_cate_no}"/>
 <input type="hidden" name="m_cate_no" value="${pagingDto.m_cate_no}"/>
+<input type="hidden" name="qCheck" value="${pagingDto.qCheck}"/>
 </form>
-<div class="row">
+<div class="row top">
 	<div class="col-md-12">
 		<div class="row">
 			<div class="col-md-1 col-lg-2"></div>
@@ -110,29 +125,23 @@ $(document).ready(function() {
 							<li class="nav-item">
 								<h4 class="green_color">취미</h4>
 							</li>
-							<li class="nav-item dropdown">
-							
-							<select
-								class="form-control btn btn-outline-light green_background shadow bg-body rounded"
-								style="margin-right: 10px" aria-label="Default select example">
-								
-									<option value="popular" selected>인기순</option>
-									<option value="new">최신순</option>
-									<option value="month">이번달</option>
-							</select>
-							
-							</li>
 							<li>
 							<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown button
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
-</div>
+							  <button id="btnOption" class="form-control btn btn-outline-light green_background dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+							    <c:choose>
+							    <c:when test="${pagingDto.qCheck == null}">검색 옵션</c:when>
+							    <c:when test="${pagingDto.qCheck == 0}">인기 취미</c:when>
+							    <c:when test="${pagingDto.qCheck == 1}">최신 취미</c:when>
+							    <c:when test="${pagingDto.qCheck == 2}">이달의 취미</c:when>
+							    </c:choose>
+							    
+							  </button>
+							  <ul class="qCheck dropdown-menu" aria-labelledby="dropdownMenuButton1">
+							    <li><a class="dropdown-item" href="0">인기 취미</a></li>
+							    <li><a class="dropdown-item" href="1">최신 취미</a></li>
+							    <li><a class="dropdown-item" href="2">이달의 취미</a></li>
+							  </ul>
+							</div>
 							</li>
 							<li class="nav-item dropdown">
 								<button type="button"
