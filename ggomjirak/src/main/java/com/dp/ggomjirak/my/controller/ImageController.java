@@ -23,6 +23,7 @@ import com.dp.ggomjirak.vo.MakeStepVo;
 import com.dp.ggomjirak.yj.service.HobbyService;
 import com.dp.ggomjirak.yj.util.MyFileUploadUtil;
 
+// 사진첨부용
 @RestController
 @RequestMapping(value="/story_img")
 public class ImageController {
