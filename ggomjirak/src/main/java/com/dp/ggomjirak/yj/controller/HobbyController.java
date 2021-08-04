@@ -43,6 +43,8 @@ public class HobbyController {
 	public String content(Model model, @PathVariable("hobby_no") int hobby_no,
 			HttpServletRequest request) throws Exception {
 		HobbyVo hobbyVo = hobbyService.selectHobbyArticle(hobby_no, false);
+		List<CateVo> cates = cateService.getCateList();
+		model.addAttribute("cates", JSONArray.fromObject(cates));
 		model.addAttribute("hobbyVo", hobbyVo);
 		model.addAttribute("url", request.getRequestURL());
 		return "hobby/content";

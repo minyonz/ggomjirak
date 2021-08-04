@@ -627,7 +627,7 @@ margin-right: 15px;
   	    <div class="body">
   			<form id="modFrm" method="post" action="/hobby/updateRun">
   				<input type="hidden" name="hobby_no" value="${hobbyVo.hobby_no}"/>
-				<input type="hidden" name="user_id" value="${hobbyVo.user_id}"/>
+<%-- 				<input type="hidden" name="user_id" value="${hobbyVo.user_id}"/> --%>
 				<div style="background: #f8f8f8; border-bottom: 1px solid #e6e7e8; 
 					padding: 14px 18px; position: relative;">
 					<span class="lg_tit">취미 작성</span>
@@ -1091,26 +1091,6 @@ margin-right: 15px;
 						</div>
 					</div>
 				 <!-- //만들기 부분 -->
-				 <!-- 태그  -->
-<!-- 				 <div class="cont_box"> -->
-<!-- 					<div class="row"> -->
-<!-- 						<div class="col-md-1"> -->
-<!-- 						</div> -->
-<!-- 						태그 내용 -->
-<!-- 						<div class="col-md-10"> -->
-<!-- 							<div class="cont_tit"> -->
-<!-- 								태그  -->
-<!-- 							</div> -->
-<!-- 							<div> -->
-<!-- 								<input type="text" class="form-control" placeholder="태그1, 태그2, 태그3 쉼표로 구분해주세요"/> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						// 태그 내용 -->
-<!-- 						<div class="col-md-1"> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				 </div> -->
-				 <!-- //태그  -->
 				 <!-- 저장/완료/닫기 버튼 부분 -->
 				 <div class="cont_box">
 						<div style="text-align: center;">
@@ -1195,6 +1175,36 @@ function previewMainImg(targetObj) {
 	}
 	
 	var file = targetObj.files[0];
+	
+	// 이미지파일체크, 파일 사이즈 체크
+	var imgJ = /(.*?)\.(jpg|jpeg|png|gif)$/;
+	var maxSize = 10 * 1024 * 1024;
+    
+	console.log(file.name);
+	console.log(file.size);
+    if(!file.name.match(imgJ)) {
+    	Swal.fire({
+			text: '이미지 파일만 업로드 가능합니다.', 
+			allowOutsideClick: false,
+			iconColor: "#1f5e43",
+			icon: 'warning', 
+			confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43",
+		});
+        return;
+    } else if(file.size > maxSize) {
+    	Swal.fire({
+			text: '파일 크기는 10MB까지 가능합니다.', 
+			allowOutsideClick: false,
+			iconColor: "#1f5e43",
+			icon: 'warning', 
+			confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43",
+		});
+        return;
+    }
+ 	// 이미지파일체크, 파일 사이즈 체크   end
+ 	
 	var formData = new FormData();
 	formData.append("file", file);
 	formData.append("sort", "mainImg");
@@ -1262,6 +1272,36 @@ function previewMakeStepImg(targetObj, seq) {
 		return false;
 	}
 	var file = targetObj.files[0];
+	
+	// 이미지파일체크, 파일 사이즈 체크   
+	var imgJ = /(.*?)\.(jpg|jpeg|png|gif)$/;
+	var maxSize = 10 * 1024 * 1024;
+    
+	console.log(file.name);
+	console.log(file.size);
+    if(!file.name.match(imgJ)) {
+    	Swal.fire({
+			text: '이미지 파일만 업로드 가능합니다.', 
+			allowOutsideClick: false,
+			iconColor: "#1f5e43",
+			icon: 'warning', 
+			confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43",
+		});
+        return;
+    } else if(file.size > maxSize) {
+    	Swal.fire({
+			text: '파일 크기는 10MB까지 가능합니다.', 
+			allowOutsideClick: false,
+			iconColor: "#1f5e43",
+			icon: 'warning', 
+			confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43",
+		});
+        return;
+    }
+ 	// 이미지파일체크, 파일 사이즈 체크   end
+ 	
 	console.log("파일존재");
 	var formData = new FormData();
 	formData.append("file", file);
@@ -1307,6 +1347,39 @@ multifile_step.onchange = function () {
 	if (files.length == 0) {
 		return false;
 	}
+	
+	// 이미지파일체크, 파일 사이즈 체크   
+	var imgJ = /(.*?)\.(jpg|jpeg|png|gif)$/;
+	var maxSize = 10 * 1024 * 1024;
+    
+	console.log(files);
+	for (var v = 0; v < files.length; v++) {
+		console.log("이름:", files[v].name);
+		console.log("크기:", files[v].size);
+	    if(!files[v].name.match(imgJ)) {
+	    	Swal.fire({
+				text: '이미지 파일만 업로드 가능합니다.', 
+				allowOutsideClick: false,
+				iconColor: "#1f5e43",
+				icon: 'warning', 
+				confirmButtonText: "확인",
+				confirmButtonColor: "#1f5e43",
+			});
+	        return;
+	    } else if(files[v].size > maxSize) {
+	    	Swal.fire({
+				text: '파일 크기는 10MB까지 가능합니다.', 
+				allowOutsideClick: false,
+				iconColor: "#1f5e43",
+				icon: 'warning', 
+				confirmButtonText: "확인",
+				confirmButtonColor: "#1f5e43",
+			});
+	        return;
+	    }
+	}
+ 	// 이미지파일체크, 파일 사이즈 체크   end
+	
 	console.log("사용자가 올리려고 선택한 파일들", files);
 	var emptys = $("#stepBoxWrap").find('.none_img');
 	// 멀티파일개수 - 사진 안올라간거 > 0 때만 박스 생성
@@ -1398,6 +1471,36 @@ function previewComplImg(targetObj, num) {
 		return false;
 	}
 	var file = targetObj.files[0];
+	
+	// 이미지파일체크, 파일 사이즈 체크   
+	var imgJ = /(.*?)\.(jpg|jpeg|png|gif)$/;
+	var maxSize = 10 * 1024 * 1024;
+    
+	console.log(file.name);
+	console.log(file.size);
+    if(!file.name.match(imgJ)) {
+    	Swal.fire({
+			text: '이미지 파일만 업로드 가능합니다.', 
+			allowOutsideClick: false,
+			iconColor: "#1f5e43",
+			icon: 'warning', 
+			confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43",
+		});
+        return;
+    } else if(file.size > maxSize) {
+    	Swal.fire({
+			text: '파일 크기는 10MB까지 가능합니다.', 
+			allowOutsideClick: false,
+			iconColor: "#1f5e43",
+			icon: 'warning', 
+			confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43",
+		});
+        return;
+    }
+ 	// 이미지파일체크, 파일 사이즈 체크   end
+	
 	console.log("파일존재");
 	var formData = new FormData();
 	formData.append("file", file);

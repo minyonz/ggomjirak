@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,11 +24,8 @@ $(document).ready(function() {
 });
 </script>
 <title>상세보기</title>
-<!-- 내가 설정한 style -->
+
 <style>
-/* <내가 한 style> */
-/* 1. 전체 큰 영역 */
-/* 2. 후기 */
 .review-row{
  padding-top: 10px;
  border-bottom: 2px solid #c1c1c1;
@@ -45,11 +43,20 @@ $(document).ready(function() {
  border-bottom: 2px solid #c1c1c1;
 }
 .comment-row.recomment-row{
- padding-left: 60px;
+ background: url(/resources/images/reply.png) no-repeat 3px 0px;
+ background-size: 45px;
+ padding-left: 40px;
  padding-top: 10px;
  padding-bottom: 10px;
  border-bottom: 2px solid #c1c1c1;
 }
+/* #reply_div{ */
+/*  background: url(/resources/images/reply.png) no-repeat 3px 0px; */
+/*  background-size: 45px; */
+/*  padding-left: 40px; */
+/*  padding-top: 10px; */
+/*  padding-bottom: 10px; */
+/* } */
 .btnMenu {
 	background: url("${contextPath}/resources/images/menu.png") no-repeat center; 
 	outline : none;
@@ -57,6 +64,7 @@ $(document).ready(function() {
 	width: 25px;
 	height: 25px;
 }
+
 .btnMenu_cmt {
 	background: url("${contextPath}/resources/images/menu.png") no-repeat center; 
 	background-size: 15px;
@@ -71,7 +79,6 @@ $(document).ready(function() {
 .body {
     margin-bottom: 40px;
     margin-top: 40px;
-    padding: 0 100px;	
 }
 .green {
  color: #1f5e43;
@@ -168,6 +175,9 @@ color: #1f5e43;
     line-height: 1.6;
     margin: 14px 0 14px 0;
 }
+
+
+/* 화면 width 1300px부터 이렇게 하겠다.라는 뜻*/
 @media screen and (min-width: 1300px) {
 .container_north, .cotainer_south {
   display: grid; 
@@ -185,42 +195,58 @@ color: #1f5e43;
 .body { grid-area: body; }
 .side-right { grid-area: side-right; }
  }
+ 
+ /* 화면 width 1300px까지 이렇게 하겠다.라는 뜻*/
+ @media screen and (max-width: 1300px) {
+.body { padding: 0 80px; }
+ }
+  	
 </style>
 <!-- 가져온 스타일 -->
 <style>
+.divViewOption a{
+    display: inline-block;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+.divViewOption a img{
+    height: 40px;
+}
 /* 1. 만들기 css */
 .view_step {padding:0 0 10px;}
 .view_step_cont {padding:6px 0 60px 50px; width:850px; font-size:22px;}
-.view_step_cont.step1 {background:url(//recipe1.ezmember.co.kr/img/icon_step_1.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step2 {background:url(//recipe1.ezmember.co.kr/img/icon_step_2.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step3 {background:url(//recipe1.ezmember.co.kr/img/icon_step_3.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step4 {background:url(//recipe1.ezmember.co.kr/img/icon_step_4.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step5 {background:url(//recipe1.ezmember.co.kr/img/icon_step_5.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step6 {background:url(//recipe1.ezmember.co.kr/img/icon_step_6.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step7 {background:url(//recipe1.ezmember.co.kr/img/icon_step_7.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step8 {background:url(//recipe1.ezmember.co.kr/img/icon_step_8.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step9 {background:url(//recipe1.ezmember.co.kr/img/icon_step_9.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step10 {background:url(//recipe1.ezmember.co.kr/img/icon_step_10.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step11 {background:url(//recipe1.ezmember.co.kr/img/icon_step_11.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step12 {background:url(//recipe1.ezmember.co.kr/img/icon_step_12.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step13 {background:url(//recipe1.ezmember.co.kr/img/icon_step_13.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step14 {background:url(//recipe1.ezmember.co.kr/img/icon_step_14.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step15 {background:url(//recipe1.ezmember.co.kr/img/icon_step_15.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step16 {background:url(//recipe1.ezmember.co.kr/img/icon_step_16.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step17 {background:url(//recipe1.ezmember.co.kr/img/icon_step_17.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step18 {background:url(//recipe1.ezmember.co.kr/img/icon_step_18.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step19 {background:url(//recipe1.ezmember.co.kr/img/icon_step_19.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step20 {background:url(//recipe1.ezmember.co.kr/img/icon_step_20.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step21 {background:url(//recipe1.ezmember.co.kr/img/icon_step_21.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step22 {background:url(//recipe1.ezmember.co.kr/img/icon_step_22.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step23 {background:url(//recipe1.ezmember.co.kr/img/icon_step_23.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step24 {background:url(//recipe1.ezmember.co.kr/img/icon_step_24.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step25 {background:url(//recipe1.ezmember.co.kr/img/icon_step_25.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step26 {background:url(//recipe1.ezmember.co.kr/img/icon_step_26.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step27 {background:url(//recipe1.ezmember.co.kr/img/icon_step_27.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step28 {background:url(//recipe1.ezmember.co.kr/img/icon_step_28.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step29 {background:url(//recipe1.ezmember.co.kr/img/icon_step_29.gif) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step30 {background:url(//recipe1.ezmember.co.kr/img/icon_step_30.gif) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step1 {background:url(${contextPath}/resources/images/1.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step2 {background:url(${contextPath}/resources/images/2.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step3 {background:url(${contextPath}/resources/images/3.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step4 {background:url(${contextPath}/resources/images/4.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step5 {background:url(${contextPath}/resources/images/5.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step6 {background:url(${contextPath}/resources/images/6.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step7 {background:url(${contextPath}/resources/images/7.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step8 {background:url(${contextPath}/resources/images/8.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step9 {background:url(${contextPath}/resources/images/9.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step10 {background:url(${contextPath}/resources/images/10.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step11 {background:url(${contextPath}/resources/images/11.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step12 {background:url(${contextPath}/resources/images/12.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step13 {background:url(${contextPath}/resources/images/13.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step14 {background:url(${contextPath}/resources/images/14.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step15 {background:url(${contextPath}/resources/images/15.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step16 {background:url(${contextPath}/resources/images/16.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step17 {background:url(${contextPath}/resources/images/17.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step18 {background:url(${contextPath}/resources/images/18.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step19 {background:url(${contextPath}/resources/images/19.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step20 {background:url(${contextPath}/resources/images/20.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step21 {background:url(${contextPath}/resources/images/21.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step22 {background:url(${contextPath}/resources/images/22.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step23 {background:url(${contextPath}/resources/images/23.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step24 {background:url(${contextPath}/resources/images/24.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step25 {background:url(${contextPath}/resources/images/25.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step26 {background:url(${contextPath}/resources/images/26.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step27 {background:url(${contextPath}/resources/images/27.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step28 {background:url(${contextPath}/resources/images/28.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step29 {background:url(${contextPath}/resources/images/29.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step30 {background:url(${contextPath}/resources/images/30.jpg) no-repeat 4px 6px; background-size:36px;}
 .view_step_cont img {border-radius:3px; max-width:100%; height:auto; margin:20px 0 10px;}
 .view_step_cont .media-left {padding-right:20px;}
 .view_step_cont .media-left img {margin:0;}
@@ -239,13 +265,8 @@ color: #1f5e43;
 /* .view_step_tip.st2 dd {padding:14px 28px 0; font-size:16px; line-height:1.6;} */
 .view_step .carousel .carouItem img {max-width:100%;}
 .view_step_cont .none {display:none;}
-/* .view_step_cont .carousel.slide {border:none; box-shadow:none; margin:0; padding:0;} */
-/* .view_step_cont .media-left .carousel.slide {width:300px;} */
 .view_step_cont .media-left {width:300px;}
-/* .view_step_cont .carousel-control {padding:0;} */
-/* .view_step_cont .carousel-indicators {bottom:-36px;} */
-/* .view_step_cont .carousel-indicators li {width:10px; height:10px;} */
-/* 2. 탭 css (후기, 댓글) */
+
 .tab-head{
 padding-left: 0px !important;
 padding-right: 0px !important;
@@ -297,9 +318,9 @@ border-left: 4px solid #1f5e43;
     margin-left: 10px
 }
 .pagination_rounded ul li a:hover {
-    background: #4285f4;
+    background: #1f5e43;
     color: #fff;
-    border: 1px solid #4285f4
+    border: 1px solid #1f5e43
 }
 a:link {
     text-decoration: none;
@@ -313,7 +334,7 @@ a:link {
 }
 .pagination_rounded ul li a {
     float: left;
-    color: #4285f4;
+    color: #1f5e43;
     border-radius: 50%;
     line-height: 30px;
     height: 30px;
@@ -348,8 +369,8 @@ figure[data-ke-type='opengraph'] a {
 }
 figure[data-ke-type='opengraph'] div.og-image {
    border-right: solid 1px rgba(0, 0, 0, 0.06);
-    width: 100px;
-    height: 100px;
+    width: 8.3rem;
+    height: 8.3rem;
     background-size: cover;
     background-position: center;
 }
@@ -358,38 +379,39 @@ figure[data-ke-type='opengraph'] div {
 }
 figure[data-ke-type='opengraph'] div.og-text {
     flex-grow: 1;
-/* height: 130px; */
-padding-left: 40px;
+    height: 8rem;
+    padding-left: 1.5rem;
+    padding-top: 1rem;
 }
 figure[data-ke-type='opengraph'] p.og-title {
 color: #000000;
-padding-bottom: 10px;
+padding-bottom: 0.2rem;
 max-width: 467px;
 text-overflow: ellipsis;
 white-space: nowrap;
 margin: 0px;
-    overflow: hidden;
+overflow: hidden;
 }
 figure[data-ke-type='opengraph'] .og-desc {
     margin: 0px;
     max-width: 467px;
     text-overflow: ellipsis;
     overflow: hidden;
-    font-family: 'Noto Sans', 'Noto Sans KR';
+/*     font-family: 'Noto Sans', 'Noto Sans KR'; */
     font-size: 14px;
     font-weight: 300;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
+/*     font-style: normal; */
+/*     font-stretch: normal; */
+    line-height: unset;
+/*     letter-spacing: normal; */
     color: #909090;
-    max-height: 42px;
+    min-height: 2.8rem;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     display: -webkit-box;
 }
 
-/* 오늘 수정 */
+/*임시 */
 a {
 color:black;
 }
@@ -413,8 +435,6 @@ color:black;
 		});
 	</script>
 </c:if>
-<!-- id4로 로그인 한상태라고 가정 -->
-<input type="hidden" name="user_id" value="ID4"/>
 <div class="container-fluid">
 	<!-- 취미글 메인부분 -->
 	<div class="container_north">
@@ -434,15 +454,17 @@ color:black;
 				<div class="dropdown" style="float:right">
 					<button class="btnMenu" type="button" id="dropdownMenuButton" data-toggle="dropdown">
 					</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						 <a class="dropdown-item" href="/hobby/update/${hobbyVo.hobby_no}">수정</a> 
-						 <a class="dropdown-item" href="javascript:doDelete();">삭제</a>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" 
+						style="min-width: 4rem;font-size: 13px;">
+						 <a class="dropdown-item mydr" href="/hobby/update/${hobbyVo.hobby_no}">수정</a>
+						  <div class="dropdown-divider"></div> 
+						 <a class="dropdown-item mydr" href="javascript:doDelete();">삭제</a>
 					</div>
 				</div>
 				<!--//  수정/ 삭제 버튼을 위한 메뉴 -->
 				<div id="hobby_title">${hobbyVo.hobby_title}</div>
 				<div id="hobby_intro">${hobbyVo.hobby_intro}</div>
-				<div><span id="reg_date">작성일  : ${hobbyVo.reg_date }</span><span id="view_cnt">조회수 : ${hobbyVo.view_cnt }</span></div>
+				<div><span id="reg_date">작성일  : <fmt:formatDate value="${hobbyVo.reg_date}" pattern="yyyy-MM-dd KK:mm:ss"/></span><span id="view_cnt">조회수 : ${hobbyVo.view_cnt }</span></div>
 				<div class="row">
 					<div class="col-md-7">
 						<div class="mainImg_cont">
@@ -458,7 +480,7 @@ color:black;
 							<img class="rounded-circle circle-image" 
 								src="/displayImage?filePath=${hobbyVo.user_img}"
 								style="width:2.2rem;"/> 
-								<span>${hobbyVo.user_name} ></span>
+								<span>${hobbyVo.user_nick} ></span>
 							</a>
 						</div>
 						<div class="time_row">
@@ -481,13 +503,13 @@ color:black;
 						</div>
 						<div class="respon_row">
 							<button type="button" class="btn green_background">
-								<span style="color:white;" class="fa fa-heart-o"></span>
+								<span style="color:white;" class="fa fa-heart-o"> 좋아요</span>
 							</button>
 							<button type="button" class="btn green_background">
-								<span style="color:white;" class="fa fa-bookmark-o"></span>
+								<span style="color:white;" class="fa fa-bookmark-o"> 북마크</span>
 							</button>
 							<button type="button" class="btn green_background">
-								<span style="color:white;" class="fa fa-share-alt"></span>
+								<span style="color:white;" class="fa fa-envelope-o"> 쪽지</span>
 							</button>
 						</div>
 					</div>
@@ -501,7 +523,7 @@ color:black;
 		<div class="side side-left"></div>
 		<div class="body">
 			<div><b>준비물</b><span>Material</span></div>
-							<table class="table table-hover table-sm">
+							<table class="table table-hover table-sm" style="cursor: pointer;">
 								<tbody>
 									<c:forEach var="hobbyMaterialVo" items="${hobbyVo.hobbyMaterials}">
 										<tr>
@@ -522,203 +544,212 @@ color:black;
 		<div class="side side-left"></div>
 		<div class="body">
 			<div class="view_step">
-						            <div>
-										<div><b>만들기 순서</b><span>Steps</span></div>
-						                <div >
-						                    <a href="javascript:void(0);" onclick="chgViewStep(1)"><img id="tabStepView1" src="/resources/images/slide_on.png" alt="슬라이드보기"></a>
-						                    <a href="javascript:void(0);" onclick="chgViewStep(2)"><img id="tabStepView2" src="https://recipe1.ezmember.co.kr/img/mobile/tab_view1.png" alt="이미지크게보기"></a>
-						                    <a href="javascript:void(0);" onclick="chgViewStep(3)"><img id="tabStepView3" src="https://recipe1.ezmember.co.kr/img/mobile/tab_view3.png" alt="이미지작게보기"></a>
-						                    <a href="javascript:void(0);" onclick="chgViewStep(4)"><img id="tabStepView4" src="https://recipe1.ezmember.co.kr/img/mobile/tab_view2.png" alt="텍스트만보기"></a>
-						                </div>
-						            </div>
-						            <!-- 슬라이드 이미지 -->
-						            <div>
-						            	<div class="divSlideView" style="margin-top: 60px;">
-						            		<!-- data-interval=false -> 자동 슬라이드 취소 -->
-						            		<!-- 이미지 슬라이드 -->
-					            			<div class="carousel stepCarousel slide" id="stepSlide" data-interval="false" >
-												<ol class="carousel-indicators" style="top: 460px; height: 30px;">
-													<c:forEach var="makeStepVo" items="${hobbyVo.makeSteps }">
-														<li data-slide-to="${makeStepVo.make_step_num - 1 }" 
-															data-target="#stepSlide"
-															class="${makeStepVo.make_step_num==1  ? 'active' : ''}">
-														</li>
-													</c:forEach>
-												</ol>
-												<div class="carousel-inner stepCarousel-inner">
-													<c:forEach var="makeStepVo" items="${hobbyVo.makeSteps }">
-														<div data-num="${makeStepVo.make_step_num}" class="carousel-item ${makeStepVo.make_step_num==1  ? 'active' : ''}">
-															<div style="width:900px; height:500px">
-																<c:choose>
-																	<c:when test="${not empty makeStepVo.make_step_img}">
-																		<img class="slideImg" src="/displayImage?filePath=${makeStepVo.make_step_img }" />
-																	</c:when>
-																	<c:otherwise>
-																		<img class="slideImg" src="${contextPath}/resources/images/no-img.png" />
-																	</c:otherwise>
-																</c:choose>
-															</div>
-															<div class="carousel-caption">
-																	<div id="stepDiv${makeStepVo.make_step_num}" 
-																	class="view_step_cont step${makeStepVo.make_step_num}"
-																	style="margin: 0 auto;" >
-																	<div id="stepdescr${makeStepVo.make_step_num}" class="media-body">
-																	${makeStepVo.make_step_text }
-																	</div>
-																	<div class="stepExtra">
-																		<c:if test="${not empty makeStepVo.tip}">
-																			<p class="step_extra extra_tip">
-																				${makeStepVo.tip}
-																			</p>
-																		</c:if>
-																		<c:if test="${not empty makeStepVo.note}">
-																			<p class="step_extra extra_note">
-																				${makeStepVo.note}
-																			</p>
-																		</c:if>
-																		<c:if test="${not empty makeStepVo.urlOgTag}">
-																			<c:choose>
-																				<c:when test="${makeStepVo.urlOgTag.status == 0}">
-																					<a href="${makeStepVo.urlOgTag.url }">${makeStepVo.urlOgTag.url}</a>
-																				</c:when>
-																				<c:otherwise>
-																					<figure data-ke-type="opengraph" data-og-title="${makeStepVo.urlOgTag.title}" 
-																					data-og-description="${makeStepVo.urlOgTag.desc}"  data-og-url="${makeStepVo.urlOgTag.url }" 
-																					data-og-image="${makeStepVo.urlOgTag.image}"> 
-																				      <a href="${makeStepVo.urlOgTag.url }">
-																			   			<c:set var = "image" value = "${makeStepVo.urlOgTag.image }"/>
-																			   				<c:choose>
-																			   					<c:when test="${fn:contains(image, 'blogthumb')}">
-																			   						<div class="og-image" 
-																				        			style="background-image:url(${contextPath}/resources/images/sad.png)"></div>
-																			   					</c:when>
-																			   					<c:otherwise>
-																			   						 <div class="og-image" 
-																				        				style="background-image:url(${makeStepVo.urlOgTag.image })"></div>
-																			   					</c:otherwise>
-																			   				</c:choose>
-																				        <div class="og-text">
-																				          <p class="og-title">${makeStepVo.urlOgTag.title}</p>
-																				          <p class="og-desc">${makeStepVo.urlOgTag.desc}</p>
-																				          <p class="og-host">${makeStepVo.urlOgTag.url }</p>
-																				        </div>
-																				      </a>
-																				   	 </figure>
-																				</c:otherwise>
-																			</c:choose>
-																			    <p class="step_extra extra_link">
-																					${makeStepVo.link_desc}
-																		</c:if>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</c:forEach>
-												</div> 
-												<a class="carousel-control-prev" href="#stepSlide" 
-													data-slide="prev" style="height:500px">
-													<span class="carousel-control-prev-icon"></span> 
-													<span class="sr-only">Previous</span>
-												</a> 
-												<a class="carousel-control-next" href="#stepSlide" 
-													data-slide="next"  style="height:500px">
-													<span class="carousel-control-next-icon"></span> 
-													<span class="sr-only">Next</span>
-												</a>
-											</div>
-											<!-- //이미지 슬라이드 -->
-						            </div>
-						            </div>
-						            <!-- //슬라이드 이미지 -->
-						            <!-- 만들기 컨테이너 -->
-						            
-						            <div class="divStepView" style="display:none">
-						            <c:forEach var="makeStepVo" items="${hobbyVo.makeSteps}">
-										<div id="stepDiv${makeStepVo.make_step_num}" class="view_step_cont step${makeStepVo.make_step_num}">
-											<div id="stepimg${makeStepVo.make_step_num}" class="media-left">
-												<c:if test="${not empty makeStepVo.make_step_img}">
-												<img class="make_step_img" style="margin-top: 0px;"
-													src="/displayImage?filePath=${makeStepVo.make_step_img }">
-												</c:if>
-											</div>
-											<div id="stepdescr${makeStepVo.make_step_num}" class="media-body">
-												${makeStepVo.make_step_text }
-											</div>
-											<div class="stepExtra">
-												<c:if test="${not empty makeStepVo.tip}">
-													<p class="step_extra extra_tip">
-														${makeStepVo.tip}
-													</p>
-												</c:if>
-												<c:if test="${not empty makeStepVo.note}">
-													<p class="step_extra extra_note">
-														${makeStepVo.note}
-													</p>
-												</c:if>
-												<c:if test="${not empty makeStepVo.urlOgTag}">
-														<figure data-ke-type="opengraph" data-og-title="${makeStepVo.urlOgTag.title}" 
-															data-og-description="${makeStepVo.urlOgTag.desc}"  data-og-url="${makeStepVo.urlOgTag.url }" 
-															data-og-image="${makeStepVo.urlOgTag.image}"> 
-													      <a href="${makeStepVo.urlOgTag.url }">
-													        <c:set var = "image" value = "${makeStepVo.urlOgTag.image }"/>
-												   				<c:choose>
-												   					<c:when test="${fn:contains(image, 'blogthumb')}">
-												   						<div class="og-image" 
-													        			style="background-image:url(${contextPath}/resources/images/sad.png)"></div>
-												   					</c:when>
-												   					<c:otherwise>
-												   						 <div class="og-image" 
-													        				style="background-image:url(${makeStepVo.urlOgTag.image })"></div>
-												   					</c:otherwise>
-												   				</c:choose>
-													        <div class="og-text">
-													          <p class="og-title">${makeStepVo.urlOgTag.title}</p>
-													          <p class="og-desc">${makeStepVo.urlOgTag.desc}</p>
-													          <p class="og-host">${makeStepVo.urlOgTag.url }</p>
-													        </div>
-													      </a>
-													    </figure>
-													     <p class="step_extra extra_link"> 
-													     	${makeStepVo.link_desc}
-												</c:if>
-											</div>
+				<div>
+					<b>만들기 순서</b><span>Steps</span>
+					<div class="divViewOption" style="float: right;">
+	                    <a href="javascript:void(0);" onclick="chgViewStep(1)"><img id="tabStepView1" src="${contextPath}/resources/images/tab_view1_on.png" alt="슬라이드보기"></a>
+	                    <a href="javascript:void(0);" onclick="chgViewStep(2)"><img id="tabStepView2" src="${contextPath}/resources/images/tab_view2.png" alt="이미지크게보기"></a>
+	                    <a href="javascript:void(0);" onclick="chgViewStep(3)"><img id="tabStepView3" src="${contextPath}/resources/images/tab_view3.png" alt="이미지작게보기"></a>
+	                    <a href="javascript:void(0);" onclick="chgViewStep(4)"><img id="tabStepView4" src="${contextPath}/resources/images/tab_view4.png" alt="텍스트만보기"></a>
+               		 </div>
+				</div>
+	            <!-- 슬라이드 이미지 -->
+	            <div>
+	            	<div class="divSlideView" style="margin-top: 60px;">
+	            		<!-- data-interval=false -> 자동 슬라이드 취소 -->
+	            		<!-- 이미지 슬라이드 순환을 개시 -->
+						<button id="carousel_cycle">순환</button><br />
+						<!-- 이미지 슬라이드 순환을 정지 -->
+						<button id="carousel_pause">정지</button><br />
+						<!-- 이미지 슬라이드를 이동할 수 -->
+						<input type="number" id="carousel_number" min=1 max=5 value="1" >
+						<!-- 이미지 슬라이드 이동 -->
+						<button id="carousel_move">이동</button><br />
+
+	            		<!-- 이미지 슬라이드 -->
+            			<div class="carousel stepCarousel slide" id="stepSlide" data-interval="false" >
+							<ol class="carousel-indicators" style="top: 460px; height: 30px;">
+								<c:forEach var="makeStepVo" items="${hobbyVo.makeSteps }">
+									<li data-slide-to="${makeStepVo.make_step_num - 1 }" 
+										data-target="#stepSlide"
+										class="${makeStepVo.make_step_num==1  ? 'active' : ''}">
+									</li>
+								</c:forEach>
+							</ol>
+							<div class="carousel-inner stepCarousel-inner">
+								<c:forEach var="makeStepVo" items="${hobbyVo.makeSteps }">
+									<div data-num="${makeStepVo.make_step_num}" class="carousel-item ${makeStepVo.make_step_num==1  ? 'active' : ''}">
+										<div style="width:900px; height:500px">
+											<c:choose>
+												<c:when test="${not empty makeStepVo.make_step_img}">
+													<img class="slideImg" src="/displayImage?filePath=${makeStepVo.make_step_img }" />
+												</c:when>
+												<c:otherwise>
+													<img class="slideImg" src="${contextPath}/resources/images/no-img.png" />
+												</c:otherwise>
+											</c:choose>
 										</div>
-									</c:forEach>
-									</div>
-								</div>
-								<!-- 완성사진 영역 -->
-								<div style="margin-top: 100px;">
-									<div class="carousel craftCarousel slide" id="craftSlide">
-									<ol class="carousel-indicators">
-										<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
-											<li data-slide-to="${vs.index}" 
-												data-target="#craftSlide"
-												class="${vs.index==0  ? 'active' : ''}">
-											</li>
-										</c:forEach>
-									</ol>
-									<div class="carousel-inner craftCarousel-inner">
-										<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
-											<div data-num="${vs.count}" class="carousel-item ${vs.count==1  ? 'active' : ''}">
-												<div style="width:550px; height:300px">
-													<img class="slideImg" src="/displayImage?filePath=${completeImgVo.img_name}" />
+										<div class="carousel-caption">
+												<div id="stepDiv${makeStepVo.make_step_num}" 
+												class="view_step_cont step${makeStepVo.make_step_num}"
+												style="margin: 0 auto;" >
+												<div id="stepdescr${makeStepVo.make_step_num}" class="media-body">
+												${makeStepVo.make_step_text }
+												</div>
+												<div class="stepExtra">
+													<c:if test="${not empty makeStepVo.tip}">
+														<p class="step_extra extra_tip">
+															${makeStepVo.tip}
+														</p>
+													</c:if>
+													<c:if test="${not empty makeStepVo.note}">
+														<p class="step_extra extra_note">
+															${makeStepVo.note}
+														</p>
+													</c:if>
+													<c:if test="${not empty makeStepVo.urlOgTag}">
+														<c:choose>
+															<c:when test="${makeStepVo.urlOgTag.status == 0}">
+																<a href="${makeStepVo.urlOgTag.url }">${makeStepVo.urlOgTag.url}</a>
+															</c:when>
+															<c:otherwise>
+																<figure data-ke-type="opengraph" data-og-title="${makeStepVo.urlOgTag.title}" 
+																data-og-description="${makeStepVo.urlOgTag.desc}"  data-og-url="${makeStepVo.urlOgTag.url }" 
+																data-og-image="${makeStepVo.urlOgTag.image}"> 
+															      <a href="${makeStepVo.urlOgTag.url }">
+														   			<c:set var = "image" value = "${makeStepVo.urlOgTag.image }"/>
+														   				<c:choose>
+														   					<c:when test="${fn:contains(image, 'blogthumb')}">
+														   						<div class="og-image" 
+															        			style="background-image:url(${contextPath}/resources/images/sad.png)"></div>
+														   					</c:when>
+														   					<c:otherwise>
+														   						 <div class="og-image" 
+															        				style="background-image:url(${makeStepVo.urlOgTag.image })"></div>
+														   					</c:otherwise>
+														   				</c:choose>
+															        <div class="og-text">
+															          <p class="og-title">${makeStepVo.urlOgTag.title}</p>
+															          <p class="og-desc">${makeStepVo.urlOgTag.desc}</p>
+															          <p class="og-host">${makeStepVo.urlOgTag.url }</p>
+															        </div>
+															      </a>
+															   	 </figure>
+															</c:otherwise>
+														</c:choose>
+														    <p class="step_extra extra_link">
+																${makeStepVo.link_desc}
+													</c:if>
 												</div>
 											</div>
-										</c:forEach>
-									</div> 
-									<a class="carousel-control-prev" href="#craftSlide" 
-										data-slide="prev" style="height:300px">
-										<span class="carousel-control-prev-icon"></span> 
-										<span class="sr-only">Previous</span>
-									</a> 
-									<a class="carousel-control-next" href="#craftSlide" 
-										data-slide="next"  style="height:300px">
-										<span class="carousel-control-next-icon"></span> 
-										<span class="sr-only">Next</span>
-									</a>
+										</div>
 									</div>
-								</div>
+								</c:forEach>
+							</div> 
+							<a class="carousel-control-prev" href="#stepSlide" 
+								data-slide="prev" style="height:500px">
+								<span class="carousel-control-prev-icon"></span> 
+								<span class="sr-only">Previous</span>
+							</a> 
+							<a class="carousel-control-next" href="#stepSlide" 
+								data-slide="next"  style="height:500px">
+								<span class="carousel-control-next-icon"></span> 
+								<span class="sr-only">Next</span>
+							</a>
+						</div>
+						<!-- //이미지 슬라이드 -->
+	            </div>
+	            </div>
+	            <!-- //슬라이드 이미지 -->
+	            <!-- 만들기 컨테이너 -->
+	            
+	            <div class="divStepView" style="display:none; padding-top:50px;">
+	            <c:forEach var="makeStepVo" items="${hobbyVo.makeSteps}">
+					<div id="stepDiv${makeStepVo.make_step_num}" class="view_step_cont step${makeStepVo.make_step_num}">
+						<div id="stepimg${makeStepVo.make_step_num}" class="media-left">
+							<c:if test="${not empty makeStepVo.make_step_img}">
+							<img class="make_step_img" style="margin-top: 0px;"
+								src="/displayImage?filePath=${makeStepVo.make_step_img }">
+							</c:if>
+						</div>
+						<div id="stepdescr${makeStepVo.make_step_num}" class="media-body">
+							${makeStepVo.make_step_text }
+						</div>
+						<div class="stepExtra">
+							<c:if test="${not empty makeStepVo.tip}">
+								<p class="step_extra extra_tip">
+									${makeStepVo.tip}
+								</p>
+							</c:if>
+							<c:if test="${not empty makeStepVo.note}">
+								<p class="step_extra extra_note">
+									${makeStepVo.note}
+								</p>
+							</c:if>
+							<c:if test="${not empty makeStepVo.urlOgTag}">
+									<figure data-ke-type="opengraph" data-og-title="${makeStepVo.urlOgTag.title}" 
+										data-og-description="${makeStepVo.urlOgTag.desc}"  data-og-url="${makeStepVo.urlOgTag.url }" 
+										data-og-image="${makeStepVo.urlOgTag.image}"> 
+								      <a href="${makeStepVo.urlOgTag.url }">
+								        <c:set var = "image" value = "${makeStepVo.urlOgTag.image }"/>
+							   				<c:choose>
+							   					<c:when test="${fn:contains(image, 'blogthumb')}">
+							   						<div class="og-image" 
+								        			style="background-image:url(${contextPath}/resources/images/sad.png)"></div>
+							   					</c:when>
+							   					<c:otherwise>
+							   						 <div class="og-image" 
+								        				style="background-image:url(${makeStepVo.urlOgTag.image })"></div>
+							   					</c:otherwise>
+							   				</c:choose>
+								        <div class="og-text">
+								          <p class="og-title">${makeStepVo.urlOgTag.title}</p>
+								          <p class="og-desc">${makeStepVo.urlOgTag.desc}</p>
+								          <p class="og-host">${makeStepVo.urlOgTag.url }</p>
+								        </div>
+								      </a>
+								    </figure>
+								     <p class="step_extra extra_link"> 
+								     	${makeStepVo.link_desc}
+							</c:if>
+						</div>
+					</div>
+				</c:forEach>
+				</div>
+			</div>
+			<!-- 완성사진 영역 -->
+			<div style="margin-top: 100px;">
+				<div class="carousel craftCarousel slide" id="craftSlide" style="box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);">
+				<ol class="carousel-indicators">
+					<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
+						<li data-slide-to="${vs.index}" 
+							data-target="#craftSlide"
+							class="${vs.index==0  ? 'active' : ''}">
+						</li>
+					</c:forEach>
+				</ol>
+				<div class="carousel-inner craftCarousel-inner">
+					<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
+						<div data-num="${vs.count}" class="carousel-item ${vs.count==1  ? 'active' : ''}">
+							<div style="width:550px; height:300px">
+								<img class="slideImg" src="/displayImage?filePath=${completeImgVo.img_name}" />
 							</div>
+						</div>
+					</c:forEach>
+				</div> 
+				<a class="carousel-control-prev" href="#craftSlide" 
+					data-slide="prev" style="height:300px">
+					<span class="carousel-control-prev-icon"></span> 
+					<span class="sr-only">Previous</span>
+				</a> 
+				<a class="carousel-control-next" href="#craftSlide" 
+					data-slide="next"  style="height:300px">
+					<span class="carousel-control-next-icon"></span> 
+					<span class="sr-only">Next</span>
+				</a>
+				</div>
+			</div>
+		</div>
 		<div class="side side-right"></div>
 	</div>
 	<!-- //만들기 부분 -->
@@ -728,7 +759,7 @@ color:black;
 			<div class="side side-left"></div>
 			<div class="body">
 				<div><b>동영상</b><span>Video</span></div>
-				<div>
+				<div style="text-align: center;">
 					<iframe width="560" height="315" 
 					src="https://www.youtube.com/embed/${hobbyVo.hobby_video}" 
 					title="YouTube video player"></iframe>
@@ -738,22 +769,12 @@ color:black;
 		</div>						
 	</c:if>
 	<!-- //동영상 부분 -->
-	<!-- 태그 부분 -->
-	<div class="container_north">
-		<div class="side side-left"></div>
-		<div class="body">
-			<div><b>태그</b><span>Tag</span></div>
-			보류부분
-		</div>
-		<div class="side side-right"></div>
-	</div>
-	<!--// 태그 부분 -->
 	<!-- 댓글, 후기 부분 -->
 	<div class="container_south">
 		<div class="side side-left"></div>
 		<div class="body">
 			<!-- 후기, 댓글 컨테이너 -->
-		  <ul class="nav nav-tabs">
+		  <ul class="nav nav-tabs" style="padding-left: 18%;">
 		    <li class="nav-item">
 		      <a class="nav-link active" data-toggle="tab" href="#madeByMe">made by me</a>
 		    </li>
@@ -809,7 +830,7 @@ color:black;
 		</div>
 		<!-- //review-container -->
 		<!-- pagination-container -->
-		<div class="pagination-container">
+		<div class="pagination-container" style="text-align: center;">
 			<div class="pagination_rounded">
 			    <ul>
 			        <li> <a href="#" class="prev"> <i class="fa fa-angle-left" aria-hidden="true"></i> Prev </a> </li>
@@ -826,6 +847,7 @@ color:black;
 		</div>
 		<!--// pagination-container --> 
 	 </div>
+	 <!-- comment 시작 -->
     <div id="comment" class="container tab-pane fade"><br>
 <!--     		<h5 class="pl-2">comment</h5> -->
 			<div class="sm_tit">댓글 <span id="comment_cnt">3</span></div>
@@ -839,7 +861,7 @@ color:black;
 						<div class="c_info_area">
 							<img class="rounded-circle circle-image user_img" 
 								src="/resources/images/profile.png" style="width:35px; height:35px;"/>
-							<span class="c_user_name"> 하윤지</span>
+							<span class="c_user_nick"> 하윤지</span>
 							<a class="cancel" href="#" style="float:right">취소</a>
 						</div>
 						<div class="input-group" style="width:680px;">
@@ -858,13 +880,14 @@ color:black;
 									src="/resources/images/profile.png" style="width:35px; height:35px;"
 									/>
 								</a>
-								<span class="c_user_name"> 하윤지</span>
+								<span class="c_user_nick"> 하윤지</span>
 								<span class="is_hobby_writer badge badge-pill badge-success" 
 									style="display:none; background: #1f5e43; padding-top: 5px;"> 글주인</span>
 								<div class="dropdown" style="float:right">
 									<button class="btnMenu_cmt" type="button" id="dropdownMenuButton" data-toggle="dropdown">
 									</button>
-									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+										style="min-width: 4rem;font-size: 13px;">
 										 <a class="dropdown-item doUpdateComment" 
 										 	href="javascript:void(0);" >수정</a> 
 										 <a class="dropdown-item deleteComment" 
@@ -873,7 +896,7 @@ color:black;
 								</div>
 							</div>
 							<div class="c_content_area">
-								<span class="c_parent_user_name" style="display:none">@하윤지 </span> 
+								<span class="c_parent_user_nick" style="display:none">@하윤지 </span> 
 								<span class="c_content">댓글내용 댓글댓글내용 댓글댓글내용 11</span>
 							</div>
 							<div class="c_etc_area">
@@ -887,33 +910,18 @@ color:black;
 										 onclick="doRecomment()">답글</button>
 							</div>
 					</div>
-					<div class="row replyCommentDiv" style="padding-left:50px;">
+					<div class="row replyCommentDiv" style="padding: 10px 0 10px 35px;">
+					
 					</div>
 				</div>
 				<!-- //comment-row -->
-				<div id="moreViewDiv" style="display:none"></div>
 			</div>
 			<!--//  댓글 리스트 컨테이너 -->
-				
-					<!-- 답댓작성 -->
-					<div id="reply_div" style="display:none">
-						<div class="input-group" style="width:640px;">
-							<input type="text" id="re_user_id" name="user_id" placeholder="댓글작성자 id(테스트를 위한)"/>
-							<input type="hidden" id="parent_c_no" value=""/>
-							<textarea id="re_c_content" class="form-control"
-								 style="height:100px; width:100%; resize:none;"></textarea>
-							<button class="btn btn-outline-light green_background insertRecomment" type="button" 
-								onclick="insertRecomment(this)" style="height:100px; width:100px;">등록</button>
-						</div>
-					</div>
-					<!--// 답댓작성 -->
-						
-				<div style="text-align:center; margin: 20px 0 20px 0;">
-					<button type="button" id="btnMoreComments"
-						onclick="moreViewToggle(this);"
-						class="btn btn-sm btn-outline-light green_background">댓글 더보기</button>
-				</div>
-			
+			<div style="text-align:center; margin: 20px 0 20px 0;">
+				<button type="button" id="btnMoreComments"
+					onclick="moreViewToggle(this);"
+					class="btn btn-sm btn-outline-light green_background">댓글 더보기</button>
+			</div>
 			<!--//commentList-container -->
 			<!--commentWrite-container -->
 			<div class="commentWrite-container">
@@ -928,8 +936,25 @@ color:black;
 				</div>
 			</div>
 			<!--// commentWrite-container -->
-		    </div>
+				<!-- 답댓작성 -->
+				<div id="reply_div" style="display:none">
+					<div class="input-group" style="width:640px;">
+						<input type="text" id="re_user_id" name="user_id" placeholder="댓글작성자 id(테스트를 위한)"/>
+						<input type="hidden" id="parent_c_no" value=""/>
+						<textarea id="re_c_content" class="form-control"
+							 style="height:100px; width:100%; resize:none;"></textarea>
+						<button class="btn btn-outline-light green_background insertRecomment" type="button" 
+							onclick="insertRecomment(this)" style="height:100px; width:100px;">등록</button>
+					</div>
+				</div>
+				<!--// 답댓작성 -->
+				<!-- moreviewdiv -->
+					<div id="moreViewDiv" style="display:none"></div>
+				<!-- //moreviewdiv -->
+	  		  </div>
+	    	<!-- comment 끝 -->
 		  </div>
+		  <!-- // Tab panes -->
 		<div class="side side-right"></div>
 		</div>
 	</div>
@@ -937,6 +962,45 @@ color:black;
 </div>
 <%@ include file="../include/footer.jsp" %>
 <script>
+//이미지 슬라이드 설정
+$('#carousel-example-generic').carousel({
+// 순환 설정
+interval: 1000
+// 순환을 정지시킨다.
+}).carousel('pause');
+});
+// 이미지 슬라이드 순환을 개시
+$("#carousel_cycle").on("click", function() {
+$('#carousel-example-generic').carousel('cycle');
+});
+// 이미지 슬라이드 순환을 정지
+$("#carousel_pause").on("click", function() {
+$('#carousel-example-generic').carousel('pause');
+});
+// 이미지 슬라이드 이동
+$("#carousel_move").on("click", function() {
+var num = Number($("#carousel_number").val()) - 1;
+$('#carousel-example-generic').carousel(num);
+});
+// 이미지 슬라이드 전 페이지 이동
+$("#carousel_prev").on("click", function() {
+$('#carousel-example-generic').carousel('prev');
+});
+// 이미지 슬라이드 다음 페이지 이동
+$("#carousel_next").on("click", function() {
+$('#carousel-example-generic').carousel('next');
+});
+$('#carousel-example-generic').on('slide.bs.carousel', function () {
+// 슬라이드 인스턴스 메서드가 호출되면 호출된다.
+});
+$('#carousel-example-generic').on('slid.bs.carousel', function () {
+// 회전식 슬라이드가 완료되면 호출된다.
+});
+
+
+
+
+
 function chgViewStep(step) {	
 	if (step == 1) {
 		$(".divStepView").hide();
@@ -1000,6 +1064,7 @@ function insertComment() {
 			console.log(rData);
 			if(rData == "success") {
 				selectCommentList();
+				$("#c_content").val("");
 			}
 		}
 	});
@@ -1032,6 +1097,8 @@ function insertRecomment(el) {
 		"success" : function(rData) {
 			console.log(rData);
 			if(rData == "success") {
+				var reply = '<div id="reply_div" style="display:none;">'+$('#reply_div').html()+'</div>';
+	            $('#comment').append(reply);
 				selectCommentList();
 			}
 		}
@@ -1049,10 +1116,10 @@ var user_id = "${hobbyVo.user_id}";
 // 댓글 리스트 조회
 function selectCommentList() {
 	$("#commentContainer > .comment-row:gt(0)").remove();
-// 	$("#moreViewDiv > .comment-row").remove();
+	$("#moreViewDiv").empty();
 	var url = "/comment/selectCommentList/${hobbyVo.hobby_no}";
 	$.get(url, function(rData) {
-		if (rData == 0) {
+		if (rData.length < 4) {
 			$("#btnMoreComments").hide();
 		} else {
 			$("#btnMoreComments").show();
@@ -1063,7 +1130,7 @@ function selectCommentList() {
 			var cloneDiv = $("#commentContainer > .comment-row:eq(0)").clone();
 			if (this.c_depth == 1) {
 				cloneDiv.addClass("recomment-row");
-				cloneDiv.find(".c_parent_user_name").show();
+				cloneDiv.find(".c_parent_user_nick").show();
 			}
 			cloneDiv.show();
 			cloneDiv.find(".view_comment").attr("id", "view_comment_" + this.c_no );
@@ -1071,7 +1138,7 @@ function selectCommentList() {
 			cloneDiv.find(".re_group").val(this.re_group);
 			cloneDiv.find(".user_link").attr("href", "프로필링크/개인작업실코드(조인하기)");
 			cloneDiv.find(".user_img").attr("src", "/displayImage?filePath=" + this.user_img);
-			cloneDiv.find(".c_user_name").text(this.user_name);
+			cloneDiv.find(".c_user_nick").text(this.user_nick);
 			if (this.user_id == user_id) {
 				cloneDiv.find(".is_hobby_writer").show();
 			}
@@ -1080,20 +1147,25 @@ function selectCommentList() {
 			cloneDiv.find(".updateBtn").attr("onclick", "updateComment(" + this.c_no + ")");
 			cloneDiv.find(".deleteComment").attr("onclick", "deleteComment(" + this.c_no + ")");
 			cloneDiv.find(".doRecomment").attr("onclick", "doRecomment(" + this.c_no + ")");
-			cloneDiv.find(".c_parent_user_name").text("@" + this.parent_user_name);
+			cloneDiv.find(".c_parent_user_nick").text("@" + this.parent_user_nick);
 			cloneDiv.find(".c_content").text(this.c_content);
 			cloneDiv.find(".c_reg_date").text(this.reg_date);
 			
 			cloneDiv.find(".replyCommentDiv").attr("id", "replyCommentDiv_" + this.c_no);
 			
-			if (i < 6) {
-				$("#commentContainer").append(cloneDiv);
-			} else {
+			// 댓글 3개까지는 전체보기 줄여보기 x, 4개부터 보일때 3개까지만 보이고 전체보기 버튼 눌러야 전체보임
+			if(i > 2) {
 				$("#moreViewDiv").append(cloneDiv);
+				console.log(i + "," + "moreview" +  cloneDiv.html());
+				$("#moreViewDiv").insertAfter("#commentContainer > .comment-row:last"); 
+			} else {
+				$("#commentContainer").append(cloneDiv);
+				console.log(i + "," + "일반" + cloneDiv.html());
 			}
-			$("#moreViewDiv").insertAfter("#commentContainer > .comment-row:last");
+// 			console.log("댓글들", $("#commentContainer > .comment-row:gt(3)"));
 		});
 	});
+	
 }
 // 댓글 수정 버튼 누를때
 function doUpdateComment(c_no) {
