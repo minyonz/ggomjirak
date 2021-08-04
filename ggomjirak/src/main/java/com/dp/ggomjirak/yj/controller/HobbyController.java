@@ -202,5 +202,21 @@ public class HobbyController {
 		return "cancel";
 	}
 		
-
+	@RequestMapping(value="/materialList", method=RequestMethod.GET)
+	public String material(Model model, HttpSession session) throws Exception {
+		MemberVo loginVo = (MemberVo)session.getAttribute("loginVo");
+		if (loginVo != null) {
+			model.addAttribute("loginVo", loginVo);
+			model.addAttribute("user_id", loginVo.getUser_id());
+		}
+		List<CateVo> cates = cateService.getCateList();
+		List<TimeVo> times = cateService.getTimeList();
+		List<LevelVo> levels = cateService.getLevelList();
+		List<CostVo> costs = cateService.getCostList();
+		model.addAttribute("cates", JSONArray.fromObject(cates));
+		model.addAttribute("times", JSONArray.fromObject(times));
+		model.addAttribute("levels", JSONArray.fromObject(levels));
+		model.addAttribute("costs", JSONArray.fromObject(costs));
+		return "hobby/material_list";
+	}
 }

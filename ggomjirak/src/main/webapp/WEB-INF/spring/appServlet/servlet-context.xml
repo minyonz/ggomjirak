@@ -56,6 +56,7 @@
             <exclude-mapping path="/story/detail/**"/>
             <exclude-mapping path="/st_comment/list/**"/>
 			<exclude-mapping path="/hobby/content/**"/>
+			<exclude-mapping path="/hobby/materialList"/>
 			<exclude-mapping path="/comment/selectCommentList/**"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>

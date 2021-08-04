@@ -137,6 +137,45 @@ public class HobbyDaoImpl implements HobbyDao {
 		map.put("count", count);
 		return sqlSession.update(NAMESPACE + "updateCmtCnt", map);
 	}
+	
+	
+	
+//	 __________준비물로 목록조회 ___________
+
+	@Override
+	public List<HobbyVo> selectAll(int material_no) {
+		return sqlSession.selectList(NAMESPACE + "selectAll", material_no);
+	}
+
+	@Override
+	public List<HobbyVo> selectNew(int material_no) {
+		return sqlSession.selectList(NAMESPACE + "selectNew", material_no);
+	}
+
+	@Override
+	public List<HobbyVo> selectLike(int material_no) {
+		return sqlSession.selectList(NAMESPACE + "selectLike", material_no);
+	}
+
+	@Override
+	public List<HobbyVo> selectView(int material_no) {
+		return sqlSession.selectList(NAMESPACE + "selectView", material_no);
+	}
+
+	@Override
+	public List<HobbyVo> selectTime(int material_no) {
+		return sqlSession.selectList(NAMESPACE + "selectTime", material_no);
+	}
+
+	@Override
+	public List<HobbyVo> selectLevel(int material_no) {
+		return sqlSession.selectList(NAMESPACE + "selectLevel", material_no);
+	}
+
+	@Override
+	public List<HobbyVo> selectCost(int material_no) {
+		return sqlSession.selectList(NAMESPACE + "selectCost", material_no);
+	}
 
 
 

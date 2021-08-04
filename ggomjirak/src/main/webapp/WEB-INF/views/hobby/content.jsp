@@ -262,9 +262,6 @@ color: #1f5e43;
 .body { padding: 0 80px; }
  }
   	
-</style>
-<!-- 가져온 스타일 -->
-<style>
 .divViewOption a{
     display: inline-block;
     float: left;
@@ -602,18 +599,18 @@ a {
 		<div class="side side-left"></div>
 		<div class="body">
 			<div><b>준비물</b><span>Material</span></div>
-							<table class="table table-hover table-sm" style="cursor: pointer;">
-								<tbody>
-									<c:forEach var="hobbyMaterialVo" items="${hobbyVo.hobbyMaterials}">
-										<tr>
-											<td>${hobbyMaterialVo.materialName}</td>
-											<td>
-												${hobbyMaterialVo.material_detail}
-											</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+				<table class="table table-hover table-sm" style="cursor: pointer;">
+					<tbody>
+						<c:forEach var="hobbyMaterialVo" items="${hobbyVo.hobbyMaterials}">
+							<tr>
+								<td>${hobbyMaterialVo.materialName}</td>
+								<td>
+									${hobbyMaterialVo.material_detail}
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 		</div>
 		<div class="side side-right"></div>
 	</div>
@@ -1073,13 +1070,21 @@ $("#like").click(function() {
 			$("#like > span:first-child").attr({
 				"class" : "fa fa-heart",
 				style : "color:#C32424"
-			})
+			});
+			$("#like_cnt").prev().attr({
+		        "class" : "fa fa-heart",
+		        style : "color:#C32424"
+		     });
 			$("#like_cnt").text(Number($("#like_cnt").text()) + 1);
 		} else {
 			$("#like > span:first-child").attr({
 				"class" : "fa fa-heart-o",
 				style : "color:white"
 			});
+			$("#like_cnt").prev().attr({
+				"class" : "fa fa-heart-o",
+				style : "color:#1f5e43"
+		     });
 			$("#like_cnt").text(Number($("#like_cnt").text()) - 1);
 		}
 	});
@@ -1089,7 +1094,11 @@ if ("${likeCheck}" == 1) {
     $("#like > span:first-child").attr({
        "class" : "fa fa-heart",
        style : "color:#C32424"
-    })
+    });
+    $("#like_cnt").prev().attr({
+        "class" : "fa fa-heart",
+        style : "color:#C32424"
+     });
  }
  
 //북마크
@@ -1102,12 +1111,12 @@ $("#bookmark").click(function() {
 		console.log(rData);
 		if (rData == "bookmark") {
 			$("#bookmark > span:first-child").attr({
-				class : "fa fa-bookmark",
+				"class" : "fa fa-bookmark",
 				style : "color:#FFC300"
 			})
 		} else {
 			$("#bookmark > span:first-child").attr({
-				class : "fa fa-bookmark-o",
+				"class" : "fa fa-bookmark-o",
 				style : "color:white"
 			})
 		}
@@ -1116,7 +1125,7 @@ $("#bookmark").click(function() {
 
 if ("${bookmarkCheck}" == 1) {
     $("#bookmark > span:first-child").attr({
-       class : "fa fa-bookmark",
+    	"class" : "fa fa-bookmark",
        style : "color:#FFC300"
     })
  }

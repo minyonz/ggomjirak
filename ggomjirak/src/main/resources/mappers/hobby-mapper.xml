@@ -302,4 +302,111 @@
 		WHERE hobby_no = #{hobby_no} 
 	</update>
  
+ 
+ 
+<!--  		SELECT H.*, M.* -->
+<!-- 		FROM tbl_hobby_material HM -->
+<!-- 		JOIN tbl_hobby H ON H.hobby_no = HM.hobby_no -->
+<!-- 		JOIN tbl_material M ON M.material_no = HM.material_no -->
+<!-- 		WHERE HM.material_no = #{material_no} AND H.is_del = 'N' -->
+ <!-- __________준비물로 목록조회 ___________-->
+	<select id="selectList" parameterType="MaterialSearchVo" resultMap="HobbyVo">
+		SELECT * FROM tbl_hobby_material HM
+		WHERE HM.material_no = #{material_no} AND H.is_del = 'N' 
+
+		<!-- 넘어오는 값,, ct(카테고리), sk, sv , sort(정렬) -->
+		<if test="cate != null">
+			AND TRANSACTION_CATEGORY = #{cate}
+		</if>
+
+		<if test="sort != null">
+			<choose>
+				<when test="sort == 'like'">
+					ORDER BY H.like_cnt DESC, H.hobby_no DESC
+				</when>
+				<when test="sort == 'new'">
+					ORDER BY H.reg_date DESC
+				</when>
+				<when test="sort =='view'">
+					ORDER BY H.view_cnt DESC, H.hobby_no DESC
+				</when>
+			</choose>
+		</if>
+		
+		<if test="sort == null">
+			ORDER BY MARKET_NO DESC
+		</if>
+	</select>
+	
+	 <!-- 전체 조회 -->
+	 <select id="selectAll" resultType="HobbyVo">
+	 	SELECT H.*, M.*
+		FROM tbl_hobby_material HM
+		JOIN tbl_hobby H ON H.hobby_no = HM.hobby_no
+		JOIN tbl_material M ON M.material_no = HM.material_no
+		WHERE HM.material_no = #{material_no} AND H.is_del = 'N'
+	 </select>
+	 
+	 <!-- 최신순  -->
+	 <select id="selectNew" resultType="HobbyVo">
+	 	SELECT H.*, M.*
+		FROM tbl_hobby_material HM
+		JOIN tbl_hobby H ON H.hobby_no = HM.hobby_no
+		JOIN tbl_material M ON M.material_no = HM.material_no
+		WHERE HM.material_no = #{material_no} AND H.is_del = 'N'
+		ORDER BY H.reg_date DESC
+	 </select>
+	 
+	 <!-- 좋아요순  -->
+	 <select id="selectLike" resultType="HobbyVo">
+	 	SELECT H.*, M.*
+		FROM tbl_hobby_material HM
+		JOIN tbl_hobby H ON H.hobby_no = HM.hobby_no
+		JOIN tbl_material M ON M.material_no = HM.material_no
+		WHERE HM.material_no = #{material_no} AND H.is_del = 'N'
+		ORDER BY H.like_cnt DESC
+	 </select>
+	 
+	  <!-- 조회수순  -->
+	 <select id="selectView" resultType="HobbyVo">
+	 	SELECT H.*, M.*
+		FROM tbl_hobby_material HM
+		JOIN tbl_hobby H ON H.hobby_no = HM.hobby_no
+		JOIN tbl_material M ON M.material_no = HM.material_no
+		WHERE HM.material_no = #{material_no} AND H.is_del = 'N'
+		ORDER BY H.view_cnt DESC
+	 </select>
+	 	
+	   <!-- 시간순 (카테고리, 적게걸리는 순)  -->
+	 <select id="selectTime" resultType="HobbyVo">
+	 	SELECT H.*, M.*, T.*
+		FROM tbl_hobby_material HM
+		JOIN tbl_hobby H ON H.hobby_no = HM.hobby_no
+		JOIN tbl_material M ON M.material_no = HM.material_no
+		JOIN tbl_time_cate T on T.time_no = H.time_no
+		WHERE HM.material_no = #{material_no} AND H.is_del = 'N'
+		ORDER BY H.time_no ASC
+	 </select>
+	 
+	  <!-- 난이도순 (카테고리, 적게걸리는 순)  -->
+	 <select id="selectLevel" resultType="HobbyVo">
+	 	SELECT H.*, M.*, L.*
+		FROM tbl_hobby_material HM
+		JOIN tbl_hobby H ON H.hobby_no = HM.hobby_no
+		JOIN tbl_material M ON M.material_no = HM.material_no
+		JOIN tbl_level_cate L on L.level_no = H.level_no
+		WHERE HM.material_no = #{material_no} AND H.is_del = 'N'
+		ORDER BY H.level_no ASC
+	 </select>
+	 
+	 <!-- 비용순 (카테고리, 적게걸리는 순)  -->
+	 <select id="selectCost" resultType="HobbyVo"> 
+	 	SELECT H.*, M.*, C.*
+		FROM tbl_hobby_material HM
+		JOIN tbl_hobby H ON H.hobby_no = HM.hobby_no
+		JOIN tbl_material M ON M.material_no = HM.material_no
+		JOIN tbl_cost_cate C on L.cost_no = H.cost_no
+		WHERE HM.material_no = #{material_no} AND H.is_del = 'N'
+		ORDER BY H.cost_no ASC
+	 </select>
  </mapper>
