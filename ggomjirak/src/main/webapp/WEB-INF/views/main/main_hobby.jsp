@@ -110,13 +110,30 @@ $(document).ready(function() {
 							<li class="nav-item">
 								<h4 class="green_color">취미</h4>
 							</li>
-							<li class="nav-item dropdown"><select
+							<li class="nav-item dropdown">
+							
+							<select
 								class="form-control btn btn-outline-light green_background shadow bg-body rounded"
 								style="margin-right: 10px" aria-label="Default select example">
+								
 									<option value="popular" selected>인기순</option>
 									<option value="new">최신순</option>
 									<option value="month">이번달</option>
-							</select></li>
+							</select>
+							
+							</li>
+							<li>
+							<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
+							</li>
 							<li class="nav-item dropdown">
 								<button type="button"
 									class="btn dropdown-toggle btn-outline-light green_background"
@@ -131,11 +148,11 @@ $(document).ready(function() {
 						</ul>
 
 						<div style="overflow: hidden;">
-							<c:forEach var="popular" items="${cateHobby}">
+							<c:forEach var="cate" items="${cateHobby}">
 								<div class="col-lg-3 col-md-4 col-sm-6" style="float: left;">
 									<div class="featured__item">
 										<div class="featured__item__pic set-bg"
-											data-setbg="/resources/img/featured/feature-2.jpg">
+											data-setbg="/displayImage?filePath=${cate.main_img}">
 											<ul class="featured__item__pic__hover">
 												<li><a href="#"><i class="fa fa-heart"></i></a></li>
 												<li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -144,9 +161,9 @@ $(document).ready(function() {
 										</div>
 										<div class="featured__item__text">
 											<h6>
-												<a href="#">${popular.hobby_title}</a>
+												<a href="/hobby/content/${cate.hobby_no}">${cate.hobby_title}</a>
 											</h6>
-											<h5>${popular.user_nick}</h5>
+											<h5><a href="/workroom/main/${cate.user_id}">${cate.user_nick}</a></h5>
 										</div>
 									</div>
 								</div>
@@ -190,5 +207,6 @@ $(document).ready(function() {
 
 
 
-
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <%@ include file="../include/footer.jsp" %>

@@ -67,15 +67,24 @@
 						<span class="sr-only">Next</span></a>
 				</div>
 				
+				
+				<c:if test="${user_id != null} && ${cateStrVo.cate_no1 != '선택안함'} && ${cateStrVo.cate_no2 != '선택안함'} && ${cateStrVo.cate_no3 != '선택안함'}">
 				<!-- 추천취미 -->
 				<div class="row" style="margin-top: 50px">
 					<div class="col-md-2">
 						<div style="margin-right: 40px">
 						<h5>추천취미</h5>
 						<p>
-						${cateStrVo.cate_no1} <br/>
-						${cateStrVo.cate_no2} <br/>
-						${cateStrVo.cate_no3} <br/>
+						
+						<c:if test="${cateStrVo.cate_no1 != '선택안함'}">
+							${cateStrVo.cate_no1} <br/>
+						</c:if>
+						<c:if test="${cateStrVo.cate_no2 != '선택안함'}">
+							${cateStrVo.cate_no2} <br/>
+						</c:if>
+						<c:if test="${cateStrVo.cate_no3 != '선택안함'}">
+							${cateStrVo.cate_no3} <br/>
+						</c:if>
 						</p>
 						<button type="button" class="btn green_background white_color">더보기</button>
 						</div>
@@ -91,7 +100,7 @@
 
 								<c:forEach var="suggestHobby" items="${suggestHobby}">
 								<div class="featured__item">
-									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-1.jpg"
+									<div class="featured__item__pic set-bg hobbyImg" data-setbg="/displayImage?filePath=${suggestHobby.main_img}"
 										style="margin-left: 10px; margin-right: 10px">
 										<ul class="featured__item__pic__hover">
 											<li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -100,8 +109,8 @@
 										</ul>
 									</div>
 										<div class="featured__item__text">
-										<h6><a href="#">${suggestHobby.hobby_title}</a></h6>
-										<h5>${suggestHobby.user_nick}</h5>
+										<h6><a href="/hobby/content/${suggestHobby.hobby_no}">${suggestHobby.hobby_title}</a></h6>
+										<h5><a href="/workroom/main/${suggestHobby.user_id}">${suggestHobby.user_nick}</a></h5>
 									</div>
 								</div>
 								</c:forEach>
@@ -114,6 +123,7 @@
 					</div>
 				</div>
 				<!-- 추천취미 끝 -->
+				</c:if>
 				
 				<!-- 인기취미 -->
 				<!-- Categories Section Begin -->
@@ -131,7 +141,7 @@
 
 								<c:forEach var="popular" items="${popularHobby}">
 								<div class="featured__item">
-									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-1.jpg"
+									<div class="featured__item__pic set-bg" data-setbg="/displayImage?filePath=${popular.main_img}"
 										style="margin-left: 10px; margin-right: 10px">
 										<ul class="featured__item__pic__hover">
 											<li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -140,8 +150,8 @@
 										</ul>
 									</div>
 										<div class="featured__item__text">
-										<h6><a href="#">${popular.hobby_title}</a></h6>
-										<h5>${popular.user_nick}</h5>
+										<h6><a href="/hobby/content/${popular.hobby_no}">${popular.hobby_title}</a></h6>
+										<h5><a href="/workroom/main/${popular.user_id}">${popular.user_nick}</a></h5>
 									</div>
 								</div>
 								</c:forEach>
@@ -182,7 +192,7 @@
                     <div class="featured__item">
                     
                         <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/resources/img/featured/feature-1.jpg" class="rounded-circle" alt="..."/>
+                        <img src="/mypage/displayImage?fileName=${member1.user_img}" class="rounded-circle" alt="..."/>
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -201,7 +211,7 @@
                     <div class="featured__item">
                     
                         <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/resources/img/featured/feature-1.jpg" class="rounded-circle" alt="..."/>
+                        <img src="/mypage/displayImage?fileName=${member2.user_img}" class="rounded-circle" alt="..."/>
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -220,7 +230,7 @@
                     <div class="featured__item">
                     
                         <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/resources/img/featured/feature-1.jpg" class="rounded-circle" alt="..."/>
+                        <img src="/mypage/displayImage?fileName=${member3.user_img}" class="rounded-circle" alt="..."/>
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -239,7 +249,7 @@
                     <div class="featured__item">
                     
                         <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/resources/img/featured/feature-1.jpg" class="rounded-circle" alt="..."/>
+                        <img src="/mypage/displayImage?fileName=${member4.user_img}" class="rounded-circle" alt="..."/>
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -344,7 +354,7 @@
 
 								<c:forEach var="month" items="${monthHobby}">
 								<div class="featured__item">
-									<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-1.jpg"
+									<div class="featured__item__pic set-bg" data-setbg="/displayImage?filePath=${month.main_img}"
 										style="margin-left: 10px; margin-right: 10px">
 										<ul class="featured__item__pic__hover">
 											<li><a href="#"><i class="fa fa-heart"></i></a></li>
@@ -353,8 +363,8 @@
 										</ul>
 									</div>
 										<div class="featured__item__text">
-										<h6><a href="#">${month.hobby_title}</a></h6>
-										<h5>${month.user_nick}</h5>
+										<h6><a href="/hobby/content/${month.hobby_no}">${month.hobby_title}</a></h6>
+										<h5><a href="/workroom/main/${month.user_id}">${month.user_nick}</a></h5>
 									</div>
 								</div>
 								</c:forEach>
