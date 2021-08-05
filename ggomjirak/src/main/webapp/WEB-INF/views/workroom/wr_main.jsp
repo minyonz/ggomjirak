@@ -25,7 +25,7 @@
   background: #fff;
   border-radius: 2px;
   display: inline-block;
-  height: 300px;
+  height: 320px;
   margin: 1rem;
   position: relative;
   width: 180px;
@@ -120,7 +120,7 @@
 						</div>
 						<div class="col-md-2" style="height:120px;">
 							<c:if test="${storyVo.st_img != null}">
-								<img src="/story_img/displayImage?filePath=${storyVo.st_img}" 
+								<img src="/img/displayImage?filePath=${storyVo.st_img}" 
 								style="width: 100%; height: 100%; object-fit:cover;">
 							</c:if>
 						</div>
@@ -134,6 +134,7 @@
 	<div class="checkout__order" id="mbm">
 		<div class="workroom_box row" style="height: 39px;">
 			<h4>MadeByMe</h4>
+			<a href="/mbm/write">작성</a>
 			<a href="/workroom/mbm/${page_id}">더보기</a>
 		</div>
 		<hr>
@@ -184,12 +185,11 @@
 			</div>
 		</div>
 	</div>
-	<!-- 피드 -->
-	<div class="checkout__order" id="feed">
-		<div class="workroom_box">
+	<!-- 북마크 -->
+	<div class="checkout__order" id="bookmark">
+		<div class="workroom_box row" style="height: 39px; display:flex;">
 			<h4>북마크</h4>
 		</div>
-		<div class="workroom_box">
 			<hr>
 			<div class="row">
 			<c:choose>
@@ -197,18 +197,20 @@
 					<div class="categories__slider owl-carousel">
 					<c:forEach begin="0" end="8" var="likebmVo" items="${bmList}">
 						<div class="col-lg-3">
-							<div class="categories__item set-bg" 
+						<div class="card card-1">
+							<div class="categories__item set-bg" style="border-radius: 10px 10px 0px 0px;"
 								data-setbg="/displayImage?filePath=${likebmVo.main_img}">
 							</div>
 							<div class="product__item__text">
                            		<h6><a href="/hobby/content/${likebmVo.hobby_no}">${likebmVo.hobby_title}</a></h6>
 								<div class="blog__details__author__pic row" style="width: 100%; height: 100%; ">
 									<a href="/workroom/main/${likebmVo.user_id}" style="margin-left: auto; margin-right: auto;">
-									<img src="/resources/img/test/littleduck.png" style="height: 30px; width: 30px;" alt="">
+									<img src="/displayImage?filePath=${likebmVo.user_img}" style="height: 30px; width: 30px;" alt="">
 									<span class="st_c_content" style="font-size:14px; margin-top: 5px; margin-left: 5px;">${likebmVo.user_nick}</span>
 									</a>
 								</div>
                          	</div>
+                         </div>
 						</div>
 					</c:forEach>
 					</div>
@@ -224,19 +226,18 @@
                            		<h6><a href="/hobby/content/${likebmVo.hobby_no}">${likebmVo.hobby_title}</a></h6>
 								<div class="blog__details__author__pic row" style="width: 100%; height: 100%; ">
 									<a href="/workroom/main/${likebmVo.user_id}" style="margin-left: auto; margin-right: auto;">
-									<img src="/resources/img/test/littleduck.png" style="height: 30px; width: 30px;" alt="">
+									<img src="/displayImage?filePath=${likebmVo.user_img}" style="height: 30px; width: 30px;" alt="">
 									<span class="st_c_content" style="font-size:14px; margin-top: 5px; margin-left: 5px;">${likebmVo.user_nick}</span>
 									</a>
 								</div>
                          	</div>
-                         	</div>
+                         </div>
 						</div>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 				
 			</div>
-		</div>
 	</div>
 </div>
 </div>

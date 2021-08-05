@@ -172,7 +172,7 @@ $(document).ready(function() {
 									<div class="col-md-8">
 										<div class="blog__details__author">
 											<div class="blog__details__author__pic">
-												<a href="#"><img src="/resources/img/test/littleduck.png" alt=""></a>
+												<a href="#"><img src="/displayImage?filePath=${followVo.user_img}" alt=""></a>
 											</div>
 											<div class="blog__details__author__text">
 												<span data-id="${followVo.following}">${followVo.user_nick}</span>
@@ -200,13 +200,13 @@ $(document).ready(function() {
 								<div class="row" style="margin-top: 15px; margin-bottom:15px">
 									<div class="col-md-7">
 										<div>
-											<a href="/hobby/content/${likeBmVo.hobby_no}">${likeBmVo.hobby_title}</a> 
+											<a href="/hobby/content/${likeBmVo.hobby_no}" style="font-weight: bold">[${likeBmVo.hobby_title}]</a> 
 										</div>
 									</div>
 									<div class="col-md-5">
 										<div class="blog__details__author">
 											<div class="blog__details__author__pic">
-												<a href="#"><img src="/resources/img/test/littleduck.png" alt=""></a>
+												<a href="#"><img src="/displayImage?filePath=${likeBmVo.user_img}" alt=""></a>
 											</div>
 											<div class="blog__details__author__text">
 												<span>${likeBmVo.user_nick}</span>

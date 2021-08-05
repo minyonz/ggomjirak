@@ -132,7 +132,9 @@ $(document).ready(function() {
 	    }
 	  }
 	});
+
 });
+
 </script>
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -487,4 +489,4 @@ $(document).ready(function() {
 </div>
 <!-- /.container-fluid -->
 
-<%@ include file="manager_include/manager_footer.jsp" %>  
+<%@ include file="manager_include/manager_footer.jsp" %>        

@@ -10,7 +10,15 @@
 		select * from(select rownum rnum, a.* from 
 		    (select * from tbl_hobby
 		    where user_id = #{user_id} 
-		    order by hobby_no desc)a)
+		    <choose>
+		    	<when test="qCheck == 0">
+		    		order by like_cnt desc, view_cnt desc
+		    	</when>
+		    	<when test="qCheck == 1">
+		    		order by hobby_no desc
+		    	</when>
+		    </choose>
+		    )a)
 		where rnum between #{startRow} and #{endRow}
 	</select>
 	

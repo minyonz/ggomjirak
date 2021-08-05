@@ -49,6 +49,7 @@
 .top {
 	margin-top: 25px;
 }
+
 </style>
 <script>
 $(document).ready(function() {
@@ -101,6 +102,7 @@ $(document).ready(function() {
 		 });
 		
 	});
+
 	$("#frmSearch").submit(function() {
 		if ($("#keyword").val() == null) {
 			return false;
