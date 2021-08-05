@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../include/header.jsp" %>
 <!-- 이벤트 -->
-<div class="row">
+<div class="row top">
 	<div class="col-md-12">
 		<div class="row">
 			<div class="col-md-2"></div>
