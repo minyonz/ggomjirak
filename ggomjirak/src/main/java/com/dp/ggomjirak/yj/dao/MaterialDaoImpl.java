@@ -19,12 +19,6 @@ public class MaterialDaoImpl implements MaterialDao {
 	@Inject
 	SqlSession sqlSession;
 	
-	@Override
-	public void insertMaterial2(List<MaterialVo> materialVos) {
-		sqlSession.insert(NAMESPACE + "insertMaterial2", materialVos);
-//		System.out.println(count + "행 삽입됨");
-	}
-	
 
 	@Override
 	public MaterialVo getMaterialVo(String material_name) {
@@ -51,35 +45,18 @@ public class MaterialDaoImpl implements MaterialDao {
 		return sqlSession.selectList(NAMESPACE + "selectHMList", materialSearch);
 	}
 //
-//	@Override
-//	public List<HobbyVo> selectNew(int material_no) {
-//		return sqlSession.selectList(NAMESPACE + "selectNew", material_no);
-//	}
-//
-//	@Override
-//	public List<HobbyVo> selectLike(int material_no) {
-//		return sqlSession.selectList(NAMESPACE + "selectLike", material_no);
-//	}
-//
-//	@Override
-//	public List<HobbyVo> selectView(int material_no) {
-//		return sqlSession.selectList(NAMESPACE + "selectView", material_no);
-//	}
-//
-//	@Override
-//	public List<HobbyVo> selectTime(int material_no) {
-//		return sqlSession.selectList(NAMESPACE + "selectTime", material_no);
-//	}
-//
-//	@Override
-//	public List<HobbyVo> selectLevel(int material_no) {
-//		return sqlSession.selectList(NAMESPACE + "selectLevel", material_no);
-//	}
-//
-//	@Override
-//	public List<HobbyVo> selectCost(int material_no) {
-//		return sqlSession.selectList(NAMESPACE + "selectCost", material_no);
-//	}
+
+
+	@Override
+	public MaterialVo getMaterialVoByNo(int material_no) {
+		return sqlSession.selectOne(NAMESPACE + "getMaterialVoByNo", material_no);
+	}
+
+
+	@Override
+	public int getCountHMList(MaterialSearch materialSearch) {
+		return sqlSession.selectOne(NAMESPACE + "getCountHMList", materialSearch);
+	}
 
 
 

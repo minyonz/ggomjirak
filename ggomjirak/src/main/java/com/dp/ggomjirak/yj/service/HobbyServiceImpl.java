@@ -89,9 +89,11 @@ public class HobbyServiceImpl implements HobbyService {
 	
 	@Override // isUpdate 수정폼에 뿌릴데이터인지아닌지 여부 true이면 수정용(사용자가 입력한 원본그대로 줘야함)
 	public HobbyVo selectHobbyArticle(int hobby_no, boolean isUpdate) {
+		if (!isUpdate) {
+			//조회수 증가
+			hobbyDao.updateViewCnt(hobby_no);
+		}
 		HobbyVo hobbyVo = hobbyDao.selectHobby(hobby_no);
-//		SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" , Locale.KOREA );
-//		String reg_date = sdf.format( new Date(hobbyVo.getReg_date().getTime()));
 		// 준비물
 		List<HobbyMaterialVo> hobbyMaterials = hobbyDao.selectHobbyMaterialList(hobby_no);
 		hobbyVo.setHobbyMaterials(hobbyMaterials);
@@ -122,8 +124,6 @@ public class HobbyServiceImpl implements HobbyService {
 			List<CompleteImgVo> completeImgs = hobbyDao.selectCompleteImgListNotNull(hobby_no);
 			hobbyVo.setCompleteImgs(completeImgs);
 			
-			//조회수 증가
-			hobbyDao.updateViewCnt(hobby_no);
 		} else {
 			List<CompleteImgVo> completeImgs = hobbyDao.selectCompleteImgListAll(hobby_no);
 			hobbyVo.setCompleteImgs(completeImgs);

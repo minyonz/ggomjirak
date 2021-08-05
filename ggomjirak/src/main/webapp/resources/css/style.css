@@ -1357,8 +1357,8 @@ ol {
 }
 
 .product__item__pic__hover li:hover a {
-	background: #7fad39;
-	border-color: #7fad39;
+	background: #1f5e43;
+	border-color: #1f5e43;
 }
 
 .product__item__pic__hover li:hover a i {
@@ -1596,9 +1596,10 @@ ol {
 	margin-right: 0;
 }
 
+/* 윤지수정 (사진hover하트 리트윗 색변경) */
 .product__item__pic__hover li:hover a {
-	background: #7fad39;
-	border-color: #7fad39;
+	background: #1f5e43;
+	border-color: #1f5e43;
 }
 
 .product__item__pic__hover li:hover a i {

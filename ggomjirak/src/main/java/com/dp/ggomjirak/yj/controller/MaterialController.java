@@ -22,6 +22,7 @@ import com.dp.ggomjirak.vo.CostVo;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.LevelVo;
 import com.dp.ggomjirak.vo.MaterialSearch;
+import com.dp.ggomjirak.vo.MaterialVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.TimeVo;
 import com.dp.ggomjirak.yj.service.CateService;
@@ -96,25 +97,25 @@ public class MaterialController {
 //	}
 	
 	@RequestMapping(value="search")
-	public String search(Model model, HttpSession session, MaterialSearch materialSearch) throws Exception {
+	public String search(Model model, HttpSession session, @ModelAttribute MaterialSearch materialSearch) throws Exception {
 		MemberVo loginVo = (MemberVo)session.getAttribute("loginVo");
 		if (loginVo != null) {
 			model.addAttribute("loginVo", loginVo);
 			model.addAttribute("user_id", loginVo.getUser_id());
 		}
+		logger.info("controller");
 		System.out.println(materialSearch);
 		List<HobbyVo> hmList = materialService.selectHMList(materialSearch);
-		logger.info("search");
-		System.out.println(hmList);
 		model.addAttribute("hmList", hmList);
+		
 		List<CateVo> cates = cateService.getCateList();
 		List<TimeVo> times = cateService.getTimeList();
 		List<LevelVo> levels = cateService.getLevelList();
 		List<CostVo> costs = cateService.getCostList();
-		model.addAttribute("cates", JSONArray.fromObject(cates));
-		model.addAttribute("times", JSONArray.fromObject(times));
-		model.addAttribute("levels", JSONArray.fromObject(levels));
-		model.addAttribute("costs", JSONArray.fromObject(costs));
+		model.addAttribute("cates", cates);
+		model.addAttribute("times", times);
+		model.addAttribute("levels", levels);
+		model.addAttribute("costs", costs);
 		return "hobby/material_list";
 	}
 }
