@@ -5,7 +5,7 @@
 <script>
 $(document).ready(function() {
 	$("#btnList").click(function() {
-		location.href = "/manager/managerMemberList?page=${pagingDto.page}&perPage=${pagingDto.perPage}&searchType=${pagingDto.searchType}&keyword=${pagingDto.keyword}";	
+		location.href = "${pagingDto.pCheck}?page=${pagingDto.page}&perPage=${pagingDto.perPage}&searchType=${pagingDto.searchType}&keyword=${pagingDto.keyword}";	
 	});
 	
 

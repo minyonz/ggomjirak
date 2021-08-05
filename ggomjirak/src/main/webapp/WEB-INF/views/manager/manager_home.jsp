@@ -133,9 +133,28 @@ $(document).ready(function() {
 	  }
 	});
 
+	$(".a_id").click(function(e) {
+		// 페이지 이동을 막아놓음
+		e.preventDefault();
+		
+		var user_id = $(this).attr("data-id");
+		var pCheck = $("#frmPaging").attr("action");
+		$("#frmPaging > input[name=pCheck]").val(pCheck);
+		$("#frmPaging > input[name=user_id]").val(user_id);
+		$("#frmPaging").attr("action", "/manager/managerMemberContent");
+		$("#frmPaging").submit();
+	});
 });
-
 </script>
+<form id="frmPaging" action="/manager/managerHome" method="get">
+<input type="hidden" name="page" value="${pagingDto.page}"/>
+<input type="hidden" name="perPage" value="${pagingDto.perPage}"/>
+<input type="hidden" name="endRow" value="${pagingDto.endRow}"/>
+<input type="hidden" name="searchType" value="${pagingDto.searchType}"/>
+<input type="hidden" name="keyword" value="${pagingDto.keyword}"/>
+<input type="hidden" name="user_id" value="${pagingDto.user_id}"/>
+<input type="hidden" name="pCheck" value="${pagingDto.pCheck}"/>
+</form>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -356,7 +375,7 @@ $(document).ready(function() {
 					  <c:forEach var="member" items="${popularMemberList}">
 					    <tr>
 					      <th>${member.rnum}</th>
-					      <th><a href="/manager/managerMemberContent?user_id=${member.user_id}">${member.user_id}</a></th>
+					      <th><a class="a_id" data-id="${member.user_id}" href="#">${member.user_id}</a></th>
 					      <th>${member.user_nick}</th>
 					      <th>${member.name}</th>
 					      <th>${member.follower_cnt}</th>

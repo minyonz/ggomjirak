@@ -100,8 +100,8 @@ $(document).ready(function() {
 		    <div class="col-lg-2 col-md-3 mb-3">	    		  
 				  <button class="form-control btn btn-success green_background dropdown-toggle" type="button"
 						id="btnSearchType" data-toggle="dropdown">
-							<c:if test='${pagingDto.searchType == null}'>옵션선택</c:if>
-							<c:if test='${pagingDto.searchType == ""}'>옵션선택</c:if>
+							<c:if test='${pagingDto.searchType == null}'>옵션 선택</c:if>
+							<c:if test='${pagingDto.searchType == ""}'>옵션 선택</c:if>
 							<c:if test='${pagingDto.searchType == "t"}'>제목</c:if>
 							<c:if test='${pagingDto.searchType == "u"}'>작성자</c:if>
 							<c:if test='${pagingDto.searchType == "tu"}'>제목 + 작성자</c:if>
