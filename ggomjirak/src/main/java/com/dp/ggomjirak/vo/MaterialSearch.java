@@ -25,7 +25,7 @@ public class MaterialSearch {
 	private int totalPage;
 	
 	private int perPage = 9; // 한페이지에 보여줄 게시글 개수 
-	private final int PAGE_BLOCK = 3; // 1 2 3 4 5 6 7.. 10 
+	private final int PAGE_BLOCK = 5; // 1 2 3 4 5 6 7.. 10 
 	
 	public MaterialSearch() {
 		super();

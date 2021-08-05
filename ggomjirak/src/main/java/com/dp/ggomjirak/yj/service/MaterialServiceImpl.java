@@ -25,14 +25,13 @@ public class MaterialServiceImpl implements MaterialService {
 	@Transactional
 	@Override
 	public List<HobbyVo> selectHMList(MaterialSearch materialSearch) {
-		List<HobbyVo> HMList = materialDao.selectHMList(materialSearch);
-//		int count = materialDao.getCountHMList(materialSearch); // m_no에 해당하는 준비물들 총개수 
-		materialSearch.setCount(HMList.size()); // 페이징관련된 필드 세팅 
+		int count = materialDao.getCountHMList(materialSearch); // m_no에 해당하는 준비물들 총개수 
+		materialSearch.setCount(count); // 페이징관련된 필드 세팅 
 		MaterialVo materialVo = materialDao.getMaterialVoByNo(materialSearch.getM_no());
 		materialSearch.setM_name(materialVo.getMaterial_name()); // ms에 준비물이름 세팅
 		logger.info("service");
 		System.out.println(materialSearch);
-		return HMList;
+		return materialDao.selectHMList(materialSearch);
 	}
 
 }

@@ -57,7 +57,6 @@ a {
 .category {
 	text-decoration: none;
 	color: black;
-	line-height: 54px;
 }
 .category:hover {
 	text-decoration: none;
@@ -94,34 +93,31 @@ a {
     transition: all, 0.3s;
 }
 
-.info_cate_area table th span {
-    color: #74b243;
-    display: block;
-    font-weight: 500;
-    margin: 0 5px 0 0;
-    text-align: center;
-    padding-top: 6px;
-    vertical-align: middle;
-    font-size: 15px;
-    height: 41px;
-    width: 100%;
-    padding-top: 12px;
-}
 
-.info_cate_area table th {
-    text-align: center;
-    vertical-align: top;
+.info_cate_area table .cate_title {
+    text-align: center; 
+    /* vertical-align: top; */
     border-right: 1px solid #e6e7e8;
     border-bottom: 1px solid #e6e7e8;
+    color: #1f5e43;
+    display: block;
+    font-weight: 800;
+    margin: 0 5px 0 0;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 16px;
+    /* width: 100%; */
+    padding: 10px;
 }
 
 .info_cate_area table td {
     border-bottom: 1px solid #e6e7e8;
+    height:50px;
 }
 
 .info_cate.row3 {
     background: #fff;
-    padding: 16px 15px 8px 12px;
+    padding: 13px 10px 8px 12px;
     vertical-align: top;
     margin-top: 0;
     border-right: none;
@@ -133,25 +129,30 @@ a {
     font-size: 15px;
     padding: 8px 0;
     line-height: 1;
-    height: 41px;
 }
-
-.info_cate .cate_list a.active {
-    color: #fff;
-    background: #74b243;
-    margin: 0;
-    border-radius: 16px;
-}
-.info_cate .cate_list a {
+.cate_list a {
     padding: 3px 8px 4px;
     color: #666;
     vertical-align: middle;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1;
-    font-weight: 300;
+    font-weight: 550;
 }
-.info_cate .cate_list a:hover {
+.cate_list a.active {
+    color: #fff;
+    background: #1f5e43;
+    margin: 0;
+    border-radius: 16px;
+}
+
+.cate_list a:hover {
     color: #1f5e43;
+    text-decoration: none;
+}
+
+.m_name {
+    font-size: 30px;
+    font-weight: 800;
 }
 </style>
 </head>
@@ -182,55 +183,68 @@ a {
 		<div class="body">
 		<div class="col-lg-12">
            <div class="filter__item">
-           	<div class="row">
-				<div class="col-lg-12">
-					<div class="filter__found">
-                          <h6>${ms.m_name}<span> ${ms.count}</span></h6>
-                      </div>
-                     <div id="divCate" style="display: block;" class="info_cate_area">
-   						 <table>
-      						  <tbody>
-      							  <tr>
-          							  <th style="padding-top: 10px;">
-						                <span>시간</span>
-						                <span>비용</span>
-						                <span>난이도</span>
-      							      </th>
-          							  <td>
-               							 <div class="info_cate row3">
-                						    <div class="cate_list">
-                								<a href="search?${m_no}&time=0${cost}${level}${sort}" 
-                									class="${ms.time == 0 ? 'active' : '' }">전체</a>
-                								<c:forEach items="${times}" var="timeVo">
-                									<a href="search?${m_no}&time=${timeVo.time_no}${cost}${level}${sort}" 
-                										class="${timeVo.time_no == ms.time ? 'active' : '' }">${timeVo.time_name}</a>
-                								</c:forEach>
-                							</div>
-                						    <div class="cate_list">
-                								<a href="search?${m_no}${time}&cost=0${level}${sort}" 
-                									class="${ms.cost == 0 ? 'active' : '' }">전체</a>
-                								<c:forEach items="${costs}" var="costVo">
-                									<a href="search?${m_no}${time}&cost=${costVo.cost_no}${level}${sort}" 
-                										class="${costVo.cost_no == ms.cost ? 'active' : '' }">${costVo.cost_name}</a>
-                								</c:forEach>
-                							</div>
-                						    <div class="cate_list">
-                								<a href="search?${m_no}${time}${cost}&level=0${sort}" 
-                									class="${ms.level == 0 ? 'active' : '' }">전체</a>
-                								<c:forEach items="${levels}" var="levelVo">
-                									<a href="search?${m_no}${time}${cost}&level=${levelVo.level_no}${sort}" 
-                										class="${levelVo.level_no == ms.level ? 'active' : '' }">${levelVo.level_name}</a>
-                								</c:forEach>
-                							</div>
-                           				 </div>
-          						 	 </td>
-        							</tr>
-       						 </tbody>
-   						 </table>
+           		<div class="row">
+					<div class="col-lg-12">
+                    	 <div id="divCate" style="display: block;" class="info_cate_area">
+	   						 <table>
+	      						  <tbody>
+	      						  	<tr>
+	      						  		<td class="cate_title" style="padding-top: 10px;">
+							                <span>시간</span>
+	      							     </td>
+	      						  		<td>
+	      						  			<div class="cate_list">
+	               								<a href="search?${m_no}&time=0${cost}${level}${sort}" 
+	               									class="${ms.time == 0 ? 'active' : '' }">전체</a>
+	               								<c:forEach items="${times}" var="timeVo">
+	               									<a href="search?${m_no}&time=${timeVo.time_no}${cost}${level}${sort}" 
+	               										class="${timeVo.time_no == ms.time ? 'active' : '' }">${timeVo.time_name}</a>
+	               								</c:forEach>
+	                						</div>
+	      						  		</td>
+	      						  	</tr>
+	      						  	<tr>
+	      						  		<td class="cate_title" style="padding-top: 10px;">
+							                <span>비용</span>
+	      							     </td>
+	      						  		<td>
+	      						  			<div class="cate_list">
+	               								<a href="search?${m_no}${time}&cost=0${level}${sort}" 
+	               									class="${ms.cost == 0 ? 'active' : '' }">전체</a>
+	               								<c:forEach items="${costs}" var="costVo">
+	               									<a href="search?${m_no}${time}&cost=${costVo.cost_no}${level}${sort}" 
+	               										class="${costVo.cost_no == ms.cost ? 'active' : '' }">${costVo.cost_name}</a>
+	               								</c:forEach>
+	               							</div>
+	      						  		</td>
+	      						  	</tr>
+	      						  	<tr>
+	      						  		<td class="cate_title" style="padding-top: 10px;">
+							                <span>난이도</span>
+	      							     </td>
+	      						  		<td>
+	      						  			<div class="cate_list">
+	               								<a href="search?${m_no}${time}${cost}&level=0${sort}" 
+	               									class="${ms.level == 0 ? 'active' : '' }">전체</a>
+	               								<c:forEach items="${levels}" var="levelVo">
+	               									<a href="search?${m_no}${time}${cost}&level=${levelVo.level_no}${sort}" 
+	               										class="${levelVo.level_no == ms.level ? 'active' : '' }">${levelVo.level_name}</a>
+	               								</c:forEach>
+	               							</div>
+	      						  		</td>
+	      						  	</tr>
+	       						 </tbody>
+	   						 </table>
+							</div>
+						</div>
 					</div>
-					<div class="">	
-					${ms }
-						<div style="float:right">
+           		 </div>
+            	<div class="row" style="margin-bottom: 20px;">	
+<%-- 					${ms } --%>
+					  <div class="search_found" style="float:left;">
+                          <span class="m_name">${ms.m_name}</span> <span>을 쓰는</span> <span class="m_cnt">${ms.count}</span> <span>개의 취미가 있습니다.</span>
+                      </div>
+						<div style="margin-left:auto;">
 							<a class="category sort" id="allSort" ${ms.sort == 'all' ? 'style="color: #1f5e43;"' : '' }
 								href="search?${m_no}${time}${cost}${level}&sort=all">전체</a> <span> |</span> 
 							<a class="category sort" id="newSort" ${ms.sort == 'new' ? 'style="color: #1f5e43;"' : '' }
@@ -243,10 +257,6 @@ a {
 								href="search?${m_no}${time}${cost}${level}&sort=cmt">댓글순</a> 
 						</div>
 					</div>
-				</div>
-			</div>
-            </div>
-            </div>
             <div class="row">
             	<c:forEach items="${hmList}" var="hobbyVo">
 	                <div class="col-lg-4 col-md-6 col-sm-6">
