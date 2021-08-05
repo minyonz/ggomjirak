@@ -1164,14 +1164,11 @@ ol {
 	height: 1px;
 	width: 5px;
 	background: #dd2222;
-	content: "";
 }
 
 .price-range-wrap .range-slider .price-input input {
 	font-size: 16px;
-	color: #dd2222;
 	font-weight: 700;
-	max-width: 20%;
 	border: none;
 	display: inline-block;
 }
@@ -1199,7 +1196,7 @@ ol {
 }
 
 .price-range-wrap .price-range .ui-slider-range {
-	background: #dd2222;
+	background: #1f5e43;
 	border-radius: 0;
 }
 
