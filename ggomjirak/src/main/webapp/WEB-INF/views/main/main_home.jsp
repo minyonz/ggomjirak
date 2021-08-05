@@ -86,7 +86,7 @@
 							${cateStrVo.cate_no3} <br/>
 						</c:if>
 						</p>
-						<button type="button" class="btn green_background white_color">더보기</button>
+						
 						</div>
 						
 					</div>
