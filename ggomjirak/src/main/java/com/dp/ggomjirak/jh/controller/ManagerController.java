@@ -51,14 +51,11 @@ public class ManagerController {
 		model.addAttribute("askCount", askCount);
 		model.addAttribute("eventCount", eventCount);
 		model.addAttribute("gradeList", JSONArray.fromObject(gradeList));
-<<<<<<< HEAD
-=======
 		if (session.getAttribute("loginVo") != null) {
 			MemberVo lo_memberVo = (MemberVo)session.getAttribute("loginVo");
 			String lo_user_id = lo_memberVo.getUser_id();
 			model.addAttribute("lo_user_id", lo_user_id);
 		}
->>>>>>> 9b3e6829242fe90bb5f83b1936934dd27733dc94
 		return "manager/manager_home";
 	}
 	
@@ -104,11 +101,7 @@ public class ManagerController {
 	}
 	// 회원 상세페이지
 	@RequestMapping(value="/managerMemberContent", method=RequestMethod.GET)
-<<<<<<< HEAD
-	public String managerMemberContent(String user_id, Model model, PagingDto pagingDto) throws Exception {
-=======
 	public String managerMemberContent(String user_id, Model model, PagingDto pagingDto, HttpSession session) throws Exception {
->>>>>>> 9b3e6829242fe90bb5f83b1936934dd27733dc94
 		MemberVo memberVo = managerService.selectMemberById(user_id);
 		CateStrVo cateVo = managerService.selectCateStr(user_id);
 		String grade = managerService.selectGradeById(user_id);
@@ -120,14 +113,11 @@ public class ManagerController {
 		model.addAttribute("activVo", activVo);
 		model.addAttribute("intro", intro);
 		model.addAttribute("pagingDto", pagingDto);
-<<<<<<< HEAD
-=======
 		if (session.getAttribute("loginVo") != null) {
 			MemberVo lo_memberVo = (MemberVo)session.getAttribute("loginVo");
 			String lo_user_id = lo_memberVo.getUser_id();
 			model.addAttribute("lo_user_id", lo_user_id);
 		}
->>>>>>> 9b3e6829242fe90bb5f83b1936934dd27733dc94
 		return "manager/member/manager_member_content";
 	}
 	// 회원 상세 정보 수정

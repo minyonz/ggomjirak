@@ -49,14 +49,11 @@ public class EventController {
 	public String managerEventContent(int e_no, Model model, HttpSession session) throws Exception {
 		EventVo eventVo = eventService.selectByEno(e_no);
 		model.addAttribute("eventVo", eventVo);
-<<<<<<< HEAD
-=======
 		if (session.getAttribute("loginVo") != null) {
 			MemberVo lo_memberVo = (MemberVo)session.getAttribute("loginVo");
 			String lo_user_id = lo_memberVo.getUser_id();
 			model.addAttribute("lo_user_id", lo_user_id);
 		}
->>>>>>> 9b3e6829242fe90bb5f83b1936934dd27733dc94
 		return "manager/event/manager_event_content";
 	}
 	
@@ -86,14 +83,11 @@ public class EventController {
 	public String managerEventModify(int e_no, Model model, HttpSession session) throws Exception {
 		EventVo eventVo = eventService.selectByEno(e_no);
 		model.addAttribute("eventVo", eventVo);
-<<<<<<< HEAD
-=======
 		if (session.getAttribute("loginVo") != null) {
 			MemberVo lo_memberVo = (MemberVo)session.getAttribute("loginVo");
 			String lo_user_id = lo_memberVo.getUser_id();
 			model.addAttribute("lo_user_id", lo_user_id);
 		}
->>>>>>> 9b3e6829242fe90bb5f83b1936934dd27733dc94
 		return "manager/event/manager_event_modify";
 	}
 	
