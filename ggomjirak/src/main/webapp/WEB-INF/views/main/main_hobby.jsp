@@ -52,7 +52,7 @@ $(document).ready(function() {
 <input type="hidden" name="m_cate_no" value="${pagingDto.m_cate_no}"/>
 <input type="hidden" name="qCheck" value="${pagingDto.qCheck}"/>
 </form>
-<div class="row top">
+<div class="row m_top">
 	<div class="col-md-12">
 		<div class="row">
 			<div class="col-md-1 col-lg-2"></div>
@@ -122,9 +122,6 @@ $(document).ready(function() {
 					<div class="col-md-9 col-lg-10">
 
 						<ul class="nav nav-pills">
-							<li class="nav-item">
-								<h4 class="green_color">취미</h4>
-							</li>
 							<li>
 							<div class="dropdown">
 							  <button id="btnOption" class="form-control btn btn-outline-light green_background dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -155,8 +152,10 @@ $(document).ready(function() {
 								</ul>
 							</li>
 						</ul>
+						
+						<!-- 취미글 목록 -->
 
-						<div style="overflow: hidden;">
+						<div style="overflow: hidden;" class="m_top">
 							<c:forEach var="cate" items="${cateHobby}">
 								<div class="col-lg-3 col-md-4 col-sm-6" style="float: left;">
 									<div class="featured__item">
@@ -170,9 +169,9 @@ $(document).ready(function() {
 										</div>
 										<div class="featured__item__text">
 											<h6>
-												<a href="/hobby/content/${cate.hobby_no}">${cate.hobby_title}</a>
+												<a class="short" href="/hobby/content/${cate.hobby_no}">${cate.hobby_title}</a>
 											</h6>
-											<h5><a href="/workroom/main/${cate.user_id}">${cate.user_nick}</a></h5>
+											<h5><a class="short" href="/workroom/main/${cate.user_id}">${cate.user_nick}</a></h5>
 										</div>
 									</div>
 								</div>

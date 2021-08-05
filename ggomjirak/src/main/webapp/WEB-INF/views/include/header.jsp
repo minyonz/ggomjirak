@@ -46,8 +46,17 @@
 .orange_color {
 	color:  rgb(231, 112, 92);
 }
-.top {
+.m_top {
 	margin-top: 25px;
+}
+.m_bottom {
+	margin-bottom: 25px;
+}
+.short {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
 }
 
 </style>
@@ -179,41 +188,45 @@ $(document).ready(function() {
 										</svg>
 										</a></li>
 										<li class="nav-item dropdown">
+										
 										<div class="dropdown">
-										  <a class="btn nav-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-										   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+										<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
 											  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
 											</svg>
-										  </a>
-										  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><hr class="dropdown-divider"></li>
-										    <li><a class="dropdown-item" href="#">알림함</a></li>
-										  </ul>
-										</div>
+										</a>
+									    <div class="dropdown-menu">
+									      <a class="dropdown-item" href="/mypage/infoForm">마이페이지</a>
+										    <a class="dropdown-item" href="#">알림내용</a>
+										    <a class="dropdown-item" href="#">알림내용</a>
+										    <a class="dropdown-item" href="#">알림내용</a>
+										    <a class="dropdown-item" href="#">알림내용</a>
+										    <a class="dropdown-item" href="#">알림내용</a>
+										    <a class="dropdown-item" href="#">알림내용</a>
+										    <hr class="dropdown-divider">
+										    <a class="dropdown-item" href="#">알림함</a>
+									    </div>
+									    </div>
+										
 										</li>
 										
 										<li class="nav-item dropdown ml-md-auto">
+										
 										<div class="dropdown">
-										  <a class="btn nav-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-										   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+										<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+											<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
 													fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
 												<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
 											</svg>
-										  </a>
-										  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-										    <li><a class="dropdown-item" href="/mypage/infoForm">마이페이지</a></li>
-										    <li><a class="dropdown-item" href="#">쪽지함</a></li>
-										    <li><a class="dropdown-item" href="#">1:1문의</a></li>
-										    <li><hr class="dropdown-divider"></li>
-										    <li><a class="dropdown-item" href="/mypage/logout">로그아웃</a></li>
-										  </ul>
-										</div>
+										</a>
+									    <div class="dropdown-menu">
+									      <a class="dropdown-item" href="/mypage/infoForm">마이페이지</a>
+										    <a class="dropdown-item" href="/message/messageListReceive">쪽지함</a>
+										    <a class="dropdown-item" href="/cs_center/consultQs">1:1문의</a>
+										    <hr class="dropdown-divider">
+										    <a class="dropdown-item" href="/mypage/logout">로그아웃</a>
+									    </div>
+									    </div>
 										</li>
 										</c:if>
 									</ul>

@@ -179,9 +179,9 @@
 
             <!-- Sidebar Message -->
             <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="/resources/manager/img/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+                <img class="sidebar-card-illustration mb-2" src="/resources/img/logo06.png" alt="...">
+                <p class="text-center mb-2"><strong>꼼지락</strong> 홈페이지</p>
+                <a class="btn btn-success btn-sm" href="/main/mainHome" target="_blank">새창 열기</a>
             </div>
 
         </ul>
