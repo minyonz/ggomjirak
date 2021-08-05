@@ -13,6 +13,7 @@ CREATE TABLE tbl_hobby (
     cost_no NUMBER NOT NULL,
     view_cnt NUMBER DEFAULT 0 NOT NULL,
     like_cnt NUMBER DEFAULT 0 NOT NULL,
+    cmt_cnt NUMBER DEFAULT 0 NOT NULL,
     is_del VARCHAR2(1) DEFAULT 'N' NOT NULL CHECK(is_delete IN('N','Y')),
     reg_date TIMESTAMP DEFAULT sysdate NOT NULL,
     mod_date TIMESTAMP DEFAULT NULL,
@@ -74,3 +75,116 @@ CREATE TABLE tbl_complete_img (
     img_name varchar2(500),
     CONSTRAINT complete_img_fk FOREIGN KEY (hobby_no) REFERENCES tbl_hobby(hobby_no) ON DELETE CASCADE
 );
+
+--* 카테고리 부분
+CREATE TABLE tbl_hobby_cate (
+    cate_no NUMBER,
+    cate_name VARCHAR2(50) NOT NULL,
+    parent_cate_no NUMBER,
+    cate_level NUMBER(1) DEFAULT 1 NOT NULL,
+    CONSTRAINT hobby_cate_pk PRIMARY KEY (cate_no),
+    CONSTRAINT hobby_cate_fk FOREIGN KEY (parent_cate_no) REFERENCES tbl_hobby_cate(cate_no) ON DELETE CASCADE
+);
+
+commit;
+
+--1차분류 카테고리 삽입
+INSERT INTO tbl_hobby_cate 
+VALUES (1000, '그림', null, 1);
+INSERT INTO tbl_hobby_cate 
+VALUES (2000, '공예', null, 1);
+INSERT INTO tbl_hobby_cate 
+VALUES (3000, '베이킹', null, 1);
+INSERT INTO tbl_hobby_cate 
+VALUES (4000, '운동', null, 1);
+--2차 분류 카테고리 삽입
+INSERT INTO tbl_hobby_cate
+VALUES (1001, '유화', 1000, 2);
+INSERT INTO tbl_hobby_cate
+VALUES (1002, '아크릴', 1000, 2);
+INSERT INTO tbl_hobby_cate
+VALUES (2001, '실 공예', 2000, 2);
+INSERT INTO tbl_hobby_cate
+VALUES (2002, '바늘 공예', 2000, 2);
+INSERT INTO tbl_hobby_cate
+VALUES (2003, '레진 공예', 2000, 2);
+INSERT INTO tbl_hobby_cate
+VALUES (2004, '미니어처', 2000, 2);
+INSERT INTO tbl_hobby_cate
+VALUES (2005, '비즈 공예', 2000, 2);
+INSERT INTO tbl_hobby_cate 
+VALUES (3001, '케이크', 3000, 2);
+INSERT INTO tbl_hobby_cate 
+VALUES (3002, '빵', 3000, 2);
+INSERT INTO tbl_hobby_cate 
+VALUES (4001, '필라테스', 4000, 2);
+INSERT INTO tbl_hobby_cate 
+VALUES (4002, '요가', 4000, 2);
+INSERT INTO tbl_hobby_cate 
+VALUES (4003, '크로스핏', 4000, 2);
+
+
+--* 난이도 부분
+CREATE TABLE tbl_level_cate (
+    level_no NUMBER,
+    level_name VARCHAR2(50) NOT NULL,
+    CONSTRAINT level_cate_pk PRIMARY KEY (level_no)
+);
+INSERT INTO tbl_level_cate 
+VALUES (1, '아무나');
+INSERT INTO tbl_level_cate 
+VALUES (2, '초급');
+INSERT INTO tbl_level_cate 
+VALUES (3, '중급');
+INSERT INTO tbl_level_cate 
+VALUES (4, '고급');
+INSERT INTO tbl_level_cate 
+VALUES (5, '신의 경지');
+
+--* 소요시간
+CREATE TABLE tbl_time_cate (
+    time_no NUMBER,
+    time_name VARCHAR2(50) NOT NULL,
+    CONSTRAINT time_cate_pk PRIMARY KEY (time_no)
+);
+INSERT INTO tbl_time_cate 
+VALUES (5, '5분 이내');
+INSERT INTO tbl_time_cate 
+VALUES (10, '10분 이내');
+INSERT INTO tbl_time_cate 
+VALUES (15, '15분 이내');
+INSERT INTO tbl_time_cate 
+VALUES (20, '20분 이내');
+INSERT INTO tbl_time_cate 
+VALUES (30, '30분 이내');
+INSERT INTO tbl_time_cate 
+VALUES (60, '1시간 이내');
+INSERT INTO tbl_time_cate 
+VALUES (90, '1시간 30분 이내');
+INSERT INTO tbl_time_cate 
+VALUES (160, '2시간 이내');
+INSERT INTO tbl_time_cate 
+VALUES (161, '2시간 이상');
+
+-- * 비용
+CREATE TABLE tbl_cost_cate (
+    cost_no NUMBER,
+    cost_name VARCHAR2(50) NOT NULL,
+    CONSTRAINT cost_cate_pk PRIMARY KEY (cost_no)
+);
+INSERT INTO tbl_cost_cate 
+VALUES (1, '1000원 이내');
+INSERT INTO tbl_cost_cate 
+VALUES (2, '5000원 이내');
+INSERT INTO tbl_cost_cate 
+VALUES (3, '10000원 이내');
+INSERT INTO tbl_cost_cate 
+VALUES (4, '20000원 이내');
+INSERT INTO tbl_cost_cate 
+VALUES (5, '30000원 이내');
+INSERT INTO tbl_cost_cate 
+VALUES (6, '40000원 이내');
+INSERT INTO tbl_cost_cate 
+VALUES (7, '50000원 이내');
+INSERT INTO tbl_cost_cate 
+VALUES (8, '50000원 이상');

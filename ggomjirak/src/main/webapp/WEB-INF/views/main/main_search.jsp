@@ -22,7 +22,7 @@ $(document).ready(function() {
 <input type="hidden" name="perPage" value="${pagingDto.perPage}"/>
 <input type="hidden" name="keyword" value="${pagingDto.keyword}"/>
 </form>
-<div class="row">
+<div class="row top">
 	<div class="col-md-12">
 		<div class="row">
 			<div class="col-md-1 col-lg-2"></div>
@@ -67,7 +67,7 @@ $(document).ready(function() {
 											<c:forEach var="hobby" items="${searchHobbyList}">
 												<div class="col-lg-3 col-md-4 col-sm-6" style="float:left;">
 													<div class="featured__item">
-														<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-1.jpg">
+														<div class="featured__item__pic set-bg" data-setbg="/displayImage?filePath=${hobby.main_img}">
 															<ul class="featured__item__pic__hover">
 																<li><a href="#"><i class="fa fa-heart"></i></a></li>
 																<li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -75,8 +75,8 @@ $(document).ready(function() {
 															</ul>
 														</div>
 														<div class="featured__item__text">
-															<h6><a href="#">${hobby.hobby_title}</a></h6>
-															<h5>${hobby.user_nick}</h5>
+															<h6><a href="/hobby/content/${hobby.hobby_no}">${hobby.hobby_title}</a></h6>
+															<h5><a href="/workroom/main/${hobby.user_id}">${hobby.user_nick}</a></h5>
 														</div>
 													</div>
 												</div>
@@ -104,7 +104,7 @@ $(document).ready(function() {
 										</ul>
 									</div>
 									<div class="featured__item__text">
-										<h6><a href="#">${member.user_nick}</a></h6>
+										<h6><a href="/workroom/main/${member.user_id}">${member.user_nick}</a></h6>
 										<h5>${member.name}</h5>
 									</div>
 								</div>
