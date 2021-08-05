@@ -7,9 +7,41 @@
   wiedth: 100%;
    height: 400px; 
 }
+.btn-more {
+   padding: 3px 13px;
+   font-size: 14px;
+   padding-top: 7px;
+   margin: 0 4px;
+   border: 1px solid #1F5E43;
+}
 </style>
 <!-- 배너 -->
+<script>
+$(".bookmark").on(click, function(e) {
+	e.preventDefault();
+	var hobby_no = $(this).attr("href");
+	console.log(hobby_no);
+	if(loginVo == "") {
+		return false;
+	}
+// 	var url = "/hobby/bookmark/" + hobby_no;
+// 	$.get(url, function(rData) {
+// 		console.log(rData);
+// 		if (rData == "bookmark") {
+// 			$(".bookmark > span:first-child").attr({
+// 				class : "fa fa-bookmark",
+// 				style : "color:#FFC300"
+// 			})
+// 		} else {
+// 			$(".bookmark > span:first-child").attr({
+// 				class : "fa fa-bookmark-o",
+// 				style : "color:white"
+// 			});
+// 		}
+// 	});
 
+});
+</script>
 <div class="row">
 	<div class="col-md-12" style="padding-bottom: 20px">
 	
@@ -109,8 +141,8 @@
 										</ul>
 									</div>
 										<div class="featured__item__text">
-										<h6><a href="/hobby/content/${suggestHobby.hobby_no}">${suggestHobby.hobby_title}</a></h6>
-										<h5><a href="/workroom/main/${suggestHobby.user_id}">${suggestHobby.user_nick}</a></h5>
+										<h6><a class="short" href="/hobby/content/${suggestHobby.hobby_no}">${suggestHobby.hobby_title}</a></h6>
+										<h5><a class="short" href="/workroom/main/${suggestHobby.user_id}">${suggestHobby.user_nick}</a></h5>
 									</div>
 								</div>
 								</c:forEach>
@@ -127,16 +159,15 @@
 				
 				<!-- 인기취미 -->
 				<!-- Categories Section Begin -->
-				<section class="categories" style="margin-top: 50px">
+				<section class="section-title" style="margin-top: 50px">
 
+				<div style="display: flex;">
+						<h5>인기 취미</h5>
+						<a href="/main/mainHobby?qCheck=0" type="button" class="btn-more"
+						style="margin-left: auto; margin-bottom: 20px">더보기</a>
+				</div>
 					<div class="container">
 						<div class="row">
-							<div class="section-title">
-								<h5>인기 취미
-								<a href="/main/mainHobby?qCheck=0" type="button" class="btn green_background white_color">더보기</a>
-								</h5>
-							</div>
-
 							<div class="categories__slider owl-carousel">
 
 								<c:forEach var="popular" items="${popularHobby}">
@@ -144,14 +175,13 @@
 									<div class="featured__item__pic set-bg" data-setbg="/displayImage?filePath=${popular.main_img}"
 										style="margin-left: 10px; margin-right: 10px">
 										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+											<li><a href="#"><i class="fa fa-heart" style="color: red"></i></a></li>
+											<li><a href="${popular.hobby_no}" class="bookmark"><i class="fa fa-bookmark" style="color: orange"></i></a></li>
 										</ul>
 									</div>
 										<div class="featured__item__text">
-										<h6><a href="/hobby/content/${popular.hobby_no}">${popular.hobby_title}</a></h6>
-										<h5><a href="/workroom/main/${popular.user_id}">${popular.user_nick}</a></h5>
+										<h6><a class="short" href="/hobby/content/${popular.hobby_no}">${popular.hobby_title}</a></h6>
+										<h5><a class="short" href="/workroom/main/${popular.user_id}">${popular.user_nick}</a></h5>
 									</div>
 								</div>
 								</c:forEach>
@@ -192,7 +222,7 @@
                     <div class="featured__item">
                     
                         <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/mypage/displayImage?fileName=${member1.user_img}" class="rounded-circle" alt="..."/>
+                        <a href="/workroom/main/${member1.user_id}"><img src="/displayImage?fileName=${member1.user_img}" class="rounded-circle" alt="profilImage"/></a>
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -200,7 +230,7 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="/workroom/main/${member1.user_id}">${member1.user_nick}</a></h6>
+                            <h6><a class="short" href="/workroom/main/${member1.user_id}">${member1.user_nick}</a></h6>
                             <h5>${member1.name}</h5>
                         </div>
                     </div>
@@ -211,7 +241,7 @@
                     <div class="featured__item">
                     
                         <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/mypage/displayImage?fileName=${member2.user_img}" class="rounded-circle" alt="..."/>
+                        <img src="/mypage/displayImage?fileName=${member2.user_img}" class="rounded-circle" alt="profilImage"/>
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -219,7 +249,7 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="/workroom/main/${member2.user_id}">${member2.user_nick}</a></h6>
+                            <h6><a class="short" href="/workroom/main/${member2.user_id}">${member2.user_nick}</a></h6>
                             <h5>${member2.name}</h5>
                         </div>
                     </div>
@@ -230,7 +260,7 @@
                     <div class="featured__item">
                     
                         <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/mypage/displayImage?fileName=${member3.user_img}" class="rounded-circle" alt="..."/>
+                        <a href="/workroom/main/${member3.user_id}"><img src="/displayImage?fileName=${member3.user_img}" class="rounded-circle" alt="profilImage"/></a>
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -238,7 +268,7 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="/workroom/main/${member3.user_id}">${member3.user_nick}</a></h6>
+                            <h6><a class="short" href="/workroom/main/${member3.user_id}">${member3.user_nick}</a></h6>
                             <h5>${member3.name}</h5>
                         </div>
                     </div>
@@ -249,7 +279,7 @@
                     <div class="featured__item">
                     
                         <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/mypage/displayImage?fileName=${member4.user_img}" class="rounded-circle" alt="..."/>
+                        <a href="/workroom/main/${member4.user_id}"><img src="/mypage/displayImage?fileName=${member4.user_img}" class="rounded-circle" alt="profilImage"/></a>
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -257,7 +287,7 @@
                             </ul>
                         </div>
                         <div class="featured__item__text">
-                            <h6><a href="/workroom/main/${member4.user_id}">${member4.user_nick}</a></h6>
+                            <h6><a class="short" href="/workroom/main/${member4.user_id}">${member4.user_nick}</a></h6>
                             <h5>${member4.name}</h5>
                         </div>
                     </div>
@@ -288,8 +318,12 @@
 			<div class="row">
 				<div class="col-md-2"> </div>
 				<div class="col-md-8">
-				
-					<div><h5>인기 키워드<button type="button" class="btn green_background white_color">더보기</button></div></h5>
+				<div style="display: flex;">
+						<h5>인기 키워드</h5>
+						<a href="/main/mainHobby?qCheck=0" type="button" class="btn-more"
+						style="margin-left: auto; margin-bottom: 20px">더보기</a>
+				</div>
+					
 					
 				</div>
 				<div class="col-md-2"></div>
@@ -344,11 +378,14 @@
 				<!-- Categories Section Begin -->
 				<section class="categories" style="margin-top: 50px">
 
+					<div style="display: flex;">
+						<h5>이달의 취미</h5>
+						<a href="/main/mainHobby?qCheck=2" type="button" class="btn-more"
+						style="margin-left: auto; margin-bottom: 20px">더보기</a>
+					</div>
 					<div class="container">
 						<div class="row">
-							<div class="section-title">
-								<h5>이달의 취미<a href="/main/mainHobby?qCheck=2" type="button" class="btn green_background white_color">더보기</a></h5>
-							</div>
+							
 
 							<div class="categories__slider owl-carousel">
 
@@ -363,8 +400,8 @@
 										</ul>
 									</div>
 										<div class="featured__item__text">
-										<h6><a href="/hobby/content/${month.hobby_no}">${month.hobby_title}</a></h6>
-										<h5><a href="/workroom/main/${month.user_id}">${month.user_nick}</a></h5>
+										<h6><a class="short" href="/hobby/content/${month.hobby_no}">${month.hobby_title}</a></h6>
+										<h5><a class="short" href="/workroom/main/${month.user_id}">${month.user_nick}</a></h5>
 									</div>
 								</div>
 								</c:forEach>
@@ -379,11 +416,13 @@
 				<!-- Categories Section Begin -->
 				<section class="categories" style="margin-top: 50px">
 
+					<div style="display: flex;">
+						<h5>베스트 메이드</h5>
+						<a href="/main/mainHobby?qCheck=2" type="button" class="btn-more"
+						style="margin-left: auto; margin-bottom: 20px">더보기</a>
+					</div>
 					<div class="container">
 						<div class="row">
-							<div class="section-title">
-								<h5>베스트 메이드<button type="button" class="btn green_background white_color">더보기</button></h5>
-							</div>
 
 							<div class="categories__slider owl-carousel">
 
@@ -560,11 +599,11 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" ></script>
     <script src="/resources/js/jquery-3.3.1.min.js"></script>
-<!--     <script src="/resources/js/bootstrap.min.js"></script> -->
+    <script src="/resources/js/bootstrap.min.js"></script>
     <script src="/resources/js/jquery.nice-select.min.js"></script>
     <script src="/resources/js/jquery-ui.min.js"></script>
     <script src="/resources/js/jquery.slicknav.js"></script>
-<!--     <script src="/resources/js/mixitup.min.js"></script> -->
+    <script src="/resources/js/mixitup.min.js"></script>
     <script src="/resources/js/owl.carousel.min.js"></script>
     <script src="/resources/js/main.js"></script>
 
