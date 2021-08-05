@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!-- 모달  -->
+<script src="/resources/js/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="/resources/css/sweetalert2.min.css">
 <script>
 $(document).ready(function() {
 	$("#btnStSearch").click(function() {
@@ -10,7 +13,10 @@ $(document).ready(function() {
 	});
 	
 	if ("${checkFollow}" == 1) {
-		$("#follow").attr("class", "btn btn-outline-primary");
+		$("#follow").attr({
+			"class" : "btn btn-outline-warning",
+			style : "color:#F39C12"
+		});
 		$("#follow").text("언팔로우");
 	}
 	
@@ -20,10 +26,16 @@ $(document).ready(function() {
 			console.log(rData);
 			// 팔로우
 			if (rData.follow) {
-				$("#follow").attr("class", "btn btn-outline-primary");
+				$("#follow").attr({
+					"class" : "btn btn-outline-warning",
+					style : "color:#F39C12"
+				});
 				$("#follow").text("언팔로우");
 			} else if (rData.unFollow) {
-				$("#follow").attr("class", "green_background white_color");
+				$("#follow").attr({
+					"class" : "btn green_background white_color",
+					style : "color:white"
+				});
 				$("#follow").text("팔로우");
 			}
 			$("#follower_cnt").text(rData.countFollow);
@@ -42,7 +54,7 @@ $(document).ready(function() {
 					<div class="checkout__order">
 						<!-- 유저 카드 프로필 -->
 						<div class="box" style="margin: 12px auto;">
-							<a href="/workroom/main/${page_id}"><img class="profile" src="/resources/img/test/littleduck.png"
+							<a href="/workroom/main/${page_id}"><img class="profile" src="/displayImage?filePath=${memberInfo.user_img}"
 								alt="profile image" style="width: 100%; text-align: center"></a>
 						</div>
 						<div class="card-body">
@@ -51,8 +63,19 @@ $(document).ready(function() {
 							</div>
 							<p class="text-center" style="font-size:12px; margin-top:-20px">${memberInfo.name}</p>
 							<!-- memberInfo에서 받아오면 카테고리 코드로 나와서 workroomVo에서 받아옴 -->
-							<p class="card-text text-center" style="font-size:13px;">
-							${workroomVo.cate_no1}  ${workroomVo.cate_no2}  ${workroomVo.cate_no3} </p>
+							<p class="card-text text-center" style="font-size:13px;"> 
+							<c:choose>
+								<c:when test="${workroomVo.cate_no1 ne '선택안함'}">
+								${workroomVo.cate_no1}
+								</c:when>
+								<c:when test="${workroomVo.cate_no2 ne '선택안함'}">
+								${workroomVo.cate_no2}
+								</c:when>
+								<c:when test="${workroomVo.cate_no3 ne '선택안함'}">
+								    ${workroomVo.cate_no3} 
+								</c:when>
+							</c:choose>
+							</p>
 							<div style="text-align: center;">
 								<div style="display: inline-block;">
 									<p style="margin-bottom: -5px">팔로워</p>
@@ -75,11 +98,11 @@ $(document).ready(function() {
 							<c:choose>
 								<c:when test="${user_id == page_id}">
 									<a href="/workroomset/main" class="site-btn">작업실 설정</a>
-								</c:when> 							
-								<c:otherwise>
+								</c:when>
+								<c:when test="${user_id != null}">
 									<button type="button" id="follow" class="btn green_background white_color">팔로우</button>
-									<a href="#" class="btn green_background white_color">쪽지</a>
-								</c:otherwise>
+									<a href="/message/sendMessage" class="btn green_background white_color">쪽지</a>
+								</c:when>
 							</c:choose> 
 							</div>
 						</div>
@@ -93,7 +116,7 @@ $(document).ready(function() {
 								<li><a href="#hobby">꼼지락</a></li>
 								<li><a href="#story">Story</a></li>
 								<li><a href="#mbm">MadeByMe</a></li>
-								<li><a href="#feed">피드</a></li>
+								<li><a href="#bookmark">북마크</a></li>
 							</ul>
 						</div>
 					</div>

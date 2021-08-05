@@ -31,3 +31,6 @@ maetrial수정작업중.. 자꾸 value복사됨.
 HOBBY_MATERIAL, MAKE_STEP에 IS_DEL칼럼 추가
 completeIMg cimg_no칼럼삭제
 hobby테이블 hobby_writer -> user_id로 변경
+
+8/4 
+HOBBY에 cmt_cnt추가

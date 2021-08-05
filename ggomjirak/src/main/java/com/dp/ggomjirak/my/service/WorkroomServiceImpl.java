@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.dp.ggomjirak.my.dao.WorkRoomDao;
 import com.dp.ggomjirak.vo.HobbyVo;
+import com.dp.ggomjirak.vo.LikeBookmarkVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
 import com.dp.ggomjirak.vo.StoryPagingDto;
@@ -26,8 +27,8 @@ public class WorkroomServiceImpl implements WorkroomService {
 	}
 
 	@Override
-	public int hobbyCount(String hobby_writer) {
-		int count = workroomDao.hobbyCount(hobby_writer);
+	public int hobbyCount(String user_id) {
+		int count = workroomDao.hobbyCount(user_id);
 		return count;
 	}
 	
@@ -59,6 +60,18 @@ public class WorkroomServiceImpl implements WorkroomService {
 	@Override
 	public int searchStoryCount(PagingDto pagingDto) {
 		int count = workroomDao.searchStoryCount(pagingDto);
+		return count;
+	}
+
+	@Override
+	public List<LikeBookmarkVo> listBookmark(PagingDto pagingDto) {
+		List<LikeBookmarkVo> list = workroomDao.listBookmark(pagingDto);
+		return list;
+	}
+
+	@Override
+	public int bookmarkCount(String user_id) {
+		int count = workroomDao.bookmarkCount(user_id);
 		return count;
 	}
 
