@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<<<<<<< HEAD
+<!-- 모달  -->
+<script src="/resources/js/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="/resources/css/sweetalert2.min.css">
+=======
+>>>>>>> 275f319d4a16fc69226322b03276ce09bc1a0186
 <script>
 $(document).ready(function() {
 	$("#btnStSearch").click(function() {
@@ -51,8 +57,19 @@ $(document).ready(function() {
 							</div>
 							<p class="text-center" style="font-size:12px; margin-top:-20px">${memberInfo.name}</p>
 							<!-- memberInfo에서 받아오면 카테고리 코드로 나와서 workroomVo에서 받아옴 -->
-							<p class="card-text text-center" style="font-size:13px;">
-							${workroomVo.cate_no1}  ${workroomVo.cate_no2}  ${workroomVo.cate_no3} </p>
+							<p class="card-text text-center" style="font-size:13px;"> 
+							<c:choose>
+								<c:when test="${workroomVo.cate_no1 ne '선택안함'}">
+								${workroomVo.cate_no1}
+								</c:when>
+								<c:when test="${workroomVo.cate_no2 ne '선택안함'}">
+								${workroomVo.cate_no2}
+								</c:when>
+								<c:when test="${workroomVo.cate_no3 ne '선택안함'}">
+								    ${workroomVo.cate_no3} 
+								</c:when>
+							</c:choose>
+							</p>
 							<div style="text-align: center;">
 								<div style="display: inline-block;">
 									<p style="margin-bottom: -5px">팔로워</p>
@@ -76,6 +93,10 @@ $(document).ready(function() {
 								<c:when test="${user_id == page_id}">
 									<a href="/workroomset/main" class="site-btn">작업실 설정</a>
 								</c:when> 							
+								<c:when test="${user_id != null}">
+									<button type="button" id="follow" class="btn green_background white_color">팔로우</button>
+									<a href="#" class="btn green_background white_color">쪽지</a>
+								</c:when>
 								<c:otherwise>
 									<button type="button" id="follow" class="btn green_background white_color">팔로우</button>
 									<a href="#" class="btn green_background white_color">쪽지</a>
