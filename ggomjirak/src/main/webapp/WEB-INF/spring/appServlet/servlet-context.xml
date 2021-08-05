@@ -38,7 +38,7 @@
 	<!-- 업로드 경로 -->
 	<beans:bean
 		id="rootPath" class="java.lang.String">
-		<beans:constructor-arg value="C:/Users/user/Desktop" />	
+		<beans:constructor-arg value="//192.168.0.217/ggomjirak" />	
 	</beans:bean>
 	
 	<!-- 인터셉터 -->

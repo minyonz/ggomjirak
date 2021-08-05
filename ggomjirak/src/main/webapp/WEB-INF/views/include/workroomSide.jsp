@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<<<<<<< HEAD
 <!-- 모달  -->
 <script src="/resources/js/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="/resources/css/sweetalert2.min.css">
+=======
+>>>>>>> 275f319d4a16fc69226322b03276ce09bc1a0186
 <script>
 $(document).ready(function() {
 	$("#btnStSearch").click(function() {
@@ -26,7 +29,7 @@ $(document).ready(function() {
 				$("#follow").attr("class", "btn btn-outline-primary");
 				$("#follow").text("언팔로우");
 			} else if (rData.unFollow) {
-				$("#follow").attr("class", "btn green_background white_color");
+				$("#follow").attr("class", "green_background white_color");
 				$("#follow").text("팔로우");
 			}
 			$("#follower_cnt").text(rData.countFollow);
@@ -94,6 +97,10 @@ $(document).ready(function() {
 									<button type="button" id="follow" class="btn green_background white_color">팔로우</button>
 									<a href="#" class="btn green_background white_color">쪽지</a>
 								</c:when>
+								<c:otherwise>
+									<button type="button" id="follow" class="btn green_background white_color">팔로우</button>
+									<a href="#" class="btn green_background white_color">쪽지</a>
+								</c:otherwise>
 							</c:choose> 
 							</div>
 						</div>
