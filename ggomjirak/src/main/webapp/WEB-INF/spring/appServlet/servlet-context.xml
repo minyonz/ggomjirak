@@ -38,7 +38,7 @@
 	<!-- 업로드 경로 -->
 	<beans:bean
 		id="rootPath" class="java.lang.String">
-		<beans:constructor-arg value="//192.168.0.217/ggomjirak" />	
+		<beans:constructor-arg value="//192.168.0.217/ggomjirak/" />	
 	</beans:bean>
 	
 	<!-- 인터셉터 -->
@@ -51,9 +51,20 @@
 	<beans:bean class="com.dp.ggomjirak.kty.interceptor.AuthInterceptor"
 		id="authInterceptor"></beans:bean>
 	
+
 	
-	<interceptors>
+		
+  	<interceptors>
 		<interceptor>
+			<mapping path="/mypage/**/*"/>
+			<mapping path="/message/**/*"/>
+			<exclude-mapping path="/mypage/login"/>
+			<exclude-mapping path="/mypage/loginRun"/>
+			<exclude-mapping path="/mypage/joinForm"/>
+			<exclude-mapping path="/mypage/joinRun"/>
+			<exclude-mapping path="/mypage/checkDupId"/>
+			<exclude-mapping path="/mypage/checkDupNick"/>
+
 			<mapping path="/manager/**/*"/>
 			<mapping path="/event/**/*"/>
 			<mapping path="/ask/**/*"/>
@@ -70,4 +81,5 @@
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	</interceptors>
+
 </beans:beans>
