@@ -50,6 +50,7 @@
 	margin-top: 25px;
 }
 
+
 </style>
 <script>
 $(document).ready(function() {
@@ -179,23 +180,37 @@ $(document).ready(function() {
 										</svg>
 										</a></li>
 										<li class="nav-item dropdown">
-										<div class="dropdown">
-										  <a class="btn nav-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-										   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
-											  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+									        <a class="btn nav-link" href="#" id="dropdownMenuButton1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+												<path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
 											</svg>
-										  </a>
-										  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><a class="dropdown-item" href="#">알림내용</a></li>
-										    <li><hr class="dropdown-divider"></li>
-										    <li><a class="dropdown-item" href="#">알림함</a></li>
-										  </ul>
-										</div>
+									        </a>
+									        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+									          <a class="dropdown-item" href="#">알림내용</a>
+									          <a class="dropdown-item" href="#">알림내용</a>
+									          <a class="dropdown-item" href="#">알림내용</a>
+									          <a class="dropdown-item" href="#">알림내용</a>
+									          <a class="dropdown-item" href="#">알림내용</a>
+									          <div class="dropdown-divider"></div>
+												<a class="dropdown-item" href="#">알림함</a>
+									        </div>
+<!-- 										<div class="dropdown"> -->
+<!-- 										  <a class="btn nav-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"> -->
+<!-- 										   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16"> -->
+<!-- 											  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/> -->
+<!-- 											</svg> -->
+<!-- 										  </a> -->
+<!-- 										  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"> -->
+<!-- 										    <li><a class="dropdown-item" href="#">알림내용</a></li> -->
+<!-- 										    <li><a class="dropdown-item" href="#">알림내용</a></li> -->
+<!-- 										    <li><a class="dropdown-item" href="#">알림내용</a></li> -->
+<!-- 										    <li><a class="dropdown-item" href="#">알림내용</a></li> -->
+<!-- 										    <li><a class="dropdown-item" href="#">알림내용</a></li> -->
+<!-- 										    <li><a class="dropdown-item" href="#">알림내용</a></li> -->
+<!-- 										    <li><hr class="dropdown-divider"></li> -->
+<!-- 										    <li><a class="dropdown-item" href="#">알림함</a></li> -->
+<!-- 										  </ul> -->
+<!-- 										</div> -->
 										</li>
 										
 										<li class="nav-item dropdown ml-md-auto">
@@ -239,7 +254,7 @@ $(document).ready(function() {
 								<div class="form-row">
 							    
 							    <div class="col-lg-2 col-md-3 mb-3">
-<!-- 							      <label for="validationCustom04">대분류</label> -->
+
 							      <select style="height: 38px; padding-top: 2px !important; text-align-last: center; text-align: center;" class="cate3 form-control btn btn-outline-light green_background white_color shadow bg-body rounded" id="validationCustom04" required>
 							        <option selected disabled value="">카테고리</option>
 							      </select>
@@ -256,6 +271,7 @@ $(document).ready(function() {
 									    
 									  </div>
 									</div>
+
 							      <div class="invalid-feedback">
 							      </div>
 							    </div>

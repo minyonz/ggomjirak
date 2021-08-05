@@ -21,9 +21,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		String uri = request.getRequestURI();
 		String queryString = request.getQueryString();
 		String requestPath = null;
+
 		if (uri == "/manager/**/*") {
 			uri = "/main/mainHome";
-		
+
 		if(queryString == null) {
 			requestPath = uri;
 		} else {
