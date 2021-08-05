@@ -256,42 +256,48 @@ public class HobbyServiceImpl implements HobbyService {
 
 	@Override
 	public int deleteHobbyArticle(int hobby_no) {
-		return hobbyDao.deleteHobby(hobby_no);
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
-	@Override
-	public List<HobbyVo> selectAll(int material_no) {
-		return hobbyDao.selectAll(material_no);
-	}
-
-	@Override
-	public List<HobbyVo> selectNew(int material_no) {
-		return hobbyDao.selectNew(material_no);
-	}
-
-	@Override
-	public List<HobbyVo> selectLike(int material_no) {
-		return hobbyDao.selectLike(material_no);
-	}
-
-	@Override
-	public List<HobbyVo> selectView(int material_no) {
-		return hobbyDao.selectView(material_no);
-	}
-
-	@Override
-	public List<HobbyVo> selectTime(int material_no) {
-		return hobbyDao.selectTime(material_no);
-	}
-
-	@Override
-	public List<HobbyVo> selectLevel(int material_no) {
-		return hobbyDao.selectLevel(material_no);
-	}
-
-	@Override
-	public List<HobbyVo> selectCost(int material_no) {
-		return hobbyDao.selectCost(material_no);
-	}
+//	@Override
+//	public int deleteHobbyArticle(int hobby_no) {
+//		return hobbyDao.deleteHobby(hobby_no);
+//	}
+//
+//	@Override
+//	public List<HobbyVo> selectAll(int material_no) {
+//		return hobbyDao.selectAll(material_no);
+//	}
+//
+//	@Override
+//	public List<HobbyVo> selectNew(int material_no) {
+//		return hobbyDao.selectNew(material_no);
+//	}
+//
+//	@Override
+//	public List<HobbyVo> selectLike(int material_no) {
+//		return hobbyDao.selectLike(material_no);
+//	}
+//
+//	@Override
+//	public List<HobbyVo> selectView(int material_no) {
+//		return hobbyDao.selectView(material_no);
+//	}
+//
+//	@Override
+//	public List<HobbyVo> selectTime(int material_no) {
+//		return hobbyDao.selectTime(material_no);
+//	}
+//
+//	@Override
+//	public List<HobbyVo> selectLevel(int material_no) {
+//		return hobbyDao.selectLevel(material_no);
+//	}
+//
+//	@Override
+//	public List<HobbyVo> selectCost(int material_no) {
+//		return hobbyDao.selectCost(material_no);
+//	}
 
 }

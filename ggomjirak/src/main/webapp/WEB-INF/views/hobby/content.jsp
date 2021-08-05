@@ -603,7 +603,7 @@ a {
 					<tbody>
 						<c:forEach var="hobbyMaterialVo" items="${hobbyVo.hobbyMaterials}">
 							<tr>
-								<td>${hobbyMaterialVo.materialName}</td>
+								<td><a href="/material/search?m_no=${hobbyMaterialVo.material_no}">${hobbyMaterialVo.materialName}</a></td>
 								<td>
 									${hobbyMaterialVo.material_detail}
 								</td>

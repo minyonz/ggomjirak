@@ -52,9 +52,32 @@
 		WHERE MATERIAL_NAME = #{materialName}
 	</select>
 	
-		<!-- 준비물명 중복체크 -->
-<!-- 	<select id="MaterialNameDupCheck" resultType="int"> -->
-<!-- 		SELECT COUNT(*) from MATERIAL -->
-<!-- 		WHERE MATERIAL_NAME = #{materialName} -->
-<!-- 	</select> -->
+
+ <!-- __________준비물로 목록조회 ___________-->
+	<select id="selectHMList" parameterType="MaterialSearch" resultType="HobbyVo">
+					SELECT 	 H.*, M.*, W.user_nick, W.user_img
+					FROM tbl_hobby_material HM
+					JOIN tbl_hobby H ON H.hobby_no = HM.hobby_no 
+					JOIN tbl_memberdetail W ON H.user_id = W.user_id
+					JOIN tbl_material M ON M.material_no = HM.material_no
+					WHERE HM.material_no = #{m_no} AND H.is_del = 'N' 
+ 		<if test="sort != null">
+ 			<choose> 
+				<when test="sort == 'like'">
+					ORDER BY H.like_cnt DESC, H.hobby_no DESC
+				</when>
+				<when test="sort == 'new'">
+					ORDER BY H.reg_date DESC
+				</when>
+				<when test="sort =='view'">
+					ORDER BY H.view_cnt DESC, H.hobby_no DESC
+				</when>
+			</choose>
+ 		</if>
+ 		<if test="sort == null">
+ 			ORDER BY H.hobby_no DESC
+ 		</if>
+ 		
+	</select>
+	
  </mapper>

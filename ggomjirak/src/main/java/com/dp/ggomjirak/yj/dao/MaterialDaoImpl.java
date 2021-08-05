@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.dp.ggomjirak.vo.HobbyVo;
+import com.dp.ggomjirak.vo.MaterialSearch;
 import com.dp.ggomjirak.vo.MaterialVo;
 
 @Repository
@@ -41,5 +43,46 @@ public class MaterialDaoImpl implements MaterialDao {
 	public int getMaterialNo(String materialName) {
 		return sqlSession.selectOne(NAMESPACE + "getMaterialNo", materialName);
 	}
+
+//	 __________준비물로 목록조회 ___________
+
+	@Override
+	public List<HobbyVo> selectHMList(MaterialSearch materialSearch) {
+		return sqlSession.selectList(NAMESPACE + "selectHMList", materialSearch);
+	}
+//
+//	@Override
+//	public List<HobbyVo> selectNew(int material_no) {
+//		return sqlSession.selectList(NAMESPACE + "selectNew", material_no);
+//	}
+//
+//	@Override
+//	public List<HobbyVo> selectLike(int material_no) {
+//		return sqlSession.selectList(NAMESPACE + "selectLike", material_no);
+//	}
+//
+//	@Override
+//	public List<HobbyVo> selectView(int material_no) {
+//		return sqlSession.selectList(NAMESPACE + "selectView", material_no);
+//	}
+//
+//	@Override
+//	public List<HobbyVo> selectTime(int material_no) {
+//		return sqlSession.selectList(NAMESPACE + "selectTime", material_no);
+//	}
+//
+//	@Override
+//	public List<HobbyVo> selectLevel(int material_no) {
+//		return sqlSession.selectList(NAMESPACE + "selectLevel", material_no);
+//	}
+//
+//	@Override
+//	public List<HobbyVo> selectCost(int material_no) {
+//		return sqlSession.selectList(NAMESPACE + "selectCost", material_no);
+//	}
+
+
+
+
 
 }
