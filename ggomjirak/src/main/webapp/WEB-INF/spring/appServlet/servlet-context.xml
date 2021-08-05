@@ -38,7 +38,7 @@
 	<!-- 업로드 경로 -->
 	<beans:bean
 		id="rootPath" class="java.lang.String">
-		<beans:constructor-arg value="C:/Users/user/Desktop" />	
+		<beans:constructor-arg value="//192.168.0.217/ggomjirak/" />	
 	</beans:bean>
 	
 	<!-- 임시인터셉터 -->
@@ -51,19 +51,42 @@
 <!-- 		id="authInterceptor"></beans:bean> -->
 	
 	
-<!-- 	<interceptors> -->
-<!-- 		<interceptor> -->
-<!-- 			<mapping path="/doA"/> -->
-<!-- 			<mapping path="/doB"/> -->
-<!-- 			<beans:ref bean="sampleInterceptor"/> -->
-<!-- 		</interceptor> -->
-<!-- 		<interceptor> -->
-<!-- 			<mapping path="/board/**/*"/> -->
-<!-- 			<mapping path="/message/**/*"/> -->
-<!-- 			<exclude-mapping path="/board/listAll"/> -->
-<!-- 			<beans:ref bean="authInterceptor"/> -->
-<!-- 		</interceptor> -->
-<!-- 	</interceptors> -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+  	<interceptors>
+		<interceptor>
+			<mapping path="/mypage/**/*"/>
+			<mapping path="/message/**/*"/>
+			<exclude-mapping path="/mypage/login"/>
+			<exclude-mapping path="/mypage/loginRun"/>
+			<exclude-mapping path="/mypage/joinForm"/>
+			<exclude-mapping path="/mypage/joinRun"/>
+			<exclude-mapping path="/mypage/checkDupId"/>
+			<exclude-mapping path="/mypage/checkDupNick"/>
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
 	
 </beans:beans>
