@@ -4,8 +4,10 @@ package com.dp.ggomjirak.vo;
 public class MaterialSearch {
 	private int m_no;
 	private String m_name;
-	private String sort;
-	private String cate;
+	private String sort; // 최신,조회,댓글 
+	private int time;
+	private int level;
+	private int cost;
 	
 	// 현재페이지
 	private int page = 1;
@@ -29,11 +31,6 @@ public class MaterialSearch {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MaterialSearch(String sort, String cate) {
-		super();
-		this.sort = sort;
-		this.cate = cate;
-	}
 	public int getM_no() {
 		return m_no;
 	}
@@ -45,12 +42,6 @@ public class MaterialSearch {
 	}
 	public void setSort(String sort) {
 		this.sort = sort;
-	}
-	public String getCate() {
-		return cate;
-	}
-	public void setCate(String cate) {
-		this.cate = cate;
 	}
 	public int getPage() {
 		return page;
@@ -123,15 +114,31 @@ public class MaterialSearch {
 	public void setM_name(String m_name) {
 		this.m_name = m_name;
 	}
+	public int getTime() {
+		return time;
+	}
+	public void setTime(int time) {
+		this.time = time;
+	}
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
 	@Override
 	public String toString() {
-		return "MaterialSearch [m_no=" + m_no + ", m_name=" + m_name + ", sort=" + sort + ", cate=" + cate + ", page="
-				+ page + ", startRow=" + startRow + ", endRow=" + endRow + ", count=" + count + ", startPage="
-				+ startPage + ", endPage=" + endPage + ", totalPage=" + totalPage + ", perPage=" + perPage
-				+ ", PAGE_BLOCK=" + PAGE_BLOCK + "]";
+		return "MaterialSearch [m_no=" + m_no + ", m_name=" + m_name + ", sort=" + sort + ", time=" + time + ", level="
+				+ level + ", cost=" + cost + ", page=" + page + ", startRow=" + startRow + ", endRow=" + endRow
+				+ ", count=" + count + ", startPage=" + startPage + ", endPage=" + endPage + ", totalPage=" + totalPage
+				+ ", perPage=" + perPage + ", PAGE_BLOCK=" + PAGE_BLOCK + "]";
 	}
-	
-	
 
 	
 	

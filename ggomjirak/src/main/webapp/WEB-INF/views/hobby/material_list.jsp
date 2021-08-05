@@ -157,6 +157,24 @@ a {
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
+
+	<c:set var="m_no" value="m_no=${ms.m_no}" />
+	<c:if test="${not empty ms.time }">
+		<c:set var="time" value="&time=${ms.time}" />
+	</c:if>
+	<c:if test="${not empty ms.level }">
+		<c:set var="level" value="&level=${ms.level}" />
+	</c:if>
+	<c:if test="${not empty ms.cost }">
+		<c:set var="cost" value="&cost=${ms.cost}" />
+	</c:if>
+	
+	<c:if test="${not empty ms.sort }">
+		<c:set var="sort" value="&sort=${ms.sort}" />
+	</c:if>
+
+			
+
 <div class="container-fluid">
 	<div class="myContainer">
 		<div class="side side-left">
@@ -167,7 +185,7 @@ a {
            	<div class="row">
 				<div class="col-lg-12">
 					<div class="filter__found">
-                          <h6>${materialSearch.m_name}<span> ${materialSearch.count}</span></h6>
+                          <h6>${ms.m_name}<span> ${ms.count}</span></h6>
                       </div>
                      <div id="divCate" style="display: block;" class="info_cate_area">
    						 <table>
@@ -175,27 +193,33 @@ a {
       							  <tr>
           							  <th style="padding-top: 10px;">
 						                <span>시간</span>
-						                <span>난이도</span>
 						                <span>비용</span>
+						                <span>난이도</span>
       							      </th>
           							  <td>
                							 <div class="info_cate row3">
                 						    <div class="cate_list">
-                								<a href="#" class="active">전체</a>
-                								<c:forEach items="${times}" var="time">
-                									<a href="#" class="">${time.time_name}</a>
+                								<a href="search?${m_no}&time=0${cost}${level}${sort}" 
+                									class="${ms.time == 0 ? 'active' : '' }">전체</a>
+                								<c:forEach items="${times}" var="timeVo">
+                									<a href="search?${m_no}&time=${timeVo.time_no}${cost}${level}${sort}" 
+                										class="${timeVo.time_no == ms.time ? 'active' : '' }">${timeVo.time_name}</a>
                 								</c:forEach>
                 							</div>
                 						    <div class="cate_list">
-                								<a href="#" class="active">전체</a>
-                								<c:forEach items="${levels}" var="level">
-                									<a href="#" class="">${level.level_name}</a>
+                								<a href="search?${m_no}${time}&cost=0${level}${sort}" 
+                									class="${ms.cost == 0 ? 'active' : '' }">전체</a>
+                								<c:forEach items="${costs}" var="costVo">
+                									<a href="search?${m_no}${time}&cost=${costVo.cost_no}${level}${sort}" 
+                										class="${costVo.cost_no == ms.cost ? 'active' : '' }">${costVo.cost_name}</a>
                 								</c:forEach>
                 							</div>
                 						    <div class="cate_list">
-                								<a href="#" class="active">전체</a>
-                								<c:forEach items="${costs}" var="cost">
-                									<a href="#" class="">${cost.cost_name}</a>
+                								<a href="search?${m_no}${time}${cost}&level=0${sort}" 
+                									class="${ms.level == 0 ? 'active' : '' }">전체</a>
+                								<c:forEach items="${levels}" var="levelVo">
+                									<a href="search?${m_no}${time}${cost}&level=${levelVo.level_no}${sort}" 
+                										class="${levelVo.level_no == ms.level ? 'active' : '' }">${levelVo.level_name}</a>
                 								</c:forEach>
                 							</div>
                            				 </div>
@@ -205,18 +229,18 @@ a {
    						 </table>
 					</div>
 					<div class="">	
-					${materialSearch }
+					${ms }
 						<div style="float:right">
-							<a class="category sort" id="allSort" ${materialSearch.sort == 'all' ? 'style="color: #1f5e43;"' : '' }
-								href="search?m_no=${materialSearch.m_no}&sort=all">전체</a> <span> |</span> 
-							<a class="category sort" id="newSort" ${materialSearch.sort == 'new' ? 'style="color: #1f5e43;"' : '' }
-								 href="search?m_no=${materialSearch.m_no}&sort=new">최신순</a> <span> |</span> 
-							<a class="category sort" id="likeSort" ${materialSearch.sort == 'like' ? 'style="color: #1f5e43;"' : '' }
-								href="search?m_no=${materialSearch.m_no}&sort=like">좋아요순</a> <span> |</span> 
-							<a class="category sort" id="viewSort" ${materialSearch.sort == 'view' ? 'style="color: #1f5e43;"' : '' }
-								href="search?m_no=${materialSearch.m_no}&sort=view">조회수순</a> <span> |</span> 
-							<a class="category sort" id="cmtSort" ${materialSearch.sort == 'cmt' ? 'style="color: #1f5e43;"' : '' }
-								href="search?m_no=${materialSearch.m_no}&sort=cmt">댓글순</a> 
+							<a class="category sort" id="allSort" ${ms.sort == 'all' ? 'style="color: #1f5e43;"' : '' }
+								href="search?${m_no}${time}${cost}${level}&sort=all">전체</a> <span> |</span> 
+							<a class="category sort" id="newSort" ${ms.sort == 'new' ? 'style="color: #1f5e43;"' : '' }
+								 href="search?${m_no}${time}${cost}${level}&sort=new">최신순</a> <span> |</span> 
+							<a class="category sort" id="likeSort" ${ms.sort == 'like' ? 'style="color: #1f5e43;"' : '' }
+								href="search?${m_no}${time}${cost}${level}&sort=like">좋아요순</a> <span> |</span> 
+							<a class="category sort" id="viewSort" ${ms.sort == 'view' ? 'style="color: #1f5e43;"' : '' }
+								href="search?${m_no}${time}${cost}${level}&sort=view">조회수순</a> <span> |</span> 
+							<a class="category sort" id="cmtSort" ${ms.sort == 'cmt' ? 'style="color: #1f5e43;"' : '' }
+								href="search?${m_no}${time}${cost}${level}&sort=cmt">댓글순</a> 
 						</div>
 					</div>
 				</div>
@@ -245,18 +269,18 @@ a {
             	</c:forEach>
             </div>
             <div class="myPagination" style="text-align: center;">
-            <c:set var="prev" value="${materialSearch.endPage - materialSearch.PAGE_BLOCK}"/>
-            <c:set var="next" value="${materialSearch.startPage + materialSearch.PAGE_BLOCK}"/>
+            <c:set var="prev" value="${ms.endPage - ms.PAGE_BLOCK}"/>
+            <c:set var="next" value="${ms.startPage + ms.PAGE_BLOCK}"/>
             
             	<c:if test="${prev > 0}">
-               		 <a href="search?m_no=${materialSearch.m_no}&sort=${materialSearch.sort}&page=${prev}"><i class="fa fa-long-arrow-left"></i></a>
+               		 <a href="search?m_no=${ms.m_no}&sort=${ms.sort}&page=${prev}"><i class="fa fa-long-arrow-left"></i></a>
                 </c:if>
-            	<c:forEach var="v" begin="${materialSearch.startPage}" end="${materialSearch.endPage}">
-	                <a class="${v == materialSearch.page ? 'active' : '' }" 
-	                	href="search?m_no=${materialSearch.m_no}&sort=${materialSearch.sort}&page=${v}">${v}</a>
+            	<c:forEach var="v" begin="${ms.startPage}" end="${ms.endPage}">
+	                <a class="${v == ms.page ? 'active' : '' }" 
+	                	href="search?m_no=${ms.m_no}&sort=${ms.sort}&page=${v}">${v}</a>
 				</c:forEach>
-				<c:if test="${next <= materialSearch.totalPage}">
-               		 <a href="search?m_no=${materialSearch.m_no}&sort=${materialSearch.sort}&page=${next}"><i class="fa fa-long-arrow-right"></i></a>
+				<c:if test="${next <= ms.totalPage}">
+               		 <a href="search?m_no=${ms.m_no}&sort=${ms.sort}&page=${next}"><i class="fa fa-long-arrow-right"></i></a>
                 </c:if>
             </div>
         </div>
