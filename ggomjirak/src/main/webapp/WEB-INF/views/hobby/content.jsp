@@ -118,13 +118,8 @@ $(document).ready(function() {
 	width: 15px;
 	height: 15px;
 }
-.container_north {
-	border-bottom : 3px solid #1f5e43;
-}
-.body {
-    margin-bottom: 40px;
-    margin-top: 40px;
-}
+
+
 .green {
  color: #1f5e43;
 }
@@ -186,13 +181,13 @@ color: #1f5e43;
 /* carousel 슬라이드 */
 .stepCarousel {
 	margin: 0 auto;
-	width: 30rem;
+	width: 47rem;
 /* 	height:1100px; */
 }
 
 .stepSlideImgCont{
 	width: 100%;
-    height: 18rem;
+    height: 28rem;
 }
 .craftCarousel {
 	margin: 0 auto;
@@ -236,14 +231,15 @@ color: #1f5e43;
     line-height: 1.6;
     margin: 14px 0 14px 0;
 }
-
-
+.body {
+    border-bottom : 3px solid #1f5e43;
+}
 /* 화면 width 1300px부터 이렇게 하겠다.라는 뜻*/
 @media screen and (min-width: 1300px) {
-.container_north, .cotainer_south {
+.myContainer{
   display: grid; 
   grid-auto-flow: column dense; 
-  grid-template-columns: 1fr 2.5fr 1fr; 
+  grid-template-columns: 1fr 3.5fr 1fr; 
   grid-template-rows: 1fr; 
   gap: 0px 0px; 
   grid-template-areas: 
@@ -253,13 +249,14 @@ color: #1f5e43;
   height: 100%; 
 }
 .side-left { grid-area: side-left; }
-.body { grid-area: body; }
-.side-right { grid-area: side-right; }
+.body { grid-area: body; padding:3% 7%;}
+.side-right { grid-area: side-right; }   
+ .rcNav {padding: 0 15%;} 
  }
  
  /* 화면 width 1300px까지 이렇게 하겠다.라는 뜻*/
  @media screen and (max-width: 1300px) {
-.body { padding: 0 80px; }
+.body { padding : 3% 3%; }
  }
   	
 .divViewOption a{
@@ -495,7 +492,7 @@ a {
 </c:if>
 <div class="container-fluid">
 	<!-- 취미글 메인부분 -->
-	<div class="container_north">
+	<div class="myContainer">
 		<div class="side side-left"></div>
 		<div class="body">
 		<!-- 카테고리 -->
@@ -595,7 +592,7 @@ a {
 	</div>
 	<!-- // 취미글 메인부분 -->
 	<!-- 준비물 부분 -->
-	<div class="container_north">
+	<div class="myContainer">
 		<div class="side side-left"></div>
 		<div class="body">
 			<div><b>준비물</b><span>Material</span></div>
@@ -616,7 +613,7 @@ a {
 	</div>
 	<!-- //준비물 부분 -->
 	<!-- 만들기 부분 -->
-	<div class="container_north">
+	<div class="myContainer">
 		<div class="side side-left"></div>
 		<div class="body">
 			<div class="view_step">
@@ -832,7 +829,7 @@ a {
 	<!-- //만들기 부분 -->
 	<!-- 동영상 부분 -->
 	<c:if test="${not empty hobbyVo.hobby_video}">
-		<div class="container_north">
+		<div class="myContainer">
 			<div class="side side-left"></div>
 			<div class="body">
 				<div><b>동영상</b><span>Video</span></div>
@@ -847,12 +844,12 @@ a {
 	</c:if>
 	<!-- //동영상 부분 -->
 	<!-- 댓글, 후기 부분 -->
-	<div class="container_south">
+	<div class="myContainer">
 		<div class="side side-left"></div>
 		<div class="body">
 			<!-- 후기, 댓글 컨테이너 -->
 			<!-- style="padding-left: 18%;" 없앰 노트북으로 보니깐 이상해짐 스크린클때만 여백넣는작업 들어가야할듯 -->
-		  <ul class="nav nav-tabs" >
+		  <ul class="nav nav-tabs rcNav" >
 		    <li class="nav-item">
 		      <a class="nav-link active" data-toggle="tab" href="#madeByMe">made by me</a>
 		    </li>
@@ -865,7 +862,7 @@ a {
   <div class="tab-content">
     <div id="madeByMe" class="container tab-pane active"><br>
 <!--       <h5 class="pl-2">made by me</h5> -->
-		<a class="loginNeed" style="float:right" href="#"><span class="fa fa-pencil-square"></span>후기작성</a>
+		<a class="loginNeed" style="float:right" href="/mbm/write/${hobbyVo.hobby_no}"><span class="fa fa-pencil-square"></span>후기작성</a>
 		<!-- review-container -->
 		<div class="review-container">
 		<c:forEach begin="1" end="4">

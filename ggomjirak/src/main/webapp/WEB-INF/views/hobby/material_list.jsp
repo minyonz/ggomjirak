@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -22,7 +23,6 @@ $(document).ready(function() {
 <title>준비물 조회</title>
 
 <style>
-
 
 /* 화면 width 1300px부터 이렇게 하겠다.라는 뜻*/
 @media screen and (min-width: 1300px) {
@@ -298,6 +298,7 @@ a {
 		<div class="side side-right">
 		</div>
 	</div>
+</div>
 <%@ include file="../include/footer.jsp" %>
 <script>
 // var loginVo = "${loginVo}";
