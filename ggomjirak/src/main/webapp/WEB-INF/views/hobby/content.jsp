@@ -22,14 +22,14 @@ $(document).ready(function() {
 	selectCommentList();
 	 var selectTarget = $('.selectbox select');
 
-	var gap = 4000;
+	var gap = 6000;
 	selectTarget.on("change", function() {
 		console.log("체인지")
 		var select_name = $(this).children('option:selected').text();
         $(this).siblings('label').text(select_name);
         var speed = $(this).children('option:selected').val();
         gap = gap / speed;
-        console.log(gap);
+        console.log("gap", gap);
         $(".carousel-item").attr("data-interval", gap);
 	})
 	
@@ -163,28 +163,26 @@ $(document).ready(function() {
 
 
 .review-row{
- padding-top: 10px;
- border-bottom: 2px solid #c1c1c1;
+ padding: 1rem;
+ border-bottom: 1px solid #c1c1c1;
 }
 .review-content p{
 /* 	max-height: 4.8em; */
 	overflow: hidden;
 	display: -webkit-box;
-	-webkit-line-clamp: 6;
+	-webkit-line-clamp: 4;
 	-webkit-box-orient: vertical;
 }
 .comment-row{
- padding-top: 10px;
- padding-bottom: 10px;
- border-bottom: 2px solid #c1c1c1;
+ padding: 1rem;
+ border-bottom: 1px solid #c1c1c1;
 }
 .comment-row.recomment-row{
  background: url(/resources/images/reply.png) no-repeat 3px 0px;
- background-size: 45px;
- padding-left: 40px;
+ background-size: 2.45rem;;
+ padding-left: 2.5rem;;
  padding-top: 10px;
  padding-bottom: 10px;
- border-bottom: 2px solid #c1c1c1;
 }
 /* #reply_div{ */
 /*  background: url(/resources/images/reply.png) no-repeat 3px 0px; */
@@ -193,6 +191,23 @@ $(document).ready(function() {
 /*  padding-top: 10px; */
 /*  padding-bottom: 10px; */
 /* } */
+
+.c_user_nick{
+	font-weight:600;
+}
+.c_parent_user_nick {
+	font-weight:600;
+	color:#1f5e43;
+    font-size: 14px;
+}
+#reply_div {
+margin: 10px 0 10px 35px;
+}
+.c_reg_date {
+	font-size: 13px;
+    color: #1f5e43;
+    font-weight: bold;
+}
 .btnMenu {
 	background: url("${contextPath}/resources/images/menu.png") no-repeat center; 
 	outline : none;
@@ -346,6 +361,7 @@ color: #1f5e43;
  
  /* 화면 width 1300px까지 이렇게 하겠다.라는 뜻*/
  @media screen and (max-width: 1300px) {
+.body .rcNav {padding-left: 3.5rem;}
 .body { padding : 3% 10%; }
  }
   	
@@ -444,61 +460,28 @@ border-bottom: none !important;
 .tab-pane h5{
 border-left: 4px solid #1f5e43;
 }
-/* 3. pagination */
-.pagination_rounded,
-.pagination_square {
-    display: inline-block;
-    padding-top: 20px;
+.myPagination a:hover {
+	background: #1f5e43;
+	border-color: #1f5e43;
+     color: #fff;
 }
-.pagination_rounded ul {
-    margin: 0;
-    padding: 0;
-    list-style: none
-}
-.pagination_rounded li:first-child {
-    margin-left: 0px
-}
-.pagination_rounded ul li {
-    float: left;
-    margin-left: 10px
-}
-.pagination_rounded ul li a:hover {
-    background: #1f5e43;
-    color: #fff;
-    border: 1px solid #1f5e43
-}
-a:link {
-    text-decoration: none;
-}
-.pagination_rounded .prev {
-    margin-left: 0px;
-    border-radius: 35px;
-    width: 90px;
-    height: 34px;
-    line-height: 34px
-}
-.pagination_rounded ul li a {
-    float: left;
-    color: #1f5e43;
-    border-radius: 50%;
-    line-height: 30px;
-    height: 30px;
+
+.myPagination a {
+	display: inline-block;
     width: 30px;
+    height: 30px;
+    border: 1px solid #b2b2b2;
+    font-size: 14px;
+/*     color: #b2b2b2; */
+    font-weight: 700;
+    line-height: 28px;
     text-align: center;
-    margin-bottom: 40px;
-    border: 1px solid #e0e0e0
-}
-.pagination_rounded .prev i {
-    margin-right: 10px
-}
-.pagination_rounded .next {
-    border-radius: 35px;
-    width: 90px;
-    height: 34px;
-    line-height: 34px
-}
-.visible-xs {
-    display: none !important;
+    margin-right: 16px;
+    -webkit-transition: all, 0.3s;
+    -moz-transition: all, 0.3s;
+    -ms-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s;
 }
 /* URL*/
 
@@ -679,8 +662,7 @@ figure[data-ke-type='opengraph'] .og-host {
 									<img class="rounded-circle circle-image img_fit" 
 										src="/displayImage?filePath=${hobbyVo.user_img}"/> 
 								</div>
-									<span style="padding: auto;
-											    display: inline-block;
+									<span style=" display: inline-block;
 											    position: absolute;
 											    top: 0.5rem;
 											    margin-left: 0.5rem;
@@ -940,51 +922,60 @@ figure[data-ke-type='opengraph'] .og-host {
 				</div>
 			</div>
 			<!-- 완성사진 영역 -->
-			<div style="margin-top: 100px;">
-			 <div class="col-lg-6 col-md-6">
+			<c:if test="${fn:length(hobbyVo.completeImgs) > 0}">
+			<div style="margin-top: 5rem; border-top: 1.5px solid #c8c8c8;">
+			<div style="text-align:center; margin-top: 20px;">
+				<b>완성 사진</b><span>Craft</span>
+			</div>
+			 <div class="col-lg-6 col-md-6" style="margin: 0 auto;">
 			    <div class="product__details__pic">
-                        <div class="product__details__pic__item">
-                            <img class="product__details__pic__item--large"
-                                src="/displayImage?filePath=${hobbyVo.main_img}" alt="">
+                        <div class="product__details__pic__item" style="width:100%;height:20rem; overflow:hidden; margin: 1rem auto;">
+                            <img style="width:100%;height:100%; object-fit:cover; "
+                            	class="product__details__pic__item--large"
+                                src="/displayImage?filePath=${hobbyVo.completeImgs[0].img_name}" alt="">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
                         	<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
-								 <img data-imgbigurl="/displayImage?filePath=${completeImgVo.img_name}"
-                                src="/displayImage?filePath=${completeImgVo.img_name}" alt="">
+                        		<div style="width:100px;height:100px; overflow:hidden;">
+									 <img style="width:100%;height:100%; object-fit:cover;"
+									 	data-imgbigurl="/displayImage?filePath=${completeImgVo.img_name}"
+	                                	src="/displayImage?filePath=${completeImgVo.img_name}" alt="">
+                        		</div>
 							</c:forEach>
                         </div>
                     </div>
-                   </div>
-				<div class="carousel craftCarousel slide" id="craftSlide" style="box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);">
-				<ol class="carousel-indicators">
-					<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
-						<li data-slide-to="${vs.index}" 
-							data-target="#craftSlide"
-							class="${vs.index==0  ? 'active' : ''}">
-						</li>
-					</c:forEach>
-				</ol>
-				<div class="carousel-inner craftCarousel-inner">
-					<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
-						<div data-num="${vs.count}" class="carousel-item ${vs.count==1  ? 'active' : ''}">
-							<div style="width:550px; height:300px">
-								<img class="slideImg" src="/displayImage?filePath=${completeImgVo.img_name}" />
-							</div>
-						</div>
-					</c:forEach>
-				</div> 
-				<a class="carousel-control-prev" href="#craftSlide" 
-					data-slide="prev" style="height:300px">
-					<span class="carousel-control-prev-icon"></span> 
-					<span class="sr-only">Previous</span>
-				</a> 
-				<a class="carousel-control-next" href="#craftSlide" 
-					data-slide="next"  style="height:300px">
-					<span class="carousel-control-next-icon"></span> 
-					<span class="sr-only">Next</span>
-				</a>
-				</div>
+                 </div>
+<!-- 				<div class="carousel craftCarousel slide" id="craftSlide" style="box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);"> -->
+<!-- 				<ol class="carousel-indicators"> -->
+<%-- 					<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs"> --%>
+<%-- 						<li data-slide-to="${vs.index}"  --%>
+<!-- 							data-target="#craftSlide" -->
+<%-- 							class="${vs.index==0  ? 'active' : ''}"> --%>
+<!-- 						</li> -->
+<%-- 					</c:forEach> --%>
+<!-- 				</ol> -->
+<!-- 				<div class="carousel-inner craftCarousel-inner"> -->
+<%-- 					<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs"> --%>
+<%-- 						<div data-num="${vs.count}" class="carousel-item ${vs.count==1  ? 'active' : ''}"> --%>
+<!-- 							<div style="width:550px; height:300px"> -->
+<%-- 								<img class="slideImg" src="/displayImage?filePath=${completeImgVo.img_name}" /> --%>
+<!-- 							</div> -->
+<!-- 						</div> -->
+<%-- 					</c:forEach> --%>
+<!-- 				</div>  -->
+<!-- 				<a class="carousel-control-prev" href="#craftSlide"  -->
+<!-- 					data-slide="prev" style="height:300px"> -->
+<!-- 					<span class="carousel-control-prev-icon"></span>  -->
+<!-- 					<span class="sr-only">Previous</span> -->
+<!-- 				</a>  -->
+<!-- 				<a class="carousel-control-next" href="#craftSlide"  -->
+<!-- 					data-slide="next"  style="height:300px"> -->
+<!-- 					<span class="carousel-control-next-icon"></span>  -->
+<!-- 					<span class="sr-only">Next</span> -->
+<!-- 				</a> -->
+<!-- 				</div> -->
 			</div>
+			</c:if>
 		</div>
 		<div class="side side-right"></div>
 	</div>
@@ -1022,14 +1013,14 @@ figure[data-ke-type='opengraph'] .og-host {
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div id="madeByMe" class="container tab-pane active"><br>
+    <div id="madeByMe" class="container tab-pane active" style="width: 80%;"><br>
 <!--       <h5 class="pl-2">made by me</h5> -->
 		<a class="loginNeed btn-more" 
 			type="button" href="/mbm/write/${hobbyVo.hobby_no}" 
 			style="float: right; margin-bottom: 20px">후기작성</a>
 		<!-- review-container -->
 		<div class="review-container">
-		<c:forEach begin="1" end="4">
+		<c:forEach begin="1" end="6">
 		<!-- review-row -->
 		<div class="review-row">
 			<div class="row">
@@ -1049,7 +1040,7 @@ figure[data-ke-type='opengraph'] .og-host {
 			</div>
 			<div class="row">
 				<div class="col-md-3">
-					<div style="width:13rem; height:12rem; overflow:hidden;">
+					<div style="width:10rem; height:8rem; overflow:hidden;">
 						<img class="img_fit" 
 							src="/resources/images/madeByMeThum.jpg"/> 
 					</div>
@@ -1071,24 +1062,26 @@ figure[data-ke-type='opengraph'] .og-host {
 		<!-- //review-container -->
 		<!-- pagination-container -->
 		<div class="pagination-container" style="text-align: center;">
-			<div class="pagination_rounded">
-			    <ul>
-			        <li> <a href="#" class="prev"> <i class="fa fa-angle-left" aria-hidden="true"></i> Prev </a> </li>
-			        <li><a href="#">1</a> </li>
-			        <li class="hidden-xs"><a href="#">2</a> </li>
-			        <li class="hidden-xs"><a href="#">3</a> </li>
-			        <li class="hidden-xs"><a href="#">4</a> </li>
-			        <li class="hidden-xs"><a href="#">5</a> </li>
-			        <li class="visible-xs"><a href="#">...</a> </li>
-			        <li><a href="#">6</a> </li>
-			        <li><a href="#" class="next"> Next <i class="fa fa-angle-right" aria-hidden="true"></i></a> </li>
-			    </ul>
-			</div>
+			  <div class="myPagination" style="text-align: center; margin-top: 1.5rem">
+            <c:set var="prev" value=""/>
+            <c:set var="next" value=""/>
+            
+<%--             	<c:if test=""> --%>
+               		 <a href=""><i class="fa fa-long-arrow-left"></i></a>
+<%--                 </c:if> --%>
+            	<c:forEach var="v" begin="1" end="10">
+	                <a class="" 
+	                	href="">${v}</a>
+				</c:forEach>
+<%-- 				<c:if test=""> --%>
+               		 <a href=""><i class="fa fa-long-arrow-right"></i></a>
+<%--                 </c:if> --%>
+            </div>
 		</div>
 		<!--// pagination-container --> 
 	 </div>
 	 <!-- comment 시작 -->
-    <div id="comment" class="container tab-pane fade"><br>
+    <div id="comment" class="container tab-pane fade" style="width: 80%;"><br>
 <!--     		<h5 class="pl-2">comment</h5> -->
 			<div class="sm_tit">댓글 <span class="cmt_cnt">3</span></div>
 			<!--commentList-container -->
@@ -1099,14 +1092,17 @@ figure[data-ke-type='opengraph'] .og-host {
 					<input type="hidden" class="re_group" value=""/>
 					<div class="updateCommentDiv" style="display:none">
 						<div class="c_info_area">
-							<img class="rounded-circle circle-image user_img" 
-								src="/resources/images/profile.png" style="width:35px; height:35px;"/>
-							<span class="c_user_nick"> 하윤지</span>
+							<div style="width:2.3rem; height:2.3rem; overflow:hidden; display: inline-block;">
+								<img class="rounded-circle circle-image user_img" 
+									src="/resources/images/profile.png"  style="width:100%; height:100%; object-fit:cover;"/>
+							</div>
+							<span class="c_user_nick" style="position: absolute; padding: 0.4rem 0 0 0.4rem;"> 하윤지</span>
 							<a class="cancel" href="javascript:cancelUpdate();" style="float:right">취소</a>
 						</div>
 						<div class="input-group" style="width:680px;">
 						<!-- 아이디부분 로그인기능 생기면 삭제 -->
-							<textarea name="c_content" class="form-control c_content"
+							<textarea name="c_content" class="form-control c_content" 
+									 spellcheck="false" autocomplete="off"
 									 style="height:100px; width:100%; resize:none;"></textarea>
 							<!-- 로그인 기능 생기면 insertComment함수 인자안에 세션으로 얻은${user_id}넣기 -->
 							<button class="btn btn-outline-light green_background updateBtn" type="button" 
@@ -1115,14 +1111,15 @@ figure[data-ke-type='opengraph'] .og-host {
 					</div>
 					<div class="view_comment">
 						<div class="c_info_area">
-								<a class="user_link" href="#프로필링크">
-									<img class="rounded-circle circle-image user_img" 
-									src="/resources/images/profile.png" style="width:35px; height:35px;"
-									/>
-									<span class="c_user_nick"> 하윤지</span>
+								<a class="user_link" href="#프로필링크" style="vertical-align: top;">
+									<label style="width:2.3rem; height:2.3rem; overflow:hidden;">
+										<img class="rounded-circle circle-image user_img" 
+											src="/resources/images/profile.png"  style="width:100%; height:100%; object-fit:cover;"/>
+									</label>
+									<span class="c_user_nick" style="margin-left: 0.5rem; color:#212529;     vertical-align: top;"> 하윤지</span>
 								</a>
 								<span class="is_hobby_writer badge badge-pill badge-success" 
-									style="display:none; background: #1f5e43; padding-top: 5px;"> 글주인</span>
+									style="display:none; background: #1f5e43; padding-top: 5px; vertical-align: top;"> 글주인</span>
 								<!-- 댓글, 수정 삭제 -->
 								<div class="dropdown" style="float:right">
 									<button class="btnMenu_cmt" type="button" id="dropdownMenuButton" data-toggle="dropdown">
@@ -1148,10 +1145,10 @@ figure[data-ke-type='opengraph'] .og-host {
 							</div>
 							<div class="c_btn_area">
 								<button class="loginNeed doRecomment btn btn-sm btn-outline-light green_background"
-										 onclick="doRecomment()">답글</button>
+										style="margin-top: 0.5rem;" onclick="doRecomment()">답글</button>
 							</div>
 					</div>
-					<div class="row replyCommentDiv" style="padding: 10px 0 10px 35px;">
+					<div class="row replyCommentDiv">
 					
 					</div>
 				</div>
@@ -1169,7 +1166,8 @@ figure[data-ke-type='opengraph'] .og-host {
 				<div class="input-group" style="width:680px;">
 					<!-- 아이디부분 로그인기능 생기면 삭제 -->
 <!-- 					<input type="text" id="user_id" name="user_id" placeholder="댓글작성자 id(테스트를 위한)"/> -->
-					<textarea id="c_content" name="c_content" class="form-control" placeholder="댓글을 남겨주세요."
+					<textarea id="c_content" name="c_content" spellcheck="false" autocomplete="off"
+						class="form-control" placeholder="댓글을 남겨주세요."
 						 style="height:100px; width:100%; resize:none;"></textarea>
 					<!-- 로그인 기능 생기면 insertComment함수 인자안에 세션으로 얻은${user_id}넣기 -->
 					<button class="loginNeed btn btn-outline-light green_background" type="button" 
@@ -1178,11 +1176,11 @@ figure[data-ke-type='opengraph'] .og-host {
 			</div>
 			<!--// commentWrite-container -->
 				<!-- 답댓작성 -->
-				<div id="reply_div" style="display:none">
+				<div id="reply_div" style="display:none;">
 					<div class="input-group" style="width:640px;">
 <!-- 						<input type="text" id="re_user_id" name="user_id" placeholder="댓글작성자 id(테스트를 위한)"/> -->
 						<input type="hidden" id="parent_c_no" value=""/>
-						<textarea id="re_c_content" class="form-control"
+						<textarea id="re_c_content" class="form-control" spellcheck="false" autocomplete="off"
 							 style="height:100px; width:100%; resize:none;"></textarea>
 						<button class="loginNeed btn btn-outline-light green_background insertRecomment" type="button" 
 							onclick="insertRecomment(this)" style="height:100px; width:100px;">등록</button>
@@ -1206,12 +1204,14 @@ figure[data-ke-type='opengraph'] .og-host {
 var loginVo = "${loginVo}";
 if (loginVo == "") {
 	console.log("loginVo 없음:", loginVo);
-	$(".loginNeed").on("click", function() {
+	$(".loginNeed").on("click", function(e) {
 		alert("로그인 해주세요");
+		console.log(e);
 		return false;
 	});
-	$("#comment").on("click", ".loginNeed", function() {
+	$("#comment").on("click", ".loginNeed", function(e) {
 		alert("로그인 해주세요");
+		console.log(e);
 		return false;
 	}).on("click", ".form-control", function() {
 		alert("로그인 해주세요");
