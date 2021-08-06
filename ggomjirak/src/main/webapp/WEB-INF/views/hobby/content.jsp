@@ -15,31 +15,48 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 <script src="${contextPath}/resources/js/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="${contextPath}/resources/css/sweetalert2.min.css">
 <script>
 $(document).ready(function() {
 	selectCommentList();
+	 var selectTarget = $('.selectbox select');
+
+	var gap = 4000;
+	selectTarget.on("change", function() {
+		console.log("체인지")
+		var select_name = $(this).children('option:selected').text();
+        $(this).siblings('label').text(select_name);
+        var speed = $(this).children('option:selected').val();
+        gap = gap / speed;
+        console.log(gap);
+        $(".carousel-item").attr("data-interval", gap);
+	})
 	
-	$('#stepSlide').carousel({
-		interval: 500
-	}).carousel('pause');
+	$('#stepSlide').on('slid.bs.carousel', function () {
+// 		console.log("호출");
+// 		console.log(gap);
+	});
+	
+// 	$('#stepSlide').carousel('pause');
 	
 	var isStart = false;
 	$("#carousel_cycle").on("click", function() {
 		if(isStart == false) {
 			console.log("시작");
+			$("#stepSlide").attr("data-interval", true);
 			$('#stepSlide').carousel('cycle');
-			$(this).find("span").removeClass("fa-play").addClass("fa-pause");
+			console.log($(".carousel-item").attr("data-interval"));
+			$(this).text("정지");
+// 			$("#msg_play").text("정지 버튼을 누르면 자동 슬라이드가 정지돼요.");
 			isStart = true;
 		} else {
 			console.log("정지");
 			$('#stepSlide').carousel('pause');
-			$(this).find("span").removeClass("fa-pause").addClass("fa-play");
+			$(this).text("재생");
+// 			$("#msg_play").text("재생 버튼을 누르면 자동 슬라이드가 시작돼요.");
 			isStart = false;
 		}
-		
 		
 	});
 	
@@ -52,25 +69,99 @@ $(document).ready(function() {
 	});
 
 
-		// 이미지 슬라이드 이동
-		$("#carousel_move").on("click", function() {
-		var num = Number($("#carousel_number").val()) - 1;
-		$('#stepSlide').carousel(num);
-		});
 		
-		$('#stepSlide').on('slide.bs.carousel', function () {
-			console.log("호출");
-		});
-		$('#stepSlide').on('slid.bs.carousel', function () {
-			console.log("완료");
-
-		});
 });
 
 </script>
 <title>상세보기</title>
 
 <style>
+
+.selectbox {
+	display: inline-block;
+    height: 1.5rem;
+    font-size: 10px;
+    position: relative;
+    width: 3.5rem;  /* 너비설정 */
+    border: 1px solid #999;  /* 테두리 설정 */
+    z-index: 1;
+    top:1px;
+}
+.selectbox:hover {
+  background: #e7705c8f;
+}
+
+/* 가상 선택자를 활용 화살표 대체 */
+.selectbox:before {
+   content: "";
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    width: 0;
+    height: 0;
+    margin-top: -1px;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid #3a3a3a;
+}
+
+
+.selectbox label {
+	cursor:pointer;
+    z-index: -1;
+    position: absolute;
+/*     top: 1px;  /* 위치정렬 */ 
+    left: 5px;  /* 위치정렬 */
+    padding: .4em .2em;  /* select의 여백 크기 만큼 */
+/*     color: #999; */
+    z-index: -1;  /* IE8에서 label이 위치한 곳이 클릭되지 않는 것 해결 */
+}
+
+.selectbox select {
+	cursor:pointer;
+    width: 100%;
+    height: auto;  /* 높이 초기화 */
+    line-height: normal;  /* line-height 초기화 */
+    font-family: inherit;  /* 폰트 상속 */
+    padding: .4em .2em;  /* 여백과 높이 결정 */
+    border: 0;
+    opacity: 0;  /* 숨기기 */
+    filter:alpha(opacity=0);  /* IE8 숨기기 */
+    -webkit-appearance: none; /* 네이티브 외형 감추기 */
+    -moz-appearance: none;
+    appearance: none;
+}
+.selectbox {
+
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.selectbox.focus {
+    border-color: #66afe9;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+
+
+.article_profile_cont {
+    width: 2.5rem;
+    height: 2.5rem;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.img_fit {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
 .review-row{
  padding-top: 10px;
  border-bottom: 2px solid #c1c1c1;
@@ -139,20 +230,18 @@ font-weight: 550;
 }
 #reg_date{
 color: #1f5e43;
-font-weight: 550;
+font-weight: 700;
 }
 .divCnt{
 color: #1f5e43;
 float: right;
-font-weight: 550;
+font-weight: 700;
 }
 .mainImg_cont{
-	overflow: hidden;
-/*     display: flex; */
-/*     align-items: center; */
-/*     justify-content: center; */
-    width: 550px;
-    height: 400px;
+	margin-top: 1rem;
+    overflow: hidden;
+    width: 34rem;
+    height: 25rem;
 }
 #main_img{
 object-fit: cover;
@@ -164,7 +253,7 @@ width: 100%;
 height: 90px;
 }
 .sm_tit{
-font-weight:550;
+font-weight:700;
 color: #1f5e43;
 }
 
@@ -187,7 +276,7 @@ color: #1f5e43;
 
 .stepSlideImgCont{
 	width: 100%;
-    height: 28rem;
+    height: 23rem;
 }
 .craftCarousel {
 	margin: 0 auto;
@@ -211,6 +300,7 @@ color: #1f5e43;
 	width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 4px;
 }
 .extra_tip {
     background: url(/resources/images/lamp.png) left -2px no-repeat;
@@ -256,7 +346,7 @@ color: #1f5e43;
  
  /* 화면 width 1300px까지 이렇게 하겠다.라는 뜻*/
  @media screen and (max-width: 1300px) {
-.body { padding : 3% 3%; }
+.body { padding : 3% 10%; }
  }
   	
 .divViewOption a{
@@ -326,25 +416,25 @@ color: #1f5e43;
 padding-left: 0px !important;
 padding-right: 0px !important;
 }
-.nav-item a:focus{
+.rcNav-item a:focus{
 outline: unset;
 }
-.nav-item a:hover{
+.rcNav-item a:hover{
 border: 1px solid #fff !important;
 }
-.nav-item a{
+.rcNav-item a{
 /* color: black !important; */
 font-weight: 600;
 padding-left: 28px;
 padding-right: 28px;
 }
-.nav-item .active{
+.rcNav-item .active{
 color: #1f5e43 !important;
 border:none !important;
 border-bottom: 3px solid #1f5e43 !important;
 font-weight: 600;
 }
-.nav-item .active:hover{
+.rcNav-item .active:hover{
 border:none !important;
 border-bottom: 3px solid #1f5e43 !important;
 }
@@ -411,6 +501,7 @@ a:link {
     display: none !important;
 }
 /* URL*/
+
 figure[data-ke-type='opengraph'] a {
     box-sizing: border-box;
     width: 100%;
@@ -425,7 +516,7 @@ figure[data-ke-type='opengraph'] a {
 figure[data-ke-type='opengraph'] div.og-image {
    border-right: solid 1px rgba(0, 0, 0, 0.06);
     width: 8.3rem;
-    height: 8.3rem;
+    height: 7.3rem;;
     background-size: cover;
     background-position: center;
 }
@@ -433,12 +524,13 @@ figure[data-ke-type='opengraph'] div {
     position: relative;
 }
 figure[data-ke-type='opengraph'] div.og-text {
-    flex-grow: 1;
-    height: 8rem;
+   flex-grow: 1;
+    height: 7.3rem;
     padding-left: 1.5rem;
-    padding-top: 1rem;
+    padding-top: 0.5rem;
 }
 figure[data-ke-type='opengraph'] p.og-title {
+font-size:14px;
 color: #000000;
 padding-bottom: 0.2rem;
 max-width: 467px;
@@ -453,7 +545,7 @@ figure[data-ke-type='opengraph'] .og-desc {
     text-overflow: ellipsis;
     overflow: hidden;
 /*     font-family: 'Noto Sans', 'Noto Sans KR'; */
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 300;
 /*     font-style: normal; */
 /*     font-stretch: normal; */
@@ -466,9 +558,37 @@ figure[data-ke-type='opengraph'] .og-desc {
     display: -webkit-box;
 }
 
-/*임시 */
-a {
- color:black;
+figure[data-ke-type='opengraph'] .og-host {
+	font-size:10px;
+}
+.btn-more {
+   padding: 3px 13px;
+   font-size: 14px;
+   padding-top: 7px;
+   margin: 0 4px;
+   border: 1px solid #1F5E43;
+}
+
+.btn-circle {
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    /* -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s; */
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    /* transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; */
+    /* height: 1.95rem; */
+    font-size: 10px;
+    /* position: relative; */
+    /* width: 3.5rem; */
+    border: 1px solid #999;
+    /* z-index: 1; */
+    font-size: 10px;
+    margin: 0 4px;
+    /* border: 1px solid #102e21; */
+    border-radius: 100%;
+    padding: 7px 4px;
+}
+
+.btn-circle:hover {
+  background: #e7705c8f;
 }
 </style>
 </head>
@@ -496,19 +616,19 @@ a {
 		<div class="side side-left"></div>
 		<div class="body">
 		<!-- 카테고리 -->
-			<div style="text-align: center;">
+			<div style="display:flex;">
+				<div style="text-align: center; margin-left: 46%;padding-left: auto;">
 				<span class="btn btn-outline-light btn-sm green_background">
 					${hobbyVo.l_cate_name}
 				</span>
 				<span class="btn btn-outline-light btn-sm green_background">
 					${hobbyVo.m_cate_name}
 				</span>
-			</div>
-			<!-- 핵심 부분 컨테이너 -->
+				</div>
 				<!-- 수정/ 삭제 버튼을 위한 메뉴 -->
 				<c:if test="${not empty loginVo }">
 					<c:if test="${loginVo.user_id == hobbyVo.user_id}">
-						<div class="dropdown" style="float:right">
+						<div class="dropdown" style="margin-left:auto;">
 							<button class="btnMenu" type="button" id="dropdownMenuButton" data-toggle="dropdown">
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" 
@@ -521,10 +641,16 @@ a {
 					</c:if>
 				</c:if>
 				<!--//  수정/ 삭제 버튼을 위한 메뉴 -->
+			</div>
+			<!-- 핵심 부분 컨테이너 -->
+				
 				<div id="hobby_title">${hobbyVo.hobby_title}</div>
 				<div id="hobby_intro">${hobbyVo.hobby_intro}</div>
 				<div>
-				<span id="reg_date">작성일  : <fmt:formatDate value="${hobbyVo.reg_date}" pattern="yyyy-MM-dd KK:mm:ss"/></span>
+<!-- 				<span style="color:#1f5e43;" class="fa fa-clock-o"></span> -->
+				<span id="reg_date">
+					<fmt:formatDate value="${hobbyVo.reg_date}" pattern="yyyy.MM.dd KK:mm:ss"/>
+				</span>
 				<div class="divCnt">
 					<span class="fa fa-eye"></span>
 					<span id="view_cnt">${hobbyVo.view_cnt}</span>
@@ -532,7 +658,7 @@ a {
 					<span class="fa fa-heart-o"></span>
 					<span id="like_cnt">${hobbyVo.like_cnt}</span>
 					<span>|</span>
-					<span class="fa fa-comment-o"></span>
+					<span class="fa fa-commenting-o"></span>
 					<span class="cmt_cnt">${hobbyVo.cmt_cnt}</span>
 				</div>
 				</div>
@@ -548,10 +674,21 @@ a {
 								작가
 							</div>
 							<a href="/workroom/main/${hobbyVo.user_id}">
-							<img class="rounded-circle circle-image" 
-								src="/displayImage?filePath=${hobbyVo.user_img}"
-								style="width:2.2rem;"/> 
-								<span>${hobbyVo.user_nick} ></span>
+							<div style="margin-top: 10px; position: relative;">
+								<div class="article_profile_cont">
+									<img class="rounded-circle circle-image img_fit" 
+										src="/displayImage?filePath=${hobbyVo.user_img}"/> 
+								</div>
+									<span style="padding: auto;
+											    display: inline-block;
+											    position: absolute;
+											    top: 0.5rem;
+											    margin-left: 0.5rem;
+											    color:#212529;
+												">
+										${hobbyVo.user_nick} >
+									</span>
+							</div>
 							</a>
 						</div>
 						<div class="time_row">
@@ -596,7 +733,7 @@ a {
 		<div class="side side-left"></div>
 		<div class="body">
 			<div><b>준비물</b><span>Material</span></div>
-				<table class="table table-hover table-sm" style="cursor: pointer;">
+				<table class="table table-hover table-sm">
 					<tbody>
 						<c:forEach var="hobbyMaterialVo" items="${hobbyVo.hobbyMaterials}">
 							<tr>
@@ -630,19 +767,30 @@ a {
 	            <div>
 	            	<div class="divSlideView" style="margin-top: 60px;">
 <!-- 	            		<span>슬라이드 조작하기</span> -->
-	            		<div style="text-align:center; margin-bottom: 1rem;">
-	            			<button id="carousel_prev" class="btn btn-sm btn-outline-light green_background"><span class="fa fa-backward"></span></button>
-							<button id="carousel_cycle" style="margin: 0 3rem;" class="btn btn-sm btn-outline-light green_background"><span class="fa fa-play"></span></button>
-							<button id="carousel_next" class="btn btn-sm btn-outline-light green_background"><span class="fa fa-forward"></span></button>
-								<!-- 슬라이드 이동 -->
-<!-- 							<input type="number" id="carousel_number" min=1 max=5 value="1" > -->
-<!-- 							<button id="carousel_move" class="btn btn-sm btn-outline-light green_background">이동</button><br /> -->
+	            		<div style="display:flex; padding: 0 8.5rem; margin-bottom: 1rem;">
+	            			<span style="font-size: 14px;">슬라이드 기능을 이용해 보세요!
+	            				<br/><span style="font-size: 11px; color: #888888;">자동 슬라이드의 기본 간격은 약 6초입니다.</span>
+	            			</span>
+	            			<div style="margin-left: auto; padding-top: 0.7rem;">
+		            			<span class="btn-circle" id="carousel_prev" style="cursor:pointer;">이전</span>
+		            			<span class="btn-circle" id="carousel_cycle" style="cursor:pointer;">재생</span>
+		            			<span class="btn-circle" id="carousel_next" style="cursor:pointer; margin-right: 9px;">다음</span>
+		            			<div class="selectbox">
+								  <label for="select">배속</label>
+								    <select id="select">
+								        <option value="0.5" >0.5&times;</option>
+								        <option value="1" selected>1.0&times;</option>
+								        <option value="1.5">1.5&times;</option>
+								        <option value="2">2.0&times;</option>
+								    </select>
+								</div>
+	            			</div>
 	            		</div>
 
 	            		<!-- 이미지 슬라이드 -->
 	            		<!-- data-interval=false -> 자동 슬라이드 취소 -->
-            			<div class="carousel stepCarousel slide" id="stepSlide">
-							<ol class="carousel-indicators" style="top: 16.3rem; height: 30px;">
+            			<div class="carousel stepCarousel slide" id="stepSlide" data-interval=false>
+							<ol class="carousel-indicators" style="top: 21rem; height: 30px;">
 								<c:forEach var="makeStepVo" items="${hobbyVo.makeSteps }">
 									<li data-slide-to="${makeStepVo.make_step_num - 1 }" 
 										data-target="#stepSlide"
@@ -652,7 +800,7 @@ a {
 							</ol>
 							<div class="carousel-inner stepCarousel-inner">
 								<c:forEach var="makeStepVo" items="${hobbyVo.makeSteps }">
-									<div data-num="${makeStepVo.make_step_num}" class="carousel-item ${makeStepVo.make_step_num==1  ? 'active' : ''}">
+									<div data-num="${makeStepVo.make_step_num}" data-interval="4000" class="carousel-item ${makeStepVo.make_step_num==1  ? 'active' : ''}">
 										<div class="stepSlideImgCont">
 											<c:choose>
 												<c:when test="${not empty makeStepVo.make_step_img}">
@@ -666,7 +814,7 @@ a {
 										<div class="carousel-caption">
 												<div id="stepDiv${makeStepVo.make_step_num}" 
 												class="view_step_cont step${makeStepVo.make_step_num}"
-												style="margin: 0 auto;" >
+												style="width:100%;" >
 												<div id="stepdescr${makeStepVo.make_step_num}" class="media-body">
 												${makeStepVo.make_step_text }
 												</div>
@@ -689,7 +837,7 @@ a {
 															<c:otherwise>
 																<figure data-ke-type="opengraph" data-og-title="${makeStepVo.urlOgTag.title}" 
 																data-og-description="${makeStepVo.urlOgTag.desc}"  data-og-url="${makeStepVo.urlOgTag.url }" 
-																data-og-image="${makeStepVo.urlOgTag.image}"> 
+																data-og-image="${makeStepVo.urlOgTag.image}" style="margin-top: 0.5rem;"> 
 															      <a href="${makeStepVo.urlOgTag.url }">
 														   			<c:set var = "image" value = "${makeStepVo.urlOgTag.image }"/>
 														   				<c:choose>
@@ -720,16 +868,16 @@ a {
 									</div>
 								</c:forEach>
 							</div> 
-<!-- 							<a class="carousel-control-prev" href="#stepSlide"  -->
-<!-- 								data-slide="prev" style="height: 18rem;"> -->
-<!-- 								<span class="carousel-control-prev-icon"></span>  -->
-<!-- 								<span class="sr-only">Previous</span> -->
-<!-- 							</a>  -->
-<!-- 							<a class="carousel-control-next" href="#stepSlide"  -->
-<!-- 								data-slide="next"  style="height:18rem"> -->
-<!-- 								<span class="carousel-control-next-icon"></span>  -->
-<!-- 								<span class="sr-only">Next</span> -->
-<!-- 							</a> -->
+							<a class="carousel-control-prev" href="#stepSlide" 
+								data-slide="prev" style="height: 23rem;;">
+								<span class="carousel-control-prev-icon"></span> 
+								<span class="sr-only">Previous</span>
+							</a> 
+							<a class="carousel-control-next" href="#stepSlide" 
+								data-slide="next"  style="height:23rem;">
+								<span class="carousel-control-next-icon"></span> 
+								<span class="sr-only">Next</span>
+							</a>
 						</div>
 						<!-- //이미지 슬라이드 -->
 	            </div>
@@ -763,7 +911,7 @@ a {
 							<c:if test="${not empty makeStepVo.urlOgTag}">
 									<figure data-ke-type="opengraph" data-og-title="${makeStepVo.urlOgTag.title}" 
 										data-og-description="${makeStepVo.urlOgTag.desc}"  data-og-url="${makeStepVo.urlOgTag.url }" 
-										data-og-image="${makeStepVo.urlOgTag.image}"> 
+										data-og-image="${makeStepVo.urlOgTag.image}" style="margin-top: 0.5rem;"> 
 								      <a href="${makeStepVo.urlOgTag.url }">
 								        <c:set var = "image" value = "${makeStepVo.urlOgTag.image }"/>
 							   				<c:choose>
@@ -793,6 +941,20 @@ a {
 			</div>
 			<!-- 완성사진 영역 -->
 			<div style="margin-top: 100px;">
+			 <div class="col-lg-6 col-md-6">
+			    <div class="product__details__pic">
+                        <div class="product__details__pic__item">
+                            <img class="product__details__pic__item--large"
+                                src="/displayImage?filePath=${hobbyVo.main_img}" alt="">
+                        </div>
+                        <div class="product__details__pic__slider owl-carousel">
+                        	<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
+								 <img data-imgbigurl="/displayImage?filePath=${completeImgVo.img_name}"
+                                src="/displayImage?filePath=${completeImgVo.img_name}" alt="">
+							</c:forEach>
+                        </div>
+                    </div>
+                   </div>
 				<div class="carousel craftCarousel slide" id="craftSlide" style="box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);">
 				<ol class="carousel-indicators">
 					<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
@@ -850,10 +1012,10 @@ a {
 			<!-- 후기, 댓글 컨테이너 -->
 			<!-- style="padding-left: 18%;" 없앰 노트북으로 보니깐 이상해짐 스크린클때만 여백넣는작업 들어가야할듯 -->
 		  <ul class="nav nav-tabs rcNav" >
-		    <li class="nav-item">
+		    <li class="nav-item rcNav-item">
 		      <a class="nav-link active" data-toggle="tab" href="#madeByMe">made by me</a>
 		    </li>
-		    <li class="nav-item">
+		    <li class="nav-item rcNav-item">
 		      <a class="nav-link" data-toggle="tab" href="#comment">comment</a>
 		    </li>
 		  </ul>
@@ -862,7 +1024,9 @@ a {
   <div class="tab-content">
     <div id="madeByMe" class="container tab-pane active"><br>
 <!--       <h5 class="pl-2">made by me</h5> -->
-		<a class="loginNeed" style="float:right" href="/mbm/write/${hobbyVo.hobby_no}"><span class="fa fa-pencil-square"></span>후기작성</a>
+		<a class="loginNeed btn-more" 
+			type="button" href="/mbm/write/${hobbyVo.hobby_no}" 
+			style="float: right; margin-bottom: 20px">후기작성</a>
 		<!-- review-container -->
 		<div class="review-container">
 		<c:forEach begin="1" end="4">
@@ -884,14 +1048,15 @@ a {
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-4">
-					<img src="/resources/images/madeByMeThum.jpg"/> 
+				<div class="col-md-3">
+					<div style="width:13rem; height:12rem; overflow:hidden;">
+						<img class="img_fit" 
+							src="/resources/images/madeByMeThum.jpg"/> 
+					</div>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-9">
 					<div>
 						<div class="row">체감 난이도: 최상</div>
-						<div class="row">소요시간: 1시간</div>
-						<div class="row">비용: 3만원</div>
 					</div>
 					<div class="row review-content">
 						<p>후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용

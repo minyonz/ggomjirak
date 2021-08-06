@@ -351,6 +351,10 @@
 		border: 3px solid rgba(31, 94, 67, .75);
 	}
 	
+	.divExtra .form-control {
+		font-size: 0.8rem;
+	}
+	
 	.focus {
 		border:3px solid rgba(31, 94, 67, .75);
 	}
@@ -603,7 +607,7 @@ margin-right: 15px;
 									</div>
 								</div>
 								<div class="row">
-									<textarea class="form-control main_input" style="height:80px; resize:none;" 
+									<textarea class="form-control main_input" style="height:80px; resize:none;" spellcheck="false"
 											 name="hobby_intro" id="hobby_intro"  maxlength="300" minlength="2" autocomplete="off"></textarea>
 								</div>
 								<div class="row float-right" 
@@ -812,7 +816,7 @@ margin-right: 15px;
 												</div>
 											</div>
 											<div class="divStepText">
-												<textarea name="makeSteps[0].make_step_text"
+												<textarea name="makeSteps[0].make_step_text" spellcheck="false"
 												class="form-control stepText" placeholder="순서에 맞는 설명을 입력해 주세요" 
 												style="height:160px; width:430px; resize:none;" autocomplete="off"></textarea>
 											</div>
@@ -823,7 +827,7 @@ margin-right: 15px;
 												<a class="delStepBox" href="javascript:delStepBox(1)"><span class="fa fa-times"></span></a>
 											</div>
 											<!-- 노트, 팁 부분 -->
-											<div style="width:594px;border:3px solid rgba(31, 94, 67, .75); margin-left: 123px">
+											<div class="divExtra" style="width:594px;border:3px solid rgba(31, 94, 67, .75); margin-left: 123px">
 												<div style="padding:5px; text-align:center">
 													<!-- 노트보기 -->
 													<a href="javascript:showNote(1);"
@@ -856,7 +860,7 @@ margin-right: 15px;
 												<div id="divStepNote_1" class="divStepNote" style="display:none; margin:5px 5px;">
 													<img src="${contextPath}/resources/images/note.png"
 													style="width:24px;height:24px; vertical-align:top;"/> 
-													<textarea name="makeSteps[0].note" class="form-control stepNoteText" autocomplete="off"
+													<textarea name="makeSteps[0].note" class="form-control stepNoteText" spellcheck="false" autocomplete="off"
 														style="width:500px;height:50px;resize:none; display: inline-block;"></textarea>
 												</div>
 												<!--// 노트영역 -->
@@ -864,7 +868,7 @@ margin-right: 15px;
 												<div id="divStepTip_1" class="divStepTip" style="display:none; margin:5px 5px;">
 													<img src="${contextPath}/resources/images/lamp.png"
 														style="width:24px;height:24px;vertical-align:top;"> 
-													<textarea name="makeSteps[0].tip" class="form-control stepTipText" autocomplete="off"
+													<textarea name="makeSteps[0].tip" class="form-control stepTipText" spellcheck="false" autocomplete="off"
 														 style="width:500px;height:50px;resize:none; display: inline-block;"></textarea>
 												</div>
 												<!-- //팁영역 -->
@@ -873,11 +877,11 @@ margin-right: 15px;
 													<img src="${contextPath}/resources/images/link.png"
 														style="width:24px;height:24px;vertical-align:top;"> 
 													<input type="text" name="makeSteps[0].link_url"
-														 placeholder="사이트 주소를 입력해주세요"
+														 placeholder="사이트 주소를 입력해주세요" spellcheck="false"
 														 class="form-control stepLink_url" autocomplete="off"
 														 style="width:500px;resize:none; display: inline-block;">
 													<textarea name="makeSteps[0].link_desc" 
-														placeholder="url에 대한 설명을 입력해 주세요"
+														placeholder="url에 대한 설명을 입력해 주세요" spellcheck="false"
 														class="form-control stepLink_desc" autocomplete="off"
 														style="width:500px;height:50px;resize:none; display: inline-block; margin-left: 28px;"></textarea>
 												</div>

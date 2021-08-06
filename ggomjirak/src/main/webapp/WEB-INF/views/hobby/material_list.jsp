@@ -61,12 +61,13 @@ a {
 .category:hover {
 	text-decoration: none;
 	color: #1f5e43;
+	font-weight: 600;
 }
 
 .active {
  	background: #1f5e43; 
-     border-color: #1f5e43; 
-     color: #fff; 
+    border-color: #1f5e43; 
+    color: #fff; 
 }
 
 .myPagination a:hover {
@@ -150,10 +151,13 @@ a {
     text-decoration: none;
 }
 
-.m_name {
-    font-size: 30px;
-    font-weight: 800;
+.m_name, .m_cnt {
+	font-family: 'S-CoreDream-4Regular';
+    font-size: 20px;
+	font-weight: 600; 
 }
+
+
 </style>
 </head>
 <body>
@@ -245,15 +249,15 @@ a {
                           <span class="m_name">${ms.m_name}</span> <span>을 쓰는</span> <span class="m_cnt">${ms.count}</span> <span>개의 취미가 있습니다.</span>
                       </div>
 						<div style="margin-left:auto;">
-							<a class="category sort" id="allSort" ${ms.sort == 'all' ? 'style="color: #1f5e43;"' : '' }
+							<a class="category sort" id="allSort" ${ms.sort == 'all' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
 								href="search?${m_no}${time}${cost}${level}&sort=all">전체</a> <span> |</span> 
-							<a class="category sort" id="newSort" ${ms.sort == 'new' ? 'style="color: #1f5e43;"' : '' }
+							<a class="category sort" id="newSort" ${ms.sort == 'new' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
 								 href="search?${m_no}${time}${cost}${level}&sort=new">최신순</a> <span> |</span> 
-							<a class="category sort" id="likeSort" ${ms.sort == 'like' ? 'style="color: #1f5e43;"' : '' }
+							<a class="category sort" id="likeSort" ${ms.sort == 'like' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
 								href="search?${m_no}${time}${cost}${level}&sort=like">좋아요순</a> <span> |</span> 
-							<a class="category sort" id="viewSort" ${ms.sort == 'view' ? 'style="color: #1f5e43;"' : '' }
+							<a class="category sort" id="viewSort" ${ms.sort == 'view' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
 								href="search?${m_no}${time}${cost}${level}&sort=view">조회수순</a> <span> |</span> 
-							<a class="category sort" id="cmtSort" ${ms.sort == 'cmt' ? 'style="color: #1f5e43;"' : '' }
+							<a class="category sort" id="cmtSort" ${ms.sort == 'cmt' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
 								href="search?${m_no}${time}${cost}${level}&sort=cmt">댓글순</a> 
 						</div>
 					</div>
@@ -261,19 +265,25 @@ a {
             	<c:forEach items="${hmList}" var="hobbyVo">
 	                <div class="col-lg-4 col-md-6 col-sm-6">
 	                    <div class="product__item">
-	                        <div class="product__item__pic set-bg" data-setbg="/displayImage?filePath=${hobbyVo.main_img}" 
-	                       	 style="background-image: url(&quot;/displayImage?filePath=${hobbyVo.main_img}&quot;);">
+	                        <div class="product__item__pic set-bg" 
+	                        	data-setbg="/displayImage?filePath=${hobbyVo.main_img}" 
+	                       		 style="background-image: url(&quot;/displayImage?filePath=${hobbyVo.main_img}&quot;);
+	                       		 		border: 1px solid #e1e1e1;
+	                       		 		border-radius: 3px">
 	                            <ul class="product__item__pic__hover">
 	                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
 	                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
 	                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
 	                            </ul>
 	                        </div>
-	                        <div class="product__item__text">
-	                        	${hobbyVo }
-	                            <h6><a href="/hobby/content/${hobbyVo.hobby_no}">${hobbyVo.hobby_title}</a></h6>
-	                            <h5>${hobbyVo.user_nick}</h5>
-	                        </div>
+	                        <div class="featured__item__text">
+								<h6>
+									<a class="short" style="font-weight: 600;"
+										href="/hobby/content/${hobbyVo.hobby_no}">${hobbyVo.hobby_title}</a>
+								</h6>
+								<h5><a class="short" style="font-size: 0.8rem;"
+									href="/workroom/main/${hobbyVo.user_nick}">${hobbyVo.user_nick}</a></h5>
+							</div>
 	                    </div>
 	                </div>
             	</c:forEach>

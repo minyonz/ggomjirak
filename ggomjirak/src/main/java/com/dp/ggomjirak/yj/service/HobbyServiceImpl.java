@@ -96,6 +96,8 @@ public class HobbyServiceImpl implements HobbyService {
 		HobbyVo hobbyVo = hobbyDao.selectHobby(hobby_no);
 		// 준비물
 		List<HobbyMaterialVo> hobbyMaterials = hobbyDao.selectHobbyMaterialList(hobby_no);
+		System.out.println(hobbyMaterials);
+		System.out.println(hobbyVo);
 		hobbyVo.setHobbyMaterials(hobbyMaterials);
 
 		// 만들기 순서

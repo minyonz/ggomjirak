@@ -584,6 +584,11 @@ margin-right: 15px;
 	background:#1f5e43; 
 	color:#fff;
 	}
+	
+	
+.divExtra .form-control {
+		font-size: 0.8rem;
+	}
 /* 	.btn_delMainImg { */
 /*     right: 1rem; */
 /*     top: 0; */
@@ -682,7 +687,7 @@ margin-right: 15px;
 								<div class="row">
 									<textarea class="form-control main_input" style="height:80px; resize:none;" 
 											 name="hobby_intro" id="hobby_intro" required maxlength="300" minlength="2" 
-											 autocomplete="off">${hobbyVo.hobby_intro}</textarea>
+											 autocomplete="off" spellcheck="false">${hobbyVo.hobby_intro}</textarea>
 								</div>
 								<div class="row float-right" 
 									 style="
@@ -941,7 +946,7 @@ margin-right: 15px;
 														class="form-control stepText" 
 														placeholder="순서에 맞는 설명을 입력해 주세요" 
 														style="height:160px; width:430px; resize:none;" 
-														autocomplete="off">${makeStepVo.make_step_text }</textarea>
+														autocomplete="off" spellcheck="false">${makeStepVo.make_step_text }</textarea>
 												</div>
 												<div class="divStepBtn" style="display:inline-block; display:none;">
 													<a class="moveUp" href="javascript:moveUp(${vs.count})"><span class="fa fa-chevron-up"></span></a>
@@ -950,7 +955,7 @@ margin-right: 15px;
 													<a class="delStepBox" href="javascript:delStepBox(${vs.count})"><span class="fa fa-times"></span></a>
 												</div>
 												<!-- 노트, 팁 부분 -->
-												<div style="width:594px;border:3px solid rgba(31, 94, 67, .75); margin-left: 123px">
+												<div class="divExtra" style="width:594px;border:3px solid rgba(31, 94, 67, .75); margin-left: 123px">
 													<div style="padding:5px; text-align:center">
 														<!-- 노트보기 -->
 														<a href="javascript:showNote(${vs.count});"
@@ -986,8 +991,8 @@ margin-right: 15px;
 														<img src="${contextPath}/resources/images/note.png"
 														style="width:24px;height:24px; vertical-align:top;"/> 
 														<textarea name="makeSteps[${vs.count - 1}].note" 
-															class="form-control stepNoteText" autocomplete="off"
-															style="width:500px;height:50px;
+															class="form-control stepNoteText" autocomplete="off" spellcheck="false"
+															style="width:500px;height:50px; 
 															resize:none; display: inline-block;">${makeStepVo.note}</textarea>
 													</div>
 													<!--// 노트영역 -->
@@ -998,7 +1003,7 @@ margin-right: 15px;
 														<img src="${contextPath}/resources/images/lamp.png"
 															style="width:24px;height:24px;vertical-align:top;"> 
 														<textarea name="makeSteps[${vs.count - 1}].tip" 
-															class="form-control stepTipText" autocomplete="off"
+															class="form-control stepTipText" autocomplete="off" spellcheck="false"
 															 style="width:500px;height:50px;
 																 resize:none; display: inline-block;">${makeStepVo.tip}</textarea>
 													</div>
@@ -1011,12 +1016,12 @@ margin-right: 15px;
 															style="width:24px;height:24px;vertical-align:top;"> 
 														<input type="text" value="${makeStepVo.link_url}"
 															 name="makeSteps[${vs.count - 1}].link_url"
-															 placeholder="사이트 주소를 입력해주세요."
+															 placeholder="사이트 주소를 입력해주세요." spellcheck="false"
 															 class="form-control stepLink_url" autocomplete="off"
 															 style="width:500px;resize:none; display: inline-block;">
 														<textarea 
 															name="makeSteps[${vs.count - 1}].link_desc" 
-															placeholder="url에 대한 설명을 입력해 주세요"
+															placeholder="url에 대한 설명을 입력해 주세요" spellcheck="false"
 															class="form-control stepLink_desc" autocomplete="off"
 															style="width:500px;height:50px;
 																resize:none; display: inline-block; 
@@ -1056,7 +1061,7 @@ margin-right: 15px;
 											</c:when>
 											<c:otherwise>
 												<img id="previewImg_compl_${vs.count}" class="previewImg_compl" 
-													src="${contextPath}/resources/images/preview_img.jpg" style="width:140px; height:140px;  cursor: pointer;">
+													src="${contextPath}/resources/images/preview_img.jpg" style="width:140px; height:140px; object-fit: cover; cursor: pointer;">
 											</c:otherwise>
 										</c:choose>
 									</label>
