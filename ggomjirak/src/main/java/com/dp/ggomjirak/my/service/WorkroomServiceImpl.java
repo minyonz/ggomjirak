@@ -51,6 +51,12 @@ public class WorkroomServiceImpl implements WorkroomService {
 		List<StoryVo> list = workroomDao.searchStory(pagingDto);
 		return list;
 	}
+	
+	@Override
+	public List<MadeByMeVo> searchMbm(PagingDto pagingDto) {
+		List<MadeByMeVo> list = workroomDao.searchMbm(pagingDto);
+		return list;
+	}
 
 	@Override
 	public int searchHobbyCount(PagingDto pagingDto) {
@@ -61,6 +67,12 @@ public class WorkroomServiceImpl implements WorkroomService {
 	@Override
 	public int searchStoryCount(PagingDto pagingDto) {
 		int count = workroomDao.searchStoryCount(pagingDto);
+		return count;
+	}
+	
+	@Override
+	public int searchMbmCount(PagingDto pagingDto) {
+		int count = workroomDao.searchMbmCount(pagingDto);
 		return count;
 	}
 

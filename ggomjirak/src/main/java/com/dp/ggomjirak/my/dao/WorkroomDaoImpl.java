@@ -53,6 +53,12 @@ public class WorkroomDaoImpl implements WorkRoomDao {
 		List<StoryVo> list = sqlSession.selectList(NAMESPACE + "searchStory" , pagingDto);
 		return list;
 	}
+	
+	@Override
+	public List<MadeByMeVo> searchMbm(PagingDto pagingDto) {
+		List<MadeByMeVo> list = sqlSession.selectList(NAMESPACE + "searchMbm", pagingDto);
+		return list;
+	}
 
 	@Override
 	public int searchHobbyCount(PagingDto pagingDto) {
@@ -63,6 +69,12 @@ public class WorkroomDaoImpl implements WorkRoomDao {
 	@Override
 	public int searchStoryCount(PagingDto pagingDto) {
 		int count = sqlSession.selectOne(NAMESPACE + "searchStoryCount", pagingDto);
+		return count;
+	}
+	
+	@Override
+	public int searchMbmCount(PagingDto pagingDto) {
+		int count = sqlSession.selectOne(NAMESPACE + "searchMbmCount", pagingDto);
 		return count;
 	}
 

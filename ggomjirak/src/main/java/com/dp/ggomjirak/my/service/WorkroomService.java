@@ -16,8 +16,10 @@ public interface WorkroomService {
 	public MemberVo getMemInfo(String user_id);
 	public List<HobbyVo> searchHobby(PagingDto pagingDto);
 	public List<StoryVo> searchStory(PagingDto pagingDto);
+	public List<MadeByMeVo> searchMbm(PagingDto pagingDto);
 	public int searchHobbyCount(PagingDto pagingDto);
 	public int searchStoryCount(PagingDto pagingDto);
+	public int searchMbmCount(PagingDto pagingDto);
 	public List<LikeBookmarkVo> listBookmark(PagingDto pagingDto);
 	public int bookmarkCount(String user_id);
 	public List<MadeByMeVo> listMbm(PagingDto pagingDto);

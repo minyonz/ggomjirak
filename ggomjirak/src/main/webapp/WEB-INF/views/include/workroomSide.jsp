@@ -86,8 +86,6 @@ $(document).ready(function() {
 <!-- 쪽지 보내기 모달창 -->
 <div class="row">
     <div class="col-md-12">
-<!--         <a id="modal-915236" href="#modal-container-915236" role="button"
-            class="btn" data-toggle="modal">Launch demo modal</a> -->
         <div class="modal fade" id="modal-container-915236" role="dialog"
             aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -119,7 +117,7 @@ $(document).ready(function() {
 			<div class="row">
 				<div class="col-md-3">
 					<div class="checkout__order">
-						<!-- 유저 카드 프로필 -->
+						<!-- 프로필 카드 -->
 						<div class="box" style="margin: 12px auto;">
 							<a href="/workroom/main/${page_id}"><img class="profile" src="/displayImage?filePath=${memberInfo.user_img}"
 								alt="profile image" style="width: 100%; text-align: center"></a>
@@ -129,7 +127,6 @@ $(document).ready(function() {
 							<h4 class="text-center" style="display:inline;">${memberInfo.user_nick}</h4>
 							</div>
 							<p class="text-center" style="font-size:12px; margin-top:-20px">${memberInfo.name}</p>
-							<!-- memberInfo에서 받아오면 카테고리 코드로 나와서 workroomVo에서 받아옴 -->
 							<p class="card-text text-center" style="font-size:13px;"> 
 								<c:if test="${workroomVo.cate_no1 ne '선택안함'}">
 									${workroomVo.cate_no1},
@@ -193,3 +190,4 @@ $(document).ready(function() {
 						style="border:none; background:none; padding: 0;" id="btnStSearch"></button>
 					</div>
 				</div>
+				<!-- // 프로필카드 -->

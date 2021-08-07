@@ -56,6 +56,16 @@
 			order by st_no desc)a)
 		where rnum between #{startRow} and #{endRow}
 	</select>
+
+	<select id="searchMbm" resultType="MadeByMeVo">
+		select * from
+		(select rownum rnum, a.* from
+			(select * from tbl_madebyme
+			where mbm_content like '%' || #{keyword} || '%'
+			and user_id = #{user_id} and is_del = 'N'
+			order by mbm_no desc)a)
+		where rnum between #{startRow} and #{endRow}
+	</select>
 	
 	<!-- 검색 후 취미 총 갯수 -->
 	<select id="searchHobbyCount" resultType="int">
@@ -70,6 +80,14 @@
 		select count(*) from tbl_story
 		where user_id = #{user_id} 
 		and st_content like '%' || #{keyword} || '%'
+		and is_del = 'N'
+	</select>
+	
+	<!-- 검색 후 메바미 총 갯수 -->
+	<select id="searchMbmCount" resultType="int">
+		select count(*) from tbl_madebyme
+		where user_id = #{user_id}
+		and mbm_content like '%' || #{keyword} || '%'
 		and is_del = 'N'
 	</select>
 	

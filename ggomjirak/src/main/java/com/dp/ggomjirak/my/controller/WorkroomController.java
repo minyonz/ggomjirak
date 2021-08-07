@@ -168,27 +168,29 @@ public class WorkroomController {
 	// 검색
 	@RequestMapping(value="/search/{user_id}", method=RequestMethod.GET)
 	public String wrSearch(@PathVariable("user_id") String page_id, String keyword, Model model, PagingDto pagingDto, HttpSession session) throws Exception {
-//		MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");
-//		String user_id = memberVo.getUser_id();
 		pagingDto.setKeyword(keyword);
 		pagingDto.setUser_id(page_id);
 		int hobbyCount = workroomService.searchHobbyCount(pagingDto);
 		int storyCount = workroomService.searchStoryCount(pagingDto);
-		int count = 0;
-		if (hobbyCount > storyCount) {
-			count = hobbyCount;
-		} else if (storyCount > hobbyCount) {
-			count = storyCount;
+		int mbmCount = workroomService.searchMbmCount(pagingDto);
+		int[] arr = {hobbyCount, storyCount, mbmCount};
+		int count = arr[0];
+		for (int num : arr) {
+			if (num > count) {
+				count = num;
+			}
 		}
+		System.out.println(count);
 		pagingDto.setCount(count);
 		List<HobbyVo> searchHobbyList = workroomService.searchHobby(pagingDto);
 		List<StoryVo> searchStoryList = workroomService.searchStory(pagingDto);
+		List<MadeByMeVo> searchMbmList = workroomService.searchMbm(pagingDto);
 		profileCommon(page_id, model, session);
-		
 		category(model);
 		model.addAttribute("pagingDto", pagingDto);
 		model.addAttribute("searchHobbyList", searchHobbyList);
 		model.addAttribute("searchStoryList", searchStoryList);
+		model.addAttribute("searchMbmList", searchMbmList);
 		model.addAttribute("keyword", keyword);
 		return "workroom/wr_search";
 	}
