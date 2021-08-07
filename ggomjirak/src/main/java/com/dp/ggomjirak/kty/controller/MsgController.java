@@ -45,13 +45,9 @@ public class MsgController {
 	// 읽지 않은 메시지 목록
 	@ResponseBody
 	@RequestMapping(value="/messageListNotRead", method=RequestMethod.GET)
-	public List<MessageVo> messageListNotRead(List<MessageVo> list, HttpSession session, Model model) throws Exception {
-		if(session.getAttribute("loginVo") != null) {
-			MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");
-			list = messageService.messageListNotRead(memberVo.getUser_id());
-			String user_id = memberVo.getUser_id();
-			model.addAttribute("user_id", user_id);
-		}
+	public List<MessageVo> messageListNotRead(HttpSession session) throws Exception {
+		MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");
+		List<MessageVo> list = messageService.messageListNotRead(memberVo.getUser_id());
 		return list;
 	}
 	

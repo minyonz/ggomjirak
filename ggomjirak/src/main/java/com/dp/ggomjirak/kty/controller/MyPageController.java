@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dp.ggomjirak.kty.service.MessageService;
 //import com.dp.ggomjirak.HomeController;
 import com.dp.ggomjirak.kty.service.MyPageService;
 import com.dp.ggomjirak.kty.util.MyFileUploadUtil;
@@ -40,6 +41,9 @@ public class MyPageController {
 
 	@Inject
 	private MyPageService myPageService;
+	
+	@Inject
+	private MessageService messageService;
 
 	// 팀플 - 마이 페이지
 	@RequestMapping(value = "", method = RequestMethod.GET)
@@ -66,6 +70,8 @@ public class MyPageController {
 
 		MemberVo memberVo = myPageService.login(user_id, user_pw);
 		if (memberVo != null) {
+			int notReadCount = messageService.notReadCount(user_id);
+			memberVo.setNotReadCount(notReadCount);
 			msg = "success";
 			// page = "redirect:/mypage/infoForm";
 			page = "redirect:/main/mainHome";
