@@ -30,6 +30,7 @@ public class HobbyVo {
 	private List<MakeStepVo> makeSteps;
 	private List<HobbyMaterialVo> hobbyMaterials;
 	private List<CompleteImgVo> completeImgs;
+	private List<MadeByMeVo> madeByMes;
 	
 	// not db column
 	private String l_cate_name;
@@ -361,6 +362,16 @@ public class HobbyVo {
 	}
 
 
+	public List<MadeByMeVo> getMadeByMes() {
+		return madeByMes;
+	}
+
+
+	public void setMadeByMes(List<MadeByMeVo> madeByMes) {
+		this.madeByMes = madeByMes;
+	}
+
+
 	@Override
 	public String toString() {
 		return "HobbyVo [hobby_no=" + hobby_no + ", hobby_title=" + hobby_title + ", user_id=" + user_id + ", main_img="
@@ -369,10 +380,13 @@ public class HobbyVo {
 				+ ", time_no=" + time_no + ", view_cnt=" + view_cnt + ", like_cnt=" + like_cnt + ", cmt_cnt=" + cmt_cnt
 				+ ", is_del=" + is_del + ", reg_date=" + reg_date + ", mod_date=" + mod_date + ", del_date=" + del_date
 				+ ", makeSteps=" + makeSteps + ", hobbyMaterials=" + hobbyMaterials + ", completeImgs=" + completeImgs
-				+ ", l_cate_name=" + l_cate_name + ", m_cate_name=" + m_cate_name + ", level_name=" + level_name
-				+ ", cost_name=" + cost_name + ", time_name=" + time_name + ", user_nick=" + user_nick + ", user_img="
-				+ user_img + ", like_hobby=" + like_hobby + ", bm_hobby=" + bm_hobby + ", rnum=" + rnum + "]";
+				+ ", madeByMes=" + madeByMes + ", l_cate_name=" + l_cate_name + ", m_cate_name=" + m_cate_name
+				+ ", level_name=" + level_name + ", cost_name=" + cost_name + ", time_name=" + time_name
+				+ ", user_nick=" + user_nick + ", user_img=" + user_img + ", like_hobby=" + like_hobby + ", bm_hobby="
+				+ bm_hobby + ", rnum=" + rnum + "]";
 	}
+
+
 
 
 

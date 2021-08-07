@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dp.ggomjirak.vo.CompleteImgVo;
 import com.dp.ggomjirak.vo.HobbyMaterialVo;
 import com.dp.ggomjirak.vo.HobbyVo;
+import com.dp.ggomjirak.vo.MadeByMeVo;
 import com.dp.ggomjirak.vo.MakeStepVo;
 import com.dp.ggomjirak.vo.MaterialSearch;
 import com.dp.ggomjirak.vo.MaterialVo;
@@ -128,7 +129,8 @@ public class HobbyServiceImpl implements HobbyService {
 			}
 			List<CompleteImgVo> completeImgs = hobbyDao.selectCompleteImgListNotNull(hobby_no);
 			hobbyVo.setCompleteImgs(completeImgs);
-			
+			List<MadeByMeVo> madeByMes = hobbyDao.selectMbmList(hobby_no);
+			hobbyVo.setMadeByMes(madeByMes);
 		} else {
 			List<CompleteImgVo> completeImgs = hobbyDao.selectCompleteImgListAll(hobby_no);
 			hobbyVo.setCompleteImgs(completeImgs);

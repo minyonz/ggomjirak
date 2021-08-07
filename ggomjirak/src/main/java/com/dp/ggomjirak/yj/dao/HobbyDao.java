@@ -5,6 +5,7 @@ import java.util.List;
 import com.dp.ggomjirak.vo.CompleteImgVo;
 import com.dp.ggomjirak.vo.HobbyMaterialVo;
 import com.dp.ggomjirak.vo.HobbyVo;
+import com.dp.ggomjirak.vo.MadeByMeVo;
 import com.dp.ggomjirak.vo.MakeStepVo;
 
 
@@ -68,5 +69,8 @@ public interface HobbyDao {
 	public int updateViewCnt(int hobby_no);
 	public int updateCmtCnt(int hobby_no, int count);
 	
+	
+	//후기 가져오기 
+	public List<MadeByMeVo> selectMbmList(int hobby_no);
 	
 }

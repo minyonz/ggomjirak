@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.dp.ggomjirak.vo.CompleteImgVo;
 import com.dp.ggomjirak.vo.HobbyMaterialVo;
 import com.dp.ggomjirak.vo.HobbyVo;
+import com.dp.ggomjirak.vo.MadeByMeVo;
 import com.dp.ggomjirak.vo.MakeStepVo;
 import com.dp.ggomjirak.vo.MaterialVo;
 
@@ -136,6 +137,11 @@ public class HobbyDaoImpl implements HobbyDao {
 		map.put("hobby_no", hobby_no);
 		map.put("count", count);
 		return sqlSession.update(NAMESPACE + "updateCmtCnt", map);
+	}
+
+	@Override
+	public List<MadeByMeVo> selectMbmList(int hobby_no) {
+		return sqlSession.selectList(NAMESPACE + "selectMbmList", hobby_no);
 	}
 	
 	

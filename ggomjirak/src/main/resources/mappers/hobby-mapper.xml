@@ -303,6 +303,13 @@
 	</update>
  
  
- 
+ 	<!-- 후기 목록  -->
+ 	<select id="selectMbmList" resultType="MadeByMeVo">
+	 	SELECT MBM.*, MD.user_nick, MD.user_img, L.level_name
+		FROM tbl_madebyme MBM
+		JOIN tbl_memberdetail MD ON MBM.user_id = MD.user_id
+		JOIN tbl_level_cate L ON L.level_no = MBM.level_no
+		AND hobby_no = #{hobby_no} AND is_del = 'N'
+ 	</select>
 	
  </mapper>
