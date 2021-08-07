@@ -22,9 +22,10 @@ $(document).ready(function() {
 	selectCommentList();
 	 var selectTarget = $('.selectbox select');
 
-	var gap = 6000;
+	
 	selectTarget.on("change", function() {
 		console.log("체인지")
+		var gap = 6000;
 		var select_name = $(this).children('option:selected').text();
         $(this).siblings('label').text(select_name);
         var speed = $(this).children('option:selected').val();
@@ -573,6 +574,20 @@ figure[data-ke-type='opengraph'] .og-host {
 .btn-circle:hover {
   background: #e7705c8f;
 }
+
+.divMaterial ul {
+    padding: 0 0 25px 0;
+    width: 49%;
+    display: inline-block;
+    vertical-align: top;
+}
+.divMaterial li {
+    border-bottom: 1px solid #dddddd;
+    padding: 10px 6px;
+    list-style: none;
+    margin: 0 35px;
+    font-size: 16px;
+}
 </style>
 </head>
 <body>
@@ -620,12 +635,13 @@ figure[data-ke-type='opengraph'] .og-host {
 		<!-- 카테고리 -->
 			<div style="display:flex;">
 				<div style="text-align: center; margin-left: 46%;padding-left: auto;">
-				<span class="btn btn-outline-light btn-sm green_background">
+				<span class="green_background btn btn-sm" style="cursor:default; color:white;">
 					${hobbyVo.l_cate_name}
 				</span>
-				<span class="btn btn-outline-light btn-sm green_background">
+				<a class="btn btn-sm green_background" style="color:white;"
+					href="/main/mainHobby?parent_cate_no=${hobbyVo.l_cate_no}&m_cate_no=${hobbyVo.m_cate_no}">
 					${hobbyVo.m_cate_name}
-				</span>
+				</a>
 				</div>
 				<!-- 수정/ 삭제 버튼을 위한 메뉴 -->
 				<c:if test="${not empty loginVo }">
@@ -719,7 +735,7 @@ figure[data-ke-type='opengraph'] .og-host {
 								<span style="color:white;" class="fa fa-bookmark-o"></span>
 								<span style="color:white;">북마크</span>
 							</button>
-							<button type="button" class="loginNeed btn green_background">
+							<button type="button" class="loginNeed btn green_background" id="sendMessage" data-toggle="modal" data-target="#msgModal">
 								<span style="color:white;" class="fa fa-envelope-o"> 쪽지</span>
 							</button>
 						</div>
@@ -732,70 +748,19 @@ figure[data-ke-type='opengraph'] .og-host {
 	<!-- 준비물 부분 -->
 	<div class="myContainer">
 		<div class="side side-left"></div>
-		<style>
-		.ready_ingre3 ul {
-    padding: 0 0 25px 0;
-    width: 49%;
-    display: inline-block;
-    vertical-align: top;
-}
-.ready_ingre3 li {
-    border-bottom: 1px solid #ececec;
-    padding: 10px 6px;
-    list-style: none;
-    margin: 0 35px;
-    font-size: 16px;
-}
-		</style>
 		<div class="body">
 			<div><b>준비물</b><span>Material</span></div>
-			<div class="ready_ingre3">
+			<div class="divMaterial" style="margin-top:2rem">
 				<ul>
-					<b class="ready_ingre3_tt">[재료]</b> <a
-						href="javascript:viewMaterial('57');"
-						onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '새송이 버섯');">
-						<li>새송이 버섯 <img
-							src="https://recipe1.ezmember.co.kr/img/mobile/icon_info.png"
-							style="width: 20px; height: 20px; margin-left: 2px; vertical-align: middle;">
-							<span class="ingre_unit">3동</span>
-					</li>
-					</a> <a href="javascript:viewMaterial('296');"
-						onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '청양고추');">
-						<li>청양고추 <img
-							src="https://recipe1.ezmember.co.kr/img/mobile/icon_info.png"
-							style="width: 20px; height: 20px; margin-left: 2px; vertical-align: middle;">
-							<span class="ingre_unit">1개</span>
-					</li>
-					</a> <a href="javascript:viewMaterial('26');"
-						onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '대파');">
-						<li>대파 <img
-							src="https://recipe1.ezmember.co.kr/img/mobile/icon_info.png"
-							style="width: 20px; height: 20px; margin-left: 2px; vertical-align: middle;">
-							<span class="ingre_unit">1/2대</span>
-					</li>
-					</a> <a href="javascript:viewMaterial('197');"
-						onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '버터');">
-						<li>버터 <img
-							src="https://recipe1.ezmember.co.kr/img/mobile/icon_info.png"
-							style="width: 20px; height: 20px; margin-left: 2px; vertical-align: middle;">
-							<span class="ingre_unit">1T</span>
-					</li>
-					</a>
-					</ul>
+					<c:forEach var="hobbyMaterialVo" items="${hobbyVo.hobbyMaterials}">
+						<a href="/hobby/material/search?m_no=${hobbyMaterialVo.material_no}">
+							<li><span style="color:#212529">${hobbyMaterialVo.materialName}</span> <span class="btn-more">더보기</span>
+							<span class="ingre_unit" style="float: right; color: #999;">${hobbyMaterialVo.material_detail}</span>
+							</li>
+						</a> 
+					</c:forEach>
+				</ul>
 			</div>
-
-				<table class="table table-hover table-sm">
-					<tbody>
-						<c:forEach var="hobbyMaterialVo" items="${hobbyVo.hobbyMaterials}">
-							<tr>
-								<td><a href="/hobby/material/search?m_no=${hobbyMaterialVo.material_no}">${hobbyMaterialVo.materialName}</a></td>
-								<td>
-									${hobbyMaterialVo.material_detail}
-								</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
 		</div>
 		<div class="side side-right"></div>
 	</div>
@@ -833,6 +798,10 @@ figure[data-ke-type='opengraph'] .og-host {
 								        <option value="1" selected>1.0&times;</option>
 								        <option value="1.5">1.5&times;</option>
 								        <option value="2">2.0&times;</option>
+								        <option value="2.5">2.5&times;</option>
+								        <option value="3">3.0&times;</option>
+								        <option value="3.5">3.5&times;</option>
+								        <option value="4">4.0&times;</option>
 								    </select>
 								</div>
 	            			</div>
@@ -1268,22 +1237,93 @@ figure[data-ke-type='opengraph'] .og-host {
 	</div>
 	<!--// 댓글, 후기 부분 -->
 </div>
+
+<!-- 쪽지 보내기 모달창 -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="modal fade" id="msgModal" role="dialog" data-backdrop="false"
+            aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">쪽지 보내기</h5>
+                        <button type="button" class="close" data-dismiss="modal" >
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" class="form-control" id="msg_content"  spellcheck="false" autocomplete="off"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn green_background" id="btnSendMessage" style="color:white;">보내기</button>
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">닫기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- // 쪽지 보내기 모달창 -->
+
 <%@ include file="../include/footer.jsp" %>
 <script>
 var loginVo = "${loginVo}";
 if (loginVo == "") {
 	console.log("loginVo 없음:", loginVo);
 	$(".loginNeed").on("click", function(e) {
-		alert("로그인 해주세요");
+		Swal.fire({
+			title: '로그인 필수',
+			text: '로그인 하시겠습니까?', 
+			allowOutsideClick: false,
+			iconColor: "#1f5e43",
+			icon: 'info', 
+			confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43",
+			cancelButtonText: "취소",
+			showCancelButton: true,
+		}).then(function(result) {
+			if(result.isConfirmed) {
+				location.href = "/mypage/login";
+			} 
+		});
 		console.log(e);
 		return false;
 	});
 	$("#comment").on("click", ".loginNeed", function(e) {
-		alert("로그인 해주세요");
+		Swal.fire({
+			title: '로그인 필수',
+			text: '로그인 하시겠습니까?', 
+			allowOutsideClick: false,
+			iconColor: "#1f5e43",
+			icon: 'info', 
+			confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43",
+			cancelButtonText: "취소",
+			showCancelButton: true,
+		}).then(function(result) {
+			if(result.isConfirmed) {
+				location.href = "/mypage/login";
+			} 
+		});
 		console.log(e);
 		return false;
 	}).on("click", ".form-control", function() {
-		alert("로그인 해주세요");
+		Swal.fire({
+			title: '로그인 필수',
+			text: '로그인 하시겠습니까?', 
+			allowOutsideClick: false,
+			iconColor: "#1f5e43",
+			icon: 'info', 
+			confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43",
+			cancelButtonText: "취소",
+			showCancelButton: true,
+		}).then(function(result) {
+			if(result.isConfirmed) {
+				location.href = "/mypage/login";
+			} 
+		});
 		return false;
 	});
 }
@@ -1405,7 +1445,14 @@ function doDelete() {
 function insertComment() {
 	var c_content = $("#c_content").val();
 	if (c_content.length < 1 || c_content.trim() == "") {
-		alert("댓글 내용을 입력하지 않았습니다.")
+		Swal.fire({
+		text: '댓글 내용을 입력하지 않았습니다.', 
+		allowOutsideClick: false,
+		iconColor: "#1f5e43",
+		icon: 'warning', 
+		confirmButtonText: "확인",
+		confirmButtonColor: "#1f5e43",
+		}).then(function(){close()});
 		return false;
 	}
 	var h_no = parseInt("${hobbyVo.hobby_no}");
@@ -1441,7 +1488,14 @@ function insertRecomment(el) {
 // 	var user_id = $("#re_user_id").val()
 	var c_content = $("#re_c_content").val();
 	if (c_content.length < 1 || c_content.trim() == "") {
-		alert("댓글 내용을 입력하지 않았습니다.")
+		Swal.fire({
+		text: '댓글 내용을 입력하지 않았습니다.', 
+		allowOutsideClick: false,
+		iconColor: "#1f5e43",
+		icon: 'warning', 
+		confirmButtonText: "확인",
+		confirmButtonColor: "#1f5e43",
+		}).then(function(){close()});
 		return false;
 	}
 	var h_no = parseInt("${hobbyVo.hobby_no}");
@@ -1580,7 +1634,14 @@ function cancelUpdate(c_no) {
 function updateComment(c_no) {
 	var c_content = $("#updateCommentDiv_" + c_no).find(".c_content").val();
 	if (c_content.length < 1 || c_content.trim() == "") {
-		alert("1자 이상 입력해야 글을 등록할 수 있습니다.");
+		Swal.fire({
+		text: '1자 이상 입력해야 글을 등록할 수 있습니다.', 
+		allowOutsideClick: false,
+		iconColor: "#1f5e43",
+		icon: 'warning', 
+		confirmButtonText: "확인",
+		confirmButtonColor: "#1f5e43",
+		}).then(function(){close()});
 		return false;
 	}
 	var url = "/comment/updateComment";
@@ -1625,7 +1686,15 @@ function deleteComment(c_no) {
 			"success" : function(rData) {
 				console.log(rData);
 				if(rData == 0) {
-					alert("답댓이 있는 댓글은 삭제할 수 없습니다.");
+					Swal.fire({
+					text: '답댓이 있는 댓글은 삭제할 수 없습니다.', 
+					allowOutsideClick: false,
+					iconColor: "#1f5e43",
+					icon: 'warning', 
+					confirmButtonText: "확인",
+					confirmButtonColor: "#1f5e43",
+					}).then(function(){close()});
+					
 				} else {
 					selectCommentList();
 				}
@@ -1663,6 +1732,48 @@ function changeDateString(timestamp) {
 	var minute = make2digits(d.getMinutes());
 	return year + "." + month + "." + date + ". " + hour + ":" + minute;
 }
+
+
+
+// 쪽지 보내기
+   $("#sendMessage").click(function(){
+	   if(loginVo == "") {
+			return false;
+		}
+   });
+   //쪽지 모달 보내기 버튼
+   $("#btnSendMessage").click(function() {
+       if(loginVo == "") {
+   		return false;
+   		}
+       console.log("쪽지 모달 보내기 버튼 클릭");
+       var that = $(this);
+       var msg_content = $("#msg_content").val();
+       var msg_receiver = "${hobbyVo.user_id}";
+       var sendData = {
+               "msg_receiver" : msg_receiver,
+               "msg_content" : msg_content
+       };
+       console.log(sendData);
+       
+       var url = "/message/sendMessage";
+       $.ajax({
+           "url" : url,
+           "method" : "post",
+           "dataType" : "text",
+           "headers" : {
+               "Content-Type" : "application/json"
+           },
+           "data" : JSON.stringify(sendData), 
+           "success" : function(receivedData) {
+               console.log(receivedData);
+               if(receivedData == "success"){
+                   that.next().trigger("click");
+               }
+           }
+       });
+   });
+
 </script>
 </body>
 </html>

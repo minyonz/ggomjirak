@@ -43,8 +43,6 @@ public class HobbyController {
 	private CateService cateService;
 	@Inject
 	private LikeBookmarkService likeBmService;
-	@Inject
-	private WorkroomSetService wkService;
 	
 	private String swalIcon = null;
 	private String swalTitle = null;
@@ -232,13 +230,13 @@ public class HobbyController {
 	}
 		
 	@RequestMapping(value="/material/search")
-	public String search(Model model, HttpSession session, @ModelAttribute("ms") MaterialSearch ms) throws Exception {
+	public String search(Model model, HttpSession session, 
+			@ModelAttribute("ms") MaterialSearch ms) throws Exception {
 		MemberVo loginVo = (MemberVo)session.getAttribute("loginVo");
 		if (loginVo != null) {
 			model.addAttribute("loginVo", loginVo);
 			model.addAttribute("user_id", loginVo.getUser_id());
-			List<LikeBookmarkVo> likeList = wkService.likeList(loginVo.getUser_id());
-			model.addAttribute("likeList", likeList);
+			ms.setUser_id(loginVo.getUser_id());
 		}
 		logger.info("controller");
 		System.out.println(ms);

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,18 +19,6 @@
 <script>
 $(document).ready(function() {
 	
-// 	if ('${msgDelete == "success"}') {
-// 		 Swal.fire({
-// 		       icon : "success",
-// 		       title : "삭제 성공",
-// 		    }).then(function(){close()});
-// 	}
-// 	if ('${msgDelete == "fail"}') {
-// 		 Swal.fire({
-// 		       icon : "error",
-// 		       title : "삭제 실패",
-// 		    }).then(function(){close()});
-// 	}
 });
 
 </script>
@@ -210,9 +199,6 @@ a {
 	<c:if test="${not empty ms.page }">
 		<c:set var="page" value="&page=${ms.page}" />
 	</c:if>
-
-			
-
 <div class="container-fluid">
 	<div class="myContainer">
 		<div class="side side-left">
@@ -304,13 +290,16 @@ a {
 	                       		 		border: 1px solid #e1e1e1;
 	                       		 		border-radius: 3px">
 	                            <ul class="product__item__pic__hover">
-	                                <li><a class="like loginNeed" href="/hobby/like/${hobbyVo.hobby_no}"><i class="fa fa-heart"></i></a></li>
-	                                <li><a class="bookmark loginNeed" href="#"><i class="fa fa-bookmark"></i></a></li>
-	                                <li><a class="share" href="#"><i class="fa fa-retweet"></i></a></li>
+	                                <li><a class="like loginNeed" href="/hobby/like/${hobbyVo.hobby_no}">
+	                                	<i class="fa fa-heart" ${not empty hobbyVo.like_hobby ? 'style="color:#C32424"' : ''}></i>
+	                                </a></li>
+	                                <li><a class="bookmark loginNeed" href="/hobby/bookmark/${hobbyVo.hobby_no}">
+	                                	<i class="fa fa-bookmark" ${not empty hobbyVo.bm_hobby ? 'style="color:#FFC300"' : ''}></i>
+	                                </a></li>
+	                                <li><a class="share" href="/hobby/content/${hobbyVo.hobby_no}">
+	                                	<i class="fa fa-retweet"></i>
+	                                </a></li>
 	                            </ul>
-<!-- 	                        <span style="position:absolute; bottom:0;"> -->
-<!-- 	                        	<span class="fa fa-heart-o"></span><span>16</span> -->
-<!-- 	                        </span> -->
 	                        </div>
 	                        <div class="featured__item__text">
 								<h6>
@@ -350,7 +339,21 @@ var loginVo = "${loginVo}";
 if (loginVo == "") {
 	console.log("loginVo 없음:", loginVo);
 	$(".loginNeed").on("click", function(e) {
-		alert("로그인 해주세요");
+		Swal.fire({
+			title: '로그인 필수',
+			text: '로그인 하시겠습니까?', 
+			allowOutsideClick: false,
+			iconColor: "#1f5e43",
+			icon: 'info', 
+			confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43",
+			cancelButtonText: "취소",
+			showCancelButton: true,
+		}).then(function(result) {
+			if(result.isConfirmed) {
+				location.href = "/mypage/login";
+			} 
+		});
 		console.log(e);
 		return false;
 	});
@@ -376,12 +379,43 @@ $(".like").click(function(e) {
 	});
 });
 
-$(".bookmark").click(function() {
-	console.log("좋아요 누름")
+$(".bookmark").click(function(e) {
+	e.preventDefault();
+	console.log("북마크 누름")
+	if(loginVo == "") {
+		return false;
+	}
+	var url = $(this).attr("href");
+	var target = $(this);
+	console.log("url", url);
+	$.get(url, function(rData) {
+		console.log(rData);
+		if (rData == "bookmark") {
+			console.log("북마크");
+			$(target).children().css("color", "#FFC300");
+		} else {
+			$(target).children().css("color", "#ffffff");
+		}
+	});
 })
 
-$(".share").click(function() {
-	console.log("좋아요 누름")
+$(".share").click(function(e) {
+	e.preventDefault();
+	var url = $(this).attr("href");
+	var textarea = document.createElement("textarea");
+	document.body.appendChild(textarea);
+	console.log("${contextPath}");
+	textarea.value = "http://localhost/${pageContext.request.contextPath}" + url;
+	textarea.select();
+	document.execCommand("copy");
+	document.body.removeChild(textarea);
+	Swal.fire({
+		text: 'url이 복사 되었습니다', 
+		iconColor: "#1f5e43",
+		icon: 'success', 
+		confirmButtonText: "확인",
+		confirmButtonColor: "#1f5e43",
+	}).then(function(){close()});
 })
 </script>
 </body>
