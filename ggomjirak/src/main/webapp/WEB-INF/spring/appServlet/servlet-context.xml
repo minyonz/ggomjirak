@@ -38,7 +38,7 @@
 	<!-- 업로드 경로 -->
 	<beans:bean
 		id="rootPath" class="java.lang.String">
-		<beans:constructor-arg value="C:/ggomjirak" />	
+		<beans:constructor-arg value="C:/upload/ggomjirak" />	
 	</beans:bean>
 	
 	<!-- 인터셉터 -->

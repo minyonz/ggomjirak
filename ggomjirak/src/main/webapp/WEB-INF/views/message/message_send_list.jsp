@@ -12,18 +12,21 @@ $(document).ready(function() {
 	}
 
 	// 쪽지 보내기 링크
-	$("#replyMessage").click(function(){
-		var user_id = $(this).attr("data-user_id");
+	$("#sendMessage").click(function(){
+		var user_id =  $(this).attr("data-user_id");
 		console.log("user_id: " + user_id);
-		$("#btnSendMessage").attr("data-msg_receiver", user_id);
+		
+		//$("#btnSendMessage").attr("data-msg_receiver", user_id);
+		$("#btnSendMessage").attr("data-msg_receiver", "cat"); 
+		
 	});
 
 	//쪽지 모달 보내기 버튼
 	$("#btnSendMessage").click(function() {
 		console.log("쪽지 모달 보내기 버튼 클릭");
 		var that = $(this);
-		//var msg_sender = ${memberVo.user_id}; // 세션에서 받은 아이디 // 쪽지 보내는 사람 로그인 아이디
-		//var msg_sender = "dog"; // 테스트
+		//var msg_sender = ${memberVo.user_id}; // 세션에서 받은 아이디
+		var msg_sender = "dog"; // 세션에서 받은 아이디
 		// 데이터를 수집하는 부분
 		var msg_content = $("#msg_content").val();
 		var msg_receiver = $(this).attr("data-msg_receiver");
@@ -95,7 +98,6 @@ $(document).ready(function() {
 			<div class="row">
 				<div class="col-md-2">
 					<!-- 메인 페이지에서 왼쪽 부분  -->
-					
 				</div>
 				<div class="col-md-8">
 					<!-- 메인 페이지에서 가운데  부분 시작-->
@@ -107,17 +109,18 @@ $(document).ready(function() {
 					<div class="col-md-9">
 							<!-- 내부 패널 메인 -->
 							<!-- <div class="container mt-3"> -->
-							<!-- <h2>받은 쪽지 목록</h2> -->
-							<div class="checkout__order">
-							<div class="workroom_box row" style="height: 39px; display:flex;">
-							<h4>받은 쪽지 목록</h4>
-								<a href="" class="fa fa-pencil" style="margin-top: 5px; margin-left: 10px;"></a>
-							</div>
-							<!-- <hr> -->
+								<!-- <h2>보낸 쪽지 목록</h2> -->
+								<div class="checkout__order">
+								<div class="workroom_box row" style="height: 39px; display:flex;">
+									<h4>보낸 쪽지 목록</h4>
+									<a href="" class="fa fa-pencil" style="margin-top: 5px; margin-left: 10px;"></a>
+								</div>
+								
 								<!-- 테스트로 추가한 부분 -->
-<!--					 	<a type ="button" href="#modal-container-915236" id ="sendMessage" data-toggle = "modal"
-								   data-user_id="cat"  class="btn green_background white_color">쪽지 보내기</a> 
-								<a href="#modal-container-915236" class="btn btn-warning" data-toggle="modal">답장하기</a> -->
+<!-- 								<a type ="button" href="#modal-container-915236" id="sendMessage" 
+								   data-toggle = "modal" data-user_id="cat" class="btn green_background white_color">쪽지 보내기</a> 
+								<a href="#modal-container-552199" class="btn btn-warning" data-toggle="modal">답장하기</a> -->
+								
 								<br>
 								<!-- Nav tabs -->
 <!-- 								<ul class="nav nav-tabs"> -->
@@ -127,17 +130,19 @@ $(document).ready(function() {
 <!-- 										<a class="nav-link active" data-toggle="tab" href="/message/messageListReceive">받은 쪽지함</a></li> -->
 <!-- 								</ul> -->
 								<ul class="nav nav-tabs">
-									<li class="nav-item"><a class="nav-link" href="/message/messageListSend">보낸 쪽지함</a></li>
-									<li class="nav-item"><a class="nav-link active" href="/message/messageListReceive">받은 쪽지함</a></li>
+									<li class="nav-item"><a class="nav-link active" href="/message/messageListSend">보낸 쪽지함</a></li>
+									<li class="nav-item"><a class="nav-link" href="/message/messageListReceive">받은 쪽지함</a></li>
 								</ul>
+								
+								
 								<div class="row">
 									<div class="col-md-12">
 										<table class="table">
 											<thead>
 												<tr>
 													<th>#</th>
+													<th>받은사람</th>
 													<th>쪽지내용</th>
-													<th>보낸사람</th>
 													<th>보낸날짜</th>
 													<th>읽은날짜</th>
 												</tr>
@@ -146,6 +151,7 @@ $(document).ready(function() {
 											<c:forEach var="messageVo" items="${list}">
 											<tr>
 												<td>${messageVo.msg_no}</td>
+												<td>${messageVo.msg_receiver}</td>
 												<td>
 													<span <c:if test="${empty messageVo.msg_opendate}">
 														style="font-weight:bold"
@@ -154,12 +160,6 @@ $(document).ready(function() {
 													<a href="/message/messageRead?msg_no=${messageVo.msg_no}">${messageVo.msg_content}</a>
 													</span>
 												</td>
-												<%-- <td>${messageVo.msg_sender}</td> --%>
-												<td>
-													<a href="#modal-container-915236"
-													 id ="replyMessage" data-toggle="modal" 
-													 data-user_id="${messageVo.msg_sender}">${messageVo.msg_sender}</a> 
-								   				</td>
 												<td>${messageVo.msg_senddate}</td>
 												<td>
 													<c:choose>
