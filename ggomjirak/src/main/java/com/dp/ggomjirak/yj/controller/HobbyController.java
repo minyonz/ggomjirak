@@ -21,12 +21,14 @@ import com.dp.ggomjirak.vo.CateVo;
 import com.dp.ggomjirak.vo.CostVo;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.LevelVo;
+import com.dp.ggomjirak.vo.LikeBookmarkVo;
 import com.dp.ggomjirak.vo.MaterialSearch;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.TimeVo;
 import com.dp.ggomjirak.yj.service.CateService;
 import com.dp.ggomjirak.yj.service.HobbyService;
 import com.dp.ggomjirak.my.service.LikeBookmarkService;
+import com.dp.ggomjirak.my.service.WorkroomSetService;
 
 import net.sf.json.JSONArray;
 
@@ -37,20 +39,23 @@ public class HobbyController {
 	
 	@Inject
 	private HobbyService hobbyService;
-	
-	private String swalIcon = null;
-	private String swalTitle = null;
-	
 	@Inject
 	private CateService cateService;
 	@Inject
 	private LikeBookmarkService likeBmService;
+	@Inject
+	private WorkroomSetService wkService;
+	
+	private String swalIcon = null;
+	private String swalTitle = null;
+	
 	
 	private static final Logger logger = LoggerFactory.getLogger(HobbyController.class);
 	
 	@RequestMapping(value="/content/{hobby_no}")
 	public String content(Model model, 
 			@PathVariable("hobby_no") int hobby_no,
+			@ModelAttribute("ms") MaterialSearch ms,
 			HttpServletRequest request,
 			HttpSession session) throws Exception {
 		HobbyVo hobbyVo = hobbyService.selectHobbyArticle(hobby_no, false);
@@ -64,6 +69,7 @@ public class HobbyController {
 			model.addAttribute("likeCheck", likeCheck);
 			model.addAttribute("bookmarkCheck", bookmarkCheck);
 		}
+		System.out.println("ms:" + ms);
 		model.addAttribute("cates", JSONArray.fromObject(cates));
 		model.addAttribute("hobbyVo", hobbyVo);
 		model.addAttribute("url", request.getRequestURL());
@@ -131,13 +137,14 @@ public class HobbyController {
 	
 	@RequestMapping(value="/insertRun")
 	public String insertRun(HobbyVo hobbyVo, 
-			@ModelAttribute("loginVo") MemberVo loginVo, RedirectAttributes rttr) throws Exception {
+			@ModelAttribute("loginVo") MemberVo loginVo, 
+			RedirectAttributes rttr) throws Exception {
 		
 		System.out.println(hobbyVo);
 		hobbyVo.setUser_id(loginVo.getUser_id());
 		
 		boolean result = hobbyService.insertHobbyArticle(hobbyVo);
-
+		logger.info("insert");
 		String url = null;
 		String msgInsert = null;
 		
@@ -157,16 +164,37 @@ public class HobbyController {
 	// 게시글 삭제
 	@RequestMapping("delete/{hobby_no}")
 	public String deleteMarket(@PathVariable("hobby_no") int hobby_no, 
-				@ModelAttribute("loginVo") MemberVo loginVo,
+				@ModelAttribute("loginVo") MemberVo loginVo, 
+				@ModelAttribute("ms") MaterialSearch ms,
 				HttpServletRequest request, RedirectAttributes rttr) {
 		
 		int result = hobbyService.deleteHobbyArticle(hobby_no);
-		
+		logger.info("delete");
+		System.out.println("ms:" + ms);
 		String url = null;
 		String msgDelete = null;
+		
+		String  paging = null;
+		if(ms != null) {
+			if (ms.getSort() != null) {
+				paging = "m_no=" + ms.getM_no() +
+						"&time=" + ms.getTime() +
+						"&level=" + ms.getLevel() +
+						"&cost=" + ms.getCost() +
+						"&sort=" + ms.getSort() +
+						"&page=" + ms.getPage();
+			} else {
+				paging = "m_no=" + ms.getM_no() +
+						"&time=" + ms.getTime() +
+						"&level=" + ms.getLevel() +
+						"&cost=" + ms.getCost() +
+						"&page=" + ms.getPage();
+			}
+			
+		}
 		if(result > 0) {
 			msgDelete = "success";
-			url = "redirect:/workroom/main/" + loginVo.getUser_id();
+			url = "redirect:/hobby/material/search?" + paging;
 		} else {
 			msgDelete = "fail";
 			// 이전페이지의 URL 
@@ -203,5 +231,30 @@ public class HobbyController {
 		return "cancel";
 	}
 		
+	@RequestMapping(value="/material/search")
+	public String search(Model model, HttpSession session, @ModelAttribute("ms") MaterialSearch ms) throws Exception {
+		MemberVo loginVo = (MemberVo)session.getAttribute("loginVo");
+		if (loginVo != null) {
+			model.addAttribute("loginVo", loginVo);
+			model.addAttribute("user_id", loginVo.getUser_id());
+			List<LikeBookmarkVo> likeList = wkService.likeList(loginVo.getUser_id());
+			model.addAttribute("likeList", likeList);
+		}
+		logger.info("controller");
+		System.out.println(ms);
+		List<HobbyVo> hmList = hobbyService.selectHMList(ms);
+		model.addAttribute("hmList", hmList);
+		
+		
+		List<CateVo> cates = cateService.getCateList();
+		List<TimeVo> times = cateService.getTimeList();
+		List<LevelVo> levels = cateService.getLevelList();
+		List<CostVo> costs = cateService.getCostList();
+		model.addAttribute("cates", JSONArray.fromObject(cates));
+		model.addAttribute("times", times);
+		model.addAttribute("levels", levels);
+		model.addAttribute("costs", costs);
+		return "hobby/material_list";
+	}
 	
 }

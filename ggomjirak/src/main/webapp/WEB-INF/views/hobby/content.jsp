@@ -593,6 +593,25 @@ figure[data-ke-type='opengraph'] .og-host {
 		});
 	</script>
 </c:if>
+	<c:set var="m_no" value="m_no=${ms.m_no}" />
+	<c:if test="${not empty ms.time }">
+		<c:set var="time" value="&time=${ms.time}" />
+	</c:if>
+	<c:if test="${not empty ms.level }">
+		<c:set var="level" value="&level=${ms.level}" />
+	</c:if>
+	<c:if test="${not empty ms.cost }">
+		<c:set var="cost" value="&cost=${ms.cost}" />
+	</c:if>
+	
+	<c:if test="${not empty ms.sort }">
+		<c:set var="sort" value="&sort=${ms.sort}" />
+	</c:if>
+	
+	<c:if test="${not empty ms.page }">
+		<c:set var="page" value="&page=${ms.page}" />
+	</c:if>
+
 <div class="container-fluid">
 	<!-- 취미글 메인부분 -->
 	<div class="myContainer">
@@ -713,13 +732,63 @@ figure[data-ke-type='opengraph'] .og-host {
 	<!-- 준비물 부분 -->
 	<div class="myContainer">
 		<div class="side side-left"></div>
+		<style>
+		.ready_ingre3 ul {
+    padding: 0 0 25px 0;
+    width: 49%;
+    display: inline-block;
+    vertical-align: top;
+}
+.ready_ingre3 li {
+    border-bottom: 1px solid #ececec;
+    padding: 10px 6px;
+    list-style: none;
+    margin: 0 35px;
+    font-size: 16px;
+}
+		</style>
 		<div class="body">
 			<div><b>준비물</b><span>Material</span></div>
+			<div class="ready_ingre3">
+				<ul>
+					<b class="ready_ingre3_tt">[재료]</b> <a
+						href="javascript:viewMaterial('57');"
+						onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '새송이 버섯');">
+						<li>새송이 버섯 <img
+							src="https://recipe1.ezmember.co.kr/img/mobile/icon_info.png"
+							style="width: 20px; height: 20px; margin-left: 2px; vertical-align: middle;">
+							<span class="ingre_unit">3동</span>
+					</li>
+					</a> <a href="javascript:viewMaterial('296');"
+						onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '청양고추');">
+						<li>청양고추 <img
+							src="https://recipe1.ezmember.co.kr/img/mobile/icon_info.png"
+							style="width: 20px; height: 20px; margin-left: 2px; vertical-align: middle;">
+							<span class="ingre_unit">1개</span>
+					</li>
+					</a> <a href="javascript:viewMaterial('26');"
+						onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '대파');">
+						<li>대파 <img
+							src="https://recipe1.ezmember.co.kr/img/mobile/icon_info.png"
+							style="width: 20px; height: 20px; margin-left: 2px; vertical-align: middle;">
+							<span class="ingre_unit">1/2대</span>
+					</li>
+					</a> <a href="javascript:viewMaterial('197');"
+						onclick="ga('send', 'event', '레시피본문', '재료정보버튼클릭', '버터');">
+						<li>버터 <img
+							src="https://recipe1.ezmember.co.kr/img/mobile/icon_info.png"
+							style="width: 20px; height: 20px; margin-left: 2px; vertical-align: middle;">
+							<span class="ingre_unit">1T</span>
+					</li>
+					</a>
+					</ul>
+			</div>
+
 				<table class="table table-hover table-sm">
 					<tbody>
 						<c:forEach var="hobbyMaterialVo" items="${hobbyVo.hobbyMaterials}">
 							<tr>
-								<td><a href="/material/search?m_no=${hobbyMaterialVo.material_no}">${hobbyMaterialVo.materialName}</a></td>
+								<td><a href="/hobby/material/search?m_no=${hobbyMaterialVo.material_no}">${hobbyMaterialVo.materialName}</a></td>
 								<td>
 									${hobbyMaterialVo.material_detail}
 								</td>
@@ -1326,7 +1395,7 @@ function doDelete() {
 		showCancelButton: true,
 	}).then(function(result) {
 		if(result.isConfirmed) {
-			location.href = "${contextPath}/hobby/delete/${hobbyVo.hobby_no}";
+			location.href = "${contextPath}/hobby/delete/${hobbyVo.hobby_no}?${m_no}${time}${cost}${level}${sort}${page}";
 		} 
 	});
 }

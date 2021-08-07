@@ -6,6 +6,7 @@ import com.dp.ggomjirak.vo.CompleteImgVo;
 import com.dp.ggomjirak.vo.HobbyMaterialVo;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.MakeStepVo;
+import com.dp.ggomjirak.vo.MaterialSearch;
 
 public interface HobbyService {
 	
@@ -28,18 +29,5 @@ public interface HobbyService {
 	
 	
 //	 __________준비물로 목록조회 ___________
-	//전체조회
-//	public List<HobbyVo> selectAll(int material_no);
-//	//최신순
-//	public List<HobbyVo> selectNew(int material_no);
-//	//좋아요순
-//	public List<HobbyVo> selectLike(int material_no);
-//	//조회수순
-//	public List<HobbyVo> selectView(int material_no);
-//	//시간순
-//	public List<HobbyVo> selectTime(int material_no);
-//	//난이도순
-//	public List<HobbyVo> selectLevel(int material_no);
-//	//비용순
-//	public List<HobbyVo> selectCost(int material_no);
+	public List<HobbyVo> selectHMList(MaterialSearch materialSearch);
 }

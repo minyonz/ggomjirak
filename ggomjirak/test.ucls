@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="com.dp.ggomjirak.yj.controller.AjaxController" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/controller/AjaxController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="333" width="343" x="5320" y="37"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.dp.ggomjirak.yj.controller.CommentController" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/controller/CommentController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="216" width="371" x="41" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.dp.ggomjirak.yj.controller.HobbyController" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/controller/HobbyController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="336" width="568" x="4712" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.dp.ggomjirak.yj.controller.MaterialController" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/controller/MaterialController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="236" width="370" x="4302" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="5" language="java" name="com.dp.ggomjirak.yj.dao.CateDao" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/dao/CateDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="3740" y="1854"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="6" language="java" name="com.dp.ggomjirak.yj.dao.CateDaoImpl" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/dao/CateDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="216" width="223" x="3776" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="7" language="java" name="com.dp.ggomjirak.yj.dao.CommentDao" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/dao/CommentDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="176" width="320" x="6507" y="1833"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="8" language="java" name="com.dp.ggomjirak.yj.dao.CommentDaoImpl" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/dao/CommentDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="236" width="320" x="6507" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="9" language="java" name="com.dp.ggomjirak.yj.dao.HobbyDao" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/dao/HobbyDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="476" width="419" x="2052" y="1833"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="10" language="java" name="com.dp.ggomjirak.yj.dao.HobbyDaoImpl" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/dao/HobbyDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="536" width="419" x="1503" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="11" language="java" name="com.dp.ggomjirak.yj.dao.MaterialDao" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/dao/MaterialDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="343" x="3010" y="1833"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="12" language="java" name="com.dp.ggomjirak.yj.dao.MaterialDaoImpl" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/dao/MaterialDaoImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="256" width="343" x="3010" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="13" language="java" name="com.dp.ggomjirak.yj.service.CateService" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/service/CateService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="156" width="223" x="4422" y="1833"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="14" language="java" name="com.dp.ggomjirak.yj.service.CateServiceImpl" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/service/CateServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="176" width="223" x="4039" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="15" language="java" name="com.dp.ggomjirak.yj.service.HobbyService" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/service/HobbyService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="369" x="4685" y="1833"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="16" language="java" name="com.dp.ggomjirak.yj.service.HobbyServiceImpl" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/service/HobbyServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="236" width="369" x="2601" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="17" language="java" name="com.dp.ggomjirak.yj.service.MaterialService" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/service/MaterialService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="96" width="343" x="4039" y="1833"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="18" language="java" name="com.dp.ggomjirak.yj.service.MaterialServiceImpl" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/service/MaterialServiceImpl.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="136" width="343" x="3393" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="com.dp.ggomjirak.yj.util.MyFileUploadUtil" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/util/MyFileUploadUtil.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="196" width="343" x="2218" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="com.dp.ggomjirak.yj.util.UrlOGTag" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/util/UrlOGTag.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="536" width="280" x="5703" y="2629"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="com.dp.ggomjirak.vo.CateVo" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/vo/CateVo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="376" width="217" x="705" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="com.dp.ggomjirak.vo.CommentVo" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/vo/CommentVo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1076" width="269" x="1194" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="com.dp.ggomjirak.vo.HobbyMaterialVo" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/vo/HobbyMaterialVo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="576" width="282" x="5987" y="1833"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="com.dp.ggomjirak.vo.HobbyVo" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/vo/HobbyVo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="1756" width="362" x="5703" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="com.dp.ggomjirak.vo.LevelVo" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/vo/LevelVo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="256" width="216" x="1962" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="com.dp.ggomjirak.vo.MakeStepVo" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/vo/MakeStepVo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="756" width="244" x="5703" y="1833"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="com.dp.ggomjirak.vo.MaterialSearch" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/vo/MaterialSearch.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="996" width="192" x="962" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="com.dp.ggomjirak.vo.MaterialVo" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/vo/MaterialVo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="316" width="362" x="6105" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="com.dp.ggomjirak.vo.TimeVo" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/vo/TimeVo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="256" width="213" x="452" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="30">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="31" name="cateService"/>      
+      <multiplicity id="32" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="33">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="34" name="materialDao"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="36">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="37" name="hobbyService">        
+        <position height="22" width="104" x="4708" y="1760"/>      
+      </attribute>      
+      <multiplicity id="38" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="39">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="40" name="materialDao"/>      
+      <multiplicity id="41" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="42">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <association id="43">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="44" name="hobbyMaterials"/>      
+      <multiplicity id="45" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="47" name="hobbyService">        
+        <position height="22" width="104" x="4827" y="1760"/>      
+      </attribute>      
+      <multiplicity id="48" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="49">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="50" name="makeSteps"/>      
+      <multiplicity id="51" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="52">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <realization id="53">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="7"/>  
+  </realization>  
+  <association id="54">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="55" name="hobbyService">        
+        <position height="22" width="104" x="4950" y="1793"/>      
+      </attribute>      
+      <multiplicity id="56" minimum="0" maximum="1">        
+        <position height="20" width="31" x="5021" y="1799"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="57">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="58" name="materialService"/>      
+      <multiplicity id="59" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="60">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="11"/>  
+  </realization>  
+  <association id="61">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="62" name="cateService"/>      
+      <multiplicity id="63" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="64">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="5"/>  
+  </realization>  
+  <association id="65">    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="66" name="cateDao"/>      
+      <multiplicity id="67" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="68">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <realization id="69">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <association id="70">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="71" name="hobbyDao"/>      
+      <multiplicity id="72" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="73">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="74" name="hobbyMaterials"/>      
+      <multiplicity id="75" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="76">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="77" name="urlOgTag"/>      
+      <multiplicity id="78" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

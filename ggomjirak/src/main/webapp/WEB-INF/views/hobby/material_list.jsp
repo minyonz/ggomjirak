@@ -17,6 +17,19 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/sweetalert2.min.css">
 <script>
 $(document).ready(function() {
+	
+// 	if ('${msgDelete == "success"}') {
+// 		 Swal.fire({
+// 		       icon : "success",
+// 		       title : "삭제 성공",
+// 		    }).then(function(){close()});
+// 	}
+// 	if ('${msgDelete == "fail"}') {
+// 		 Swal.fire({
+// 		       icon : "error",
+// 		       title : "삭제 실패",
+// 		    }).then(function(){close()});
+// 	}
 });
 
 </script>
@@ -161,6 +174,22 @@ a {
 </style>
 </head>
 <body>
+<c:if test="${msgDelete == 'success'}">
+      <script>
+      Swal.fire({
+         icon : "success",
+         title : "삭제 성공",
+      }).then(function(){close()});
+      </script>
+</c:if>
+<c:if test="${msgDelete == 'fail'}">
+      <script>
+      Swal.fire({
+         icon : "error",
+         title : "삭제 실패",
+      }).then(function(){close()});
+      </script>
+</c:if>
 <%@ include file="../include/header.jsp" %>
 
 	<c:set var="m_no" value="m_no=${ms.m_no}" />
@@ -176,6 +205,10 @@ a {
 	
 	<c:if test="${not empty ms.sort }">
 		<c:set var="sort" value="&sort=${ms.sort}" />
+	</c:if>
+	
+	<c:if test="${not empty ms.page }">
+		<c:set var="page" value="&page=${ms.page}" />
 	</c:if>
 
 			
@@ -246,7 +279,7 @@ a {
             	<div class="row" style="margin-bottom: 20px;">	
 <%-- 					${ms } --%>
 					  <div class="search_found" style="float:left;">
-                          <span class="m_name">${ms.m_name}</span> <span>을 쓰는</span> <span class="m_cnt">${ms.count}</span> <span>개의 취미가 있습니다.</span>
+                          <span class="m_name">${ms.m_name}</span> <span>을(를) 쓰는</span> <span class="m_cnt">${ms.count}</span> <span>개의 취미가 있습니다.</span>
                       </div>
 						<div style="margin-left:auto;">
 							<a class="category sort" id="allSort" ${ms.sort == 'all' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
@@ -271,15 +304,18 @@ a {
 	                       		 		border: 1px solid #e1e1e1;
 	                       		 		border-radius: 3px">
 	                            <ul class="product__item__pic__hover">
-	                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-	                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-	                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+	                                <li><a class="like loginNeed" href="/hobby/like/${hobbyVo.hobby_no}"><i class="fa fa-heart"></i></a></li>
+	                                <li><a class="bookmark loginNeed" href="#"><i class="fa fa-bookmark"></i></a></li>
+	                                <li><a class="share" href="#"><i class="fa fa-retweet"></i></a></li>
 	                            </ul>
+<!-- 	                        <span style="position:absolute; bottom:0;"> -->
+<!-- 	                        	<span class="fa fa-heart-o"></span><span>16</span> -->
+<!-- 	                        </span> -->
 	                        </div>
 	                        <div class="featured__item__text">
 								<h6>
 									<a class="short" style="font-weight: 600;"
-										href="/hobby/content/${hobbyVo.hobby_no}">${hobbyVo.hobby_title}</a>
+										href="/hobby/content/${hobbyVo.hobby_no}?${m_no}${time}${cost}${level}${sort}${page}">${hobbyVo.hobby_title}</a>
 								</h6>
 								<h5><a class="short" style="font-size: 0.8rem;"
 									href="/workroom/main/${hobbyVo.user_nick}">${hobbyVo.user_nick}</a></h5>
@@ -291,16 +327,15 @@ a {
             <div class="myPagination" style="text-align: center;">
             <c:set var="prev" value="${ms.endPage - ms.PAGE_BLOCK}"/>
             <c:set var="next" value="${ms.startPage + ms.PAGE_BLOCK}"/>
-            
             	<c:if test="${prev > 0}">
-               		 <a href="search?m_no=${ms.m_no}&sort=${ms.sort}&page=${prev}"><i class="fa fa-long-arrow-left"></i></a>
+               		 <a href="search?${m_no}${time}${cost}${level}${sort}&page=${prev}"><i class="fa fa-long-arrow-left"></i></a>
                 </c:if>
             	<c:forEach var="v" begin="${ms.startPage}" end="${ms.endPage}">
 	                <a class="${v == ms.page ? 'active' : '' }" 
-	                	href="search?m_no=${ms.m_no}&sort=${ms.sort}&page=${v}">${v}</a>
+	                	href="search?${m_no}${time}${cost}${level}${sort}&page=${v}">${v}</a>
 				</c:forEach>
 				<c:if test="${next <= ms.totalPage}">
-               		 <a href="search?m_no=${ms.m_no}&sort=${ms.sort}&page=${next}"><i class="fa fa-long-arrow-right"></i></a>
+               		 <a href="search?${m_no}${time}${cost}${level}${sort}&page=${next}"><i class="fa fa-long-arrow-right"></i></a>
                 </c:if>
             </div>
         </div>
@@ -311,10 +346,43 @@ a {
 </div>
 <%@ include file="../include/footer.jsp" %>
 <script>
-// var loginVo = "${loginVo}";
-// if (loginVo == "") {
-// 	console.log("loginVo 없음:", loginVo);
-// }
+var loginVo = "${loginVo}";
+if (loginVo == "") {
+	console.log("loginVo 없음:", loginVo);
+	$(".loginNeed").on("click", function(e) {
+		alert("로그인 해주세요");
+		console.log(e);
+		return false;
+	});
+}
+
+$(".like").click(function(e) {
+	e.preventDefault();
+	console.log("좋아요 누름")
+	if(loginVo == "") {
+		return false;
+	}
+	var url = $(this).attr("href");
+	var target = $(this);
+	console.log("url", url);
+	$.get(url, function(rData) {
+		console.log(rData);
+		if (rData == "like") {
+			console.log("좋아용");
+			$(target).children().css("color", "#C32424");
+		} else {
+			$(target).children().css("color", "#ffffff");
+		}
+	});
+});
+
+$(".bookmark").click(function() {
+	console.log("좋아요 누름")
+})
+
+$(".share").click(function() {
+	console.log("좋아요 누름")
+})
 </script>
 </body>
 </html>
