@@ -334,7 +334,7 @@
 		$(box).find("input[type=hidden]").val("");
 		$(box).find(".btn_delStepImg").hide();
 		$(box).find(".stepImg_hidden").val("");
-		$(box).find(".previewImg_step").attr("src", "${contextPath}/resources/images/preview_img.jpg");
+		$(box).find(".previewImg_step").attr("src", "${contextPath}/resources/images/preview_img.png");
 		$(box).find(".divStepNote").hide();
 		$(box).find(".divStepTip").hide();
 		$(box).find(".divStepLink").hide();
@@ -638,7 +638,7 @@ margin-right: 15px;
 										<div class="divMainImg" style="width:350px; height:230px; position:relative;">
 											<label for="mainImg_file" id="mainImg_label"
 												style="width: 350px; height: 230px; overflow: hidden;">
-												<img id="previewImg_main" src="${contextPath}/resources/images/main_img_btn.jpg"
+												<img id="previewImg_main" src="${contextPath}/resources/images/preview_main.png"
 													style="width:100%; height:100%; object-fit:cover; cursor:pointer; border: 1px solid #e1e1e1;" >
 											</label>
 											<input type="file" class="mainImg_file" name="mainImg_file" 
@@ -804,7 +804,7 @@ margin-right: 15px;
 											</div>
 											<div class="divStepUpload">
 												<label class="stepImg_label" for="stepImg_file_1">
-													<img id="previewImg_step_1" class="previewImg_step" src="${contextPath}/resources/images/preview_img.jpg" >
+													<img id="previewImg_step_1" class="previewImg_step" src="${contextPath}/resources/images/preview_img.png" >
 												</label>
 												<input type="file" class="stepImg_file" 
 													 id="stepImg_file_1" accept=".gif, .jpg, .png" onchange="previewMakeStepImg(this, 1);"
@@ -913,7 +913,7 @@ margin-right: 15px;
 									<div class="divCompleteImg" style="margin-right:20px; height: 140px;">
 									<label class="complImg_label" for="complImg_file_${v }" style="border: 1px solid #e1e1e1;">
 										<img id="previewImg_compl_${v }" class="previewImg_compl" 
-											src="${contextPath}/resources/images/preview_img.jpg" style="width:140px; height:140px; object-fit: cover; cursor: pointer;">
+											src="${contextPath}/resources/images/preview_img.png" style="width:140px; height:140px; object-fit: cover; cursor: pointer;">
 									</label>
 									<input type="file" class="complImg_file" 
 										 id="complImg_file_${v }" accept=".gif, .jpg, .png" onchange="previewComplImg(this, ${v });"
@@ -1081,7 +1081,7 @@ function delMainImg() {
 	$.get(url, function(rData) {
 		if (rData == "success") {
 			$("#main_img").val("");
-			$("#previewImg_main").attr("src", "${contextPath}/resources/images/main_img_btn.jpg");
+			$("#previewImg_main").attr("src", "${contextPath}/resources/images/preview_main.png");
 			$("#btnDelMainImg").hide();
 		}
 	})
@@ -1270,7 +1270,7 @@ function delStepImg(seq) {
 		if (rData == "success") {
 			$(el).val("");
 			$("#stepBox_" + seq).addClass("none_img");
-			$("#previewImg_step_" + seq).attr("src", "${contextPath}/resources/images/preview_img.jpg");
+			$("#previewImg_step_" + seq).attr("src", "${contextPath}/resources/images/preview_img.png");
 			$("#btnDelStepImg_" + seq).hide();
 		}
 	})
@@ -1358,7 +1358,7 @@ function delComplImg(num) {
 	$.get(url, function(rData) {
 		if (rData == "success") {
 			$(el).val("");
-			$("#previewImg_compl_" + num).attr("src", "${contextPath}/resources/images/preview_img.jpg");
+			$("#previewImg_compl_" + num).attr("src", "${contextPath}/resources/images/preview_img.png");
 			$("#btnDelComplImg_" + num).hide();
 		}
 	})
