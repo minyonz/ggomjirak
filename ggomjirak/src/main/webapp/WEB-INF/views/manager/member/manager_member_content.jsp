@@ -147,19 +147,13 @@ $(document).ready(function() {
 						<th scope="col" style="width: 15%">등급</th>
 						<td style="width: 35%">${grade}</td>
 						<th scope="col"  style="width: 15%; border-left: 1px solid lightgray">로그인 기록</th>
-						<td style="width: 35%">2일 전 (3회)</td>
+						<td style="width: 35%">${loginTime.login_time} (${countLogin}회)</td>
 					</tr>
 					<tr>
 						<th scope="col">게시글 수</th>
-						<td>${activVo.content_cnt}</td>
-						<th scope="col" style="border-left: 1px solid lightgray">댓글 수</th>
-						<td>${activVo.comment_cnt}</td>
-					</tr>
-					<tr>
-						<th scope="col">문의글 수</th>
-						<td>${activVo.ask_cnt}</td>
-						<th scope="col" style="border-left: 1px solid lightgray">좋아요 수</th>
-						<td>${activVo.like_all_cnt}</td>
+						<td>${contentCnt}</td>
+						<th scope="col" style="border-left: 1px solid lightgray">문의글 수</th>
+						<td>${QnACnt}</td>
 					</tr>
 					<tr>
 						<th scope="col">필로잉 수</th>

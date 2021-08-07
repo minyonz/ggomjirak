@@ -32,7 +32,7 @@ $(document).ready(function() {
 				<div class="row">
 					<div class="col-md-3 col-lg-2">
 					
-						<nav id="navbar-example3"  style="position: fixed; top: 250px"
+						<nav id="navbar-example3"  style="position: fixed;"
 							class="navbar navbar-light flex-column align-items-stretch p-3 orange_color">
 							<a class="navbar-brand border-bottom orange_color" href="#">검색</a>
 							<nav class="nav nav-pills flex-column">
@@ -65,7 +65,7 @@ $(document).ready(function() {
 											<c:forEach var="hobby" items="${searchHobbyList}">
 												<div class="col-lg-3 col-md-4 col-sm-6" style="float:left;">
 													<div class="featured__item">
-														<div class="featured__item__pic set-bg" data-setbg="/displayImage?filePath=${hobby.main_img}">
+														<div class="featured__item__pic set-bg" data-setbg="/displayImage?filePath=${hobby.main_img}" onclick="location.href='/hobby/content/${hobby.hobby_no}';" style="cursor: pointer;">
 															<ul class="featured__item__pic__hover">
 																<li><a href="#"><i class="fa fa-heart"></i></a></li>
 																<li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -73,7 +73,7 @@ $(document).ready(function() {
 															</ul>
 														</div>
 														<div class="featured__item__text">
-															<h6><a class="short" href="/hobby/content/${hobby.hobby_no}">${hobby.hobby_title}</a></h6>
+															<h6><a class="short_title" href="/hobby/content/${hobby.hobby_no}">${hobby.hobby_title}</a></h6>
 															<h5><a class="short" href="/workroom/main/${hobby.user_id}">${hobby.user_nick}</a></h5>
 														</div>
 													</div>
@@ -117,9 +117,11 @@ $(document).ready(function() {
 									<td>
 										<div style="overflow:hidden;">
 											<h4 id="made" class="m_top m_bottom">Made by Me</h4>
+											<c:forEach var="made" items="${searchMadeList}">
+											
 												<div class="col-lg-3 col-md-4 col-sm-6" style="float:left;">
 													<div class="featured__item">
-														<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-1.jpg">
+														<div class="featured__item__pic set-bg" data-setbg="/displayImage?filePath=${made.mbm_img}">
 															<ul class="featured__item__pic__hover">
 																<li><a href="#"><i class="fa fa-heart"></i></a></li>
 																<li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -127,59 +129,14 @@ $(document).ready(function() {
 															</ul>
 														</div>
 														<div class="featured__item__text">
-															<h6><a href="#">제목</a></h6>
-															<h5>작가</h5>
+															<h6><a class="short_title col-8" href="/mbm/detail/user_id=${made.user_id}?hobby_no=${made.hobby_no}&mbm_no=${made.mbm_no}">${made.mbm_content}</a></h6>
+															<h5><a class="short" href="/workroom/main/${made.user_id}">${made.user_nick}</a></h5>
 														</div>
 													</div>
 												</div>
+												</c:forEach>
 												
-												<div class="col-lg-3 col-md-4 col-sm-6" style="float:left;">
-													<div class="featured__item">
-														<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-2.jpg">
-															<ul class="featured__item__pic__hover">
-																<li><a href="#"><i class="fa fa-heart"></i></a></li>
-																<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-																<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-															</ul>
-														</div>
-														<div class="featured__item__text">
-															<h6><a href="#">제목</a></h6>
-															<h5>작가</h5>
-														</div>
-													</div>
-												</div>
 												
-												<div class="col-lg-3 col-md-4 col-sm-6" style="float:left;">
-													<div class="featured__item">
-														<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-3.jpg">
-															<ul class="featured__item__pic__hover">
-																<li><a href="#"><i class="fa fa-heart"></i></a></li>
-																<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-																<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-															</ul>
-														</div>
-														<div class="featured__item__text">
-															<h6><a href="#">제목</a></h6>
-															<h5>작가</h5>
-														</div>
-													</div>
-												</div>
-												
-												<div class="col-lg-3 col-md-4 col-sm-6" style="float:left;">
-													<div class="featured__item">
-														<div class="featured__item__pic set-bg" data-setbg="/resources/img/featured/feature-4.jpg">
-															<ul class="featured__item__pic__hover">
-																<li><a href="#"><i class="fa fa-heart"></i></a></li>
-																<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-																<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-															</ul>
-														</div>
-														<div class="featured__item__text">
-															<h6><a href="#">제목</a></h6>
-															<h5>작가</h5>
-														</div>
-													</div>
-												</div>
 												
 											</div>
 									</td>

@@ -56,6 +56,18 @@ $(document).ready(function() {
 		$("#frmPaging").attr("action", "/manager/managerMemberContent");
 		$("#frmPaging").submit();
 	});
+	
+	$(".btnDelete").click(function(e) {
+		e.preventDefault
+		var user_id = $(this).attr("data-id");
+		var result = confirm( user_id + "님을 관리자에서 취소하시겠습니까?");
+		if(result){
+			var user_id = $(this).attr("data-id");
+		    $(this).attr("href", "/manager/managerDeleteManager?user_id=" + user_id);
+		}else{
+		    return false;
+		}
+	});
 });
 </script>
 <form id="frmPaging" action="/manager/managerManagerList" method="get">
@@ -150,10 +162,7 @@ $(document).ready(function() {
 							<td>${manager.m_nik}</td>
 							<td>${manager.m_reg_date}</td>
 							<td>
-								<form action="/manager/managerDeleteManager" method="post">
-									<button type="submit" class="btn btn-danger orange_background">취소</button>
-									<input type="hidden" id="user_id" name="user_id" value="${manager.user_id}">
-								</form>
+									<a type="submit" class="btnDelete btn btn-danger orange_background" data-id="${manager.user_id}">취소</a>
 							</td>
 						</tr>
 					</c:forEach>

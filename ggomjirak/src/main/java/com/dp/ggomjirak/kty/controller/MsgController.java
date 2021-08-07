@@ -40,6 +40,7 @@ public class MsgController {
 	}
 	
 	// 읽지 않은 메시지 목록
+	@ResponseBody
 	@RequestMapping(value="/messageListNotRead", method=RequestMethod.GET)
 	public List<MessageVo> messageListNotRead(HttpSession session) throws Exception {
 		MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");

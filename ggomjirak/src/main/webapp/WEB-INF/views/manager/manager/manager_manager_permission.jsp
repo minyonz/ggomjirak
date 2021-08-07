@@ -56,6 +56,19 @@ $(document).ready(function() {
 		$("#frmPaging").attr("action", "/manager/managerMemberContent");
 		$("#frmPaging").submit();
 	});
+	
+	$(".btnInsert").click(function(e) {
+		e.preventDefault
+		var user_id = $(this).attr("data-id");
+		var result = confirm(user_id + "님을 관리자로 등록하시겠습니까?");
+		if(result){
+			var user_id = $(this).attr("data-id");
+			var user_name = $(this).attr("data-name");
+		    $(this).attr("href", "/manager/managerInsertManager?user_id=" + user_id + "&user_name=" + user_name);
+		}else{
+		    return false;
+		}
+	});
 });
 </script>
 <form id="frmPaging" action="/manager/managerManagerPermission" method="get">
@@ -160,11 +173,7 @@ $(document).ready(function() {
 							<td>${member.user_nick}</td>
 							<td>${member.reg_date}</td>
 							<td>
-								<form action="/manager/managerInsertManager" method="post">
-									<button type="submit" class="btn btn-success green_background">등록</button>
-									<input type="hidden" id="user_id" name="user_id" value="${member.user_id}">
-									<input type="hidden" id="user_name" name="user_name" value="${member.user_name}">
-								</form>
+									<a type="submit" class="btnInsert btn btn-success green_background" data-id="${member.user_id}" data-name="${member.user_name}">등록</a>
 							</td>
 						
 						</tr>

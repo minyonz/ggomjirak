@@ -48,6 +48,12 @@
 .orange_color {
 	color:  rgb(231, 112, 92);
 }
+.short {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+}
 @font-face {
      font-family: 'S-CoreDream-3Light';
      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
@@ -74,7 +80,7 @@ body {
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/main/mainHome" target="_blank">
                 <div class="sidebar-brand-icon">
-                    <img src="/resources/img/logo06.png" alt="..." width="100px" >
+                    <img src="/resources/img/logo06.png" alt="logo" width="100px" >
                 </div>
             </a>
 
