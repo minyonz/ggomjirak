@@ -9,7 +9,7 @@
 	<select id="listHobby" resultType="HobbyVo">
 		select * from(select rownum rnum, a.* from 
 		    (select * from tbl_hobby
-		    where user_id = #{user_id} 
+		    where user_id = #{user_id} and is_del = 'N'
 		    <choose>
 		    	<when test="qCheck == 0">
 		    		order by like_cnt desc, view_cnt desc
@@ -25,7 +25,7 @@
 	<!-- 취미 총 갯수 -->
 	<select id="hobbyCount" resultType="int">
 		select count(*) from tbl_hobby
-		where user_id = #{user_id}
+		where user_id = #{user_id} and is_del = 'N'
 	</select>
 	
 	<!-- 프로필카드 -->
@@ -86,6 +86,29 @@
 	<select id="bookmarkCount" resultType="int">
 		select count(*) from tbl_bookmark
 		where user_id = #{user_id}
+	</select>
+	
+	<!-- 메이드바이미 -->
+	<select id="listMbm" resultType="MadeByMeVo">
+		select * from(select rownum rnum, a.* from 
+		    (select * from tbl_madebyme
+		    where user_id = #{user_id} and is_del = 'N'
+		    <choose>
+		    	<when test="qCheck == 0">
+		    		order by like_cnt desc, view_cnt desc
+		    	</when>
+		    	<when test="qCheck == 1">
+		    		order by mbm_no desc
+		    	</when>
+		    </choose>
+		    )a)
+		where rnum between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 메이드바이미 총 갯수 -->
+	<select id="mbmCount" resultType="int">
+		select count(*) from tbl_madebyme
+		where user_id = #{user_id} and is_del = 'N'
 	</select>
 	
 		

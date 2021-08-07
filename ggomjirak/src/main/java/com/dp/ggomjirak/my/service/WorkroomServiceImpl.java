@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.dp.ggomjirak.my.dao.WorkRoomDao;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.LikeBookmarkVo;
+import com.dp.ggomjirak.vo.MadeByMeVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
 import com.dp.ggomjirak.vo.StoryPagingDto;
@@ -72,6 +73,18 @@ public class WorkroomServiceImpl implements WorkroomService {
 	@Override
 	public int bookmarkCount(String user_id) {
 		int count = workroomDao.bookmarkCount(user_id);
+		return count;
+	}
+
+	@Override
+	public List<MadeByMeVo> listMbm(PagingDto pagingDto) {
+		List<MadeByMeVo> list = workroomDao.listMbm(pagingDto);
+		return list;
+	}
+
+	@Override
+	public int mbmCount(String user_id) {
+		int count = workroomDao.mbmCount(user_id);
 		return count;
 	}
 

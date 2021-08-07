@@ -59,6 +59,9 @@
 			<h4>취미</h4>
 			<c:if test="${user_id == page_id}">
 				<a href="/hobby/insert" class="fa fa-pencil" style="margin-top: 5px; margin-left: 10px;"></a>
+				<c:if test="${hobbyCount == 0}">
+					<p style="margin-left:15px;">나의 취미를 공유해 보세요!</p>
+				</c:if>
 			</c:if>
 			<a href="/workroom/hobby/${page_id}" class="btn-more" style="margin-left:auto; margin-right:30px; height:35px;">더보기</a>
 		</div>
@@ -98,11 +101,11 @@
 	<!-- 스토리 -->
 	<div class="checkout__order" id="story">
 		<div class="workroom_box row" style="height: 39px; display:flex;">
-				<h4>Story</h4>
-				<c:if test="${user_id == page_id}">
-					<a href="/story/write" class="fa fa-pencil" style="margin-top: 5px; margin-left: 10px;"></a>
-				</c:if>
-				<a href="/story/list/${page_id}" class="btn-more" style="margin-left:auto; margin-right:30px; height:35px;">더보기</a>
+			<h4>Story</h4>
+			<c:if test="${user_id == page_id}">
+				<a href="/story/write" class="fa fa-pencil" style="margin-top: 5px; margin-left: 10px;"></a>
+			</c:if>
+			<a href="/story/list/${page_id}" class="btn-more" style="margin-left:auto; margin-right:30px; height:35px;">더보기</a>
 		</div>
 		<div class="workroom_box">
 			<hr>
@@ -132,56 +135,31 @@
 	</div>
 	<!-- mbm -->
 	<div class="checkout__order" id="mbm">
-		<div class="workroom_box row" style="height: 39px;">
+		<div class="workroom_box row" style="height: 39px; display:flex;">
 			<h4>MadeByMe</h4>
-			<a href="/mbm/write">작성</a>
-			<a href="/workroom/mbm/${page_id}">더보기</a>
+			<a href="/workroom/mbm/${page_id}" class="btn-more" style="margin-left:auto; margin-right:30px; height:35px;">더보기</a>
 		</div>
-		<hr>
-		<div>
-			<div class="row">
-				<div class="categories__slider owl-carousel">
-					<div class="col-lg-3">
-						<div class="categories__item set-bg"
-							data-setbg="/resources/img/test/sample08.jpg">
-							<h5>
-								<a href="#">test1</a>
-							</h5>
+		<div class="workroom_box">
+			<hr>
+			<div class="container-fluid">
+				<c:forEach begin="0" end="2" var="mbmVo" items="${mbmList}">
+					<div class="row">
+						<div class="col-md-2" style="height:120px;">
+							<c:if test="${mbmVo.mbm_img != null}">
+								<img src="/img/displayImage?filePath=${mbmVo.mbm_img}" 
+								style="width: 100%; height: 100%; object-fit:cover;">
+							</c:if>
+						</div>
+						<div class="col-md-10" style="padding: 0px; margin: auto;">
+							<p style="font-size: 15px; margin: 10px" class="story_detail">
+								<a href="/mbm/detail/${page_id}?hobby_no=${mbmVo.hobby_no}&mbm_no=${mbmVo.mbm_no}" class="oooo">${mbmVo.mbm_content}</a><br> 
+								<a class="fa fa-heart-o" href="/mbm/detail/${page_id}?hobby_no=${mbmVo.hobby_no}&mbm_no=${mbmVo.mbm_no}" 
+									style="margin-right: 5px"> ${mbmVo.like_cnt}</a> 
+							</p>
 						</div>
 					</div>
-					<div class="col-lg-3">
-						<div class="categories__item set-bg"
-							data-setbg="/resources/img/test/sample06.jpg">
-							<h5>
-								<a href="#">test2</a>
-							</h5>
-						</div>
-					</div>
-					<div class="col-lg-3">
-						<div class="categories__item set-bg"
-							data-setbg="/resources/img/test/sample07.jpg">
-							<h5>
-								<a href="#">test3</a>
-							</h5>
-						</div>
-					</div>
-					<div class="col-lg-3">
-						<div class="categories__item set-bg"
-							data-setbg="/resources/img/test/sample06.jpg">
-							<h5>
-								<a href="#">test4</a>
-							</h5>
-						</div>
-					</div>
-					<div class="col-lg-3">
-						<div class="categories__item set-bg"
-							data-setbg="/resources/img/test/sample07.jpg">
-							<h5>
-								<a href="#">test5</a>
-							</h5>
-						</div>
-					</div>
-				</div>
+					<hr>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
@@ -189,6 +167,7 @@
 	<div class="checkout__order" id="bookmark">
 		<div class="workroom_box row" style="height: 39px; display:flex;">
 			<h4>북마크</h4>
+			<a href="/workroom/bookmark/${page_id}" class="btn-more" style="margin-left:auto; margin-right:30px; height:35px;">더보기</a>
 		</div>
 			<hr>
 			<div class="row">

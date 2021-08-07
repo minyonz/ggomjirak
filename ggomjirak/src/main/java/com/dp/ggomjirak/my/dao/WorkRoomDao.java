@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.LikeBookmarkVo;
+import com.dp.ggomjirak.vo.MadeByMeVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
 import com.dp.ggomjirak.vo.StoryPagingDto;
@@ -26,4 +27,7 @@ public interface WorkRoomDao {
 	public List<LikeBookmarkVo> listBookmark(PagingDto pagingDto);
 	// 북마크 총 갯수
 	public int bookmarkCount(String user_id);
+	// 메이드바이미
+	public List<MadeByMeVo> listMbm(PagingDto pagingDto);
+	public int mbmCount(String user_id);
 }

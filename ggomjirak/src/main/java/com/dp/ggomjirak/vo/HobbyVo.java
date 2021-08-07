@@ -40,6 +40,8 @@ public class HobbyVo {
 	private String user_nick;
 	private String user_img;
 	
+	private int rnum;
+	
 	
 	public HobbyVo() {
 		super();
@@ -268,6 +270,14 @@ public class HobbyVo {
 
 	public void setCmt_cnt(int cmt_cnt) {
 		this.cmt_cnt = cmt_cnt;
+	}
+
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
 
 	@Override

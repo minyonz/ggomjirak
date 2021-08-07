@@ -94,8 +94,9 @@ $(document).ready(function() {
 			</div>
 			</div>
 			<div class="checkout__order contact-form">
-				<form id="frmMbm" action="/mbm/writeRun" method="post">
+				<form id="frmMbm" action="/mbm/updateRun" method="post">
 					<input type="hidden" name="hobby_no" value="${hobbyVo.hobby_no}">
+					<input type="hidden" name="mbm_no" value="${madebymeVo.mbm_no}">
 					<div class="row" style="margin-top: 10px; justify-content: center;">
 					<div class="row">
 						<div class="col-md-6" style="padding-right: 200px;">
@@ -104,12 +105,13 @@ $(document).ready(function() {
 							<label class="mbmImg_label" for="mbm_file"
 								style="border: 1px solid #e1e1e1; width: 200px; height: 200px; overflow: hidden;">
 								<img id="previewImg_mbm" class="previewImg_compl"
-								src="${contextPath}/resources/images/preview_img.jpg"
-								style="width: 100%; height: 100%; cursor: pointer; object-fit: cover;">
-							</label> <input type="file" class="mbm_file" id="mbm_file"
-								accept=".gif, .jpg, .png" onchange="previewMbmImg(this);"
-								style="display: none; width: 0px; height: 0px; font-size: 0px;">
-							<input type="hidden" class="mbmImg_hidden" data-exist="0" id="mbm_img" name="mbm_img" />
+								src="/img/displayImage?filePath=${madebymeVo.mbm_img}"
+								style="width: 100%; height: 100%; cursor: pointer; object-fit: cover;"></label> 
+							<input type="file" class="mbm_file" id="mbm_file"
+							accept=".gif, .jpg, .png" onchange="previewMbmImg(this);"
+							style="display: none; width: 0px; height: 0px; font-size: 0px;">
+							<input type="hidden" class="mbmImg_hidden" data-exist="0" id="mbm_img" name="mbm_img" 
+							value="${madebymeVo.mbm_img}" />
 							<div style="position: relative; bottom: 13.3rem; left: 6.3rem;">
 								<a id="btnDelMbmImg" href="javascript:delMbmImg()" class="btn_del btn_delMbmImg"
 									style="float: right; display: none"></a>
@@ -131,10 +133,6 @@ $(document).ready(function() {
 								<option value="4">😧hard </option>
 								<option value="5">😱crazy</option>
 							</select>
-<!-- 						      <input style="padding:0px; margin:0px; margin-left:-30px;" class="slider_range"  -->
-<!-- 							  type="range" value="0" min="0" max="5" step="1" value="1" ></input><br> -->
-<!-- 							  <span id="range_text" style="text-align: center; margin-left:60px;">0</span> -->
-<!-- 							  <input type="hidden" id="level_no" name="level_no" value="">	 -->
 						    </div>
 						</div>
 						</div>
@@ -144,7 +142,7 @@ $(document).ready(function() {
 					<div class="col-lg-12 text-center">
 						<span id="msg"></span>
 						<textarea placeholder="후기를 작성해 주세요." name="mbm_content"
-							id="mbm_content"></textarea>
+							id="mbm_content">${madebymeVo.mbm_content}</textarea>
 						<button type="button" onclick="doSubmit();" class="site-btn">등록</button>
 						<a href="/hobby/content/${hobbyVo.hobby_no}" class="btn-cancle">취소</a>
 					</div>
@@ -244,7 +242,7 @@ function doSubmit() {
     } 
     
 	Swal.fire({
-		text: '등록하시겠습니까?', 
+		text: '수정하시겠습니까?', 
 		allowOutsideClick: false,
 		iconColor: "#1f5e43",
 		icon: 'question', 
