@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.LikeBookmarkVo;
+import com.dp.ggomjirak.vo.MadeByMeVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
 import com.dp.ggomjirak.vo.StoryPagingDto;
@@ -19,4 +20,6 @@ public interface WorkroomService {
 	public int searchStoryCount(PagingDto pagingDto);
 	public List<LikeBookmarkVo> listBookmark(PagingDto pagingDto);
 	public int bookmarkCount(String user_id);
+	public List<MadeByMeVo> listMbm(PagingDto pagingDto);
+	public int mbmCount(String user_id);
 }

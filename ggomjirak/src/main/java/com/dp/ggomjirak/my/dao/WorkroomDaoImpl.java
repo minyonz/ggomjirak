@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.LikeBookmarkVo;
+import com.dp.ggomjirak.vo.MadeByMeVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
 import com.dp.ggomjirak.vo.StoryPagingDto;
@@ -74,6 +75,18 @@ public class WorkroomDaoImpl implements WorkRoomDao {
 	@Override
 	public int bookmarkCount(String user_id) {
 		int count = sqlSession.selectOne(NAMESPACE + "bookmarkCount", user_id);
+		return count;
+	}
+
+	@Override
+	public List<MadeByMeVo> listMbm(PagingDto pagingDto) {
+		List<MadeByMeVo> list = sqlSession.selectList(NAMESPACE + "listMbm", pagingDto);
+		return list;
+	}
+
+	@Override
+	public int mbmCount(String user_id) {
+		int count = sqlSession.selectOne(NAMESPACE + "mbmCount", user_id);
 		return count;
 	}
 

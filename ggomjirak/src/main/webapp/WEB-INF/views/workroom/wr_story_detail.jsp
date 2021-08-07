@@ -6,16 +6,14 @@
 <!-- 스토리 상세 폼 -->
 <script>
 $(document).ready(function() {
-	// 스토리 삭제
-// 	$("#storyDel").click(function(e) {
-// 		e.preventDefault();
-// 		if (confirm("삭제하시겠습니까?")) {
-// 			location.href = "/story/delete_run?st_no=${storyVo.st_no}";
-// 		}
-// 	});
-	
+	var loginVo = "${loginVo}";
+	var user_id = "${user_id}";
 	// 댓글 입력 
 	$("#btnCommentInsert").click(function() {
+		if (loginVo == "") {
+			alert("로그인이 필요한 서비스입니다.");
+			return false;
+		}
 		var st_c_content = $("#txtComment").val();
 		console.log(txtComment);
 		var st_no = parseInt("${storyVo.st_no}");
@@ -47,13 +45,18 @@ $(document).ready(function() {
 							commentHtml += "						<h6>" + this.user_nick + " " + changeDateString(this.reg_date) + "</h6>";
 							commentHtml += "							<span class='st_c_content'>" + this.st_c_content + "</span></div></div></div>";
 							commentHtml += "	<div class='col-md-2'><div style='text-align: right'>";
-							commentHtml += "		<a href='#' style='margin-right: 5px; font-size:13px;' id='commentMod'>수정</a>"
-							commentHtml += "		<a href='#' style='font-size:13px;' class='commentDel' data-cno=" + this.st_c_no + ">삭제</a></div></div></div>"
+							// 아이디 다르면 수정삭제X
+							if (user_id == this.user_id) {
+								commentHtml += "		<a href='#' style='margin-right: 5px; font-size:13px;' id='commentMod'>수정</a>"
+								commentHtml += "		<a href='#' style='font-size:13px;' class='commentDel' data-cno=" + this.st_c_no + ">삭제</a>"		
+							}
+							commentHtml += "</div></div></div>";
 							commentHtml += "<div class='row' id='divCommentMod' style='display:none'><div class='col-md-9'>";
 							commentHtml += "	<textarea class='form-control' style='width: 100%; resize: none; id='txtCommentMod'>" + this.st_c_content + "</textarea></div>";
 							commentHtml += "<div class='col-md-3'>";
 							commentHtml += "	<button type='button' class='btn btn-warning btn-sm modRun' data-st_c_no=" + this.st_c_no + ">등록</button><br>";
 							commentHtml += "	<button tyle='button' class='btn btn-light btn-sm modCancel'>취소</button></div></div><hr>";
+						
 							$("#comment").html(commentHtml);
 						});
 				});
@@ -137,6 +140,10 @@ $(document).ready(function() {
 	// 좋아요
 	$("#like").click(function(e) {
 		e.preventDefault();
+		if (loginVo == "") {
+			alert("로그인이 필요한 서비스입니다.");
+			return false;
+		}
 		var url = "/story/like/${storyVo.st_no}";
 		$.get(url, function(rData) {
 			console.log(rData.likeCount);
@@ -184,8 +191,10 @@ $(document).ready(function() {
 				</div>
 				<div class="col-md-3">
 					<div style="text-align: right">
+					<c:if test="${user_id == page_id}">
 						<a href="/story/update?st_no=${storyVo.st_no}" style="margin-right: 5px">수정</a> 
 						<a href="javascript:doDelete();">삭제</a>
+					</c:if>
 					</div>
 				</div>
 			</div>
