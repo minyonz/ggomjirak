@@ -40,8 +40,24 @@
      font-style: normal;
 }
 
+/* 레귤러 */
+@font-face {
+     font-family: 'S-CoreDream-4Regular';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-4Regular.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+/* 미디엄 */
+@font-face {
+     font-family: 'S-CoreDream-5Medium';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
 body {
-	font-family: 'S-CoreDream-3Light';
+	font-family: 'S-CoreDream-4Regular';
 }
 
 
@@ -142,6 +158,7 @@ $(document).ready(function() {
 	});
 	$("#keyword").val("${pagingDto.keyword}");
 	
+
 	//* 카테고리 부분
 	var MjsonData = JSON.parse('${managerList}');
 	var mUserIdArr = new Array();
@@ -157,8 +174,8 @@ $(document).ready(function() {
 		if("${user_id}" == MjsonData[i].user_id) {
 			mUserIdLi.append("<a class='nav-link flex-item' href='/manager/managerHome'>관리자</a>"); 
 		}
-		
-	}
+
+ 	}
 	
 	$("#messagesDropdown").click(function() {
 		var url = "/message/messageListNotRead";

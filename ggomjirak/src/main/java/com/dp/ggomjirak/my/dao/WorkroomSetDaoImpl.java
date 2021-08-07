@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.dp.ggomjirak.vo.FollowVo;
+import com.dp.ggomjirak.vo.LikeBookmarkVo;
 import com.dp.ggomjirak.vo.WorkroomVo;
 
 @Repository
@@ -50,8 +51,8 @@ public class WorkroomSetDaoImpl implements WorkroomSetDao {
 	}
 
 	@Override
-	public List<LikeBookmarkDao> likeList(String user_id) {
-		List<LikeBookmarkDao> list = sqlSession.selectList(NAMESPACE + "likeList", user_id);
+	public List<LikeBookmarkVo> likeList(String user_id) {
+		List<LikeBookmarkVo> list = sqlSession.selectList(NAMESPACE + "likeList", user_id);
 		return list;
 	}
 
