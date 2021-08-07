@@ -394,7 +394,7 @@
 		$(box).find("input[type=hidden]").val("");
 		$(box).find(".btn_delStepImg").hide();
 		$(box).find(".stepImg_hidden").val("");
-		$(box).find(".previewImg_step").attr("src", "${contextPath}/resources/images/preview_img.jpg");
+		$(box).find(".previewImg_step").attr("src", "${contextPath}/resources/images/preview_img.png");
 		$(box).find(".divStepNote").hide();
 		$(box).find(".divStepTip").hide();
 		$(box).find(".divStepLink").hide();
@@ -922,7 +922,7 @@ margin-right: 15px;
 															</c:when>
 															<c:otherwise>
 																<label class="stepImg_label" for="stepImg_file_${vs.count}">
-																	<img id="previewImg_step_${vs.count}" class="previewImg_step" src="${contextPath}/resources/images/preview_img.jpg"/>
+																	<img id="previewImg_step_${vs.count}" class="previewImg_step" src="${contextPath}/resources/images/preview_img.png"/>
 																</label>
 																 <input type="file" class="stepImg_file" 
 																	 id="stepImg_file_${vs.count}" accept=".gif, .jpg, .png" 
@@ -1061,7 +1061,7 @@ margin-right: 15px;
 											</c:when>
 											<c:otherwise>
 												<img id="previewImg_compl_${vs.count}" class="previewImg_compl" 
-													src="${contextPath}/resources/images/preview_img.jpg" style="width:140px; height:140px; object-fit: cover; cursor: pointer;">
+													src="${contextPath}/resources/images/preview_img.png" style="width:140px; height:140px; object-fit: cover; cursor: pointer;">
 											</c:otherwise>
 										</c:choose>
 									</label>
@@ -1225,7 +1225,7 @@ function previewMainImg(targetObj) {
 		"success" : function(filePath) {
 			console.log("filePath:" + filePath);
 			// 1. hidden에 값 넣기 
-			$("#main_img").val(filePath);
+			$("#preview_main.png").val(filePath);
 			//2. 프리뷰이미지 보여주기 
 			var reader = new FileReader();
 			reader.readAsDataURL(file);
@@ -1255,13 +1255,13 @@ function delMainImg() {
 		console.log("메인사진", main_img)
 		if(main_img == filePath) {
 			$("#main_img").val("");
-			$("#previewImg_main").attr("src", "${contextPath}/resources/images/main_img_btn.jpg");
+			$("#previewImg_main").attr("src", "${contextPath}/resources/images/preview_main.png");
 			$("#btnDelMainImg").css("display", "none");
 		} else {
 			$.get("/deleteFile?filePath=" + filePath, function(rData) {
 				if (rData == "success") {
 					$("#main_img").val("");
-					$("#previewImg_main").attr("src", "${contextPath}/resources/images/main_img_btn.jpg");
+					$("#previewImg_main").attr("src", "${contextPath}/resources/images/preview_main.png");
 					$("#btnDelMainImg").css("display", "none");
 				}
 			})
@@ -1454,14 +1454,14 @@ function delStepImg(seq) {
 	if (step_no > 0) { //db에 있는 것 -> 폼전송되기전까지 서버에서 사진 삭제하면안됨
 		$(el).val("");
 		$("#stepBox_" + seq).addClass("none_img");
-		$("#previewImg_step_" + seq).attr("src", "${contextPath}/resources/images/preview_img.jpg");
+		$("#previewImg_step_" + seq).attr("src", "${contextPath}/resources/images/preview_img.png");
 		$("#btnDelStepImg_" + seq).hide();
 	} else {
 		$.get("/deleteFile?filePath=" + filePath, function(rData) {
 			if (rData == "success") {
 				$(el).val("");
 				$("#stepBox_" + seq).addClass("none_img");
-				$("#previewImg_step_" + seq).attr("src", "${contextPath}/resources/images/preview_img.jpg");
+				$("#previewImg_step_" + seq).attr("src", "${contextPath}/resources/images/preview_img.png");
 				$("#btnDelStepImg_" + seq).hide();
 			}
 		});
@@ -1567,7 +1567,7 @@ function delComplImg(num) {
 				$.get("/deleteFile?filePath=" + filePath, function(rData) {
 					if (rData == "success") {
 						$(el).val("");
-						$("#previewImg_compl_" + num).attr("src", "${contextPath}/resources/images/preview_img.jpg");
+						$("#previewImg_compl_" + num).attr("src", "${contextPath}/resources/images/preview_img.png");
 						$("#btnDelComplImg_" + num).hide();
 					}
 				})
@@ -1576,7 +1576,7 @@ function delComplImg(num) {
 // 				서버에서 사진 삭제하지말고
 // 				프리뷰이미지만 없애기
 				$(el).val("");
-				$("#previewImg_compl_" + num).attr("src", "${contextPath}/resources/images/preview_img.jpg");
+				$("#previewImg_compl_" + num).attr("src", "${contextPath}/resources/images/preview_img.png");
 				$("#btnDelComplImg_" + num).hide();
 			} 
 			

@@ -588,6 +588,38 @@ figure[data-ke-type='opengraph'] .og-host {
     margin: 0 35px;
     font-size: 16px;
 }
+
+#time_span {
+	background: url(/resources/images/time.png) no-repeat center;
+    display: inline-block;
+    width: 12%;
+    padding-top: 56px;
+    font-size: 16px;
+    background-size: 2.5rem;
+}
+#cost_span {
+	background : url(/resources/images/cost.png) no-repeat center;
+	display: inline-block;
+    width: 12%;
+    padding-top: 56px;
+    font-size: 16px;
+    background-size: 2.5rem;
+}
+#level_span {
+ 	display: inline-block;
+    width: 12%;
+    padding-top: 56px;
+    font-size: 16px;
+} 
+
+.info-text{
+    position: absolute;
+    margin-top: 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f5e43bf;
+    margin-left: 0.5rem;
+}
 </style>
 </head>
 <body>
@@ -694,8 +726,16 @@ figure[data-ke-type='opengraph'] .og-host {
 							<a href="/workroom/main/${hobbyVo.user_id}">
 							<div style="margin-top: 10px; position: relative;">
 								<div class="article_profile_cont">
-									<img class="rounded-circle circle-image img_fit" 
-										src="/displayImage?filePath=${hobbyVo.user_img}"/> 
+									<c:choose>
+										<c:when test="${not empty hobbyVo.user_img}">
+											<img class="rounded-circle circle-image img_fit" 
+												src="/displayImage?filePath=${hobbyVo.user_img}"/> 
+										</c:when>
+										<c:otherwise>
+											<img class="rounded-circle circle-image img_fit" 
+												src="/resources/imgaes/default_profile.png"/> 
+										</c:otherwise>
+									</c:choose>
 								</div>
 									<span style=" display: inline-block;
 											    position: absolute;
@@ -712,19 +752,20 @@ figure[data-ke-type='opengraph'] .og-host {
 							<div class="row sm_tit">
 								소요시간
 							</div>
-							<span class="fa fa-clock-o"></span>${hobbyVo.time_name}
+							<span id="time_span"></span><span class="info-text">${hobbyVo.time_name}</span>
 						</div>
 						<div class="cost_row">
 							<div class="row sm_tit">
 								비용
 							</div>
-							<span class="fa fa-krw"></span>${hobbyVo.cost_name}
+							<span id="cost_span"></span><span class="info-text">${hobbyVo.cost_name}</span>
 						</div>
 						<div class="level_row">
 							<div class="row sm_tit">
 								난이도
 							</div>
-							<span class="fa fa-hand-paper-o"></span>${hobbyVo.level_name}
+							<span id="level_span" style="background : url(/resources/images/level${hobbyVo.level_no}.png) no-repeat center;  background-size: 2rem;"></span>
+							<span class="info-text">${hobbyVo.level_name}</span>
 						</div>
 						<div class="respon_row">
 							<button type="button" class="loginNeed btn green_background" id="like">
@@ -1584,7 +1625,11 @@ function selectCommentList() {
 			cloneDiv.find(".c_no").val(this.c_no);
 			cloneDiv.find(".re_group").val(this.re_group);
 			cloneDiv.find(".user_link").attr("href", "/workroom/main/" + this.user_id);
-			cloneDiv.find(".user_img").attr("src", "/displayImage?filePath=" + this.user_img);
+			if (this.user_img != null && this.user_img.trim() != "") {
+				cloneDiv.find(".user_img").attr("src", "/displayImage?filePath=" + this.user_img);
+			} else {
+				cloneDiv.find(".user_img").attr("src", "/resources/imgaes/default_profile.png");
+			}
 			cloneDiv.find(".c_user_nick").text(this.user_nick);
 			if (this.user_id == hobby_writer) {
 				cloneDiv.find(".is_hobby_writer").show();
