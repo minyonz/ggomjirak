@@ -35,7 +35,7 @@ import net.sf.json.JSONArray;
 @RequestMapping(value = "/mypage")
 public class MyPageController {
 	
-	@Resource
+	@Resource(name="rootPath")
 	private String rootPath;
 
 	@Inject
@@ -296,7 +296,7 @@ public class MyPageController {
 	public byte[] displayImage(String fileName) throws Exception {
 		System.out.println("마이 페이지 컨트롤러의 프로필 썸네일 이미지 요청 처리 중...");
 //			FileInputStream fis = new FileInputStream(fileName);
-		FileInputStream fis = new FileInputStream(rootPath + MyFileUploadUtil.serverFilePath + "/" + fileName);
+		FileInputStream fis = new FileInputStream(rootPath + "/" + fileName);
 		byte[] bytes = IOUtils.toByteArray(fis);
 		fis.close();
 		return bytes;

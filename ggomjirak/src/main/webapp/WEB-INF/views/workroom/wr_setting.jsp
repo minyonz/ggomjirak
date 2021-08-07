@@ -147,18 +147,18 @@ $(document).ready(function() {
 					<span id="introWarning" style="margin-left:10px; color:#E14F4F; font-size:15px;"></span>
 				</div>
 			</div>
-			<div class="checkout__order">
-				<div class="workroom_box">
-					<h4>작업실 공개 여부</h4>
-				</div>
-				<div class="workroom_box">
-					<hr>
-					<div class="custom-control custom-switch">
-					  <input type="checkbox" class="custom-control-input" id="customSwitch1">
-					  <label class="custom-control-label" for="customSwitch1">공개</label>
-					</div>
-				</div>
-			</div>
+<!-- 			<div class="checkout__order"> -->
+<!-- 				<div class="workroom_box"> -->
+<!-- 					<h4>작업실 공개 여부</h4> -->
+<!-- 				</div> -->
+<!-- 				<div class="workroom_box"> -->
+<!-- 					<hr> -->
+<!-- 					<div class="custom-control custom-switch"> -->
+<!-- 					  <input type="checkbox" class="custom-control-input" id="customSwitch1"> -->
+<!-- 					  <label class="custom-control-label" for="customSwitch1">공개</label> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<div class="row">
 				<div class="col-md-6">
 					<div class="checkout__order">
@@ -206,7 +206,7 @@ $(document).ready(function() {
 									<div class="col-md-5">
 										<div class="blog__details__author">
 											<div class="blog__details__author__pic">
-												<a href="#"><img src="/displayImage?filePath=${likeBmVo.user_img}" alt=""></a>
+												<a href="/workroom/main/${likeBmVo.user_id}"><img src="/displayImage?filePath=${likeBmVo.user_img}" alt=""></a>
 											</div>
 											<div class="blog__details__author__text">
 												<span>${likeBmVo.user_nick}</span>

@@ -14,9 +14,8 @@ public class MadeByMeVo {
 	private Timestamp reg_date;
 	private Timestamp mod_date;
 	
-	private String hobby_title;
-	private String hobby_intro;
-	private String main_img;
+	private String user_nick;
+	private String user_img;
 	
 	public MadeByMeVo() {
 		super();
@@ -24,8 +23,7 @@ public class MadeByMeVo {
 	}
 
 	public MadeByMeVo(int mbm_no, String user_id, int hobby_no, int level_no, String mbm_content, String mbm_img,
-			int like_cnt, int view_cnt, Timestamp reg_date, Timestamp mod_date, String hobby_title, String hobby_intro,
-			String main_img) {
+			int like_cnt, int view_cnt, Timestamp reg_date, Timestamp mod_date, String user_nick, String user_img) {
 		super();
 		this.mbm_no = mbm_no;
 		this.user_id = user_id;
@@ -37,9 +35,8 @@ public class MadeByMeVo {
 		this.view_cnt = view_cnt;
 		this.reg_date = reg_date;
 		this.mod_date = mod_date;
-		this.hobby_title = hobby_title;
-		this.hobby_intro = hobby_intro;
-		this.main_img = main_img;
+		this.user_nick = user_nick;
+		this.user_img = user_img;
 	}
 
 	public int getMbm_no() {
@@ -122,36 +119,28 @@ public class MadeByMeVo {
 		this.mod_date = mod_date;
 	}
 
-	public String getHobby_title() {
-		return hobby_title;
+	public String getUser_nick() {
+		return user_nick;
 	}
 
-	public void setHobby_title(String hobby_title) {
-		this.hobby_title = hobby_title;
+	public void setUser_nick(String user_nick) {
+		this.user_nick = user_nick;
 	}
 
-	public String getHobby_intro() {
-		return hobby_intro;
+	public String getUser_img() {
+		return user_img;
 	}
 
-	public void setHobby_intro(String hobby_intro) {
-		this.hobby_intro = hobby_intro;
-	}
-
-	public String getMain_img() {
-		return main_img;
-	}
-
-	public void setMain_img(String main_img) {
-		this.main_img = main_img;
+	public void setUser_img(String user_img) {
+		this.user_img = user_img;
 	}
 
 	@Override
 	public String toString() {
 		return "MadeByMeVo [mbm_no=" + mbm_no + ", user_id=" + user_id + ", hobby_no=" + hobby_no + ", level_no="
 				+ level_no + ", mbm_content=" + mbm_content + ", mbm_img=" + mbm_img + ", like_cnt=" + like_cnt
-				+ ", view_cnt=" + view_cnt + ", reg_date=" + reg_date + ", mod_date=" + mod_date + ", hobby_title="
-				+ hobby_title + ", hobby_intro=" + hobby_intro + ", main_img=" + main_img + "]";
+				+ ", view_cnt=" + view_cnt + ", reg_date=" + reg_date + ", mod_date=" + mod_date + ", user_nick="
+				+ user_nick + ", user_img=" + user_img + "]";
 	}
-	
+
 }
