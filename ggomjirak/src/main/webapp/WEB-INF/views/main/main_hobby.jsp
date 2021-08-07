@@ -160,7 +160,7 @@ $(document).ready(function() {
 								<div class="col-lg-3 col-md-4 col-sm-6" style="float: left;">
 									<div class="featured__item">
 										<div class="featured__item__pic set-bg"
-											data-setbg="/displayImage?filePath=${cate.main_img}">
+											data-setbg="/displayImage?filePath=${cate.main_img}" onclick="location.href='/hobby/content/${cate.hobby_no}';" style="cursor: pointer;">
 											<ul class="featured__item__pic__hover">
 												<li><a href="#"><i class="fa fa-heart"></i></a></li>
 												<li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -169,7 +169,7 @@ $(document).ready(function() {
 										</div>
 										<div class="featured__item__text">
 											<h6>
-												<a class="short" href="/hobby/content/${cate.hobby_no}">${cate.hobby_title}</a>
+												<a class="short_title" href="/hobby/content/${cate.hobby_no}">${cate.hobby_title}</a>
 											</h6>
 											<h5><a class="short" href="/workroom/main/${cate.user_id}">${cate.user_nick}</a></h5>
 										</div>

@@ -34,7 +34,7 @@
 											alt="Event Image"
 										</c:when>
 										<c:otherwise>
-											src="../resources/img/eximage.png" 
+											src="/resources/manager/img/logoimage.png" 
 											alt="None Image"
 										</c:otherwise>
 									</c:choose>

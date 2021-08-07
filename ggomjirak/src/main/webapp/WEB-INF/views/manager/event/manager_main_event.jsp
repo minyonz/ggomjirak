@@ -91,8 +91,8 @@ $(document).ready(function() {
 		    <div class="col-lg-2 col-md-3 mb-3">	    		  
 				  <button class="form-control btn btn-success green_background dropdown-toggle" type="button"
 						id="btnSearchType" data-toggle="dropdown">
-							<c:if test='${pagingDto.searchType == null}'>옵션선택</c:if>
-							<c:if test='${pagingDto.searchType == ""}'>옵션선택</c:if>
+							<c:if test='${pagingDto.searchType == null}'>옵션 선택</c:if>
+							<c:if test='${pagingDto.searchType == ""}'>옵션 선택</c:if>
 							<c:if test='${pagingDto.searchType == "t"}'>제목</c:if>
 							<c:if test='${pagingDto.searchType == "u"}'>작성자</c:if>
 							<c:if test='${pagingDto.searchType == "tu"}'>제목 + 작성자</c:if>
@@ -183,7 +183,14 @@ $(document).ready(function() {
 		      <td>${event.end_date}</td>
 		      <td>${event.reg_date}</td>
 		      <td>${event.mod_date}</td>
-		      <td>${event.e_img}</td>
+		      <td>
+		      	<c:if test="${event.e_img != null}">
+			      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
+				  <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+				  <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"/>
+				</svg>
+		      </c:if>
+		      </td>
 		      <td>
 		      	<a data-eno="${event.e_no}" type="button" class="btn btn-danger orange_background btnCancel">취소</a>
 		      </td>
