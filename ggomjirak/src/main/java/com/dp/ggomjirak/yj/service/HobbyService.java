@@ -7,6 +7,7 @@ import com.dp.ggomjirak.vo.HobbyMaterialVo;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.MakeStepVo;
 import com.dp.ggomjirak.vo.MaterialSearch;
+import com.dp.ggomjirak.vo.ReviewPaging;
 
 public interface HobbyService {
 	
@@ -15,7 +16,7 @@ public interface HobbyService {
 	 */
 	public boolean insertHobbyArticle (HobbyVo hobbyVo); 
 	
-	public HobbyVo selectHobbyArticle (int hobby_no, boolean isUpdate);
+	public HobbyVo selectHobbyArticle (int hobby_no, ReviewPaging rp, boolean isUpdate);
 	
 	public String selectCompleteImgName (CompleteImgVo completeImgVo);
 	public String selectMainImg(int hobby_no);

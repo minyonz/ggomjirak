@@ -66,7 +66,7 @@ a {
 	font-weight: 600;
 }
 
-.active {
+.myPagination .active {
  	background: #1f5e43; 
     border-color: #1f5e43; 
     color: #fff; 

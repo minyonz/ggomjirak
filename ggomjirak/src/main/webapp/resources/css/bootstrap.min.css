@@ -6634,11 +6634,13 @@ a.bg-dark:focus,a.bg-dark:hover,button.bg-dark:focus,button.bg-dark:hover {
 	position:sticky!important
 }
 .fixed-top {
-	position:fixed;
-	top:0;
-	right:0;
-	left:0;
-	z-index:1030
+	position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    padding-left: 9rem;
+}
 }
 .fixed-bottom {
 	position:fixed;

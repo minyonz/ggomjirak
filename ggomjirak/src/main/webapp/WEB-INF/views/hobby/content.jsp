@@ -39,7 +39,7 @@ $(document).ready(function() {
 // 		console.log(gap);
 	});
 	
-// 	$('#stepSlide').carousel('pause');
+	$('#stepSlide').carousel('pause');
 	
 	var isStart = false;
 	$("#carousel_cycle").on("click", function() {
@@ -68,9 +68,27 @@ $(document).ready(function() {
 	$("#carousel_next").on("click", function() {
 		$('#stepSlide').carousel('next');
 	});
-
-
-		
+	
+	$(window).on('scroll', function() {
+		 if($(".nav-link").hasClass("active")) {
+			 console.log("확인")
+      		  $("#rcNav").addClass("fixed-top");
+		 } else {
+			 $("#rcNav").removeClass("fixed-top");
+		 }
+	})
+	$("#mbmTab").click(function() {
+		 $("#rcNav").addClass("fixed-top");
+	})
+// 	 $(window).on('activate.bs.scrollspy', function () {
+// 		 console.log("g")
+// 		 if($(".nav-link").hasClass("active")) {
+// 			 console.log("확인")
+//       		  $("#rcNav").addClass("fixed-top");
+// 		 } else {
+// 			 $("#rcNav").removeClass("fixed-top");
+// 		 }
+//      });
 });
 
 </script>
@@ -337,7 +355,8 @@ color: #1f5e43;
     line-height: 1.6;
     margin: 14px 0 14px 0;
 }
-.body {
+
+.bottom {
     border-bottom : 3px solid #1f5e43;
 }
 /* 화면 width 1300px부터 이렇게 하겠다.라는 뜻*/
@@ -362,7 +381,7 @@ color: #1f5e43;
  
  /* 화면 width 1300px까지 이렇게 하겠다.라는 뜻*/
  @media screen and (max-width: 1300px) {
-.body .rcNav {padding-left: 3.5rem;}
+.body .navbar .fixed-top {padding-left: 3.5rem;}
 .body { padding : 3% 10%; }
  }
   	
@@ -461,6 +480,23 @@ border-bottom: none !important;
 .tab-pane h5{
 border-left: 4px solid #1f5e43;
 }
+.category {
+	text-decoration: none;
+	color: black;
+	margin: 0 3px;
+	font-size:13px;
+}
+.category:hover {
+	text-decoration: none;
+	color: #1f5e43;
+	font-weight: 600;
+}
+
+.myPagination .active {
+ 	background: #1f5e43; 
+    border-color: #1f5e43; 
+    color: #fff; 
+}
 .myPagination a:hover {
 	background: #1f5e43;
 	border-color: #1f5e43;
@@ -469,15 +505,15 @@ border-left: 4px solid #1f5e43;
 
 .myPagination a {
 	display: inline-block;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     border: 1px solid #b2b2b2;
-    font-size: 14px;
+    font-size: 12px;
 /*     color: #b2b2b2; */
     font-weight: 700;
-    line-height: 28px;
+    line-height: 25px;
     text-align: center;
-    margin-right: 16px;
+    margin-right: 10px;
     -webkit-transition: all, 0.3s;
     -moz-transition: all, 0.3s;
     -ms-transition: all, 0.3s;
@@ -546,11 +582,11 @@ figure[data-ke-type='opengraph'] .og-host {
 	font-size:10px;
 }
 .btn-more {
-   padding: 3px 13px;
-   font-size: 14px;
-   padding-top: 7px;
-   margin: 0 4px;
-   border: 1px solid #1F5E43;
+    padding: 2px 8px;
+    font-size: 11px;
+    padding-top: 7px;
+    margin: 0 4px;
+    border: 1px solid #1F5E43;
 }
 
 .btn-circle {
@@ -622,8 +658,8 @@ figure[data-ke-type='opengraph'] .og-host {
 }
 </style>
 </head>
-<body>
 <%@ include file="../include/header.jsp" %>
+<body data-spy="scroll" data-target="#rcNav" data-offset="50">
 <c:if test="${swalIcon == 'success' }">
 	<script>
 		Swal.fire({
@@ -658,12 +694,21 @@ figure[data-ke-type='opengraph'] .og-host {
 	<c:if test="${not empty ms.page }">
 		<c:set var="page" value="&page=${ms.page}" />
 	</c:if>
+	
+<!-- 리뷰 페이징 작업 -->
+	<c:if test="${not empty rp.review_level}">
+		<c:set var="rLevel" value="review_level=${rp.review_level}" />
+	</c:if>
+	<c:if test="${not empty rp.review_page}">
+		<c:set var="rPage" value="&review_page=${rp.review_page}" />
+	</c:if>
+
 
 <div class="container-fluid">
 	<!-- 취미글 메인부분 -->
 	<div class="myContainer">
 		<div class="side side-left"></div>
-		<div class="body">
+		<div class="body bottom">
 		<!-- 카테고리 -->
 			<div style="display:flex;">
 				<div style="text-align: center; margin-left: 46%;padding-left: auto;">
@@ -733,7 +778,7 @@ figure[data-ke-type='opengraph'] .og-host {
 										</c:when>
 										<c:otherwise>
 											<img class="rounded-circle circle-image img_fit" 
-												src="/resources/imgaes/default_profile.png"/> 
+												src="/resources/img/noprofile.png"/> 
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -789,7 +834,7 @@ figure[data-ke-type='opengraph'] .og-host {
 	<!-- 준비물 부분 -->
 	<div class="myContainer">
 		<div class="side side-left"></div>
-		<div class="body">
+		<div class="body bottom">
 			<div><b>준비물</b><span>Material</span></div>
 			<div class="divMaterial" style="margin-top:2rem">
 				<ul>
@@ -809,7 +854,7 @@ figure[data-ke-type='opengraph'] .og-host {
 	<!-- 만들기 부분 -->
 	<div class="myContainer">
 		<div class="side side-left"></div>
-		<div class="body">
+		<div class="body bottom">
 			<div class="view_step">
 				<div>
 					<b>만들기 순서</b><span>Steps</span>
@@ -849,8 +894,7 @@ figure[data-ke-type='opengraph'] .og-host {
 	            		</div>
 
 	            		<!-- 이미지 슬라이드 -->
-	            		<!-- data-interval=false -> 자동 슬라이드 취소 -->
-            			<div class="carousel stepCarousel slide" id="stepSlide" data-interval=false>
+            			<div class="carousel stepCarousel slide" id="stepSlide">
 							<ol class="carousel-indicators" style="top: 21rem; height: 30px;">
 								<c:forEach var="makeStepVo" items="${hobbyVo.makeSteps }">
 									<li data-slide-to="${makeStepVo.make_step_num - 1 }" 
@@ -1024,36 +1068,7 @@ figure[data-ke-type='opengraph'] .og-host {
                         </div>
                     </div>
                  </div>
-<!-- 				<div class="carousel craftCarousel slide" id="craftSlide" style="box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);"> -->
-<!-- 				<ol class="carousel-indicators"> -->
-<%-- 					<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs"> --%>
-<%-- 						<li data-slide-to="${vs.index}"  --%>
-<!-- 							data-target="#craftSlide" -->
-<%-- 							class="${vs.index==0  ? 'active' : ''}"> --%>
-<!-- 						</li> -->
-<%-- 					</c:forEach> --%>
-<!-- 				</ol> -->
-<!-- 				<div class="carousel-inner craftCarousel-inner"> -->
-<%-- 					<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs"> --%>
-<%-- 						<div data-num="${vs.count}" class="carousel-item ${vs.count==1  ? 'active' : ''}"> --%>
-<!-- 							<div style="width:550px; height:300px"> -->
-<%-- 								<img class="slideImg" src="/displayImage?filePath=${completeImgVo.img_name}" /> --%>
-<!-- 							</div> -->
-<!-- 						</div> -->
-<%-- 					</c:forEach> --%>
-<!-- 				</div>  -->
-<!-- 				<a class="carousel-control-prev" href="#craftSlide"  -->
-<!-- 					data-slide="prev" style="height:300px"> -->
-<!-- 					<span class="carousel-control-prev-icon"></span>  -->
-<!-- 					<span class="sr-only">Previous</span> -->
-<!-- 				</a>  -->
-<!-- 				<a class="carousel-control-next" href="#craftSlide"  -->
-<!-- 					data-slide="next"  style="height:300px"> -->
-<!-- 					<span class="carousel-control-next-icon"></span>  -->
-<!-- 					<span class="sr-only">Next</span> -->
-<!-- 				</a> -->
-<!-- 				</div> -->
-			</div>
+				</div>
 			</c:if>
 		</div>
 		<div class="side side-right"></div>
@@ -1063,7 +1078,7 @@ figure[data-ke-type='opengraph'] .og-host {
 	<c:if test="${not empty hobbyVo.hobby_video}">
 		<div class="myContainer">
 			<div class="side side-left"></div>
-			<div class="body">
+			<div class="body bottom">
 				<div><b>동영상</b><span>Video</span></div>
 				<div style="text-align: center;">
 					<iframe width="560" height="315" 
@@ -1079,92 +1094,145 @@ figure[data-ke-type='opengraph'] .og-host {
 	<div class="myContainer">
 		<div class="side side-left"></div>
 		<div class="body">
-			<!-- 후기, 댓글 컨테이너 -->
-			<!-- style="padding-left: 18%;" 없앰 노트북으로 보니깐 이상해짐 스크린클때만 여백넣는작업 들어가야할듯 -->
-		  <ul class="nav nav-tabs rcNav" >
+		<nav id="rcNav" class="navbar" style="background:white;">
+		  <ul class="nav rcNav">
 		    <li class="nav-item rcNav-item">
-		      <a class="nav-link active" data-toggle="tab" href="#madeByMe">made by me</a>
+		      <a id="mbmTab" class="nav-link" href="#madeByMe">made by me</a>
 		    </li>
 		    <li class="nav-item rcNav-item">
-		      <a class="nav-link" data-toggle="tab" href="#comment">comment</a>
+		      <a id="cmtTab" class="nav-link" href="#comment">comment</a>
 		    </li>
 		  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div id="madeByMe" class="container tab-pane active" style="width: 80%;"><br>
-<!--       <h5 class="pl-2">made by me</h5> -->
-		<a class="loginNeed btn-more" 
-			type="button" href="/mbm/write/${hobbyVo.hobby_no}" 
-			style="float: right; margin-bottom: 20px">후기작성</a>
-		<!-- review-container -->
-		<div class="review-container">
-		<c:forEach begin="1" end="6">
-		<!-- review-row -->
-		<div class="review-row">
-			<div class="row">
-				<div class="col-md-1">
-					<img class="rounded-circle circle-image" 
-					src="https://recipe1.ezmember.co.kr/img/df/pf_100_100.png"
-					style="width:2.2rem;"/> 
+		</nav>
+		
+		<!-- rcNav -->
+		<div>
+		<!-- 메이드바이미  -->
+		  <div id="madeByMe" class="container" style="width: 80%; margin-top: 2rem;" >
+		  <div style="border-bottom: 1px solid #1f5e43;">
+		  		<span  class="sm_tit" style="font-size: 1.3rem;">후기 ${hobbyVo.mbm_cnt}</span>
+		  		<a class="loginNeed btn-more" 
+					type="button" href="/mbm/write/${hobbyVo.hobby_no}" 
+					style="float:right;">후기작성</a>
+		  </div>
+		    <div class="row" style="margin-top: 0.5rem; padding: 0 1rem;">
+		    	<a class="category sort" id="AllSort" ${rp.review_level == 'all' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
+					href="?review_level=all${rPage}#madeByMe">전체</a> <span> |</span> 
+				<a class="category sort" id="newSort" ${rp.review_level == 'new' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
+					 href="?review_level=new${rPage}#madeByMe">최신순</a> <span> |</span> 
+				<a class="category sort" id="ascSort" ${rp.review_level == 'asc' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
+					href="?review_level=asc${rPage}#madeByMe">난이도 낮은순</a> <span> |</span> 
+				<a class="category sort" id="descSort" ${rp.review_level == 'desc' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
+					href="?review_level=desc${rPage}#madeByMe">난이도 높은순</a>
+		    </div>
+		     <c:if test="${hobbyVo.mbm_cnt == 0}">
+				<div id="noMbmDiv" style="padding:5rem 0 0 3rem;color:#656565;">
+					후기가 없습니다.<br/>
+					첫번째 후기를 남겨주세요 :)
 				</div>
-				<div class="col-md-11">
+			</c:if>
+			
+				<!-- review-container -->
+				<div class="review-container" style="margin-top: 1rem;">
+				<c:forEach items="${hobbyVo.madeByMes}" var="mbm">
+				<!-- review-row -->
+				<div class="review-row">
 					<div class="row">
-						홍길동
+						<div class="col-md-1">
+							<div style="width:2.2rem; height:2.2rem; overflow:hidden;">
+								<c:choose>
+									<c:when test="${not empty mbm.user_img}">
+										<img class="rounded-circle circle-image img_fit" 
+										src="/displayImage?filePath=${mbm.user_img}"/>
+									</c:when>
+									<c:otherwise>
+										<img class="rounded-circle circle-image img_fit" 
+											src="/resources/img/noprofile.png"/> 
+									</c:otherwise>
+								</c:choose>
+							</div>
+						</div>
+						<div class="col-md-11">
+							<div class="row">
+								<a href="/workroom/main/${mbm.user_id}" style="color:#212529">
+									${mbm.user_nick}
+								</a>
+							</div>
+							<div class="row" style="font-size:13px;">
+								<fmt:formatDate value="${mbm.reg_date}" pattern="yyyy.MM.dd"/>
+							</div>
+						</div>
 					</div>
+					<a href="/mbm/detail/${mbm.user_id}?hobby_no=${mbm.hobby_no}&mbm_no=${mbm.mbm_no}">
 					<div class="row">
-						2021.07.20
+						<div class="col-md-3">
+							<div style="width:9rem; height:8rem; overflow:hidden;">
+								<img class="img_fit" 
+									src="/displayImage?filePath=${mbm.mbm_img}"/> 
+							</div>
+						</div>
+						<div class="col-md-9">
+							<div>
+								<div class="row">
+									<c:choose>
+										<c:when test="${mbm.level_no == 1}">
+											<p style="font-weight:bold;">체감 난이도 : 😆very easy</p>
+										</c:when>
+										<c:when test="${mbm.level_no == 2}">
+											<p style="font-weight:bold;">체감 난이도 : 😃easy</p>
+										</c:when>
+										<c:when test="${mbm.level_no == 3}">
+											<p style="font-weight:bold;">체감 난이도 : 🙂normal</p>
+										</c:when>
+										<c:when test="${mbm.level_no == 4}">
+											<p style="font-weight:bold;">체감 난이도 : 😧hard</p>
+										</c:when>
+										<c:when test="${mbm.level_no == 5}">
+											<p style="font-weight:bold;">체감 난이도 : 😱crazy</p>
+										</c:when>
+									</c:choose>
+								</div>
+							</div>
+							<div class="row review-content">
+								<p>${mbm.mbm_content}</p>
+							</div>
+						</div>
 					</div>
+					</a>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3">
-					<div style="width:10rem; height:8rem; overflow:hidden;">
-						<img class="img_fit" 
-							src="/resources/images/madeByMeThum.jpg"/> 
-					</div>
-				</div>
-				<div class="col-md-9">
-					<div>
-						<div class="row">체감 난이도: 최상</div>
-					</div>
-					<div class="row review-content">
-						<p>후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용후기내용
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		</c:forEach>
-		<!-- // review-row -->
-		</div>
-		<!-- //review-container -->
-		<!-- pagination-container -->
-		<div class="pagination-container" style="text-align: center;">
-			  <div class="myPagination" style="text-align: center; margin-top: 1.5rem">
-            <c:set var="prev" value=""/>
-            <c:set var="next" value=""/>
-            
-<%--             	<c:if test=""> --%>
-               		 <a href=""><i class="fa fa-long-arrow-left"></i></a>
-<%--                 </c:if> --%>
-            	<c:forEach var="v" begin="1" end="10">
-	                <a class="" 
-	                	href="">${v}</a>
 				</c:forEach>
-<%-- 				<c:if test=""> --%>
-               		 <a href=""><i class="fa fa-long-arrow-right"></i></a>
-<%--                 </c:if> --%>
-            </div>
-		</div>
-		<!--// pagination-container --> 
-	 </div>
-	 <!-- comment 시작 -->
-    <div id="comment" class="container tab-pane fade" style="width: 80%;"><br>
-<!--     		<h5 class="pl-2">comment</h5> -->
-			<div class="sm_tit">댓글 <span class="cmt_cnt">3</span></div>
+				<!-- // review-row -->
+				</div>
+				<!-- //review-container -->
+				<!-- pagination-container -->
+				   <div class="myPagination" style="text-align: center; margin-top: 1.5rem;">
+		            <c:set var="prev" value="${rp.endPage - rp.PAGE_BLOCK}"/>
+		            <c:set var="next" value="${rp.startPage + rp.PAGE_BLOCK}"/>
+		            	<c:if test="${prev > 0}">
+		               		 <a href="?${rLevel}&review_page=${prev}#madeByMe"><i class="fa fa-long-arrow-left"></i></a>
+		                </c:if>
+		            	<c:forEach var="v" begin="${rp.startPage}" end="${rp.endPage}">
+			                <a class="${v == rp.review_page ? 'active' : '' }" 
+			                	href="?${rLevel}&review_page=${v}#madeByMe">${v}</a>
+						</c:forEach>
+						<c:if test="${next <= rp.totalPage}">
+		               		 <a href="?${rLevel}&review_page=${next}#madeByMe"><i class="fa fa-long-arrow-right"></i></a>
+		                </c:if>
+		            </div>
+				<!--// pagination-container --> 
+			 </div>
+			<!-- //메이드바이미  -->
+			 <!-- comment 시작 -->
+   		 <div id="comment" class="container" style="width: 80%;margin-top: 4rem;"><br>
+			<div class="sm_tit" style="border-bottom: 1px solid #1f5e43;font-size: 1.3rem;">댓글 <span class="cmt_cnt">${hobbyVo.cmt_cnt}</span></div>
 			<!--commentList-container -->
 			<div class="commentList-container" id="commentContainer">
+			<c:if test="${hobbyVo.cmt_cnt == 0}">
+				<div id="noCmtDiv" style="padding: 5rem 0 4rem 3rem;color:#656565;">
+					댓글이 없습니다.<br/>
+					첫번째 댓글을 남겨주세요 :)
+				</div>
+			</c:if>
 			<!-- comment-row-->
 				<div class="comment-row" style="display:none">
 					<input type="hidden" class="c_no" value=""/>
@@ -1173,19 +1241,18 @@ figure[data-ke-type='opengraph'] .og-host {
 						<div class="c_info_area">
 							<div style="width:2.3rem; height:2.3rem; overflow:hidden; display: inline-block;">
 								<img class="rounded-circle circle-image user_img" 
-									src="/resources/images/profile.png"  style="width:100%; height:100%; object-fit:cover;"/>
+									src="/resources/img/noprofile.png"  style="width:100%; height:100%; object-fit:cover;"/>
 							</div>
 							<span class="c_user_nick" style="position: absolute; padding: 0.4rem 0 0 0.4rem;"> 하윤지</span>
 							<a class="cancel" href="javascript:cancelUpdate();" style="float:right">취소</a>
 						</div>
 						<div class="input-group" style="width:680px;">
-						<!-- 아이디부분 로그인기능 생기면 삭제 -->
 							<textarea name="c_content" class="form-control c_content" 
 									 spellcheck="false" autocomplete="off"
 									 style="height:100px; width:100%; resize:none;"></textarea>
 							<!-- 로그인 기능 생기면 insertComment함수 인자안에 세션으로 얻은${user_id}넣기 -->
-							<button class="btn btn-outline-light green_background updateBtn" type="button" 
-									onclick="updateComment()" style="height:100px; width:100px;">등록</button>
+							<button class="btn green_background updateBtn" type="button" 
+									onclick="updateComment()" style="height:100px; width:100px; color:white;">등록</button>
 						</div>
 					</div>
 					<div class="view_comment">
@@ -1193,7 +1260,7 @@ figure[data-ke-type='opengraph'] .og-host {
 								<a class="user_link" href="#프로필링크" style="vertical-align: top;">
 									<label style="width:2.3rem; height:2.3rem; overflow:hidden;">
 										<img class="rounded-circle circle-image user_img" 
-											src="/resources/images/profile.png"  style="width:100%; height:100%; object-fit:cover;"/>
+											src="/resources/img/noprofile.png"  style="width:100%; height:100%; object-fit:cover;"/>
 									</label>
 									<span class="c_user_nick" style="margin-left: 0.5rem; color:#212529;     vertical-align: top;"> 하윤지</span>
 								</a>
@@ -1223,8 +1290,8 @@ figure[data-ke-type='opengraph'] .og-host {
 <!-- 										 onclick="신고()"><span>|</span>신고</a> -->
 							</div>
 							<div class="c_btn_area">
-								<button class="loginNeed doRecomment btn btn-sm btn-outline-light green_background"
-										style="margin-top: 0.5rem;" onclick="doRecomment()">답글</button>
+								<button class="loginNeed doRecomment btn btn-sm green_background"
+										style="margin-top: 0.5rem; color:white;" onclick="doRecomment()">답글</button>
 							</div>
 					</div>
 					<div class="row replyCommentDiv">
@@ -1236,33 +1303,29 @@ figure[data-ke-type='opengraph'] .og-host {
 			<!--//  댓글 리스트 컨테이너 -->
 			<div style="text-align:center; margin: 20px 0 20px 0;">
 				<button type="button" id="btnMoreComments"
-					onclick="moreViewToggle(this);"
-					class="btn btn-sm btn-outline-light green_background">댓글 더보기</button>
+					onclick="moreViewToggle(this);" style="color:white;"
+					class="btn btn-sm green_background">댓글 더보기</button>
 			</div>
 			<!--//commentList-container -->
 			<!--commentWrite-container -->
 			<div class="commentWrite-container">
-				<div class="input-group" style="width:680px;">
-					<!-- 아이디부분 로그인기능 생기면 삭제 -->
-<!-- 					<input type="text" id="user_id" name="user_id" placeholder="댓글작성자 id(테스트를 위한)"/> -->
+				<div class="input-group" style="width:45rem; padding-left: 2rem;">
 					<textarea id="c_content" name="c_content" spellcheck="false" autocomplete="off"
 						class="form-control" placeholder="댓글을 남겨주세요."
 						 style="height:100px; width:100%; resize:none;"></textarea>
-					<!-- 로그인 기능 생기면 insertComment함수 인자안에 세션으로 얻은${user_id}넣기 -->
-					<button class="loginNeed btn btn-outline-light green_background" type="button" 
-						onclick="insertComment(this)" style="height:100px; width:100px;">등록</button>
+					<button class="loginNeed btn green_background" type="button" 
+						onclick="insertComment(this)" style="height:100px; width:100px; color:white;">등록</button>
 				</div>
 			</div>
 			<!--// commentWrite-container -->
 				<!-- 답댓작성 -->
 				<div id="reply_div" style="display:none;">
-					<div class="input-group" style="width:640px;">
-<!-- 						<input type="text" id="re_user_id" name="user_id" placeholder="댓글작성자 id(테스트를 위한)"/> -->
+					<div class="input-group" style="width: 42.7rem;">
 						<input type="hidden" id="parent_c_no" value=""/>
 						<textarea id="re_c_content" class="form-control" spellcheck="false" autocomplete="off"
-							 style="height:100px; width:100%; resize:none;"></textarea>
-						<button class="loginNeed btn btn-outline-light green_background insertRecomment" type="button" 
-							onclick="insertRecomment(this)" style="height:100px; width:100px;">등록</button>
+							 style="height:100px; width:100%; resize:none; border-radius: .25rem;" placeholder="답댓글을 남겨보세요."></textarea>
+						<button class="loginNeed btn green_background insertRecomment" type="button" 
+							onclick="insertRecomment(this)" style="height:100px; width:100px; color:white;">등록</button>
 					</div>
 				</div>
 				<!--// 답댓작성 -->
@@ -1271,8 +1334,8 @@ figure[data-ke-type='opengraph'] .og-host {
 				<!-- //moreviewdiv -->
 	  		  </div>
 	    	<!-- comment 끝 -->
-		  </div>
-		  <!-- // Tab panes -->
+		</div>
+		<!-- //rcNab  -->
 		<div class="side side-right"></div>
 		</div>
 	</div>
@@ -1604,6 +1667,11 @@ function selectCommentList() {
 		} else {
 			$("#btnMoreComments").show();
 		}
+		if(rData.length > 0) {
+			$("#noCmtDiv").hide();
+		} else {
+			$("#noCmtDiv").show();
+		}
 // 		$("#comment_cnt").text(rData.length);
 		$(".cmt_cnt").text(rData.length);
 		$.each(rData, function(i) {
@@ -1628,7 +1696,7 @@ function selectCommentList() {
 			if (this.user_img != null && this.user_img.trim() != "") {
 				cloneDiv.find(".user_img").attr("src", "/displayImage?filePath=" + this.user_img);
 			} else {
-				cloneDiv.find(".user_img").attr("src", "/resources/imgaes/default_profile.png");
+				cloneDiv.find(".user_img").attr("src", "/resources/img/noprofile.png");
 			}
 			cloneDiv.find(".c_user_nick").text(this.user_nick);
 			if (this.user_id == hobby_writer) {
@@ -1714,38 +1782,49 @@ function updateComment(c_no) {
 // 댓글 삭제  
 function deleteComment(c_no) {
 	var url = "/comment/deleteComment";
-	if(confirm("삭제 하시겠습니까?")) {
-		var sendData = {
-				"h_no" : "${hobbyVo.hobby_no}",
-				"c_no"	: c_no
-		}
-		
-		$.ajax({
-			"url" : url,
-			"headers" : {
-				"Content-Type" : "application/json"
-			},
-			"method" : "post",
-			"dataType" : "text",
-			"data" : JSON.stringify(sendData),
-			"success" : function(rData) {
-				console.log(rData);
-				if(rData == 0) {
-					Swal.fire({
-					text: '답댓이 있는 댓글은 삭제할 수 없습니다.', 
-					allowOutsideClick: false,
-					iconColor: "#1f5e43",
-					icon: 'warning', 
-					confirmButtonText: "확인",
-					confirmButtonColor: "#1f5e43",
-					}).then(function(){close()});
-					
-				} else {
-					selectCommentList();
-				}
+	Swal.fire({
+		text: '삭제하시겠습니까?', 
+		allowOutsideClick: false,
+		iconColor: "#1f5e43",
+		icon: 'question', 
+		confirmButtonText: "확인",
+		confirmButtonColor: "#1f5e43",
+		cancelButtonText: "취소",
+		showCancelButton: true,
+	}).then(function(result) {
+		if(result.isConfirmed) {
+			var sendData = {
+					"h_no" : "${hobbyVo.hobby_no}",
+					"c_no"	: c_no
 			}
-		});
-	}
+			
+			$.ajax({
+				"url" : url,
+				"headers" : {
+					"Content-Type" : "application/json"
+				},
+				"method" : "post",
+				"dataType" : "text",
+				"data" : JSON.stringify(sendData),
+				"success" : function(rData) {
+					console.log(rData);
+					if(rData == 0) {
+						Swal.fire({
+						text: '답댓이 있는 댓글은 삭제할 수 없습니다.', 
+						allowOutsideClick: false,
+						iconColor: "#1f5e43",
+						icon: 'warning', 
+						confirmButtonText: "확인",
+						confirmButtonColor: "#1f5e43",
+						}).then(function(){close()});
+						
+					} else {
+						selectCommentList();
+					}
+				}
+			});
+		} 
+	});
 }
 var commentOpens = 0;
 function moreViewToggle() {
@@ -1760,6 +1839,9 @@ function moreViewToggle() {
         commentOpens = 0;
     }
 }
+
+
+
 
 function make2digits(num) {
 	if (num < 10) {
@@ -1786,6 +1868,7 @@ function changeDateString(timestamp) {
 			return false;
 		}
    });
+  
    //쪽지 모달 보내기 버튼
    $("#btnSendMessage").click(function() {
        if(loginVo == "") {
@@ -1818,7 +1901,6 @@ function changeDateString(timestamp) {
            }
        });
    });
-
 </script>
 </body>
 </html>

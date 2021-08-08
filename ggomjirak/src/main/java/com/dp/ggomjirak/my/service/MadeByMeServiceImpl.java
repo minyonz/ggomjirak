@@ -24,7 +24,7 @@ public class MadeByMeServiceImpl implements MadeByMeService {
 	@Override
 	public void mbmWrite(MadeByMeVo madebymeVo) {
 		madebymeDao.insertMbm(madebymeVo);
-//		hobbyDao.updateMbmCnt(madebymeVo.getHobby_no(), 1);
+		hobbyDao.updateMbmCnt(madebymeVo.getHobby_no(), 1);
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class MadeByMeServiceImpl implements MadeByMeService {
 	@Override
 	public void deleteMbm(int mbm_no, int hobby_no) {
 		madebymeDao.deleteMbm(mbm_no, hobby_no);
-//		hobbyDao.updateMbmCnt(hobby_no, -1);
+		hobbyDao.updateMbmCnt(hobby_no, -1);
 	}
 
 
