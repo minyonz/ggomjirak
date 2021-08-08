@@ -78,9 +78,9 @@ body {
         <ul class="navbar-nav sidebar sidebar-dark accordion green_background" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/main/mainHome" target="_blank">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/manager/managerHome" target="_blank">
                 <div class="sidebar-brand-icon">
-                    <img src="/resources/img/logo06.png" alt="logo" width="100px" >
+                    <img src="/resources/img/logo_h_w.png" alt="logo" width="100px" >
                 </div>
             </a>
 
@@ -194,7 +194,7 @@ body {
 
             <!-- Sidebar Message -->
             <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="/resources/img/logo06.png" alt="...">
+                <img class="sidebar-card-illustration mb-2" src="/resources/img/logo_h_w.png" alt="logo">
                 <p class="text-center mb-2"><strong>꼼지락</strong> 홈페이지</p>
                 <a class="btn btn-success btn-sm" href="/main/mainHome" target="_blank">새창 열기</a>
             </div>

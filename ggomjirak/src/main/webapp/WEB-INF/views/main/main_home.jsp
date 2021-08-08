@@ -16,35 +16,6 @@
 }
 </style>
 <!-- 배너 -->
-<script>
-$(document).ready(function() {
-// 	$(".bookmark").on(click, function(e) {
-// 		e.preventDefault();
-// 		var hobby_no = $(this).attr("href");
-// 		console.log(hobby_no);
-// 		if(loginVo == "") {
-// 			return false;
-// 		}
-//	 	var url = "/hobby/bookmark/" + hobby_no;
-//	 	$.get(url, function(rData) {
-//	 		console.log(rData);
-//	 		if (rData == "bookmark") {
-//	 			$(".bookmark > span:first-child").attr({
-//	 				class : "fa fa-bookmark",
-//	 				style : "color:#FFC300"
-//	 			})
-//	 		} else {
-//	 			$(".bookmark > span:first-child").attr({
-//	 				class : "fa fa-bookmark-o",
-//	 				style : "color:white"
-//	 			});
-//	 		}
-//	 	});
-
-// 	});
-});
-
-</script>
 <div class="row">
 	<div class="col-md-12" style="padding-bottom: 20px">
 	
@@ -137,11 +108,6 @@ $(document).ready(function() {
 								<div class="featured__item">
 									<div class="featured__item__pic set-bg hobbyImg" data-setbg="/displayImage?filePath=${suggestHobby.main_img}"
 										style="margin-left: 10px; margin-right: 10px">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
 									</div>
 										<div class="featured__item__text">
 										<h6><a class="short_title col-8" href="/hobby/content/${suggestHobby.hobby_no}">${suggestHobby.hobby_title}</a></h6>
@@ -177,10 +143,6 @@ $(document).ready(function() {
 								<div class="featured__item">
 									<div class="featured__item__pic set-bg" data-setbg="/displayImage?filePath=${popular.main_img}"
 										style="margin-left: 10px; margin-right: 10px">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart" style="color: red"></i></a></li>
-											<li><a href="${popular.hobby_no}" class="bookmark"><i class="fa fa-bookmark" style="color: orange"></i></a></li>
-										</ul>
 									</div>
 										<div class="featured__item__text">
 										<h6><a class="short_title col-8" href="/hobby/content/${popular.hobby_no}">${popular.hobby_title}</a></h6>
@@ -224,8 +186,19 @@ $(document).ready(function() {
                 <div class="col-lg-2 col-md-4 col-sm-6 mix grade${member1.user_grade}">
                     <div class="featured__item">
                     
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <a href="/workroom/main/${member1.user_id}"><img src="/displayImage?fileName=${member1.user_img}" class="rounded-circle" alt="profilImage"/></a>
+                        <div class="featured__item__pic set-bg h-50" style="padding: 30px">
+                        <a href="/workroom/main/${member1.user_id}">
+                        <c:choose>
+                        <c:when test="${member1.user_img != null}">
+                        	<img src="/displayImage?fileName=${member1.user_img}" class="rounded-circle" alt="profileImage"/>
+                        </c:when>
+                        <c:otherwise>
+                        	<img src="/resources/img/noprofile.png" class="rounded-circle" alt="profileImage"/>
+                        </c:otherwise>
+                        </c:choose>
+                        
+                        
+                        </a>
                         </div>
                         <div class="featured__item__text">
                             <h6><a class="short" href="/workroom/main/${member1.user_id}">${member1.user_nick}</a></h6>
@@ -238,8 +211,17 @@ $(document).ready(function() {
                 <div class="col-lg-2 col-md-4 col-sm-6 mix grade${member2.user_grade}">
                     <div class="featured__item">
                     
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/mypage/displayImage?fileName=${member2.user_img}" class="rounded-circle" alt="profilImage"/>
+                        <div class="featured__item__pic set-bg h-50" style="padding: 30px">
+                        <a href="/workroom/main/${member2.user_id}">
+                        <c:choose>
+                        <c:when test="${member2.user_img != null}">
+                        	<img src="/displayImage?fileName=${member2.user_img}" class="rounded-circle" alt="profileImage"/>
+                        </c:when>
+                        <c:otherwise>
+                        	<img src="/resources/img/noprofile.png" class="rounded-circle" alt="profileImage"/>
+                        </c:otherwise>
+                        </c:choose>
+                        </a>
                         </div>
                         <div class="featured__item__text">
                             <h6><a class="short" href="/workroom/main/${member2.user_id}">${member2.user_nick}</a></h6>
@@ -252,8 +234,17 @@ $(document).ready(function() {
                 <div class="col-lg-2 col-md-4 col-sm-6 mix grade${member3.user_grade}">
                     <div class="featured__item">
                     
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <a href="/workroom/main/${member3.user_id}"><img src="/displayImage?fileName=${member3.user_img}" class="rounded-circle" alt="profilImage"/></a>
+                        <div class="featured__item__pic set-bg h-50" style="padding: 30px">
+                        <a href="/workroom/main/${member3.user_id}">
+                        <c:choose>
+                        <c:when test="${member3.user_img != null}">
+                        	<img src="/displayImage?fileName=${member3.user_img}" class="rounded-circle" alt="profileImage"/>
+                        </c:when>
+                        <c:otherwise>
+                        	<img src="/resources/img/noprofile.png" class="rounded-circle" alt="profileImage"/>
+                        </c:otherwise>
+                        </c:choose>
+                        </a>
                         </div>
                         <div class="featured__item__text">
                             <h6><a class="short" href="/workroom/main/${member3.user_id}">${member3.user_nick}</a></h6>
@@ -266,8 +257,17 @@ $(document).ready(function() {
                 <div class="col-lg-2 col-md-4 col-sm-6 mix grade${member4.user_grade}">
                     <div class="featured__item">
                     
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <a href="/workroom/main/${member4.user_id}"><img src="/mypage/displayImage?fileName=${member4.user_img}" class="rounded-circle" alt="profilImage"/></a>
+                        <div class="featured__item__pic set-bg h-50" style="padding: 30px">
+                        <a href="/workroom/main/${member4.user_id}">
+                        <c:choose>
+                        <c:when test="${member4.user_img != null}">
+                        	<img src="/displayImage?fileName=${member4.user_img}" class="rounded-circle" alt="profileImage"/>
+                        </c:when>
+                        <c:otherwise>
+                        	<img src="/resources/img/noprofile.png" class="rounded-circle" alt="profileImage"/>
+                        </c:otherwise>
+                        </c:choose>
+                        </a>
                         </div>
                         <div class="featured__item__text">
                             <h6><a class="short" href="/workroom/main/${member4.user_id}">${member4.user_nick}</a></h6>
@@ -376,11 +376,6 @@ $(document).ready(function() {
 								<div class="featured__item">
 									<div class="featured__item__pic set-bg" data-setbg="/displayImage?filePath=${month.main_img}"
 										style="margin-left: 10px; margin-right: 10px">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
 									</div>
 										<div class="featured__item__text">
 										<h6><a class="short_title col-8" href="/hobby/content/${month.hobby_no}">${month.hobby_title}</a></h6>
@@ -413,11 +408,6 @@ $(document).ready(function() {
 								<div class="featured__item">
 									<div class="featured__item__pic set-bg" data-setbg="/displayImage?filePath=${made.mbm_img}"
 										style="margin-left: 10px; margin-right: 10px">
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
 									</div>
 										<div class="featured__item__text">
 										<h6><a class="short_title col-8" href="/mbm/detail/user_id=${made.user_id}?hobby_no=${made.hobby_no}&mbm_no=${made.mbm_no}">${made.mbm_content}</a></h6>
@@ -453,7 +443,7 @@ $(document).ready(function() {
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.html"><img src="/resources/img/logo_h_w.png" alt="logo"></a>
+                            <a href="/main/mainHome"><img src="/resources/img/logo_h_w.png" alt="logo"></a>
                         </div>
                         
                     </div>
@@ -462,8 +452,8 @@ $(document).ready(function() {
                     <div class="">
                         <h6 class="text-white font-weight-bold">About Us</h6><br/>
                         <ul style="list-style:none;">
-                            <li class="text-white">Team Name: Dogprint</li>
-                            <li class="text-white">Project Name: Ggomjirak</li>
+                            <li class="text-white">Team Name: 개발자국</li>
+                            <li class="text-white">Project Name: 꼼지락</li>
                         </ul>
                        
                     </div>
@@ -472,10 +462,10 @@ $(document).ready(function() {
                     <div class="" >
                         <h6 class="text-white font-weight-bold">Team Member</h6><br/>
                         <ul style="list-style:none; margin-bottom: 20px">
-                            <li class="text-white">김태연 : kty@naver.com</li>
-                            <li class="text-white">서지효 : sjh@naver.com</li>
-                            <li class="text-white">김민영 : kmy@naver.com</li>
-                            <li class="text-white">하윤지 : hyj@naver.com</li>
+                            <li class="text-white">김태연 : kty1788@nate.com</li>
+                            <li class="text-white">서지효 : wlgyjam@gmail.com</li>
+                            <li class="text-white">김민영 : als543413@gmail.com</li>
+                            <li class="text-white">하윤지 : ijnooyah@gmail.com</li>
                         </ul>
                         
                     </div>
@@ -485,7 +475,7 @@ $(document).ready(function() {
                 <div class="col-lg-12">
                     <div class="footer__copyright">
                         <div class="footer__copyright__text text-white"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> Created By Dogprint
+  Copyright &copy;2021 Created By Dogprint
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
                         
                     </div>

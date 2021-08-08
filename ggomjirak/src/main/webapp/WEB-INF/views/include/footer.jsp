@@ -8,13 +8,13 @@
 	<!-- Core theme JS-->
 	<script src="/resources/js/scripts.js"></script>
 	    <!-- Footer Section Begin -->
-    <footer class="footer spad bg-dark" style="margin-top: 50px">
+    <footer class="row footer spad bg-dark" style="margin-top: 50px">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.html"><img src="/resources/img/logo_h_w.png" alt="logo"></a>
+                            <a href="/main/mainHome"><img src="/resources/img/logo_h_w.png" alt="logo"></a>
                         </div>
                         
                     </div>
@@ -33,10 +33,10 @@
                     <div class="" >
                         <h6 class="text-white font-weight-bold">Team Member</h6><br/>
                         <ul style="list-style:none; margin-bottom: 20px">
-                            <li class="text-white">김태연 : kty@naver.com</li>
-                            <li class="text-white">서지효 : sjh@naver.com</li>
-                            <li class="text-white">김민영 : kmy@naver.com</li>
-                            <li class="text-white">하윤지 : hyj@naver.com</li>
+                            <li class="text-white">김태연 : kty1788@nate.com</li>
+                            <li class="text-white">서지효 : wlgyjam@gmail.com</li>
+                            <li class="text-white">김민영 : als543413@gmail.com</li>
+                            <li class="text-white">하윤지 : ijnooyah@gmail.com</li>
                         </ul>
                         
                     </div>
@@ -46,7 +46,7 @@
                 <div class="col-lg-12">
                     <div class="footer__copyright">
                         <div class="footer__copyright__text text-white"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> Created By Dogprint
+  Copyright &copy;2021 Created By Dogprint
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
                     </div>
                 </div>

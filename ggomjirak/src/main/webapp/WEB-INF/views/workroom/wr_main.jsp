@@ -220,7 +220,7 @@
 	</div>
 </div>
 </div>
-</div>
+
 <c:if test="${msgDelte == 'success'}">
       <script>
       Swal.fire({
@@ -255,6 +255,6 @@
 </c:if>
 <div class="col-md-2"></div>
 </div>
-</div>
+
 
 <%@ include file="../include/footer.jsp"%>
