@@ -224,7 +224,7 @@ function validate() {
 	// 내용 입력 X
 	var mbm_content = $("#mbm_content").val();
 	if (typeof mbm_content == "undefined" || mbm_content.trim() == "" || mbm_content ==  null) {
-		$("#msg").text("스토리 내용을 입력해 주세요.");
+		$("#msg").text("내용을 작성해 주세요.");
 		$("#msg").attr("style", "color:#FF5454; font-weight: bold");
 		$("#mbm_content").focus();
 		return false;
