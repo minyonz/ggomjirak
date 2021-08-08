@@ -580,7 +580,7 @@ margin-right: 15px;
 									</div>
 								</div>
 								<div class="row">
-									<input type="text" class="form-control main_input" 
+									<input type="text" class="form-control main_input"  spellcheck="false"
 										id="hobby_title" name="hobby_title" maxlength="40" minlength="2" autocomplete="off"/>
 								</div>
 								<div class="row float-right" 
@@ -642,7 +642,7 @@ margin-right: 15px;
 													style="width:100%; height:100%; object-fit:cover; cursor:pointer; border: 1px solid #e1e1e1;" >
 											</label>
 											<input type="file" class="mainImg_file" name="mainImg_file" 
-												id="mainImg_file" accept=".gif, .jpg, .png" onchange="previewMainImg(this);"
+												id="mainImg_file" accept=".gif, .jpg, .png, .jpeg" onchange="previewMainImg(this);"
 												style="display:none;width:0px;height:0px;font-size:0px;"/>
 											<input type="hidden" name="main_img" id="main_img"/>
 											<a id="btnDelMainImg" href="javascript:delMainImg()" class="btn_del"
@@ -661,7 +661,7 @@ margin-right: 15px;
 												</div>
 											</div>
 											<div class="row">
-												<input class="form-control main_input" type="text"
+												<input class="form-control main_input" type="text" spellcheck="false"
 													 name="hobby_video" id="hobby_video" autocomplete="off"
 													placeholder="유튜브 주소만 가능해요. ex)https://youtu.be/Ab6E2BsuLJ0" ></input>
 											</div>
@@ -749,9 +749,9 @@ margin-right: 15px;
 									<div class="divMaterialItem" style="display:inline-block;">
 										<input type="hidden" class="seq" name="hobbyMaterials[0].seq" value="1"/>
 										<input type="text" style="width:200px; display: inline-block;" class="materialName form-control" 
-											name="hobbyMaterials[0].materialName" placeholder="예)비즈"  autocomplete="off"/>
+											name="hobbyMaterials[0].materialName" placeholder="예)비즈"  spellcheck="false" autocomplete="off"/>
 										<input type="text" style="width:200px; display: inline-block;" class="material_detail form-control" 
-											name="hobbyMaterials[0].material_detail"placeholder="예)100알" autocomplete="off"/>
+											name="hobbyMaterials[0].material_detail"placeholder="예)100알" spellcheck="false" autocomplete="off"/>
 										<a  href="javascript:delMaterial(1)"
 											 class="btnDelMaterial" style="display:none;"></a>
 											
@@ -784,7 +784,7 @@ margin-right: 15px;
 									만들기 순서<span class="star">*</span>
 								</div>
 								<input type="file" id="multifile_step"  
-									style="display:none;" accept=".gif, .jpg, .png" multiple>
+									style="display:none;" accept=".gif, .jpg, .png, .jpeg" multiple>
 								<button type="button" onclick="document.getElementById('multifile_step').click();"
 									class="btn btn-outline-light btn-sm green_background" style="margin-left:10px; font-size:9px;">
 									<span class="fa fa-plus"> 순서 사진 한번에 추가</span>
@@ -807,7 +807,7 @@ margin-right: 15px;
 													<img id="previewImg_step_1" class="previewImg_step" src="${contextPath}/resources/images/preview_img.png" >
 												</label>
 												<input type="file" class="stepImg_file" 
-													 id="stepImg_file_1" accept=".gif, .jpg, .png" onchange="previewMakeStepImg(this, 1);"
+													 id="stepImg_file_1" accept=".gif, .jpg, .png, .jpeg" onchange="previewMakeStepImg(this, 1);"
 													style="display:none;width:0px;height:0px;font-size:0px;">
 												<input type="hidden" class="stepImg_hidden" 
 													id="makeSteps[0].make_step_img" name="makeSteps[0].make_step_img"/>
@@ -916,7 +916,7 @@ margin-right: 15px;
 											src="${contextPath}/resources/images/preview_img.png" style="width:140px; height:140px; object-fit: cover; cursor: pointer;">
 									</label>
 									<input type="file" class="complImg_file" 
-										 id="complImg_file_${v }" accept=".gif, .jpg, .png" onchange="previewComplImg(this, ${v });"
+										 id="complImg_file_${v }" accept=".gif, .jpg, .png, .jpeg" onchange="previewComplImg(this, ${v });"
 										style="display:none;width:0px;height:0px;font-size:0px;">
 									<input type="hidden" class="complImg_hidden" 
 										id="completeImgs[${v - 1}].img_name" name="completeImgs[${v - 1 }].img_name"/>
@@ -956,29 +956,17 @@ margin-right: 15px;
     <div class="modal-dialog" style="width:1000px;">
         <div class="modal-content" style="padding:0;">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="https://recipe1.ezmember.co.kr/img/btn_close.gif" alt="닫기" width="18px" height="18px"></span></button>
-                <h4 class="modal-title">단계별 추가 정보 입력</h4>
+                <h4 class="modal-title" style="font-size: 18px;">추가 기능 설명</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                	<span aria-hidden="true">×</span>
+                </button>
             </div>
             <div class="modal-body" style="padding:0;">
-                <div class="guide_tit"><img src="https://recipe1.ezmember.co.kr/img/guide_tt3.gif"></div>
-                <div class="modal_guide st2">
-                    <img src="https://recipe1.ezmember.co.kr/img/guide5_01.jpg">
-                    <img src="https://recipe1.ezmember.co.kr/img/guide5_02.jpg" border="0" usemap="#Map_tip">
-                    <map name="Map_tip">
-                      <area shape="rect" coords="175,581,489,604" href="http://www.10000recipe.com/recipe/6851475" target="_blank" alt="중국집 단골손님 짜장면">
-                      <area shape="rect" coords="147,610,461,633" href="http://www.10000recipe.com/recipe/6851952" target="_blank" alt="대구 명물 납작만두">
-                      <area shape="rect" coords="257,640,572,663" href="http://www.10000recipe.com/recipe/6852193" target="_blank" alt="든든하게 시작하는 아침식사! 참치죽">
-                    </map>
-                    <img src="https://recipe1.ezmember.co.kr/img/guide5_03.jpg">
-                </div>
-                <div class="talk_guide"><span></span>
-                    <button class="btn btn-default" type="button" onClick="location.href='/customer/list.html?bid=3'">문의하기</button>
+                   <img src="/resources/images/guide.png">
                 </div>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
- </div>
 <%@ include file="../include/footer.jsp" %>
 <script>
 $("#hobby_title").on("input", function(){

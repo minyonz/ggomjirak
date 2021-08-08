@@ -405,7 +405,7 @@ $(".share").click(function(e) {
 	var textarea = document.createElement("textarea");
 	document.body.appendChild(textarea);
 	console.log("${contextPath}");
-	textarea.value = "http://localhost/${pageContext.request.contextPath}" + url;
+	textarea.value = "http://localhost${pageContext.request.contextPath}" + url;
 	textarea.select();
 	document.execCommand("copy");
 	document.body.removeChild(textarea);

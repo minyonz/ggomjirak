@@ -151,7 +151,7 @@ public class HobbyController {
 		
 		if(result == true) {
 			msgInsert = "success";
-			url = "redirect:/workroom/main/" + loginVo.getUser_id();
+			url = "redirect:/workroom/hobby/" + loginVo.getUser_id();
 		} else {
 			msgInsert = "fail";
 			url = "redirect:/hobby/insert";
@@ -177,30 +177,43 @@ public class HobbyController {
 		
 		String  paging = null;
 		if(ms != null) {
-			if (ms.getSort() != null) {
-				paging = "m_no=" + ms.getM_no() +
-						"&time=" + ms.getTime() +
-						"&level=" + ms.getLevel() +
-						"&cost=" + ms.getCost() +
-						"&sort=" + ms.getSort() +
-						"&page=" + ms.getPage();
+			if(ms.getM_no() == 0) { // m_no가 0이라면 작업실로 넘어가게하기
+				if(result > 0) {
+					msgDelete = "success";
+					url = "redirect:/workroom/hobby/" + loginVo.getUser_id();
+				} else {
+					msgDelete = "fail";
+					// 이전페이지의 URL 
+					url = "redirect:" + request.getHeader("referer");
+				}
 			} else {
-				paging = "m_no=" + ms.getM_no() +
-						"&time=" + ms.getTime() +
-						"&level=" + ms.getLevel() +
-						"&cost=" + ms.getCost() +
-						"&page=" + ms.getPage();
+				
+				if (ms.getSort() != null) {
+					paging = "m_no=" + ms.getM_no() +
+							"&time=" + ms.getTime() +
+							"&level=" + ms.getLevel() +
+							"&cost=" + ms.getCost() +
+							"&sort=" + ms.getSort() +
+							"&page=" + ms.getPage();
+				} else {
+					paging = "m_no=" + ms.getM_no() +
+							"&time=" + ms.getTime() +
+							"&level=" + ms.getLevel() +
+							"&cost=" + ms.getCost() +
+							"&page=" + ms.getPage();
+				}
+				
+				if(result > 0) {
+					msgDelete = "success";
+					url = "redirect:/hobby/material/search?" + paging;
+				} else {
+					msgDelete = "fail";
+					// 이전페이지의 URL 
+					url = "redirect:" + request.getHeader("referer");
+				}
 			}
-			
 		}
-		if(result > 0) {
-			msgDelete = "success";
-			url = "redirect:/hobby/material/search?" + paging;
-		} else {
-			msgDelete = "fail";
-			// 이전페이지의 URL 
-			url = "redirect:" + request.getHeader("referer");
-		}
+	
 		
 		rttr.addFlashAttribute("msgDelete",msgDelete);
 		return url;
