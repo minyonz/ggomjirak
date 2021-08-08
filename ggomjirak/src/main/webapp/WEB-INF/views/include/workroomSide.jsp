@@ -119,8 +119,18 @@ $(document).ready(function() {
 					<div class="checkout__order">
 						<!-- 프로필 카드 -->
 						<div class="box" style="margin: 12px auto;">
-							<a href="/workroom/main/${page_id}"><img class="profile" src="/displayImage?filePath=${memberInfo.user_img}"
-								alt="profile image" style="width: 100%; text-align: center"></a>
+							<a href="/workroom/main/${page_id}">
+							<c:choose>
+								<c:when test="${memberInfo.user_img != null}">
+									<img class="profile" src="/displayImage?filePath=${memberInfo.user_img}"
+									alt="profile image" style="width: 100%; text-align: center">
+								</c:when>
+								<c:otherwise>
+									<img class="profile" src="/resources/img/noprofile.png"
+									alt="profile image" style="width: 100%; text-align: center">
+								</c:otherwise>
+							</c:choose>
+							</a>
 						</div>
 						<div class="card-body">
 							<div style="display: flex; justify-content: center;">
@@ -175,11 +185,11 @@ $(document).ready(function() {
 					<div class="checkout__order">
 						<div class="blog__sidebar__item" style="margin-left: 40px;">
 							<ul>
-								<li><a href="#">소개</a></li>
-								<li><a href="#hobby">꼼지락</a></li>
-								<li><a href="#story">Story</a></li>
-								<li><a href="#mbm">MadeByMe</a></li>
-								<li><a href="#bookmark">북마크</a></li>
+								<li><a href="/workroom/main/${page_id}">소개</a></li>
+								<li><a href="/workroom/hobby/${page_id}">꼼지락</a></li>
+								<li><a href="/story/list/${page_id}">Story</a></li>
+								<li><a href="/workroom/mbm/${page_id}">MadeByMe</a></li>
+								<li><a href="/workroom/bookmark/${page_id}">북마크</a></li>
 							</ul>
 						</div>
 					</div>

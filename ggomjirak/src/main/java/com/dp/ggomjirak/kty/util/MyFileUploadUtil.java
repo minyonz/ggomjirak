@@ -18,6 +18,7 @@ public class MyFileUploadUtil {
 //	public static String serverUploadPath_Profile = "profile";
 	
 	public static String serverFilePath = "//192.168.0.217/ggomjirak/";
+	//public static String serverFilePath = "//C:/upload/ggomjirak/";
 	public static String serverUploadPath_Profile = "profile";
 	
 	public static String uploadFile(String uploadPath, String originalFilename, byte[] fileData) throws Exception {

@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
     <meta charset="utf-8">
@@ -49,6 +48,22 @@
 .orange_color {
 	color:  rgb(231, 112, 92);
 }
+.short {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+}
+@font-face {
+     font-family: 'S-CoreDream-3Light';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+body {
+	font-family: 'S-CoreDream-3Light';
+}
 </style>
 
 
@@ -63,9 +78,9 @@
         <ul class="navbar-nav sidebar sidebar-dark accordion green_background" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/main/mainHome" target="_blank">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/manager/managerHome" target="_blank">
                 <div class="sidebar-brand-icon">
-                    <img src="/resources/img/logo06.png" alt="..." width="100px" >
+                    <img src="/resources/img/logo_h_w.png" alt="logo" width="100px" >
                 </div>
             </a>
 
@@ -179,7 +194,7 @@
 
             <!-- Sidebar Message -->
             <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="/resources/img/logo06.png" alt="...">
+                <img class="sidebar-card-illustration mb-2" src="/resources/img/logo_h_w.png" alt="logo">
                 <p class="text-center mb-2"><strong>꼼지락</strong> 홈페이지</p>
                 <a class="btn btn-success btn-sm" href="/main/mainHome" target="_blank">새창 열기</a>
             </div>

@@ -338,6 +338,7 @@ public class HobbyVo {
 
 	public void setLike_hobby(String like_hobby) {
 		this.like_hobby = like_hobby;
+
 	}
 
 
@@ -374,14 +375,6 @@ public class HobbyVo {
 				+ user_img + ", like_hobby=" + like_hobby + ", bm_hobby=" + bm_hobby + ", rnum=" + rnum + "]";
 	}
 
-
-
-
-
-
-
-
-	
 
 	
 	
