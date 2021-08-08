@@ -58,8 +58,16 @@ $(document).ready(function() {
 					<div class="row">
 						<div class="col-xl-2 col-lg-3 col-md-4 col-sm-12">
 							<h6><strong>프로필 이미지</strong></h6>
-							<img src="../resources/img/eximage.png" class="rounded-circle"
-								alt="..." width="150px" height="150px" style="margin: 20px">
+							<c:choose>
+	                        <c:when test="${memberVo.user_img != null}">
+	                        	<img src="/displayImage?fileName=${memberVo.user_img}" class="rounded-circle"
+									alt="..." width="150px" height="150px" style="margin: 20px">
+	                        </c:when>
+	                        <c:otherwise>
+	                        	<img src="/resources/img/noprofil.png" class="rounded-circle"
+									alt="..." width="150px" height="150px" style="margin: 20px">
+	                        </c:otherwise>
+	                        </c:choose>
 						</div>
 						
 						<div class="col-xl-10 col-lg-9 col-md-8 col-sm-12">

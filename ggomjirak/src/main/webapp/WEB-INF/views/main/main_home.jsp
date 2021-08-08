@@ -224,8 +224,19 @@ $(document).ready(function() {
                 <div class="col-lg-2 col-md-4 col-sm-6 mix grade${member1.user_grade}">
                     <div class="featured__item">
                     
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <a href="/workroom/main/${member1.user_id}"><img src="/displayImage?fileName=${member1.user_img}" class="rounded-circle" alt="profilImage"/></a>
+                        <div class="featured__item__pic set-bg h-50" style="padding: 30px">
+                        <a href="/workroom/main/${member1.user_id}">
+                        <c:choose>
+                        <c:when test="${member1.user_img != null}">
+                        	<img src="/displayImage?fileName=${member1.user_img}" class="rounded-circle" alt="profilImage"/>
+                        </c:when>
+                        <c:otherwise>
+                        	<img src="/resources/img/noprofil.png" class="rounded-circle" alt="profilImage"/>
+                        </c:otherwise>
+                        </c:choose>
+                        
+                        
+                        </a>
                         </div>
                         <div class="featured__item__text">
                             <h6><a class="short" href="/workroom/main/${member1.user_id}">${member1.user_nick}</a></h6>
@@ -238,8 +249,17 @@ $(document).ready(function() {
                 <div class="col-lg-2 col-md-4 col-sm-6 mix grade${member2.user_grade}">
                     <div class="featured__item">
                     
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <img src="/mypage/displayImage?fileName=${member2.user_img}" class="rounded-circle" alt="profilImage"/>
+                        <div class="featured__item__pic set-bg h-50" style="padding: 30px">
+                        <a href="/workroom/main/${member2.user_id}">
+                        <c:choose>
+                        <c:when test="${member2.user_img != null}">
+                        	<img src="/displayImage?fileName=${member2.user_img}" class="rounded-circle" alt="profilImage"/>
+                        </c:when>
+                        <c:otherwise>
+                        	<img src="/resources/img/noprofil.png" class="rounded-circle" alt="profilImage"/>
+                        </c:otherwise>
+                        </c:choose>
+                        </a>
                         </div>
                         <div class="featured__item__text">
                             <h6><a class="short" href="/workroom/main/${member2.user_id}">${member2.user_nick}</a></h6>
@@ -252,8 +272,17 @@ $(document).ready(function() {
                 <div class="col-lg-2 col-md-4 col-sm-6 mix grade${member3.user_grade}">
                     <div class="featured__item">
                     
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <a href="/workroom/main/${member3.user_id}"><img src="/displayImage?fileName=${member3.user_img}" class="rounded-circle" alt="profilImage"/></a>
+                        <div class="featured__item__pic set-bg h-50" style="padding: 30px">
+                        <a href="/workroom/main/${member3.user_id}">
+                        <c:choose>
+                        <c:when test="${member3.user_img != null}">
+                        	<img src="/displayImage?fileName=${member3.user_img}" class="rounded-circle" alt="profilImage"/>
+                        </c:when>
+                        <c:otherwise>
+                        	<img src="/resources/img/noprofil.png" class="rounded-circle" alt="profilImage"/>
+                        </c:otherwise>
+                        </c:choose>
+                        </a>
                         </div>
                         <div class="featured__item__text">
                             <h6><a class="short" href="/workroom/main/${member3.user_id}">${member3.user_nick}</a></h6>
@@ -266,8 +295,17 @@ $(document).ready(function() {
                 <div class="col-lg-2 col-md-4 col-sm-6 mix grade${member4.user_grade}">
                     <div class="featured__item">
                     
-                        <div class="featured__item__pic set-bg h-50" style="padding: 10px">
-                        <a href="/workroom/main/${member4.user_id}"><img src="/mypage/displayImage?fileName=${member4.user_img}" class="rounded-circle" alt="profilImage"/></a>
+                        <div class="featured__item__pic set-bg h-50" style="padding: 30px">
+                        <a href="/workroom/main/${member4.user_id}">
+                        <c:choose>
+                        <c:when test="${member4.user_img != null}">
+                        	<img src="/displayImage?fileName=${member4.user_img}" class="rounded-circle" alt="profilImage"/>
+                        </c:when>
+                        <c:otherwise>
+                        	<img src="/resources/img/noprofil.png" class="rounded-circle" alt="profilImage"/>
+                        </c:otherwise>
+                        </c:choose>
+                        </a>
                         </div>
                         <div class="featured__item__text">
                             <h6><a class="short" href="/workroom/main/${member4.user_id}">${member4.user_nick}</a></h6>
