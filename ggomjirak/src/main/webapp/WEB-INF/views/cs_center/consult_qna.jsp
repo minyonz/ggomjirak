@@ -133,11 +133,11 @@ $(document).ready(function(){
 							</div>
 							<div class="form-group">
 								<label for="content"> 내용 </label>
-								<textarea class="form-control" id="content" name="content" readonly>${qnAVo.content}</textarea>
+								<textarea class="form-control" id="content" name="content" rows="5" readonly>${qnAVo.content}</textarea>
 							</div>
 							<div class="form-group">
 								<label for="content"> 답변 </label>
-								<textarea class="form-control" id="a_content" name="a_content" readonly>${qnAVo.a_content}</textarea>
+								<textarea class="form-control" id="a_content" name="a_content" rows="5" readonly>${qnAVo.a_content}</textarea>
 							</div>
 							<button type="button" class="btn btn-primary" id="btnModify">수정</button>
 							<button type="submit" class="btn btn-success" style="display:none" id="btnModifyFinish">수정완료</button>
