@@ -72,7 +72,8 @@
 				<input type="hidden" name="st_no" value="${storyVo.st_no}" />
 				<textarea placeholder="스토리를 작성해 주세요." name="st_content"
 					id="st_content">${storyVo.st_content}</textarea>
-				<button type="button" onclick="doSubmit();" class="site-btn">작성완료</button>
+				<button type="button" onclick="doSubmit();" class="site-btn">등록</button>
+				<a href="/story/list/${page_id}" class="btn-cancle">취소</a>
 			</div>
 		</form>
 	</div>
@@ -129,7 +130,7 @@ function previewStoryImg(targetObj) {
 	// sort의 storyImg(Controller의 case문)
 	formData.append("sort", "storyImg");
 	
-	var url = "/story_img/uploadImage";
+	var url = "/img/uploadImage";
 	
 	$.ajax({
 		"processData" : false,
@@ -166,7 +167,7 @@ function delStoryImg() {
 	console.log("삭제")
 	var filePath = $("#st_img").val();
 	console.log(filePath);
-	var url = "/story_img/deleteFile?filePath=" + filePath;
+	var url = "/img/deleteFile?filePath=" + filePath;
 	$.get(url, function(rData) {
 		if (rData == "success") {
 			$("#st_img").val("");

@@ -127,11 +127,44 @@ $(document).ready(function() {
 							<select name="level_no" id="level_no"
 								class="cate level-cate main_select" style="width:75%; margin-right: auto;">
 								<option value="">선택해 주세요</option>
-								<option value="1">😆very easy</option>
-								<option value="2">😃easy </option>
-								<option value="3">🙂normal </option>
-								<option value="4">😧hard </option>
-								<option value="5">😱crazy</option>
+								<c:choose>
+									<c:when test="${madebymeVo.level_no == 1}">
+										<option value="1" selected>😆very easy</option>
+										<option value="2">😃easy </option>
+										<option value="3">🙂normal </option>
+										<option value="4">😧hard </option>
+										<option value="5">😱crazy</option>
+									</c:when>
+									<c:when test="${madebymeVo.level_no == 2}">
+										<option value="1">😆very easy</option>
+										<option value="2" selected>😃easy </option>
+										<option value="3">🙂normal </option>
+										<option value="4">😧hard </option>
+										<option value="5">😱crazy</option>
+									</c:when>
+									<c:when test="${madebymeVo.level_no == 3}">
+										<option value="1">😆very easy</option>
+										<option value="2">😃easy </option>
+										<option value="3" selected>🙂normal </option>
+										<option value="4">😧hard </option>
+										<option value="5">😱crazy</option>
+									</c:when>
+									<c:when test="${madebymeVo.level_no == 4}">
+										<option value="1">😆very easy</option>
+										<option value="2">😃easy </option>
+										<option value="3">🙂normal </option>
+										<option value="4" selected>😧hard </option>
+										<option value="5">😱crazy</option>
+									</c:when>
+									<c:when test="${madebymeVo.level_no == 5}">
+										<option value="1">😆very easy</option>
+										<option value="2">😃easy </option>
+										<option value="3">🙂normal </option>
+										<option value="4">😧hard </option>
+										<option value="5" selected>😱crazy</option>
+									</c:when>
+								</c:choose>
+								
 							</select>
 						    </div>
 						</div>
@@ -222,7 +255,7 @@ function validate() {
 	// 내용 입력 X
 	var mbm_content = $("#mbm_content").val();
 	if (typeof mbm_content == "undefined" || mbm_content.trim() == "" || mbm_content ==  null) {
-		$("#msg").text("스토리 내용을 입력해 주세요.");
+		$("#msg").text("내용을 작성해 주세요.");
 		$("#msg").attr("style", "color:#FF5454; font-weight: bold");
 		$("#mbm_content").focus();
 		return false;
