@@ -204,8 +204,7 @@
 				where is_del = 'Y'
 				</when>
 			</choose>
-		        order by e_no desc) a
-		        <include refid="searchEvent"></include>)
+		        order by e_no desc) a)
 		where rnum between #{startRow} and #{endRow}
 	</select>
 	<!-- 글갯수 -->
@@ -225,7 +224,6 @@
 				where is_del = 'Y'
 				</when>
 			</choose>)
-			<include refid="searchEvent"></include>
 	</select>
 
 	<!-- 이벤트 글 목록 (진행중) -->
@@ -335,7 +333,6 @@
 				</when>
 			</choose>
              	) a
-             	<include refid="searchEvent"></include>
                 order by e_no desc)
 		where rnum between #{startRow} and #{endRow}
 	</select>
@@ -352,7 +349,7 @@
 				and sysdate > end_date
 				</when>
 			</choose>
-			<include refid="searchEvent"></include>)
+			)
 	</select>
 	
 	<!-- 활동 기록 작성 글 수 증가 -->
@@ -496,21 +493,6 @@
 		</if>
 	</sql>
 	
-	<sql id="searchEvent">
-		<if test="searchType != null">
-			<choose>
-				<when test='searchType == "t"'>
-					where e_title like '%' || #{keyword} || '%'
-				</when>
-				<when test='searchType == "u"'>
-					where user_id like '%' || #{keyword} || '%'
-				</when>
-				<when test='searchType == "tu"'>
-					where e_title like '%' || #{keyword} || '%'
-					or user_id like '%' || #{keyword} || '%'
-				</when>
-			</choose>
-		</if>
-	</sql>
+
 
 </mapper>
