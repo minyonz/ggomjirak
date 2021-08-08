@@ -29,9 +29,6 @@ public class WorkroomSetDaoImpl implements WorkroomSetDao {
 
 	@Override
 	public void updateWrName(WorkroomVo workroomVo) {
-//		Map<String, String> map = new HashMap<String, String>();
-//		map.put("wr_name", wr_name);
-//		map.put("user_id", user_id);
 		sqlSession.update(NAMESPACE + "updateWrName", workroomVo);
 	}
 

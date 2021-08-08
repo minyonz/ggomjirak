@@ -145,5 +145,7 @@ $(document).ready(function() {
 		<!-- 페이징 끝 -->
 	<div class="col-md-2"></div>
 </div>
+</div>
+</div>
 
 <%@ include file="../include/footer.jsp"%>
