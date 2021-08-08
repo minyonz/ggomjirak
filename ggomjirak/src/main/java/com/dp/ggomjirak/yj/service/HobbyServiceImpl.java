@@ -23,6 +23,7 @@ import com.dp.ggomjirak.vo.MadeByMeVo;
 import com.dp.ggomjirak.vo.MakeStepVo;
 import com.dp.ggomjirak.vo.MaterialSearch;
 import com.dp.ggomjirak.vo.MaterialVo;
+import com.dp.ggomjirak.vo.ReviewPaging;
 import com.dp.ggomjirak.yj.dao.HobbyDao;
 import com.dp.ggomjirak.yj.dao.MaterialDao;
 import com.dp.ggomjirak.yj.util.MyFileUploadUtil;
@@ -92,7 +93,7 @@ public class HobbyServiceImpl implements HobbyService {
 	}
 	
 	@Override // isUpdate 수정폼에 뿌릴데이터인지아닌지 여부 true이면 수정용(사용자가 입력한 원본그대로 줘야함)
-	public HobbyVo selectHobbyArticle(int hobby_no, boolean isUpdate) {
+	public HobbyVo selectHobbyArticle(int hobby_no, ReviewPaging rp, boolean isUpdate) {
 		if (!isUpdate) {
 			//조회수 증가
 			hobbyDao.updateViewCnt(hobby_no);
@@ -126,10 +127,27 @@ public class HobbyServiceImpl implements HobbyService {
 					makeStepVo.setUrlOgTag(urlOgTag);
 					System.out.println(urlOgTag);
 				}
+				// 엔터키 작업
+				makeStepVo.setMake_step_text(makeStepVo.getMake_step_text().replace("\r\n" ,"<br>"));
+				if (makeStepVo.getNote() != null) {
+					makeStepVo.setNote(makeStepVo.getNote().replace("\r\n" ,"<br>"));
+				}
+				if (makeStepVo.getTip() != null) {
+					makeStepVo.setTip(makeStepVo.getTip().replace("\r\n" ,"<br>"));
+				}
+				if (makeStepVo.getLink_desc() != null) {
+					makeStepVo.setLink_desc(makeStepVo.getLink_desc().replace("\r\n" ,"<br>"));
+				}
+				
 			}
+			
 			List<CompleteImgVo> completeImgs = hobbyDao.selectCompleteImgListNotNull(hobby_no);
 			hobbyVo.setCompleteImgs(completeImgs);
-			List<MadeByMeVo> madeByMes = hobbyDao.selectMbmList(hobby_no);
+			
+			rp.setHobby_no(hobby_no);
+			int review_count = hobbyVo.getMbm_cnt();
+			rp.setReview_count(review_count);
+			List<MadeByMeVo> madeByMes = hobbyDao.selectMbmList(rp);
 			hobbyVo.setMadeByMes(madeByMes);
 		} else {
 			List<CompleteImgVo> completeImgs = hobbyDao.selectCompleteImgListAll(hobby_no);

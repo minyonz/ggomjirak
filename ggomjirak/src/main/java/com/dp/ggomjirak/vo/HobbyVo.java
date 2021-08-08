@@ -21,6 +21,7 @@ public class HobbyVo {
 	private int view_cnt;
 	private int like_cnt;
 	private int cmt_cnt;
+	private int mbm_cnt;
 	private String is_del;
 	private Timestamp reg_date;
 	private Timestamp mod_date;
@@ -192,6 +193,16 @@ public class HobbyVo {
 	}
 
 
+	public int getMbm_cnt() {
+		return mbm_cnt;
+	}
+
+
+	public void setMbm_cnt(int mbm_cnt) {
+		this.mbm_cnt = mbm_cnt;
+	}
+
+
 	public String getIs_del() {
 		return is_del;
 	}
@@ -259,6 +270,16 @@ public class HobbyVo {
 
 	public void setCompleteImgs(List<CompleteImgVo> completeImgs) {
 		this.completeImgs = completeImgs;
+	}
+
+
+	public List<MadeByMeVo> getMadeByMes() {
+		return madeByMes;
+	}
+
+
+	public void setMadeByMes(List<MadeByMeVo> madeByMes) {
+		this.madeByMes = madeByMes;
 	}
 
 
@@ -362,29 +383,20 @@ public class HobbyVo {
 	}
 
 
-	public List<MadeByMeVo> getMadeByMes() {
-		return madeByMes;
-	}
-
-
-	public void setMadeByMes(List<MadeByMeVo> madeByMes) {
-		this.madeByMes = madeByMes;
-	}
-
-
 	@Override
 	public String toString() {
 		return "HobbyVo [hobby_no=" + hobby_no + ", hobby_title=" + hobby_title + ", user_id=" + user_id + ", main_img="
 				+ main_img + ", hobby_video=" + hobby_video + ", hobby_intro=" + hobby_intro + ", l_cate_no="
 				+ l_cate_no + ", m_cate_no=" + m_cate_no + ", level_no=" + level_no + ", cost_no=" + cost_no
 				+ ", time_no=" + time_no + ", view_cnt=" + view_cnt + ", like_cnt=" + like_cnt + ", cmt_cnt=" + cmt_cnt
-				+ ", is_del=" + is_del + ", reg_date=" + reg_date + ", mod_date=" + mod_date + ", del_date=" + del_date
-				+ ", makeSteps=" + makeSteps + ", hobbyMaterials=" + hobbyMaterials + ", completeImgs=" + completeImgs
-				+ ", madeByMes=" + madeByMes + ", l_cate_name=" + l_cate_name + ", m_cate_name=" + m_cate_name
-				+ ", level_name=" + level_name + ", cost_name=" + cost_name + ", time_name=" + time_name
-				+ ", user_nick=" + user_nick + ", user_img=" + user_img + ", like_hobby=" + like_hobby + ", bm_hobby="
-				+ bm_hobby + ", rnum=" + rnum + "]";
+				+ ", mbm_cnt=" + mbm_cnt + ", is_del=" + is_del + ", reg_date=" + reg_date + ", mod_date=" + mod_date
+				+ ", del_date=" + del_date + ", makeSteps=" + makeSteps + ", hobbyMaterials=" + hobbyMaterials
+				+ ", completeImgs=" + completeImgs + ", madeByMes=" + madeByMes + ", l_cate_name=" + l_cate_name
+				+ ", m_cate_name=" + m_cate_name + ", level_name=" + level_name + ", cost_name=" + cost_name
+				+ ", time_name=" + time_name + ", user_nick=" + user_nick + ", user_img=" + user_img + ", like_hobby="
+				+ like_hobby + ", bm_hobby=" + bm_hobby + ", rnum=" + rnum + "]";
 	}
+
 
 
 

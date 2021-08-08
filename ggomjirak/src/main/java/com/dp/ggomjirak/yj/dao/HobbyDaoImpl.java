@@ -15,6 +15,7 @@ import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.MadeByMeVo;
 import com.dp.ggomjirak.vo.MakeStepVo;
 import com.dp.ggomjirak.vo.MaterialVo;
+import com.dp.ggomjirak.vo.ReviewPaging;
 
 @Repository
 public class HobbyDaoImpl implements HobbyDao {
@@ -140,8 +141,21 @@ public class HobbyDaoImpl implements HobbyDao {
 	}
 
 	@Override
-	public List<MadeByMeVo> selectMbmList(int hobby_no) {
-		return sqlSession.selectList(NAMESPACE + "selectMbmList", hobby_no);
+	public List<MadeByMeVo> selectMbmList(ReviewPaging reviewPaging) {
+		return sqlSession.selectList(NAMESPACE + "selectMbmList", reviewPaging);
+	}
+
+//	@Override
+//	public int getCountMbmList(int hobby_no) {
+//		return sqlSession.selectOne(NAMESPACE + "getCountMbmList", hobby_no);
+//	}
+
+	@Override
+	public int updateMbmCnt(int hobby_no, int count) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("hobby_no", hobby_no);
+		map.put("count", count);
+		return sqlSession.update(NAMESPACE + "updateMbmCnt", map);
 	}
 	
 	

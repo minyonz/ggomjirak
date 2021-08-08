@@ -58,7 +58,7 @@ public class HobbyController {
 			@ModelAttribute("rp") ReviewPaging rp,
 			HttpServletRequest request,
 			HttpSession session) throws Exception {
-		HobbyVo hobbyVo = hobbyService.selectHobbyArticle(hobby_no, false);
+		HobbyVo hobbyVo = hobbyService.selectHobbyArticle(hobby_no, rp, false);
 		List<CateVo> cates = cateService.getCateList();
 		MemberVo loginVo = (MemberVo)session.getAttribute("loginVo");
 		if (loginVo != null) {
@@ -82,7 +82,7 @@ public class HobbyController {
 			@ModelAttribute("loginVo") MemberVo loginVo,
 			@PathVariable("hobby_no") int hobby_no) throws Exception {
 		model.addAttribute("user_id", loginVo.getUser_id());
-		HobbyVo hobbyVo = hobbyService.selectHobbyArticle(hobby_no, true);
+		HobbyVo hobbyVo = hobbyService.selectHobbyArticle(hobby_no, null, true);
 		model.addAttribute("hobbyVo", hobbyVo);
 		
 		List<CateVo> cates = cateService.getCateList();

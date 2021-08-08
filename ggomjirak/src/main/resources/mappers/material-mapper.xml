@@ -59,6 +59,8 @@
 	
 
  	<!-- __________준비물로 목록조회 ___________-->
+ 	
+ 	<!-- 페이징을위한 개수구하기 -->
  	<select id="getCountHMList" parameterType="MaterialSearch" resultType="int">
  		SELECT count(*) 
 		FROM tbl_hobby_material HM
@@ -68,6 +70,7 @@
 		<include refid="search"></include>
  	</select>
  	
+ 	<!-- 조회 -->
 	<select id="selectHMList" parameterType="MaterialSearch" resultType="HobbyVo">
 		SELECT * 
 		FROM (SELECT ROWNUM rnum, A.*
