@@ -35,18 +35,13 @@
 }
 </style>
 <script>
-// $(document).ready(function() {	
-// 	$("#frmStory").submit(function() {
-// 		var st_content = $("#st_content").val();
-// 		if (st_content.trim() == "" || st_content == null) {
-// 			console.log("내용입력");
-// 			$("#msg").text("스토리 내용을 입력해 주세요.");
-// 			$("#st_content").focus();
-// 			return false;
-// 		}
-// 		$(this).submit();
-// 	});
-// });
+$(document).ready(function() {
+	$("#btnCancel").click(function() {
+		if (confirm("작성을 취소하시겠습니까?")) {
+			location.href = "/story/list/${page_id}";
+		}
+	});
+});
 </script>
 <!-- 글작성 폼 -->
 <div class="col-md-9">
@@ -72,7 +67,7 @@
 				<span id="msg"></span>
 				<textarea placeholder="스토리를 작성해 주세요." name="st_content" id="st_content"></textarea>
 				<button type="button" onclick="doSubmit();" class="site-btn">등록</button>
-				<a href="/story/list/${page_id}" class="btn-cancle">취소</a>
+				<a href="/story/list/${page_id}" class="btn-cancle" id="btnCancel">취소</a>
 			</div>
 		</form>
 	</div>

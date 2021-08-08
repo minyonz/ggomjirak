@@ -57,8 +57,11 @@ $(document).ready(function() {
 		}
 	});
 	
-	
-
+	$("#btnCancel").click(function() {
+		if (confirm("작성을 취소하시겠습니까?")) {
+			location.href = "/hobby/content/${hobbyVo.hobby_no}";
+		}
+	});
 });
 </script>
 <div class="container-fluid" style="background: #F5F5F5">
@@ -177,7 +180,7 @@ $(document).ready(function() {
 						<textarea placeholder="후기를 작성해 주세요." name="mbm_content"
 							id="mbm_content">${madebymeVo.mbm_content}</textarea>
 						<button type="button" onclick="doSubmit();" class="site-btn">등록</button>
-						<a href="/hobby/content/${hobbyVo.hobby_no}" class="btn-cancle">취소</a>
+						<a href="/hobby/content/${hobbyVo.hobby_no}" class="btn-cancle" id="btnCancel">취소</a>
 					</div>
 				</form>
 			</div>
