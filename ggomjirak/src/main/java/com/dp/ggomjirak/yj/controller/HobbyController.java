@@ -24,6 +24,7 @@ import com.dp.ggomjirak.vo.LevelVo;
 import com.dp.ggomjirak.vo.LikeBookmarkVo;
 import com.dp.ggomjirak.vo.MaterialSearch;
 import com.dp.ggomjirak.vo.MemberVo;
+import com.dp.ggomjirak.vo.ReviewPaging;
 import com.dp.ggomjirak.vo.TimeVo;
 import com.dp.ggomjirak.yj.service.CateService;
 import com.dp.ggomjirak.yj.service.HobbyService;
@@ -54,6 +55,7 @@ public class HobbyController {
 	public String content(Model model, 
 			@PathVariable("hobby_no") int hobby_no,
 			@ModelAttribute("ms") MaterialSearch ms,
+			@ModelAttribute("rp") ReviewPaging rp,
 			HttpServletRequest request,
 			HttpSession session) throws Exception {
 		HobbyVo hobbyVo = hobbyService.selectHobbyArticle(hobby_no, false);
@@ -67,7 +69,8 @@ public class HobbyController {
 			model.addAttribute("likeCheck", likeCheck);
 			model.addAttribute("bookmarkCheck", bookmarkCheck);
 		}
-		System.out.println("ms:" + ms);
+//		System.out.println("ms:" + ms);
+		System.out.println("rp:" + rp);
 		model.addAttribute("cates", JSONArray.fromObject(cates));
 		model.addAttribute("hobbyVo", hobbyVo);
 		model.addAttribute("url", request.getRequestURL());

@@ -461,6 +461,22 @@ border-bottom: none !important;
 .tab-pane h5{
 border-left: 4px solid #1f5e43;
 }
+.category {
+	text-decoration: none;
+	color: black;
+	margin: 0 3px;
+}
+.category:hover {
+	text-decoration: none;
+	color: #1f5e43;
+	font-weight: 600;
+}
+
+.myPagination .active {
+ 	background: #1f5e43; 
+    border-color: #1f5e43; 
+    color: #fff; 
+}
 .myPagination a:hover {
 	background: #1f5e43;
 	border-color: #1f5e43;
@@ -622,8 +638,8 @@ figure[data-ke-type='opengraph'] .og-host {
 }
 </style>
 </head>
-<body>
 <%@ include file="../include/header.jsp" %>
+<body>
 <c:if test="${swalIcon == 'success' }">
 	<script>
 		Swal.fire({
@@ -658,6 +674,10 @@ figure[data-ke-type='opengraph'] .og-host {
 	<c:if test="${not empty ms.page }">
 		<c:set var="page" value="&page=${ms.page}" />
 	</c:if>
+	
+<!-- 리뷰 페이징 작업 -->
+
+
 
 <div class="container-fluid">
 	<!-- 취미글 메인부분 -->
@@ -1093,12 +1113,21 @@ figure[data-ke-type='opengraph'] .og-host {
   <!-- Tab panes -->
   <div class="tab-content">
     <div id="madeByMe" class="container tab-pane active" style="width: 80%;"><br>
-<!--       <h5 class="pl-2">made by me</h5> -->
+    <div class="row">
+    	<a class="category sort" id="AllSort" ${rp.review_level == 'all' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
+			href="${hobbyVo.hobby_no}?review_level=all">전체</a> <span> |</span> 
+		<a class="category sort" id="newSort" ${rp.review_level == 'new' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
+			 href="${hobbyVo.hobby_no}?review_level=new">최신순</a> <span> |</span> 
+		<a class="category sort" id="ascSort" ${rp.review_level == 'asc' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
+			href="${hobbyVo.hobby_no}?review_level=asc">체감 난이도 낮은순</a> <span> |</span> 
+		<a class="category sort" id="descSort" ${rp.review_level == 'desc' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
+			href="${hobbyVo.hobby_no}?review_level=desc">체감 난이도 높은순</a>
 		<a class="loginNeed btn-more" 
 			type="button" href="/mbm/write/${hobbyVo.hobby_no}" 
-			style="float: right; margin-bottom: 20px">후기작성</a>
+			style="margin-left: auto;">후기작성</a>
+    </div>
 		<!-- review-container -->
-		<div class="review-container" style="margin-top: 2.3rem;">
+		<div class="review-container" style="margin-top: 1rem;">
 		<c:forEach items="${hobbyVo.madeByMes}" var="mbm">
 		<!-- review-row -->
 		<div class="review-row">
@@ -1111,7 +1140,7 @@ figure[data-ke-type='opengraph'] .og-host {
 				</div>
 				<div class="col-md-11">
 					<div class="row">
-						<a href="/workroom/main/${hobbyVo.user_id}">
+						<a href="/workroom/main/${mbm.user_id}">
 							${mbm.user_nick}
 						</a>
 					</div>
@@ -1120,6 +1149,7 @@ figure[data-ke-type='opengraph'] .og-host {
 					</div>
 				</div>
 			</div>
+			<a href="/mbm/detail/${mbm.user_id}?hobby_no=${mbm.hobby_no}&mbm_no=${mbm.mbm_no}">
 			<div class="row">
 				<div class="col-md-3">
 					<div style="width:10rem; height:8rem; overflow:hidden;">
@@ -1129,18 +1159,56 @@ figure[data-ke-type='opengraph'] .og-host {
 				</div>
 				<div class="col-md-9">
 					<div>
-						<div class="row">체감 난이도: ${mbm.level_name}</div>
+						<div class="row">
+							<c:choose>
+								<c:when test="${mbm.level_no == 1}">
+									<p style="font-weight:bold;">체감 난이도 : 😆very easy</p>
+								</c:when>
+								<c:when test="${mbm.level_no == 2}">
+									<p style="font-weight:bold;">체감 난이도 : 😃easy</p>
+								</c:when>
+								<c:when test="${mbm.level_no == 3}">
+									<p style="font-weight:bold;">체감 난이도 : 🙂normal</p>
+								</c:when>
+								<c:when test="${mbm.level_no == 4}">
+									<p style="font-weight:bold;">체감 난이도 : 😧hard</p>
+								</c:when>
+								<c:when test="${mbm.level_no == 5}">
+									<p style="font-weight:bold;">체감 난이도 : 😱crazy</p>
+								</c:when>
+							</c:choose>
+						</div>
 					</div>
 					<div class="row review-content">
 						<p>${mbm.mbm_content}</p>
 					</div>
 				</div>
 			</div>
+			</a>
 		</div>
 		</c:forEach>
 		<!-- // review-row -->
 		</div>
 		<!-- //review-container -->
+		<!-- pagination-container -->
+		<div class="pagination-container" style="text-align: center;">
+			  <div class="myPagination" style="text-align: center; margin-top: 1.5rem">
+            <c:set var="prev" value=""/>
+            <c:set var="next" value=""/>
+            
+<%--             	<c:if test=""> --%>
+               		 <a href=""><i class="fa fa-long-arrow-left"></i></a>
+<%--                 </c:if> --%>
+            	<c:forEach var="v" begin="1" end="10">
+	                <a class="" 
+	                	href="">${v}</a>
+				</c:forEach>
+<%-- 				<c:if test=""> --%>
+               		 <a href=""><i class="fa fa-long-arrow-right"></i></a>
+<%--                 </c:if> --%>
+            </div>
+		</div>
+		<!--// pagination-container --> 
 	 </div>
 	 <!-- comment 시작 -->
     <div id="comment" class="container tab-pane fade" style="width: 80%;"><br>
