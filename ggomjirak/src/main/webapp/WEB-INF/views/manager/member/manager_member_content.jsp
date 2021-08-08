@@ -64,7 +64,7 @@ $(document).ready(function() {
 									alt="..." width="150px" height="150px" style="margin: 20px">
 	                        </c:when>
 	                        <c:otherwise>
-	                        	<img src="/resources/img/noprofil.png" class="rounded-circle"
+	                        	<img src="/resources/img/noprofile.png" class="rounded-circle"
 									alt="..." width="150px" height="150px" style="margin: 20px">
 	                        </c:otherwise>
 	                        </c:choose>
@@ -181,50 +181,50 @@ $(document).ready(function() {
 	</div>
 	
 	<!-- DataTales Example -->
-	<div class="card shadow mb-4">
-		<div class="card-header py-3" style="overflow: hidden">
-			<h6 class="m-0 font-weight-bold green_color" style="float: left;">작성 글</h6>
+<!-- 	<div class="card shadow mb-4"> -->
+<!-- 		<div class="card-header py-3" style="overflow: hidden"> -->
+<!-- 			<h6 class="m-0 font-weight-bold green_color" style="float: left;">작성 글</h6> -->
 			
-			<div class="dropdown">
-				<select name="category"
-					class="btn btn-outline-light green_background dropdown-toggle"
-					data-bs-toggle="dropdown" aria-expanded="false">
-					<option class="dropdown-item" value="1">취미</option>
-					<option class="dropdown-item" value="2">스토리</option>
-					<option class="dropdown-item" value="3">Made by Me</option>
-					<option class="dropdown-item" value="4">문의</option>
-				</select>
-			</div>
+<!-- 			<div class="dropdown"> -->
+<!-- 				<select name="category" -->
+<!-- 					class="btn btn-outline-light green_background dropdown-toggle" -->
+<!-- 					data-bs-toggle="dropdown" aria-expanded="false"> -->
+<!-- 					<option class="dropdown-item" value="1">취미</option> -->
+<!-- 					<option class="dropdown-item" value="2">스토리</option> -->
+<!-- 					<option class="dropdown-item" value="3">Made by Me</option> -->
+<!-- 					<option class="dropdown-item" value="4">문의</option> -->
+<!-- 				</select> -->
+<!-- 			</div> -->
 			
-		</div>
+<!-- 		</div> -->
 		
 		
-		<div class="card-body">
-			<table class="table" id="dataTable" width="100%" cellspacing="0">
-					<thead>
-						<tr>
-							<th>글번호</th>
-							<th>게시판</th>
-							<th>제목</th>
-							<th>작성일</th>
-							<th>삭제여부</th>
-							<th>삭제일</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>취미</td>
-							<td><a href="#">Architect</a></td>
-							<td>2011/04/25</td>
-							<td>X</td>
-							<td>-</td>
-						</tr>
-					</tbody>
-				</table>
+<!-- 		<div class="card-body"> -->
+<!-- 			<table class="table" id="dataTable" width="100%" cellspacing="0"> -->
+<!-- 					<thead> -->
+<!-- 						<tr> -->
+<!-- 							<th>글번호</th> -->
+<!-- 							<th>게시판</th> -->
+<!-- 							<th>제목</th> -->
+<!-- 							<th>작성일</th> -->
+<!-- 							<th>삭제여부</th> -->
+<!-- 							<th>삭제일</th> -->
+<!-- 						</tr> -->
+<!-- 					</thead> -->
+<!-- 					<tbody> -->
+<!-- 						<tr> -->
+<!-- 							<td>1</td> -->
+<!-- 							<td>취미</td> -->
+<!-- 							<td><a href="#">Architect</a></td> -->
+<!-- 							<td>2011/04/25</td> -->
+<!-- 							<td>X</td> -->
+<!-- 							<td>-</td> -->
+<!-- 						</tr> -->
+<!-- 					</tbody> -->
+<!-- 				</table> -->
 		
-		</div>
-	</div>
+<!-- 		</div> -->
+<!-- 	</div> -->
 
 </div>
 <!-- /.container-fluid -->
