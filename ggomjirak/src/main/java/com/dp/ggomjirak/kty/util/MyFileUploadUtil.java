@@ -17,7 +17,7 @@ public class MyFileUploadUtil {
 //	public static String rootPath;
 //	public static String serverUploadPath_Profile = "profile";
 	
-	public static String serverFilePath = "//192.168.0.217/ggomjirak/";
+	public static String serverFilePath = "D:/ggomjirak/";
 	//public static String serverFilePath = "//C:/upload/ggomjirak/";
 	public static String serverUploadPath_Profile = "profile";
 	
