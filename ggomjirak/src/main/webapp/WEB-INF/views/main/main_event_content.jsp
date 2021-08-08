@@ -26,7 +26,7 @@
 				      <c:if test="${eventVo.e_img != null}">
 				      	<img src="/eventImg/displayImage?filePath=${eventVo.e_img}"
 				      		class="rounded mx-auto d-block" alt="EventImage"
-							width="1200px" height="600px">
+							width="1200px" height="500px">
 				      </c:if>
 				      </td>
 				    </tr>

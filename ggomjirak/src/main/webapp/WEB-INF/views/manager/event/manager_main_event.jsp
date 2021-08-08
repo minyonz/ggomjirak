@@ -162,14 +162,14 @@ $(document).ready(function() {
 		  <thead>
 		    <tr>
 		      <th scope="col">글 번호</th>
-		      <th scope="col">작성자</th>
-		      <th scope="col">제목</th>
-		      <th scope="col">시작일</th>
-		      <th scope="col">종료일</th>
-		      <th scope="col">작성일</th>
-		      <th scope="col">수정일</th>
-		      <th scope="col">첨부파일</th>
-		      <th scope="col">등록 취소</th>
+		      <th>작성자</th>
+		      <th style="width: 30%;">제목</th>
+		      <th>시작일</th>
+		      <th>종료일</th>
+		      <th>작성일</th>
+		      <th>수정일</th>
+		      <th>첨부파일</th>
+		      <th>등록 취소</th>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -178,7 +178,7 @@ $(document).ready(function() {
 		    <tr>
 		      <td scope="row">${event.e_no}</td>
 		      <td>${event.user_id}</td>
-		      <td><a href="/event/managerEventContent?e_no=${event.e_no}">${event.e_title}</a></td>
+		      <td><a href="/event/managerEventContent?e_no=${event.e_no}" class="text-dark">${event.e_title}</a></td>
 		      <td>${event.start_date}</td>
 		      <td>${event.end_date}</td>
 		      <td>${event.reg_date}</td>

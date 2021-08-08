@@ -234,6 +234,7 @@
 	</div>
 </div>
 </div>
+
 <c:if test="${msgDelte == 'success'}">
       <script>
       Swal.fire({

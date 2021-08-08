@@ -66,11 +66,6 @@ $(document).ready(function() {
 												<div class="col-lg-3 col-md-4 col-sm-6" style="float:left;">
 													<div class="featured__item">
 														<div class="featured__item__pic set-bg" data-setbg="/displayImage?filePath=${hobby.main_img}" onclick="location.href='/hobby/content/${hobby.hobby_no}';" style="cursor: pointer;">
-															<ul class="featured__item__pic__hover">
-																<li><a href="#"><i class="fa fa-heart"></i></a></li>
-																<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-																<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-															</ul>
 														</div>
 														<div class="featured__item__text">
 															<h6><a class="short_title" href="/hobby/content/${hobby.hobby_no}">${hobby.hobby_title}</a></h6>
@@ -94,12 +89,17 @@ $(document).ready(function() {
 								<div class="featured__item">
 
 									<div class="featured__item__pic set-bg h-50" style="padding: 10px">
-										<img src="/resources/img/featured/feature-2.jpg" class="rounded-circle" alt="..." />
-										<ul class="featured__item__pic__hover">
-											<li><a href="#"><i class="fa fa-heart"></i></a></li>
-											<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-											<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-										</ul>
+										
+										<a href="/workroom/main/${member.user_id}">
+				                        <c:choose>
+				                        <c:when test="${member4.user_img != null}">
+				                        	<img src="/displayImage?fileName=${member4.user_img}" class="rounded-circle" alt="profile" />
+				                        </c:when>
+				                        <c:otherwise>
+				                        	<img src="/resources/img/noprofile.png" class="rounded-circle" alt="profile" />
+				                        </c:otherwise>
+				                        </c:choose>
+				                        </a>
 									</div>
 									<div class="featured__item__text">
 										<h6><a class="short" href="/workroom/main/${member.user_id}">${member.user_nick}</a></h6>
@@ -121,12 +121,7 @@ $(document).ready(function() {
 											
 												<div class="col-lg-3 col-md-4 col-sm-6" style="float:left;">
 													<div class="featured__item">
-														<div class="featured__item__pic set-bg" data-setbg="/displayImage?filePath=${made.mbm_img}">
-															<ul class="featured__item__pic__hover">
-																<li><a href="#"><i class="fa fa-heart"></i></a></li>
-																<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-																<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-															</ul>
+														<div class="featured__item__pic set-bg" data-setbg="/displayImage?filePath=${made.mbm_img}" onclick="location.href='/mbm/detail/user_id=${made.user_id}?hobby_no=${made.hobby_no}&mbm_no=${made.mbm_no}';" style="cursor: pointer;">
 														</div>
 														<div class="featured__item__text">
 															<h6><a class="short_title col-8" href="/mbm/detail/user_id=${made.user_id}?hobby_no=${made.hobby_no}&mbm_no=${made.mbm_no}">${made.mbm_content}</a></h6>

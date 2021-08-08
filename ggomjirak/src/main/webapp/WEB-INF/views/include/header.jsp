@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="/resources/css/style.css" type="text/css">
 
 
-<title>Blog Home - Start Bootstrap Template</title>
+<title>취미 공유 커뮤니티 | 꼼지락</title>
 <!-- Favicon-->
 <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 <!-- Core theme CSS (includes Bootstrap)-->

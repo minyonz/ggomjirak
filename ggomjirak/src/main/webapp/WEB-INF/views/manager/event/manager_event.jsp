@@ -185,7 +185,7 @@ $(document).ready(function() {
 		      <th scope="col">베너</th>
 		      <th>글 번호</th>
 		      <th>작성자</th>
-		      <th style="width: 10%;">제목</th>
+		      <th style="width: 30%;">제목</th>
 		      <th>시작일</th>
 		      <th>종료일</th>
 		      <th>작성일</th>
