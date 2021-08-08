@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.dp.ggomjirak.kty.service.MessageService;
+import com.dp.ggomjirak.jh.service.MainService;
 //import com.dp.ggomjirak.HomeController;
 import com.dp.ggomjirak.kty.service.MyPageService;
 import com.dp.ggomjirak.kty.util.MyFileUploadUtil;
@@ -36,25 +36,33 @@ import net.sf.json.JSONArray;
 @RequestMapping(value = "/mypage")
 public class MyPageController {
 	
-	@Resource(name="rootPath")
+	@Resource
 	private String rootPath;
 
 	@Inject
 	private MyPageService myPageService;
 	
 	@Inject
-	private MessageService messageService;
+	private MainService mainService;
 
+	
 	// 팀플 - 마이 페이지
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String mypageForm() throws Exception {
+	public String mypageForm(Model model) throws Exception {
+		List<CateVo> category = mainService.selectCate();
+		model.addAttribute("cates", JSONArray.fromObject(category));
 		return "mypage/member_login";
 	}
 
 	// 로그인 폼
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginForm(HttpSession session) throws Exception {
+	public String loginForm(HttpSession session, Model model) throws Exception {
+		
 		session.invalidate(); // 현재 세션 무효화 (2021-08-07 테스트 확인 추가)
+
+		List<CateVo> category = mainService.selectCate();
+		model.addAttribute("cates", JSONArray.fromObject(category));
+		
 		return "mypage/member_login";
 	}
 
@@ -70,8 +78,6 @@ public class MyPageController {
 
 		MemberVo memberVo = myPageService.login(user_id, user_pw);
 		if (memberVo != null) {
-			int notReadCount = messageService.notReadCount(user_id);
-			memberVo.setNotReadCount(notReadCount);
 			msg = "success";
 			// page = "redirect:/mypage/infoForm";
 			page = "redirect:/main/mainHome";
@@ -93,11 +99,11 @@ public class MyPageController {
 				memberVo = (MemberVo) session.getAttribute("loginVo");
 				user_id = memberVo.getUser_id();
 			}
-
 		} else {
 			msg = "fail";
 			page = "redirect:/mypage/login";
 		}
+		
 		rttr.addFlashAttribute("msg", msg);
 		rttr.addFlashAttribute("memberVo", memberVo);
 		model.addAttribute("user_id", user_id);
@@ -112,16 +118,24 @@ public class MyPageController {
 		// List<CateVo> list1 = myPageService.listHobbyCate1();
 		// model.addAttribute("list1", list1);
 		// System.out.println(list1);
+		
+		List<CateVo> category = mainService.selectCate();
+		model.addAttribute("cates", JSONArray.fromObject(category));
+		
 		return "mypage/member_join";
 	}
 
 	// 마이 페이지 - 회원 가입 처리
 	@RequestMapping(value = "/joinRun", method = RequestMethod.POST)
-	public String joinRun(MemberVo memberVo, RedirectAttributes rttr) throws Exception {
+	public String joinRun(MemberVo memberVo, RedirectAttributes rttr, Model model) throws Exception {
 		System.out.println("마이 페이지 컨트롤러의 회원 가입 처리를 시작합니다.");
 		System.out.println("memberVo.toString(): " + memberVo.toString());
 		myPageService.insertMember(memberVo);
 		rttr.addFlashAttribute("msg", "success");
+		
+		List<CateVo> category = mainService.selectCate();
+		model.addAttribute("cates", JSONArray.fromObject(category));
+		
 		// return "redirect:/mypage/infoForm?user_id=" + memberVo.getUser_id();
 		// 회원 가입 처리 후 다시 로그인
 		return "redirect:/mypage/login";
@@ -130,18 +144,26 @@ public class MyPageController {
 	// 마이 페이지 - 회원 가입 - 아이디 중복 확인 버튼 클릭시 비동기 방식으로 요청 확인 부분
 	@RequestMapping(value = "/checkDupId", method = RequestMethod.GET)
 	@ResponseBody
-	public String checkDupId(String user_id) throws Exception {
+	public String checkDupId(String user_id, Model model) throws Exception {
 		System.out.println("마이 페이지 컨트롤러의 아이디 중복 확인 들어갑니다.");
 		boolean result = myPageService.checkDupId(user_id);
+		
+		List<CateVo> category = mainService.selectCate();
+		model.addAttribute("cates", JSONArray.fromObject(category));
+		
 		return String.valueOf(result);
 	}
 
 	// 마이 페이지 - 회원 가입 - 닉네임 중복 확인 버튼 클릭시 비동기 방식으로 요청 확인 부분
 	@RequestMapping(value = "/checkDupNick", method = RequestMethod.GET)
 	@ResponseBody
-	public String checkDupNick(String user_nick) throws Exception {
+	public String checkDupNick(String user_nick, Model model) throws Exception {
 		System.out.println("마이 페이지 컨트롤러의 닉네임 중복 확인 들어갑니다.");
 		boolean result = myPageService.checkDupNick(user_nick);
+		
+		List<CateVo> category = mainService.selectCate();
+		model.addAttribute("cates", JSONArray.fromObject(category));
+				
 		return String.valueOf(result);
 	}
 
@@ -150,6 +172,10 @@ public class MyPageController {
 	public String changeCate(int parent_cate_no, Model model) throws Exception {
 		System.out.println("회원 가입 대분류 선택하면 연결되는 중분류만 나타나는 부분 추가 중...");
 		System.out.println("parent_cate_no:" + parent_cate_no);
+
+		List<CateVo> category = mainService.selectCate();
+		model.addAttribute("cates", JSONArray.fromObject(category));
+		
 		return "mypage/member_join";
 	}
 
@@ -168,6 +194,10 @@ public class MyPageController {
 			model.addAttribute("memberVo", memberVo);
 			model.addAttribute("user_id", user_id);
 		}
+		
+		List<CateVo> category = mainService.selectCate();
+		model.addAttribute("cates", JSONArray.fromObject(category));
+		
 		return "mypage/member_info";
 	}
 
@@ -182,6 +212,10 @@ public class MyPageController {
 			String user_id = memberVo.getUser_id();
 			model.addAttribute("user_id", user_id);
 		}
+
+		List<CateVo> category = mainService.selectCate();
+		model.addAttribute("cates", JSONArray.fromObject(category));
+
 		return "mypage/member_modify";
 	}
 
@@ -281,16 +315,14 @@ public class MyPageController {
 		// file.getBytes());
 		// String filePath = MyFileUploadUtil.uploadFile("//192.168.0.217/git2",
 //		String filePath = MyFileUploadUtil.uploadFile(MyFileUploadUtil.serverFilePath , originalFilename, file.getBytes());
-//		String filePath = MyFileUploadUtil.uploadFile(MyFileUploadUtil.serverFilePath 
-//													+ MyFileUploadUtil.serverUploadPath_Profile, 
-//				                                      originalFilename, file.getBytes());
-
+		String filePath = MyFileUploadUtil.uploadFile(MyFileUploadUtil.serverFilePath 
+													+ MyFileUploadUtil.serverUploadPath_Profile, 
+														originalFilename, file.getBytes());
+//
 		// String filePath =
 		// MyFileUploadUtil.uploadFile(MyFileUploadUtil.serverUploadPath_Profile,
 		// originalFilename, file.getBytes());
-		String filePath = MyFileUploadUtil.uploadFile(MyFileUploadUtil.serverUploadPath_Profile, originalFilename,
-				file.getBytes());
-
+		//String filePath = MyFileUploadUtil.uploadFile(rootPath, originalFilename, file.getBytes());
 		System.out.println("filePath:" + filePath);
 		// originalFilename, file.getBytes());
 		return filePath;
@@ -301,8 +333,10 @@ public class MyPageController {
 	@ResponseBody
 	public byte[] displayImage(String fileName) throws Exception {
 		System.out.println("마이 페이지 컨트롤러의 프로필 썸네일 이미지 요청 처리 중...");
-//			FileInputStream fis = new FileInputStream(fileName);
-		FileInputStream fis = new FileInputStream(rootPath + "/" + fileName);
+		FileInputStream fis = new FileInputStream(fileName);
+		//FileInputStream fis = new FileInputStream(MyFileUploadUtil.serverFilePath + "/" + fileName);
+		//FileInputStream fis = new FileInputStream(rootPath + "/" + fileName);
+		//System.out.println("rootPath + fileName: " + rootPath + "/" + fileName);
 		byte[] bytes = IOUtils.toByteArray(fis);
 		fis.close();
 		return bytes;

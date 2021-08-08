@@ -91,6 +91,7 @@ $(document).ready(function(){
 				//이미지인 경우
 				if(isImage(fileName)){
 					//img.attr("src", "http://localhost/mypage/displayImage?fileName=" + receivedData);
+					//img.attr("src", "/mypage/displayImage?fileName=" + receivedData);
 					img.attr("src", "/mypage/displayImage?fileName=" + receivedData);
 					console.log("receivedData: " + receivedData);
 				}
@@ -111,7 +112,7 @@ $(document).ready(function(){
 		console.log("클릭");
 		var fileName = $(this).attr("href");
 		console.log(fileName);
-		var url = "/deleteFile?fileName=" + fileName;
+		var url = "/mypage/deleteFile?fileName=" + fileName;
 		$.get(url, function(rData){
 			if(rData == "success"){
 				that.parent().remove();
@@ -372,9 +373,7 @@ $(document).ready(function(){
 									<label>첨부할 파일을 드래그 &amp; 드롭하세요.</label>
 									<div id="fileDrop"></div>
 							</div>
-							<div id="uploadedList">
-							
-							</div>
+							<br>
 							<!-- <div class="form-group"> -->
 							<!-- 상단 폼전송 클릭에서 맞추는 부분 var div = $("#uploadedList .divUploaded");  -->
 							<div style ="display:none" class="divUploaded"> 
@@ -383,6 +382,10 @@ $(document).ready(function(){
 									<span>default</span> 
 									<a href = "#" class="a_times">&times;</a>
 							</div>
+							<div id="uploadedList">
+							
+							</div>
+							<br>
 							<div class="form-group">
 								<label for="user_hobbys">관심 취미 선택</label>
 							</div>
@@ -435,8 +438,8 @@ $(document).ready(function(){
 								<label for="cate_etc">관심 취미 직접 입력</label>
 								<input type="text" class="form-control" id="cate_etc" name="cate_etc" value="${memberVo.cate_etc}" />
 							</div>
-							<br><br>
-							<!-- 상단 폼전송 클릭에서 맞추는 부분 var div = $("#uploadedList .divUploaded");  -->
+							<!-- <br><br>
+							상단 폼전송 클릭에서 맞추는 부분 var div = $("#uploadedList .divUploaded"); 
 							<div style ="display:none" class="divUploaded"> 
 							<img height = "100" src="/resources/img/default_image.png"
 								class ="img-rounded"/><br>
@@ -445,7 +448,7 @@ $(document).ready(function(){
 							</div>
 							<div id ="uploadedList">
 							
-							</div>
+							</div> -->
 							<div style="text-align: center;">
 								<button type="submit" id="btnProfileSave"class="btn btn-primary">프로필 저장</button>
 							</div>
