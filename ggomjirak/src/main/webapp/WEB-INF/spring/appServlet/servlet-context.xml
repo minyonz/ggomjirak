@@ -38,7 +38,6 @@
 	<!-- 업로드 경로 -->
 	<beans:bean
 		id="rootPath" class="java.lang.String">
-
 		<beans:constructor-arg value="C:/ggomjirak" />	
 	</beans:bean>
 	
