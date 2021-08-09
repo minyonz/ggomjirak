@@ -18,10 +18,10 @@ $(document).ready(function() {
 <div class="container-fluid">
 <form action="/manager/managerMemberContentModifyRun" method="post">
 <input type="hidden" id="user_id" name="user_id" value="${memberVo.user_id}">
-<input type="text" id="cate_no1" name="cate_no1" value="${memberVo.cate_no1}">
-<input type="text" id="cate_no2" name="cate_no2" value="${memberVo.cate_no2}">
-<input type="text" id="cate_no3" name="cate_no3" value="${memberVo.cate_no3}">
-<input type="text" id="cate_etc" name="cate_etc" value="${memberVo.cate_etc}">
+<input type="hidden" id="cate_no1" name="cate_no1" value="${memberVo.cate_no1}">
+<input type="hidden" id="cate_no2" name="cate_no2" value="${memberVo.cate_no2}">
+<input type="hidden" id="cate_no3" name="cate_no3" value="${memberVo.cate_no3}">
+<input type="hidden" id="cate_etc" name="cate_etc" value="${memberVo.cate_etc}">
 
 	<!-- Page Heading -->
 	<div style="display: flex;">
@@ -62,7 +62,7 @@ $(document).ready(function() {
 							<h6><strong>프로필 이미지</strong></h6>
 							<c:choose>
 	                        <c:when test="${memberVo.user_img != null}">
-	                        	<img src="/displayImage?fileName=${memberVo.user_img}" class="rounded-circle"
+	                        	<img src="/displayImage?filePath=${memberVo.user_img}" class="rounded-circle"
 									alt="..." width="150px" height="150px" style="margin: 20px">
 	                        </c:when>
 	                        <c:otherwise>

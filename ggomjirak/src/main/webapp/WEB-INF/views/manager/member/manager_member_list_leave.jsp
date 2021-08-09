@@ -56,6 +56,15 @@ $(document).ready(function() {
 		$("#frmPaging").attr("action", "/manager/managerMemberContent");
 		$("#frmPaging").submit();
 	});
+	$(".btnCancel").click(function() {
+		var user_id = $(this).attr("data-id")
+		var result = confirm(user_id + "님을 탈퇴 취소 시키시겠습니까?");
+		if(result){
+		    $(this).attr("href", "/manager/managerCancelMemberDeleteRun?user_id=" + user_id);
+		}else{
+		    return false;
+		}
+	});
 });
 </script>
 <form id="frmPaging" action="/manager/managerMemberListLeave" method="get">
@@ -163,7 +172,7 @@ $(document).ready(function() {
 							<td>${leaveList.is_del}</td>
 							<td>${leaveList.del_date}</td>
 							<td>
-								<a href="/manager/managerCancelMemberDeleteRun?user_id=${leaveList.user_id}" type="button" class="btn btn-danger orange_background">취소</a>
+								<a data-id="${leaveList.user_id}" type="button" class="btnCancel btn btn-danger orange_background">취소</a>
 							</td>
 						</tr>
 					</c:forEach>
