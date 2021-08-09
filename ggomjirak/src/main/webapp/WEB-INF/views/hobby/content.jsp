@@ -92,8 +92,6 @@ $(document).ready(function() {
 });
 
 </script>
-<title>상세보기</title>
-
 <style>
 
 .selectbox {
@@ -676,7 +674,9 @@ figure[data-ke-type='opengraph'] .og-host {
 		});
 	</script>
 </c:if>
-	<c:set var="m_no" value="m_no=${ms.m_no}" />
+	<c:if test="${not empty ms.m_no }">
+		<c:set var="m_no" value="m_no=${ms.m_no}" />
+	</c:if>
 	<c:if test="${not empty ms.time }">
 		<c:set var="time" value="&time=${ms.time}" />
 	</c:if>
@@ -711,7 +711,7 @@ figure[data-ke-type='opengraph'] .og-host {
 		<div class="body bottom">
 		<!-- 카테고리 -->
 			<div style="display:flex;">
-				<div style="text-align: center; margin-left: 46%;padding-left: auto;">
+				<div style="text-align: center; margin-left: 44%;padding-left: auto;">
 				<span class="green_background btn btn-sm" style="cursor:default; color:white;">
 					${hobbyVo.l_cate_name}
 				</span>
@@ -1539,7 +1539,7 @@ function doDelete() {
 		showCancelButton: true,
 	}).then(function(result) {
 		if(result.isConfirmed) {
-			location.href = "${contextPath}/hobby/delete/${hobbyVo.hobby_no}?${m_no}${time}${cost}${level}${sort}${page}";
+			location.href = "/hobby/delete/${hobbyVo.hobby_no}?${m_no}${time}${cost}${level}${sort}${page}";
 		} 
 	});
 }

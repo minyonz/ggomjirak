@@ -22,8 +22,6 @@ $(document).ready(function() {
 });
 
 </script>
-<title>준비물 조회</title>
-
 <style>
 
 /* 화면 width 1300px부터 이렇게 하겠다.라는 뜻*/
@@ -168,6 +166,9 @@ a {
       Swal.fire({
          icon : "success",
          title : "삭제 성공",
+         iconColor: "#1f5e43",
+         confirmButtonText: "확인",
+		 confirmButtonColor: "#1f5e43"
       }).then(function(){close()});
       </script>
 </c:if>
@@ -176,6 +177,9 @@ a {
       Swal.fire({
          icon : "error",
          title : "삭제 실패",
+         iconColor: "#1f5e43",
+         confirmButtonText: "확인",
+		 confirmButtonColor: "#1f5e43"
       }).then(function(){close()});
       </script>
 </c:if>
@@ -405,7 +409,7 @@ $(".share").click(function(e) {
 	var textarea = document.createElement("textarea");
 	document.body.appendChild(textarea);
 	console.log("${contextPath}");
-	textarea.value = "http://localhost/${pageContext.request.contextPath}" + url;
+	textarea.value = "http://localhost${pageContext.request.contextPath}" + url;
 	textarea.select();
 	document.execCommand("copy");
 	document.body.removeChild(textarea);
