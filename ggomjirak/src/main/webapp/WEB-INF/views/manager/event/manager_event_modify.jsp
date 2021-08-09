@@ -71,7 +71,7 @@ $(document).ready(function() {
 							id="mainImg_file" accept=".gif, .jpg, .png"
 							onchange="previewMainImg(this);"
 							style="display: none; width: 0px; height: 0px; font-size: 0px;" />
-						<input type="hidden" name="e_img" id="e_img"  required/>
+						<input type="hidden" name="e_img" id="e_img" value="${eventVo.e_img}" required/>
 						<a id="btnDelMainImg" href="javascript:delMainImg()" class="btn_del"
 							style="display: none; position: absolute; top: 0; right: 0.1rem;"></a>
 				</div>
