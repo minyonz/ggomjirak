@@ -100,6 +100,50 @@ $(document).ready(function() {
 		</div>
 	</div>
 </div>
+<c:if test="${msgDelete == 'success'}">
+      <script>
+      Swal.fire({
+         icon : "success",
+         title : "삭제 성공",
+         iconColor: "#1f5e43",
+         confirmButtonText: "확인",
+       confirmButtonColor: "#1f5e43"
+      }).then(function(){close()});
+      </script>
+</c:if>
+<c:if test="${msgDelete == 'fail'}">
+      <script>
+      Swal.fire({
+         icon : "error",
+         title : "삭제 실패",
+         iconColor: "#1f5e43",
+         confirmButtonText: "확인",
+       confirmButtonColor: "#1f5e43"
+      }).then(function(){close()});
+      </script>
+</c:if>
+<c:if test="${msgInsert == 'success'}">
+      <script>
+      Swal.fire({
+         icon : "success",
+         title : "등록 성공",
+         iconColor: "#1f5e43",
+         confirmButtonText: "확인",
+       confirmButtonColor: "#1f5e43"
+      }).then(function(){close()});
+      </script>
+</c:if>
+<c:if test="${msgInsert == 'fail'}">
+      <script>
+      Swal.fire({
+         icon : "error",
+         title : "등록 실패",
+         iconColor: "#1f5e43",
+         confirmButtonText: "확인",
+       confirmButtonColor: "#1f5e43"
+      }).then(function(){close()});
+      </script>
+</c:if>
 <div class="col-md-2"></div>
 </div>
 </div>

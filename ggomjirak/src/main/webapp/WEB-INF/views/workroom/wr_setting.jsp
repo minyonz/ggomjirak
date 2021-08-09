@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../include/header.jsp"%>
-<script src="/resources/js/sweetalert2.min.js"></script>
-<link rel="stylesheet" href="/resources/css/sweetalert2.min.css">
 <script>
 $(document).ready(function() {
 	
