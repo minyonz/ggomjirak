@@ -139,13 +139,13 @@ $(document).ready(function() {
 							<p class="text-center" style="font-size:12px; margin-top:-20px">${memberInfo.name}</p>
 							<p class="card-text text-center" style="font-size:13px;"> 
 								<c:if test="${workroomVo.cate_no1 ne '선택안함'}">
-									${workroomVo.cate_no1}
+									[${workroomVo.cate_no1}]
 								</c:if>
 								<c:if test="${workroomVo.cate_no2 ne '선택안함'}">
-									${workroomVo.cate_no2}
+									[${workroomVo.cate_no2}]
 								</c:if>
 								<c:if test="${workroomVo.cate_no3 ne '선택안함'}">
-								    ${workroomVo.cate_no3} 
+								    [${workroomVo.cate_no3}] 
 								</c:if>
 							</p>
 							<div style="text-align: center;">

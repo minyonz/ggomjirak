@@ -39,7 +39,7 @@
 	<beans:bean
 		id="rootPath" class="java.lang.String">
 
-		<beans:constructor-arg value="C:/ggomjirak" />	
+		<beans:constructor-arg value="//192.168.0.217/ggomjirak" />	
 	</beans:bean>
 	
 	<beans:bean class="com.dp.ggomjirak.kty.interceptor.AuthInterceptor"
