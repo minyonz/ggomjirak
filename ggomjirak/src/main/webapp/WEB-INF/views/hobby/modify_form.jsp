@@ -877,7 +877,7 @@ margin-right: 15px;
 								<input type="file" id="multifile_step"  
 									style="display:none;" accept=".gif, .jpg, .png, .jpeg" multiple>
 								<button type="button" onclick="document.getElementById('multifile_step').click();"
-									class="btn btn-outline-light btn-sm green_background" style="margin-left:10px; font-size:9px;">
+									class="btn btn-sm green_background" style="margin-left:10px; font-size:9px; color:white;">
 									<span class="fa fa-plus"> 순서 사진 한번에 추가</span>
 								</button>
 							</div>
@@ -1098,8 +1098,8 @@ margin-right: 15px;
 				 <!-- 저장/완료/닫기 버튼 부분 -->
 				 <div class="cont_box">
 						<div style="text-align: center;">
-							<button type="button" onclick="doSubmit();" class="btn btn-outline-light btn-lg green_background">완료</button>
-							<button type="button" onclick="history.back();" class="btn btn-outline-light btn-lg green_background">닫기</button>
+							<button type="button" onclick="doSubmit();" class="btn btn-lg green_background" style="color:white;">완료</button>
+							<button type="button" onclick="doClose();" class="btn btn-lg green_background" style="color:white;">닫기</button>
 						</div>
 				 </div>
 				 <!-- //저장/완료/닫기 버튼 -->
@@ -1915,6 +1915,26 @@ function doSubmit() {
 		}
 	});
     
+}
+
+function doClose() {
+	console.log("확인");
+	Swal.fire({
+		text: '수정을 취소 하시겠습니까?', 
+		allowOutsideClick: false,
+		iconColor: "#1f5e43",
+		icon: 'question', 
+		confirmButtonText: "확인",
+		confirmButtonColor: "#1f5e43",
+		cancelButtonText: "취소",
+		showCancelButton: true,
+	}).then(function(result) {
+		if(result.isConfirmed) {
+			history.back();
+		} else {
+			return false;
+		}
+	});
 }
 </script>
 </body>
