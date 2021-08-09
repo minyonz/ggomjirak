@@ -103,17 +103,14 @@ public class HobbyController {
 		System.out.println(hobbyVo);
 		hobbyVo.setUser_id(loginVo.getUser_id());
 		boolean result = hobbyService.updateHobbyArticle(hobbyVo);
-		String url = null;
+		String url = "redirect:/hobby/content/" + hobbyVo.getHobby_no();;
 		
 		if(result == true) {
 			swalIcon = "success";
 			swalTitle = "수정 성공";
-			url = "redirect:/hobby/content/" + hobbyVo.getHobby_no();
 		} else {
 			swalIcon = "error";
 			swalTitle = "수정 실패";
-			// 이전페이지의 URL 
-			url = "redirect:" + request.getHeader("referer");
 		}
 		
 		rttr.addFlashAttribute("swalIcon",swalIcon);
@@ -172,7 +169,7 @@ public class HobbyController {
 		int result = hobbyService.deleteHobbyArticle(hobby_no);
 		logger.info("delete");
 		System.out.println("ms:" + ms);
-		String url = null;
+		String url = "redirect:/hobby/content/" + hobby_no;
 		String msgDelete = null;
 		
 		String  paging = null;
@@ -183,11 +180,8 @@ public class HobbyController {
 					url = "redirect:/workroom/hobby/" + loginVo.getUser_id();
 				} else {
 					msgDelete = "fail";
-					// 이전페이지의 URL 
-					url = "redirect:" + request.getHeader("referer");
 				}
 			} else {
-				
 				if (ms.getSort() != null) {
 					paging = "m_no=" + ms.getM_no() +
 							"&time=" + ms.getTime() +
@@ -208,8 +202,6 @@ public class HobbyController {
 					url = "redirect:/hobby/material/search?" + paging;
 				} else {
 					msgDelete = "fail";
-					// 이전페이지의 URL 
-					url = "redirect:" + request.getHeader("referer");
 				}
 			}
 		}

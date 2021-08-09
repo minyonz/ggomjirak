@@ -3,8 +3,9 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,java
 
 
-
-
+servlet-context.xml
+root-context.xml
+serv
 */src/test/
 Servers/
 
