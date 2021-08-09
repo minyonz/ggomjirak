@@ -32,16 +32,18 @@ public class WorkroomSetController {
 	// 작업실 설정 메인
 	@RequestMapping(value="/main", method=RequestMethod.GET)
 	public String wrSetting(Model model, HttpSession session) throws Exception {
-		MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");
-		String user_id = memberVo.getUser_id();
-		WorkroomVo workroomVo = workroomSetService.getWrSet(user_id);
-		List<FollowVo> followingList = workroomSetService.followingList(user_id);
-		List<LikeBookmarkVo> likeList = workroomSetService.likeList(user_id);
-		wrController.category(model);
-		model.addAttribute("page_id", user_id);
-		model.addAttribute("followingList", followingList);
-		model.addAttribute("likeList", likeList);
-		model.addAttribute("workroomVo", workroomVo);
+		if (session.getAttribute("loginVo") != null) {
+			MemberVo memberVo = (MemberVo)session.getAttribute("loginVo");
+			String user_id = memberVo.getUser_id();
+			WorkroomVo workroomVo = workroomSetService.getWrSet(user_id);
+			List<FollowVo> followingList = workroomSetService.followingList(user_id);
+			List<LikeBookmarkVo> likeList = workroomSetService.likeList(user_id);
+			wrController.category(model);
+			model.addAttribute("user_id", user_id);
+			model.addAttribute("followingList", followingList);
+			model.addAttribute("likeList", likeList);
+			model.addAttribute("workroomVo", workroomVo);
+		}
 		return "workroom/wr_setting";
 	}
 	

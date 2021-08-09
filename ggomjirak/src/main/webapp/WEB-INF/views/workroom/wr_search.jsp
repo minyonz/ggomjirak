@@ -43,7 +43,7 @@ $(document).ready(function() {
 			<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
 				<div class="featured__item">
 					<div class="featured__item__pic set-bg"
-						data-setbg="/displayImage?filePath=${hobbyVo.user_img}">
+						data-setbg="/displayImage?filePath=${hobbyVo.main_img}">
 					</div>
 					<div class="featured__item__text">
 						<h6>
