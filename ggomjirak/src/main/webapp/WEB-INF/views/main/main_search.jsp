@@ -93,8 +93,8 @@ $(document).ready(function() {
 										
 										<a href="/workroom/main/${member.user_id}">
 				                        <c:choose>
-				                        <c:when test="${member4.user_img != null}">
-				                        	<img src="/displayImage?filePath=${member4.user_img}" class="rounded-circle" alt="profile" />
+				                        <c:when test="${member.user_img != null}">
+				                        	<img src="/displayImage?filePath=${member.user_img}" class="rounded-circle" alt="profile" />
 				                        </c:when>
 				                        <c:otherwise>
 				                        	<img src="/resources/img/noprofile.png" class="rounded-circle" alt="profile" />

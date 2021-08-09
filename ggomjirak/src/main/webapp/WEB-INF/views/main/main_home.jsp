@@ -239,7 +239,6 @@
                         <c:choose>
                         <c:when test="${member3.user_img != null}">
                         	<img src="/displayImage?filePath=${member3.user_img}" class="rounded-circle" alt="profileImage"/>
-                       
                         </c:when>
                         <c:otherwise>
                         	<img src="/resources/img/noprofile.png" class="rounded-circle" alt="profileImage"/>
