@@ -318,8 +318,8 @@ a {
             	</c:forEach>
             </div>
             <div class="myPagination" style="text-align: center;">
-            <c:set var="prev" value="${ms.endPage - ms.PAGE_BLOCK}"/>
-            <c:set var="next" value="${ms.startPage + ms.PAGE_BLOCK}"/>
+            <c:set var="prev" value="${ms.startPage - 1}"/>
+            <c:set var="next" value="${ms.endPage + 1}"/>
             	<c:if test="${prev > 0}">
                		 <a href="search?${m_no}${time}${cost}${level}${sort}&page=${prev}"><i class="fa fa-long-arrow-left"></i></a>
                 </c:if>
