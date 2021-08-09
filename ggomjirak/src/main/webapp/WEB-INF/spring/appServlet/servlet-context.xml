@@ -38,12 +38,8 @@
 	<!-- 업로드 경로 -->
 	<beans:bean
 		id="rootPath" class="java.lang.String">
-<<<<<<< HEAD
 		<beans:constructor-arg value="//192.168.0.217/ggomjirak" />	
-=======
-		<beans:constructor-arg value="D:/ggomjirak" />	
 
->>>>>>> edc010ce42104198e970fc044b5b300dbda6da79
 	</beans:bean>
 	
 	<!-- 인터셉터 -->
