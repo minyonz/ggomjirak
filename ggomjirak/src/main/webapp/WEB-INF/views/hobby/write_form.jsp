@@ -1005,7 +1005,7 @@ function previewMainImg(targetObj) {
 	var file = targetObj.files[0];
 	
 	// 이미지파일체크, 파일 사이즈 체크
-	var imgJ = /(.*?)\.(jpg|jpeg|png|gif)$/;
+	var imgJ = /(.*?)\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/;
 	var maxSize = 10 * 1024 * 1024;
     
 	console.log(file.name);
@@ -1093,7 +1093,7 @@ function previewMakeStepImg(targetObj, seq) {
 	var file = targetObj.files[0];
 	
 	// 이미지파일체크, 파일 사이즈 체크   
-	var imgJ = /(.*?)\.(jpg|jpeg|png|gif)$/;
+	var imgJ = /(.*?)\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/;
 	var maxSize = 10 * 1024 * 1024;
     
 	console.log(file.name);
@@ -1168,7 +1168,7 @@ multifile_step.onchange = function () {
 	}
 	
 	// 이미지파일체크, 파일 사이즈 체크   
-	var imgJ = /(.*?)\.(jpg|jpeg|png|gif)$/;
+	var imgJ = /(.*?)\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/;
 	var maxSize = 10 * 1024 * 1024;
     
 	console.log(files);
@@ -1282,7 +1282,7 @@ function previewComplImg(targetObj, num) {
 	var file = targetObj.files[0];
 	
 	// 이미지파일체크, 파일 사이즈 체크   
-	var imgJ = /(.*?)\.(jpg|jpeg|png|gif)$/;
+	var imgJ = /(.*?)\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/;
 	var maxSize = 10 * 1024 * 1024;
     
 	console.log(file.name);

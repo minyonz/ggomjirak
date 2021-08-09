@@ -663,6 +663,9 @@ figure[data-ke-type='opengraph'] .og-host {
 		Swal.fire({
 			icon : "${swalIcon}",
 			title : "${swalTitle}",
+	        iconColor: "#1f5e43",
+	        confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43"
 		}).then(function(){close()});
 	</script>
 </c:if>
@@ -671,6 +674,9 @@ figure[data-ke-type='opengraph'] .og-host {
 		Swal.fire({
 			icon : "${swalIcon}",
 			title : "${swalTitle}",
+			iconColor: "#1f5e43",
+		    confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43"
 		});
 	</script>
 </c:if>
@@ -768,8 +774,8 @@ figure[data-ke-type='opengraph'] .og-host {
 							<div class="row sm_tit">
 								작가
 							</div>
-							<a href="/workroom/main/${hobbyVo.user_id}">
 							<div style="margin-top: 10px; position: relative;">
+							<a href="/workroom/main/${hobbyVo.user_id}">
 								<div class="article_profile_cont">
 									<c:choose>
 										<c:when test="${not empty hobbyVo.user_img}">
@@ -790,8 +796,8 @@ figure[data-ke-type='opengraph'] .og-host {
 												">
 										${hobbyVo.user_nick} >
 									</span>
-							</div>
 							</a>
+							</div>
 						</div>
 						<div class="time_row">
 							<div class="row sm_tit">
@@ -1206,8 +1212,8 @@ figure[data-ke-type='opengraph'] .og-host {
 				<!-- //review-container -->
 				<!-- pagination-container -->
 				   <div class="myPagination" style="text-align: center; margin-top: 1.5rem;">
-		            <c:set var="prev" value="${rp.endPage - rp.PAGE_BLOCK}"/>
-		            <c:set var="next" value="${rp.startPage + rp.PAGE_BLOCK}"/>
+		            <c:set var="prev" value="${rp.startPage - 1}"/>
+		            <c:set var="next" value="${rp.endPage + 1}"/>
 		            	<c:if test="${prev > 0}">
 		               		 <a href="?${rLevel}&review_page=${prev}#madeByMe"><i class="fa fa-long-arrow-left"></i></a>
 		                </c:if>
