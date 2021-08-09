@@ -663,6 +663,9 @@ figure[data-ke-type='opengraph'] .og-host {
 		Swal.fire({
 			icon : "${swalIcon}",
 			title : "${swalTitle}",
+	        iconColor: "#1f5e43",
+	        confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43"
 		}).then(function(){close()});
 	</script>
 </c:if>
@@ -671,6 +674,9 @@ figure[data-ke-type='opengraph'] .og-host {
 		Swal.fire({
 			icon : "${swalIcon}",
 			title : "${swalTitle}",
+			iconColor: "#1f5e43",
+		    confirmButtonText: "확인",
+			confirmButtonColor: "#1f5e43"
 		});
 	</script>
 </c:if>

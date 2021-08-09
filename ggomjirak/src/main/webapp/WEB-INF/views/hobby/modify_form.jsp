@@ -1212,7 +1212,7 @@ function previewMainImg(targetObj) {
 		"success" : function(filePath) {
 			console.log("filePath:" + filePath);
 			// 1. hidden에 값 넣기 
-			$("#preview_main.png").val(filePath);
+			$("#main_img").val(filePath);
 			//2. 프리뷰이미지 보여주기 
 			var reader = new FileReader();
 			reader.readAsDataURL(file);
