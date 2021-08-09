@@ -146,7 +146,7 @@ $(document).ready(function() {
 				</div>
 				<div class="col-md-3">
 					<div style="text-align: right">
-					<c:if test="${user_id != null || user_id == page_id}">
+					<c:if test="${user_id == page_id}">
 						<a href="/mbm/update?hobby_no=${hobbyVo.hobby_no}&mbm_no=${madebymeVo.mbm_no}" style="margin-right: 5px">수정</a> 
 						<a href="javascript:doDelete();">삭제</a>
 					</c:if>

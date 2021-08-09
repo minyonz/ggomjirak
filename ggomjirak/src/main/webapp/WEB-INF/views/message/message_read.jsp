@@ -72,8 +72,8 @@ $(document).ready(function() {
 				<div class="col-md-8">
 					<!-- 메인 페이지에서 가운데  부분 시작-->
 					<div class="row">
-					<div class="col-md-3"></div>
-						<div class="col-md-6">
+					<div class="col-md-2"></div>
+						<div class="col-md-8">
 						<!-- 내부 패널 메인 -->
 						<div class="checkout__order">
 							<div class="workroom_box row" style="height: 39px; display:flex;">
@@ -119,7 +119,7 @@ $(document).ready(function() {
 							</div>
 							
 						</div> <!-- </div class="col-md-6"> --> 
-						<div class="col-md-3"></div>
+						<div class="col-md-2"></div>
 					</div> <!-- </div class="row"> -->
 					<!-- 메인 페이지에서 가운데 부분 끝 -->
 				</div> 

@@ -166,7 +166,7 @@ function delStoryImg() {
 	$.get(url, function(rData) {
 		if (rData == "success") {
 			$("#st_img").val("");
-			$("#previewImg_story").attr("src", "${contextPath}/resources/images/preview_img.jpg");
+			$("#previewImg_story").attr("src", "${contextPath}/resources/images/preview_img.png");
 			$("#btnDelStoryImg").css("display", "none");
 		}
 	})

@@ -248,7 +248,7 @@ function delMbmImg() {
 	$.get(url, function(rData) {
 		if (rData == "success") {
 			$("#mbm_img").val("");
-			$("#previewImg_mbm").attr("src", "${contextPath}/resources/images/preview_img.jpg");
+			$("#previewImg_mbm").attr("src", "${contextPath}/resources/images/preview_img.png");
 			$("#btnDelMbmImg").css("display", "none");
 		}
 	})

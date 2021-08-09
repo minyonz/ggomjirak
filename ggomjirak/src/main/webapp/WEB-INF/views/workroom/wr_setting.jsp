@@ -101,7 +101,7 @@ $(document).ready(function() {
 		console.log(url);
 		$.get(url, function(rData) {
 			if (rData.unFollow) {
-				that.replaceWith("<button type='button' class='btn btn-primary follow'>팔로우</button>");
+				that.replaceWith("<button type='button' class='btn green_background white_color follow'>팔로우</button>");
 			}
 		});
 	});
@@ -114,7 +114,7 @@ $(document).ready(function() {
 		console.log(url);
 		$.get(url, function(rData) {
 			if (rData.follow) {
-				that.replaceWith("<button type='button' class='btn btn-outline-primary unfollow'>언팔로우</button>");
+				that.replaceWith("<button type='button' class='btn btn-outline-warning unfollow' style='color:#F39C12'>언팔로우</button>");
 			}
 		});
 	});
@@ -158,7 +158,16 @@ $(document).ready(function() {
 									<div class="col-md-8">
 										<div class="blog__details__author">
 											<div class="blog__details__author__pic">
-												<a href="#"><img src="/displayImage?filePath=${followVo.user_img}" alt=""></a>
+											<a href="/workroom/main/${followVo.user_id}">
+											<c:choose>
+												<c:when test="${followVo.user_img != null}">
+													<img src="/displayImage?filePath=${followVo.user_img}" alt="profile">
+												</c:when>
+												<c:otherwise>
+													<img src="/resources/img/noprofile.png" alt="profile">
+												</c:otherwise>
+											</c:choose>
+												</a>
 											</div>
 											<div class="blog__details__author__text">
 												<span data-id="${followVo.following}">${followVo.user_nick}</span>
@@ -167,7 +176,7 @@ $(document).ready(function() {
 									</div>
 									<div class="col-md-4">
 										<div style="text-align: right" class="divUnfollow">
-											<button type="button" class="btn btn-outline-primary unfollow">언팔로우</button> 
+											<button type="button" class="btn btn-outline-warning unfollow" style="color:#F39C12">언팔로우</button> 
 										</div>
 									</div>
 								</div>
@@ -192,7 +201,16 @@ $(document).ready(function() {
 									<div class="col-md-5">
 										<div class="blog__details__author">
 											<div class="blog__details__author__pic">
-												<a href="/workroom/main/${likeBmVo.user_id}"><img src="/displayImage?filePath=${likeBmVo.user_img}" alt=""></a>
+												<a href="/workroom/main/${likeBmVo.user_id}">
+												<c:choose>
+													<c:when test="${likeBmVo.user_img != null}">
+														<img src="/displayImage?filePath=${likeBmVo.user_img}" alt="profile">														
+													</c:when>
+													<c:otherwise>
+														<img src="/resources/img/noprofile.png" alt="profile">
+													</c:otherwise>
+												</c:choose>
+												</a>
 											</div>
 											<div class="blog__details__author__text">
 												<span>${likeBmVo.user_nick}</span>

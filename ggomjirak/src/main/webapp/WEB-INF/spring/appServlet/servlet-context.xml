@@ -38,22 +38,10 @@
 	<!-- 업로드 경로 -->
 	<beans:bean
 		id="rootPath" class="java.lang.String">
-<<<<<<< HEAD
 
 		<beans:constructor-arg value="//192.168.0.217/ggomjirak" />	
-=======
-		<beans:constructor-arg value="C:/ggomjirak" />	
-
->>>>>>> 6433717d3a7c66ed2164d0b6ac864a95f63a7ccc
 	</beans:bean>
 	
-	<!-- 인터셉터 -->
-
-<!-- 	<beans:bean class="com.kh.sample01.interceptor.SampleInterceptor" -->
-<!-- 		id="sampleInterceptor"></beans:bean> -->
-<!-- 	<beans:bean class="com.kh.sample01.interceptor.AuthInterceptor" -->
-<!-- 		id="authInterceptor"></beans:bean> -->
-
 	<beans:bean class="com.dp.ggomjirak.kty.interceptor.AuthInterceptor"
 		id="authInterceptor"></beans:bean>
 	
