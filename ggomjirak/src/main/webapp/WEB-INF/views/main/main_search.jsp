@@ -67,6 +67,7 @@ $(document).ready(function() {
 													<div class="featured__item">
 														<div class="featured__item__pic set-bg" data-setbg="/displayImage?filePath=${hobby.main_img}" onclick="location.href='/hobby/content/${hobby.hobby_no}';" style="cursor: pointer;">
 														</div>
+														
 														<div class="featured__item__text">
 															<h6><a class="short_title" href="/hobby/content/${hobby.hobby_no}">${hobby.hobby_title}</a></h6>
 															<h5><a class="short" href="/workroom/main/${hobby.user_id}">${hobby.user_nick}</a></h5>

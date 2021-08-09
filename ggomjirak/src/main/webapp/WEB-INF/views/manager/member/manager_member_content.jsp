@@ -61,6 +61,7 @@ $(document).ready(function() {
 							<c:choose>
 	                        <c:when test="${memberVo.user_img != null}">
 	                        	<img src="/displayImage?filePath=${memberVo.user_img}" class="rounded-circle"
+	                        	
 									alt="..." width="150px" height="150px" style="margin: 20px">
 	                        </c:when>
 	                        <c:otherwise>
