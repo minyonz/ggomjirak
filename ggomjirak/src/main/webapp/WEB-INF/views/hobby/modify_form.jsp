@@ -620,7 +620,6 @@ margin-right: 15px;
 .side-right { grid-area: side-right; }
  }
 </style>
-<title>수정하기</title>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>

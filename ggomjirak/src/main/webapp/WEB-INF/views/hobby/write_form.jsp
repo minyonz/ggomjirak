@@ -545,10 +545,19 @@ margin-right: 15px;
  
  
 </style>
-<title>취미 글쓰기</title>
 </head>
 <body>
-
+<c:if test="${msgInsert == 'fail'}">
+      <script>
+      Swal.fire({
+         icon : "error",
+         title : "등록 실패",
+         iconColor: "#1f5e43",
+         confirmButtonText: "확인",
+		 confirmButtonColor: "#1f5e43"
+      }).then(function(){close()});
+      </script>
+</c:if>
 <%@ include file="../include/header.jsp" %>
 <div class="container-fluid">
 	<div class="myContainer">

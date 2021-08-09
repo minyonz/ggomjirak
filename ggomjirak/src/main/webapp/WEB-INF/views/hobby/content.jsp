@@ -92,8 +92,6 @@ $(document).ready(function() {
 });
 
 </script>
-<title>상세보기</title>
-
 <style>
 
 .selectbox {
