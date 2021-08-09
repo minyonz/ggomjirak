@@ -241,7 +241,7 @@
 	<!-- 검색(작가) -->
 	<select id="searchMember" resultType="MemberVo">
 		select * from
-		(select rownum rnum, a.user_nick, a.user_grade, a.user_id, c.name from
+		(select rownum rnum, a.*, c.name from
 		        (select * from tbl_memberdetail where user_id in 
 		        	(select user_id from tbl_memberinfo where is_del = 'N')) a 
 		         left join tbl_membergrade c on a.user_grade = c.cd
