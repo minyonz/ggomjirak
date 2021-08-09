@@ -60,7 +60,8 @@ $(document).ready(function() {
 							<h6><strong>프로필 이미지</strong></h6>
 							<c:choose>
 	                        <c:when test="${memberVo.user_img != null}">
-	                        	<img src="/displayImage?fileName=${memberVo.user_img}" class="rounded-circle"
+	                        	<img src="/displayImage?filePath=${memberVo.user_img}" class="rounded-circle"
+	                        	
 									alt="..." width="150px" height="150px" style="margin: 20px">
 	                        </c:when>
 	                        <c:otherwise>

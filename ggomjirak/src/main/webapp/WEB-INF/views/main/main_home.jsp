@@ -190,7 +190,7 @@
                         <a href="/workroom/main/${member1.user_id}">
                         <c:choose>
                         <c:when test="${member1.user_img != null}">
-                        	<img src="/displayImage?fileName=${member1.user_img}" class="rounded-circle" alt="profileImage"/>
+                        	<img src="/displayImage?filePath=${member1.user_img}" class="rounded-circle" alt="profileImage"/>
                         </c:when>
                         <c:otherwise>
                         	<img src="/resources/img/noprofile.png" class="rounded-circle" alt="profileImage"/>
@@ -215,7 +215,7 @@
                         <a href="/workroom/main/${member2.user_id}">
                         <c:choose>
                         <c:when test="${member2.user_img != null}">
-                        	<img src="/displayImage?fileName=${member2.user_img}" class="rounded-circle" alt="profileImage"/>
+                        	<img src="/displayImage?filePath=${member2.user_img}" class="rounded-circle" alt="profileImage"/>
                         </c:when>
                         <c:otherwise>
                         	<img src="/resources/img/noprofile.png" class="rounded-circle" alt="profileImage"/>
@@ -238,7 +238,8 @@
                         <a href="/workroom/main/${member3.user_id}">
                         <c:choose>
                         <c:when test="${member3.user_img != null}">
-                        	<img src="/displayImage?fileName=${member3.user_img}" class="rounded-circle" alt="profileImage"/>
+                        	<img src="/displayImage?filePath=${member3.user_img}" class="rounded-circle" alt="profileImage"/>
+                       
                         </c:when>
                         <c:otherwise>
                         	<img src="/resources/img/noprofile.png" class="rounded-circle" alt="profileImage"/>
@@ -261,7 +262,7 @@
                         <a href="/workroom/main/${member4.user_id}">
                         <c:choose>
                         <c:when test="${member4.user_img != null}">
-                        	<img src="/displayImage?fileName=${member4.user_img}" class="rounded-circle" alt="profileImage"/>
+                        	<img src="/displayImage?filePath=${member4.user_img}" class="rounded-circle" alt="profileImage"/>
                         </c:when>
                         <c:otherwise>
                         	<img src="/resources/img/noprofile.png" class="rounded-circle" alt="profileImage"/>

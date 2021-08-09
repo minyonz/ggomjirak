@@ -50,6 +50,7 @@ public class ManagerController {
 		int memberCount = managerService.getMemberCount();
 		int askCount = askService.getCountQnAMain();
 		int eventCount = eventService.getCountBanner(pagingDto);
+		int eventListCount = eventService.getCountEvent(pagingDto);
 		List<Integer> gradeList = managerService.getAllUserGrade();
 		List<Integer> loginList = managerService.getAllLoginTime();
 		
@@ -58,6 +59,7 @@ public class ManagerController {
 		model.addAttribute("memberCount", memberCount);
 		model.addAttribute("askCount", askCount);
 		model.addAttribute("eventCount", eventCount);
+		model.addAttribute("eventListCount", eventListCount);
 		model.addAttribute("gradeList", JSONArray.fromObject(gradeList));
 		model.addAttribute("loginList", JSONArray.fromObject(loginList));
 		if (session.getAttribute("loginVo") != null) {

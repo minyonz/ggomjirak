@@ -31,9 +31,7 @@
 				      </td>
 				    </tr>
 				    <tr>
-				    	<td colspan="2">
-				    		${eventVo.e_content}
-				    	</td>
+				    	<td colspan="2" style="white-space:pre;">${eventVo.e_content}</td>
 				    </tr>
 				  </tbody>
 				</table>
