@@ -107,7 +107,7 @@ $(document).ready(function() {
 							<label class="mbmImg_label" for="mbm_file"
 								style="border: 1px solid #e1e1e1; width: 200px; height: 200px; overflow: hidden;">
 								<img id="previewImg_mbm" class="previewImg_compl"
-								src="${contextPath}/resources/images/preview_img.jpg"
+								src="${contextPath}/resources/images/preview_img.png"
 								style="width: 100%; height: 100%; cursor: pointer; object-fit: cover;">
 							</label> <input type="file" class="mbm_file" id="mbm_file"
 								accept=".gif, .jpg, .png" onchange="previewMbmImg(this);"
