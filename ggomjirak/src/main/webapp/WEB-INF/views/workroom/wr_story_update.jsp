@@ -33,18 +33,13 @@
 }
 </style>
 <script>
-// $(document).ready(function() {	
-// 	$("#frmStory").submit(function() {
-// 		var st_content = $("#st_content").val();
-// 		if (st_content.trim() == "" || st_content == null) {
-// 			console.log("내용입력");
-// 			$("#msg").text("스토리 내용을 입력해 주세요.");
-// 			$("#st_content").focus();
-// 			return false;
-// 		}
-// 		$(this).submit();
-// 	});
-// });
+$(document).ready(function() {
+	$("#btnCancel").click(function() {
+		if (confirm("작성을 취소하시겠습니까?")) {
+			location.href = "/story/list/${page_id}";
+		}
+	});
+});
 </script>
 <!-- 스토리 수정 폼 -->
 <%@ include file="../include/workroomSide.jsp"%>
@@ -56,7 +51,7 @@
 			<div class="divCompleteImg" style="margin-right:20px; height: 200px;">
 				<label class="storyImg_label" for="story_file" style="border: 1px solid #e1e1e1; width:200px; height:200px; overflow: hidden;">
 					<img id="previewImg_story" class="previewImg_compl" 
-						src="/story_img/displayImage?filePath=${storyVo.st_img}" style="width:100%; height:100%;  cursor: pointer; object-fit: cover;">
+						src="/img/displayImage?filePath=${storyVo.st_img}" style="width:100%; height:100%;  cursor: pointer; object-fit: cover;">
 				</label>
 				<input type="file" class="story_file" id="story_file" accept=".gif, .jpg, .png" 
 				onchange="previewStoryImg(this);" style="display:none;width:0px;height:0px;font-size:0px;">
@@ -72,7 +67,8 @@
 				<input type="hidden" name="st_no" value="${storyVo.st_no}" />
 				<textarea placeholder="스토리를 작성해 주세요." name="st_content"
 					id="st_content">${storyVo.st_content}</textarea>
-				<button type="button" onclick="doSubmit();" class="site-btn">작성완료</button>
+				<button type="button" onclick="doSubmit();" class="site-btn">등록</button>
+				<a href="/story/list/${page_id}" class="btn-cancle" id="btnCancel">취소</a>
 			</div>
 		</form>
 	</div>
@@ -129,7 +125,7 @@ function previewStoryImg(targetObj) {
 	// sort의 storyImg(Controller의 case문)
 	formData.append("sort", "storyImg");
 	
-	var url = "/story_img/uploadImage";
+	var url = "/img/uploadImage";
 	
 	$.ajax({
 		"processData" : false,
@@ -166,11 +162,11 @@ function delStoryImg() {
 	console.log("삭제")
 	var filePath = $("#st_img").val();
 	console.log(filePath);
-	var url = "/story_img/deleteFile?filePath=" + filePath;
+	var url = "/img/deleteFile?filePath=" + filePath;
 	$.get(url, function(rData) {
 		if (rData == "success") {
 			$("#st_img").val("");
-			$("#previewImg_story").attr("src", "${contextPath}/resources/images/preview_img.jpg");
+			$("#previewImg_story").attr("src", "${contextPath}/resources/images/preview_img.png");
 			$("#btnDelStoryImg").css("display", "none");
 		}
 	})

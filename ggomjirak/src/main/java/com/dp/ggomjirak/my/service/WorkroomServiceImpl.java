@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.dp.ggomjirak.my.dao.WorkRoomDao;
 import com.dp.ggomjirak.vo.HobbyVo;
 import com.dp.ggomjirak.vo.LikeBookmarkVo;
+import com.dp.ggomjirak.vo.MadeByMeVo;
 import com.dp.ggomjirak.vo.MemberVo;
 import com.dp.ggomjirak.vo.PagingDto;
 import com.dp.ggomjirak.vo.StoryPagingDto;
@@ -35,7 +36,6 @@ public class WorkroomServiceImpl implements WorkroomService {
 	@Override
 	public MemberVo getMemInfo(String user_id) {
 		MemberVo memberVo = workroomDao.getMemInfo(user_id);
-//		System.out.println("service:" + memberVo);
 		return memberVo;
 	}
 
@@ -50,6 +50,12 @@ public class WorkroomServiceImpl implements WorkroomService {
 		List<StoryVo> list = workroomDao.searchStory(pagingDto);
 		return list;
 	}
+	
+	@Override
+	public List<MadeByMeVo> searchMbm(PagingDto pagingDto) {
+		List<MadeByMeVo> list = workroomDao.searchMbm(pagingDto);
+		return list;
+	}
 
 	@Override
 	public int searchHobbyCount(PagingDto pagingDto) {
@@ -62,6 +68,12 @@ public class WorkroomServiceImpl implements WorkroomService {
 		int count = workroomDao.searchStoryCount(pagingDto);
 		return count;
 	}
+	
+	@Override
+	public int searchMbmCount(PagingDto pagingDto) {
+		int count = workroomDao.searchMbmCount(pagingDto);
+		return count;
+	}
 
 	@Override
 	public List<LikeBookmarkVo> listBookmark(PagingDto pagingDto) {
@@ -72,6 +84,18 @@ public class WorkroomServiceImpl implements WorkroomService {
 	@Override
 	public int bookmarkCount(String user_id) {
 		int count = workroomDao.bookmarkCount(user_id);
+		return count;
+	}
+
+	@Override
+	public List<MadeByMeVo> listMbm(PagingDto pagingDto) {
+		List<MadeByMeVo> list = workroomDao.listMbm(pagingDto);
+		return list;
+	}
+
+	@Override
+	public int mbmCount(String user_id) {
+		int count = workroomDao.mbmCount(user_id);
 		return count;
 	}
 

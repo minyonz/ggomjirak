@@ -32,7 +32,7 @@
 	
 	<!-- 팔로잉 목록 -->
 	<select id="followingList" resultType="FollowVo">
-		select f.following, m.user_nick, m.user_img
+		select f.following, m.user_nick, m.user_img, m.user_id
 			from tbl_follow f, tbl_memberdetail m
 		where f.following = m.user_id
 			and f.follower = #{follower}
@@ -40,7 +40,7 @@
 	
 	<!-- 좋아요 목록 -->
 	<select id="likeList" resultType="LikeBookmarkVo">
-		select hl.hobby_no, hb.hobby_title, md.user_img, md.user_nick
+		select hl.hobby_no, hb.hobby_title, md.user_img, md.user_nick, md.user_id
 			from tbl_hobby_like hl, tbl_hobby hb, tbl_memberdetail md
 		where hl.hobby_no = hb.hobby_no
 		and hb.user_id = md.user_id

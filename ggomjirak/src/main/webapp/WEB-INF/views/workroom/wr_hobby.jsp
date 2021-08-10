@@ -17,8 +17,6 @@ $(document).ready(function() {
 		e.preventDefault();
 		var searchType = $(this).text();
 		$("#btnOption").text(searchType);
-		console.log(searchType);
-		console.log(searchType);
 		var qCheck = $(this).attr("href");
 		
 		$("#frmPaging > input[name=qCheck]").val(qCheck);
@@ -42,15 +40,15 @@ $(document).ready(function() {
 					<li>
 					<div class="dropdown">
 					  <button id="btnOption" class="form-control btn btn-outline-light green_background dropdown-toggle" 
-					  type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+					  type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="margin-left: 20px;">
 					    <c:choose>
-					    <c:when test="${pagingDto.qCheck == 0}">인기 취미</c:when>
-					    <c:when test="${pagingDto.qCheck == 1}">최신 취미</c:when>
+					    <c:when test="${pagingDto.qCheck == 0}">인기순</c:when>
+					    <c:when test="${pagingDto.qCheck == 1}">최신순</c:when>
 					    </c:choose>
 					  </button>
 					  <ul class="qCheck dropdown-menu" aria-labelledby="dropdownMenuButton1">
-					    <li><a class="dropdown-item" href="0">인기 취미</a></li>
-					    <li><a class="dropdown-item" href="1">최신 취미</a></li>
+					    <li><a class="dropdown-item" href="0">인기순</a></li>
+					    <li><a class="dropdown-item" href="1">최신순</a></li>
 					  </ul>
 					</div>
 					</li>
@@ -63,11 +61,6 @@ $(document).ready(function() {
 				<div class="featured__item">
 					<div class="featured__item__pic set-bg"
 						data-setbg="/displayImage?filePath=${hobbyVo.main_img}">
-						<ul class="featured__item__pic__hover">
-							<li><a href="#"><i class="fa fa-heart"></i></a></li>
-							<li><a href="#"><i class="fa fa-retweet"></i></a></li>
-							<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-						</ul>
 					</div>
 					<div class="featured__item__text">
 						<h6>
@@ -107,6 +100,50 @@ $(document).ready(function() {
 		</div>
 	</div>
 </div>
+<c:if test="${msgDelete == 'success'}">
+      <script>
+      Swal.fire({
+         icon : "success",
+         title : "삭제 성공",
+         iconColor: "#1f5e43",
+         confirmButtonText: "확인",
+       confirmButtonColor: "#1f5e43"
+      }).then(function(){close()});
+      </script>
+</c:if>
+<c:if test="${msgDelete == 'fail'}">
+      <script>
+      Swal.fire({
+         icon : "error",
+         title : "삭제 실패",
+         iconColor: "#1f5e43",
+         confirmButtonText: "확인",
+       confirmButtonColor: "#1f5e43"
+      }).then(function(){close()});
+      </script>
+</c:if>
+<c:if test="${msgInsert == 'success'}">
+      <script>
+      Swal.fire({
+         icon : "success",
+         title : "등록 성공",
+         iconColor: "#1f5e43",
+         confirmButtonText: "확인",
+       confirmButtonColor: "#1f5e43"
+      }).then(function(){close()});
+      </script>
+</c:if>
+<c:if test="${msgInsert == 'fail'}">
+      <script>
+      Swal.fire({
+         icon : "error",
+         title : "등록 실패",
+         iconColor: "#1f5e43",
+         confirmButtonText: "확인",
+       confirmButtonColor: "#1f5e43"
+      }).then(function(){close()});
+      </script>
+</c:if>
 <div class="col-md-2"></div>
 </div>
 </div>

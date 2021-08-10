@@ -33,12 +33,33 @@
     height: 30px;
 		
 }
+
+select {
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	}
 </style>
 <script>
 $(document).ready(function() {
 	$("#hobbyContent").click(function() {
 		if (confirm("페이지를 벗어나면 작성하고 있던 글이 사라집니다. 이동하시겠습니까?")) {
 			$(this).attr("href", "/hobby/content/${hobbyVo.hobby_no}");
+		}
+	});
+	
+	$("#btnCancel").click(function() {
+		if (confirm("작성을 취소하시겠습니까?")) {
+			location.href = "/hobby/content/${hobbyVo.hobby_no}";
 		}
 	});
 });
@@ -77,6 +98,7 @@ $(document).ready(function() {
 			</div>
 			<div class="checkout__order contact-form">
 				<form id="frmMbm" action="/mbm/writeRun" method="post">
+					<input type="hidden" name="hobby_no" value="${hobbyVo.hobby_no}">
 					<div class="row" style="margin-top: 10px; justify-content: center;">
 					<div class="row">
 						<div class="col-md-6" style="padding-right: 200px;">
@@ -85,29 +107,37 @@ $(document).ready(function() {
 							<label class="mbmImg_label" for="mbm_file"
 								style="border: 1px solid #e1e1e1; width: 200px; height: 200px; overflow: hidden;">
 								<img id="previewImg_mbm" class="previewImg_compl"
-								src="${contextPath}/resources/images/preview_img.jpg"
+								src="${contextPath}/resources/images/preview_img.png"
 								style="width: 100%; height: 100%; cursor: pointer; object-fit: cover;">
 							</label> <input type="file" class="mbm_file" id="mbm_file"
 								accept=".gif, .jpg, .png" onchange="previewMbmImg(this);"
 								style="display: none; width: 0px; height: 0px; font-size: 0px;">
-							<input type="hidden" class="mbmImg_hidden" data-exist="0"
-								id="mbm_img" name="mbm_img" />
-							<div style="position: relative; bottom: 13.3rem;">
-								<a id="btnDelMbmImg" href="javascript:delMbmImg()"
-									class="btn_del btn_delMbmImg"
+							<input type="hidden" class="mbmImg_hidden" data-exist="0" id="mbm_img" name="mbm_img" />
+							<div style="position: relative; bottom: 13.3rem; left: 6.3rem;">
+								<a id="btnDelMbmImg" href="javascript:delMbmImg()" class="btn_del btn_delMbmImg"
 									style="float: right; display: none"></a>
 							</div>
 						</div>
 						</div>
 						<!-- 난이도바 -->
-						<div class="col-md-6" style="padding-right:0px; padding-left:0px;">
+						<div class="col-md-6" style="padding-right:0px; padding-left:0px; margin-top:100px;">
 						<div class="form-group row">
 						    <label for="colFormLabelSm" class="col-sm-4 col-form-label col-form-label-sm" 
 						    style="padding-right: 0px; margin-top: 15px;">체감 난이도</label>
 						    <div class="col-sm-8">
-						      <input style="padding:0px; margin:0px; margin-left:-30px;" class="slider_range" 
-							  type="range" value="0" min="0" max="100"></input><br>
-							  <span id="slider_value_view" style="text-align: center">0</span>	
+							<select name="level_no" id="level_no"
+								class="cate level-cate main_select" style="width:75%; margin-right: auto;">
+								<option value="">선택해 주세요</option>
+								<option value="1">😆very easy</option>
+								<option value="2">😃easy </option>
+								<option value="3">🙂normal </option>
+								<option value="4">😧hard </option>
+								<option value="5">😱crazy</option>
+							</select>
+<!-- 						      <input style="padding:0px; margin:0px; margin-left:-30px;" class="slider_range"  -->
+<!-- 							  type="range" value="0" min="0" max="5" step="1" value="1" ></input><br> -->
+<!-- 							  <span id="range_text" style="text-align: center; margin-left:60px;">0</span> -->
+<!-- 							  <input type="hidden" id="level_no" name="level_no" value="">	 -->
 						    </div>
 						</div>
 						</div>
@@ -119,7 +149,7 @@ $(document).ready(function() {
 						<textarea placeholder="후기를 작성해 주세요." name="mbm_content"
 							id="mbm_content"></textarea>
 						<button type="button" onclick="doSubmit();" class="site-btn">등록</button>
-						<a href="/hobby/content/${hobbyVo.hobby_no}" class="btn-cancle">취소</a>
+						<a href="/hobby/content/${hobbyVo.hobby_no}" class="btn-cancle" id="btnCancel">취소</a>
 					</div>
 				</form>
 			</div>
@@ -128,21 +158,6 @@ $(document).ready(function() {
 	<div class="col-md-3"></div>
 </div>
 <%@ include file="../include/footer.jsp"%>
-<script>
-function ShowSliderValue(sVal) {
-	var obValueView = document.getElementById("slider_value_view");
-	obValueView.innerHTML = sVal
-}
-var RangeSlider = function(){
-	var range = $('.slider_range');
-    
-	range.on('input', function(){		
-		ShowSliderValue(this.value);
-	});
-};
-
-RangeSlider();
-</script>
 <script>
 //ajax, 사진넣기
 function previewMbmImg(targetObj) {
@@ -202,7 +217,7 @@ function delMbmImg() {
 	$.get(url, function(rData) {
 		if (rData == "success") {
 			$("#mbm_img").val("");
-			$("#previewImg_mbm").attr("src", "${contextPath}/resources/images/preview_img.jpg");
+			$("#previewImg_mbm").attr("src", "${contextPath}/resources/images/preview_img.png");
 			$("#btnDelMbmImg").css("display", "none");
 		}
 	})
@@ -212,9 +227,14 @@ function validate() {
 	// 내용 입력 X
 	var mbm_content = $("#mbm_content").val();
 	if (typeof mbm_content == "undefined" || mbm_content.trim() == "" || mbm_content ==  null) {
-		$("#msg").text("스토리 내용을 입력해 주세요.");
+		$("#msg").text("내용을 작성해 주세요.");
 		$("#msg").attr("style", "color:#FF5454; font-weight: bold");
 		$("#mbm_content").focus();
+		return false;
+	}
+	var level_no = $("#level_no").val();
+	if (level_no == "") {
+		alert("체감 난이도를 선택해 주세요!");
 		return false;
 	}
 	return true;
@@ -237,7 +257,7 @@ function doSubmit() {
 		showCancelButton: true,
 	}).then(function(result) {
 		if(result.isConfirmed) {
-			 $("#frmMbm").submit();
+			$("#frmMbm").submit();
 		} else {
 			return false;
 		}
