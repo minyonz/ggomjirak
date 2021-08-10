@@ -379,7 +379,7 @@ color: #1f5e43;
  
  /* 화면 width 1300px까지 이렇게 하겠다.라는 뜻*/
  @media screen and (max-width: 1300px) {
-.body .navbar .fixed-top {padding-left: 3.5rem;}
+/* .body .navbar .fixed-top {padding-left: 3.5rem;} */
 .body { padding : 3% 10%; }
  }
   	
@@ -862,9 +862,9 @@ figure[data-ke-type='opengraph'] .og-host {
 		<div class="side side-left"></div>
 		<div class="body bottom">
 			<div class="view_step">
-				<div>
+				<div style="display:flex;">
 					<b>만들기 순서</b><span>Steps</span>
-					<div class="divViewOption" style="float: right;">
+					<div class="divViewOption" style="margin-left:auto;">
 	                    <a href="javascript:void(0);" onclick="chgViewStep(1)"><img id="tabStepView1" src="${contextPath}/resources/images/tab_view1_on.png" alt="슬라이드보기"></a>
 	                    <a href="javascript:void(0);" onclick="chgViewStep(2)"><img id="tabStepView2" src="${contextPath}/resources/images/tab_view2.png" alt="이미지크게보기"></a>
 	                    <a href="javascript:void(0);" onclick="chgViewStep(3)"><img id="tabStepView3" src="${contextPath}/resources/images/tab_view3.png" alt="이미지작게보기"></a>
@@ -1052,7 +1052,7 @@ figure[data-ke-type='opengraph'] .og-host {
 			</div>
 			<!-- 완성사진 영역 -->
 			<c:if test="${fn:length(hobbyVo.completeImgs) > 0}">
-			<div style="margin-top: 5rem; border-top: 1.5px solid #c8c8c8;">
+			<div style="margin-top: 5rem; border-top: 1.5px solid #c8c8c8; width: 64rem;">
 			<div style="text-align:center; margin-top: 20px;">
 				<b>완성 사진</b><span>Craft</span>
 			</div>
