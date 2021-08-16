@@ -289,10 +289,12 @@ a {
 	                <div class="col-lg-4 col-md-6 col-sm-6">
 	                    <div class="product__item">
 	                        <div class="product__item__pic set-bg" 
+	                        	data-href="/hobby/content/${hobbyVo.hobby_no}?${m_no}${time}${cost}${level}${sort}${page}"
 	                        	data-setbg="/displayImage?filePath=${hobbyVo.main_img}" 
 	                       		 style="background-image: url(&quot;/displayImage?filePath=${hobbyVo.main_img}&quot;);
 	                       		 		border: 1px solid #e1e1e1;
-	                       		 		border-radius: 3px">
+	                       		 		border-radius: 3px;
+	                       		 		cursor:pointer;">
 	                            <ul class="product__item__pic__hover">
 	                                <li><a class="like loginNeed" href="/hobby/like/${hobbyVo.hobby_no}">
 	                                	<i class="fa fa-heart" ${not empty hobbyVo.like_hobby ? 'style="color:#C32424"' : ''}></i>
@@ -421,6 +423,12 @@ $(".share").click(function(e) {
 		confirmButtonColor: "#1f5e43",
 	}).then(function(){close()});
 })
+
+//사진 클릭시 해당글로 이동
+$(".product__item__pic").click(function() {
+	console.log("클릭");
+	location.href= $(this).attr("data-href");
+});
 </script>
 </body>
 </html>

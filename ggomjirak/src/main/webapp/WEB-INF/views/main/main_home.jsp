@@ -4,8 +4,7 @@
 <%@ include file="../include/header.jsp" %>
 <style>
 .tiledBackground {
-  wiedth: 100%;
-   height: 400px; 
+   height: 25rem;
 }
 .btn-more {
    padding: 3px 13px;
@@ -14,6 +13,35 @@
    margin: 0 4px;
    border: 1px solid #1F5E43;
 }
+/* 그리드 추가 */
+@media screen and (min-width: 1300px) {
+.myContainer{
+  display: grid; 
+  grid-auto-flow: column dense; 
+  grid-template-columns: 1fr 4fr 1fr; 
+  grid-template-rows: 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "side-left body side-right"; 
+  justify-content: end; 
+  width: 100%; 
+  height: 100%; 
+}
+.side-left { grid-area: side-left; }
+.body { grid-area: body;}
+.side-right { grid-area: side-right; }  
+.body .eventImg {height:500;} 
+.body .slidePrev {height:500px;} 
+.body .slideNext {height:500px;} 
+ }
+ 
+  /* 화면 width 1300px까지 이렇게 하겠다.라는 뜻*/
+ @media screen and (max-width: 1300px) {
+.body { padding : 3% 12%; }
+.body .eventImg {height:26rem;} 
+.body .slidePrev {height:26rem;} 
+.body .slideNext {height:26rem;} 
+ }
 </style>
 <!-- 배너 -->
 <div class="row">
@@ -21,11 +49,10 @@
 	
 	<div class="tiledBackground green_background row" style="position: relative;"></div>
 	
-		<div class="row"  style="position: relative; top: -400px;">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-			
-							
+	
+	<div class="myContainer">
+		<div class="side side-left"></div>
+		<div class="body" style="position: relative; top: -400px;">
 				<div class="carousel slide" id="carousel-313760">
 					<ol class="carousel-indicators" style="bottom: 6rem;">
 					<c:forEach var="v" begin="${pagingDto.startPage}" end="${pagingDto.count}">
@@ -51,8 +78,8 @@
 						</c:choose>
 						>
 							<a href="/main/mainEventContent?e_no=${event.e_no}">
-							<img class="d-block w-100" alt="Event Banner"
-								src="/eventImg/displayImage?filePath=${event.e_img}" height="500"/></a>
+							<img class="d-block w-100 eventImg" alt="Event Banner"
+								src="/eventImg/displayImage?filePath=${event.e_img}" /></a>
 							<div class="carousel-caption">
 							<div style="display: flex;" >
 								<h4><a href="/main/mainEventContent?e_no=${event.e_no}">${event.e_title}</a></h4>
@@ -65,10 +92,10 @@
 						
 						
 					</div>
-					<a class="carousel-control-prev" href="#carousel-313760"
-						data-slide="prev" style="height: 500px"><span class="carousel-control-prev-icon"></span>
-						<span class="sr-only">Previous</span></a> <a  style="height: 500px"
-						class="carousel-control-next" href="#carousel-313760"
+					<a class="carousel-control-prev slidePrev" href="#carousel-313760"
+						data-slide="prev"><span class="carousel-control-prev-icon"></span>
+						<span class="sr-only">Previous</span></a> <a  
+						class="carousel-control-next slideNext" href="#carousel-313760"
 						data-slide="next"><span class="carousel-control-next-icon"></span>
 						<span class="sr-only">Next</span></a>
 				</div>
@@ -284,11 +311,9 @@
     </section>
     <!-- Featured Section End -->
 				<!-- 작가어워드 끝-->
-				
-			</div>
-			
-			<div class="col-md-2"></div>
 		</div>
+		<div class="side side-right"></div>
+	</div>
 	</div>
 </div>
 <!-- 배너 끝 -->
@@ -351,12 +376,10 @@
 <!-- 인기 키워드 끝 -->
 
 <!-- 이달의 취미 -->
-<div class="row"  style="position: relative; top: -400px;">
-	<div class="col-md-12">
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-
+	<div class="myContainer">
+		<div class="side side-left"></div>
+		<div class="body" style="position: relative; top: -400px;">
+				
 
 				<!-- Categories Section Begin -->
 				<section class="categories" style="margin-top: 50px">
@@ -423,10 +446,8 @@
 				</section>
 				<!-- Categories Section End -->
 				<!-- 베스트메이드 끝 -->
-			</div>
-			<div class="col-md-2"></div>
 		</div>
-	</div>
+		<div class="side side-right"></div>
 </div>
 <!-- 이달의 취미 끝 -->
 

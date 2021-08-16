@@ -542,7 +542,12 @@ margin-right: 15px;
 .body { grid-area: body; }
 .side-right { grid-area: side-right; }
  }
- 
+ /* 화면 width 1300px까지 이렇게 하겠다.라는 뜻*/
+ @media screen and (max-width: 1300px) {
+/* .body .navbar .fixed-top {padding-left: 3.5rem;} */
+.body {  padding: 0 2%; }
+ }
+  
  
 </style>
 </head>
@@ -559,7 +564,7 @@ margin-right: 15px;
       </script>
 </c:if>
 <%@ include file="../include/header.jsp" %>
-<div class="container-fluid">
+<div class="container-fluid" style="padding-top: 50px;">
 	<div class="myContainer">
 		<div class="side side-left">
 	  	</div>
@@ -919,7 +924,7 @@ margin-right: 15px;
 							<!-- 넷째줄 -->
 							<div class="row" style="margin-top:10px; justify-content: center;">
 								<c:forEach var="v" begin="1" end="6" >
-									<div class="divCompleteImg" style="margin-right:20px; height: 140px;">
+									<div class="divCompleteImg" style="margin-right:1rem; height: 140px;">
 									<label class="complImg_label" for="complImg_file_${v }" style="border: 1px solid #e1e1e1;">
 										<img id="previewImg_compl_${v }" class="previewImg_compl" 
 											src="${contextPath}/resources/images/preview_img.png" style="width:140px; height:140px; object-fit: cover; cursor: pointer;">
@@ -957,7 +962,7 @@ margin-right: 15px;
   		</div>
   		<div class="side side-right">
   		</div>
-	</div>
+  		<%@ include file="../include/footer.jsp" %>
 </div>
 
 <!-- 스탭 추가 정보가이드 모달 -->
@@ -976,7 +981,6 @@ margin-right: 15px;
             </div>
         </div>
     </div>
-<%@ include file="../include/footer.jsp" %>
 <script>
 $("#hobby_title").on("input", function(){
 	var cnt = $(this).val();

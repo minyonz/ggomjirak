@@ -15,8 +15,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="${contextPath}/resources/js/sweetalert2.min.js"></script>
-<link rel="stylesheet" href="${contextPath}/resources/css/sweetalert2.min.css">
+<script src="/resources/js/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="/resources/css/sweetalert2.min.css">
 <script>
 $(document).ready(function() {
 	selectCommentList();
@@ -226,7 +226,7 @@ margin: 10px 0 10px 35px;
     font-weight: bold;
 }
 .btnMenu {
-	background: url("${contextPath}/resources/images/menu.png") no-repeat center; 
+	background: url("/resources/images/menu.png") no-repeat center; 
 	outline : none;
 	border: none;
 	width: 25px;
@@ -234,7 +234,7 @@ margin: 10px 0 10px 35px;
 }
 
 .btnMenu_cmt {
-	background: url("${contextPath}/resources/images/menu.png") no-repeat center; 
+	background: url("/resources/images/menu.png") no-repeat center; 
 	background-size: 15px;
 	outline : none;
 	border: none;
@@ -396,40 +396,40 @@ color: #1f5e43;
 /* 1. 만들기 css */
 .view_step {padding:0 0 10px;}
 .view_step_cont {padding:6px 0 60px 50px; width:850px; font-size:22px;}
-.view_step_cont.step1 {background:url(${contextPath}/resources/images/1.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step2 {background:url(${contextPath}/resources/images/2.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step3 {background:url(${contextPath}/resources/images/3.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step4 {background:url(${contextPath}/resources/images/4.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step5 {background:url(${contextPath}/resources/images/5.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step6 {background:url(${contextPath}/resources/images/6.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step7 {background:url(${contextPath}/resources/images/7.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step8 {background:url(${contextPath}/resources/images/8.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step9 {background:url(${contextPath}/resources/images/9.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step10 {background:url(${contextPath}/resources/images/10.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step11 {background:url(${contextPath}/resources/images/11.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step12 {background:url(${contextPath}/resources/images/12.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step13 {background:url(${contextPath}/resources/images/13.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step14 {background:url(${contextPath}/resources/images/14.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step15 {background:url(${contextPath}/resources/images/15.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step16 {background:url(${contextPath}/resources/images/16.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step17 {background:url(${contextPath}/resources/images/17.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step18 {background:url(${contextPath}/resources/images/18.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step19 {background:url(${contextPath}/resources/images/19.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step20 {background:url(${contextPath}/resources/images/20.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step21 {background:url(${contextPath}/resources/images/21.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step22 {background:url(${contextPath}/resources/images/22.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step23 {background:url(${contextPath}/resources/images/23.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step24 {background:url(${contextPath}/resources/images/24.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step25 {background:url(${contextPath}/resources/images/25.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step26 {background:url(${contextPath}/resources/images/26.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step27 {background:url(${contextPath}/resources/images/27.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step28 {background:url(${contextPath}/resources/images/28.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step29 {background:url(${contextPath}/resources/images/29.jpg) no-repeat 4px 6px; background-size:36px;}
-.view_step_cont.step30 {background:url(${contextPath}/resources/images/30.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step1 {background:url(/resources/images/1.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step2 {background:url(/resources/images/2.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step3 {background:url(/resources/images/3.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step4 {background:url(/resources/images/4.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step5 {background:url(/resources/images/5.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step6 {background:url(/resources/images/6.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step7 {background:url(/resources/images/7.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step8 {background:url(/resources/images/8.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step9 {background:url(/resources/images/9.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step10 {background:url(/resources/images/10.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step11 {background:url(/resources/images/11.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step12 {background:url(/resources/images/12.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step13 {background:url(/resources/images/13.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step14 {background:url(/resources/images/14.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step15 {background:url(/resources/images/15.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step16 {background:url(/resources/images/16.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step17 {background:url(/resources/images/17.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step18 {background:url(/resources/images/18.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step19 {background:url(/resources/images/19.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step20 {background:url(/resources/images/20.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step21 {background:url(/resources/images/21.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step22 {background:url(/resources/images/22.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step23 {background:url(/resources/images/23.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step24 {background:url(/resources/images/24.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step25 {background:url(/resources/images/25.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step26 {background:url(/resources/images/26.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step27 {background:url(/resources/images/27.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step28 {background:url(/resources/images/28.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step29 {background:url(/resources/images/29.jpg) no-repeat 4px 6px; background-size:36px;}
+.view_step_cont.step30 {background:url(/resources/images/30.jpg) no-repeat 4px 6px; background-size:36px;}
 .view_step_cont img {border-radius:3px; max-width:100%; height:auto; margin:20px 0 10px;}
 .view_step_cont .media-left {padding-right:20px;}
 .view_step_cont .media-left img {margin:0;}
-.media-body, .media-left, .media-right {
+.media-body, .media-left{
     display: table-cell;
     vertical-align: top;
 }
@@ -580,9 +580,8 @@ figure[data-ke-type='opengraph'] .og-host {
 	font-size:10px;
 }
 .btn-more {
-    padding: 2px 8px;
+    padding: 5px 8px;
     font-size: 11px;
-    padding-top: 7px;
     margin: 0 4px;
     border: 1px solid #1F5E43;
 }
@@ -865,10 +864,10 @@ figure[data-ke-type='opengraph'] .og-host {
 				<div style="display:flex;">
 					<b>만들기 순서</b><span>Steps</span>
 					<div class="divViewOption" style="margin-left:auto;">
-	                    <a href="javascript:void(0);" onclick="chgViewStep(1)"><img id="tabStepView1" src="${contextPath}/resources/images/tab_view1_on.png" alt="슬라이드보기"></a>
-	                    <a href="javascript:void(0);" onclick="chgViewStep(2)"><img id="tabStepView2" src="${contextPath}/resources/images/tab_view2.png" alt="이미지크게보기"></a>
-	                    <a href="javascript:void(0);" onclick="chgViewStep(3)"><img id="tabStepView3" src="${contextPath}/resources/images/tab_view3.png" alt="이미지작게보기"></a>
-	                    <a href="javascript:void(0);" onclick="chgViewStep(4)"><img id="tabStepView4" src="${contextPath}/resources/images/tab_view4.png" alt="텍스트만보기"></a>
+	                    <a href="javascript:void(0);" onclick="chgViewStep(1)"><img id="tabStepView1" src="/resources/images/tab_view1_on.png" alt="슬라이드보기"></a>
+	                    <a href="javascript:void(0);" onclick="chgViewStep(2)"><img id="tabStepView2" src="/resources/images/tab_view2.png" alt="이미지크게보기"></a>
+	                    <a href="javascript:void(0);" onclick="chgViewStep(3)"><img id="tabStepView3" src="/resources/images/tab_view3.png" alt="이미지작게보기"></a>
+	                    <a href="javascript:void(0);" onclick="chgViewStep(4)"><img id="tabStepView4" src="/resources/images/tab_view4.png" alt="텍스트만보기"></a>
                		 </div>
 				</div>
 	            <!-- 슬라이드 이미지 -->
@@ -877,7 +876,7 @@ figure[data-ke-type='opengraph'] .og-host {
 <!-- 	            		<span>슬라이드 조작하기</span> -->
 	            		<div style="display:flex; padding: 0 8.5rem; margin-bottom: 1rem;">
 	            			<span style="font-size: 14px;">슬라이드 기능을 이용해 보세요!
-	            				<br/><span style="font-size: 11px; color: #888888;">자동 슬라이드의 기본 간격은 약 6초입니다.</span>
+	            				<br/><span style="font-size: 11px; color: #888888;">자동 슬라이드의 기본 간격은 약 4초입니다.</span>
 	            			</span>
 	            			<div style="margin-left: auto; padding-top: 0.7rem;">
 		            			<span class="btn-circle" id="carousel_prev" style="cursor:pointer;">이전</span>
@@ -918,7 +917,7 @@ figure[data-ke-type='opengraph'] .og-host {
 													<img class="slideImg" src="/displayImage?filePath=${makeStepVo.make_step_img }" />
 												</c:when>
 												<c:otherwise>
-													<img class="slideImg" src="${contextPath}/resources/images/no-img.png" />
+													<img class="slideImg" src="/resources/images/no-img.png" />
 												</c:otherwise>
 											</c:choose>
 										</div>
@@ -954,7 +953,7 @@ figure[data-ke-type='opengraph'] .og-host {
 														   				<c:choose>
 														   					<c:when test="${fn:contains(image, 'blogthumb')}">
 														   						<div class="og-image" 
-															        			style="background-image:url(${contextPath}/resources/images/sad.png)"></div>
+															        			style="background-image:url(/resources/images/sad.png)"></div>
 														   					</c:when>
 														   					<c:otherwise>
 														   						 <div class="og-image" 
@@ -1028,7 +1027,7 @@ figure[data-ke-type='opengraph'] .og-host {
 							   				<c:choose>
 							   					<c:when test="${fn:contains(image, 'blogthumb')}">
 							   						<div class="og-image" 
-								        			style="background-image:url(${contextPath}/resources/images/sad.png)"></div>
+								        			style="background-image:url(/resources/images/sad.png)"></div>
 							   					</c:when>
 							   					<c:otherwise>
 							   						 <div class="og-image" 

@@ -619,11 +619,18 @@ margin-right: 15px;
 .body { grid-area: body; }
 .side-right { grid-area: side-right; }
  }
+ /* 화면 width 1300px까지 이렇게 하겠다.라는 뜻*/
+ @media screen and (max-width: 1300px) {
+/* .body .navbar .fixed-top {padding-left: 3.5rem;} */
+.body {  padding: 0 2%; }
+ }
+  
+
 </style>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
-<div class="container-fluid">
+<div class="container-fluid" style="padding-top: 50px;">
 	<div class="myContainer">
 		<div class="side side-left">
 	  
@@ -1051,7 +1058,7 @@ margin-right: 15px;
 							<!-- 넷째줄 -->
 							<div class="row" style="margin-top:10px; justify-content: center;">
 								<c:forEach var="completeImgVo" items="${hobbyVo.completeImgs}" varStatus="vs">
-									<div class="divCompleteImg" style="margin-right:20px; height: 140px;">
+									<div class="divCompleteImg" style="margin-right:1rem; height: 140px;">
 									<label class="complImg_label" for="complImg_file_${vs.count}" style="border: 1px solid #e1e1e1;">
 										<c:choose>
 											<c:when test="${not empty completeImgVo.img_name}">
@@ -1107,7 +1114,7 @@ margin-right: 15px;
   		</div>
   		<div class="side side-right">
   		</div>
-	</div>
+	<%@ include file="../include/footer.jsp" %>
 </div>
 
 <!-- 스탭 추가 정보가이드 모달 -->
@@ -1126,7 +1133,6 @@ margin-right: 15px;
             </div>
         </div>
     </div>
-<%@ include file="../include/footer.jsp" %>
 <script>
 // ----------수정폼------------
 
