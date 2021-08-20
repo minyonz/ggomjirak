@@ -14,14 +14,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<script src="${contextPath}/resources/js/sweetalert2.min.js"></script>
-<link rel="stylesheet" href="${contextPath}/resources/css/sweetalert2.min.css">
-<script>
-$(document).ready(function() {
-	
-});
-
-</script>
+<script src="/resources/js/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="/resources/css/sweetalert2.min.css">
 <style>
 
 /* 화면 width 1300px부터 이렇게 하겠다.라는 뜻*/
@@ -157,6 +151,13 @@ a {
 	font-weight: 600; 
 }
 
+.red {
+ color:#C32424;
+}
+
+.yellow {
+ color:#FFC300;
+}
 
 </style>
 </head>
@@ -292,18 +293,19 @@ a {
 	                        	data-href="/hobby/content/${hobbyVo.hobby_no}?${m_no}${time}${cost}${level}${sort}${page}"
 	                        	data-setbg="/displayImage?filePath=${hobbyVo.main_img}" 
 	                       		 style="background-image: url(&quot;/displayImage?filePath=${hobbyVo.main_img}&quot;);
+	                       		 		background-position: center;
 	                       		 		border: 1px solid #e1e1e1;
 	                       		 		border-radius: 3px;
 	                       		 		cursor:pointer;">
 	                            <ul class="product__item__pic__hover">
-	                                <li><a class="like loginNeed" href="/hobby/like/${hobbyVo.hobby_no}">
-	                                	<i class="fa fa-heart" ${not empty hobbyVo.like_hobby ? 'style="color:#C32424"' : ''}></i>
+	                                <li><a class="hover like loginNeed" href="/hobby/like/${hobbyVo.hobby_no}">
+	                                	<i class="fa fa-heart hover ${not empty hobbyVo.like_hobby ? 'red' : ''}"></i>
 	                                </a></li>
-	                                <li><a class="bookmark loginNeed" href="/hobby/bookmark/${hobbyVo.hobby_no}">
-	                                	<i class="fa fa-bookmark" ${not empty hobbyVo.bm_hobby ? 'style="color:#FFC300"' : ''}></i>
+	                                <li><a class="hover bookmark loginNeed" href="/hobby/bookmark/${hobbyVo.hobby_no}" >
+	                                	<i class="fa fa-bookmark hover ${not empty hobbyVo.bm_hobby ? 'yellow' : ''}"></i>
 	                                </a></li>
-	                                <li><a class="share" href="/hobby/content/${hobbyVo.hobby_no}">
-	                                	<i class="fa fa-retweet"></i>
+	                                <li><a class="hover share" href="hobby/content/${hobbyVo.hobby_no}">
+	                                	<i class="fa fa-retweet hover"></i>
 	                                </a></li>
 	                            </ul>
 	                        </div>
@@ -379,8 +381,10 @@ $(".like").click(function(e) {
 		if (rData == "like") {
 			console.log("좋아용");
 			$(target).children().css("color", "#C32424");
+			$(target).children().addClass("red");
 		} else {
-			$(target).children().css("color", "#ffffff");
+			$(target).children().css("color", "#FFFFFF");
+			$(target).children().removeClass("red");
 		}
 	});
 });
@@ -399,8 +403,10 @@ $(".bookmark").click(function(e) {
 		if (rData == "bookmark") {
 			console.log("북마크");
 			$(target).children().css("color", "#FFC300");
+			$(target).children().addClass("yellow");
 		} else {
-			$(target).children().css("color", "#ffffff");
+			$(target).children().css("color", "#FFFFFF");
+			$(target).children().removeClass("yellow");
 		}
 	});
 })
@@ -410,8 +416,7 @@ $(".share").click(function(e) {
 	var url = $(this).attr("href");
 	var textarea = document.createElement("textarea");
 	document.body.appendChild(textarea);
-	console.log("${contextPath}");
-	textarea.value = "http://localhost${pageContext.request.contextPath}" + url;
+	textarea.value = "http://localhost/${pageContext.request.contextPath}" + url;
 	textarea.select();
 	document.execCommand("copy");
 	document.body.removeChild(textarea);
@@ -425,10 +430,44 @@ $(".share").click(function(e) {
 })
 
 //사진 클릭시 해당글로 이동
-$(".product__item__pic").click(function() {
-	console.log("클릭");
+$(".product__item__pic").click(function(e) {
+	console.log("사진클릭");
+	if (!$(e.target).hasClass("hover")) {
+	console.log("여기오는지 확인");
 	location.href= $(this).attr("data-href");
+	}
 });
+
+// 북마크, 좋아요 호버시 색깔 흰색 수정
+$(".like").hover(function(){
+	if($(this).children().hasClass("red")) {
+		$(this).children().css("color", "#C32424");
+	} else {
+		$(this).children().css("color", "white");
+	}
+}, function() {
+	if($(this).children().hasClass("red")) {
+		$(this).children().css("color", "#C32424");
+	} else {
+		$(this).children().css("color", "#1C1C1C");
+	}
+});
+
+$(".bookmark").hover(function(){
+	if($(this).children().hasClass("yellow")) {
+		$(this).children().css("color", "#FFC300");
+	} else {
+		$(this).children().css("color", "white");
+	}
+}, function() {
+	if($(this).children().hasClass("yellow")) {
+		$(this).children().css("color", "#FFC300");
+	} else {
+		$(this).children().css("color", "#1C1C1C");
+	}
+});
+
+
 </script>
 </body>
 </html>

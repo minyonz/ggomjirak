@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ include file="../include/header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +15,8 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" ></script>
 
-<!-- 모달  -->
-<script src="${contextPath}/resources/js/sweetalert2.min.js"></script>
-<link rel="stylesheet" href="${contextPath}/resources/css/sweetalert2.min.css">
-
+<script src="/resources/js/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="/resources/css/sweetalert2.min.css">
 <script defer>
 	$(document).ready(function() {
 		//* 카테고리 부분
@@ -334,7 +332,7 @@
 		$(box).find("input[type=hidden]").val("");
 		$(box).find(".btn_delStepImg").hide();
 		$(box).find(".stepImg_hidden").val("");
-		$(box).find(".previewImg_step").attr("src", "${contextPath}/resources/images/preview_img.png");
+		$(box).find(".previewImg_step").attr("src", "/resources/images/preview_img.png");
 		$(box).find(".divStepNote").hide();
 		$(box).find(".divStepTip").hide();
 		$(box).find(".divStepLink").hide();
@@ -457,7 +455,7 @@
 	.btn_del {
     display: block;
     opacity: 0.5;
-    background: url(${contextPath}/resources/images/del_square.gif) no-repeat center;
+    background: url(/resources/images/del_square.gif) no-repeat center;
     width: 30px;
     height: 30px;
 		
@@ -487,12 +485,12 @@ margin-right: 15px;
 .btnAdd {
 	outline : none;
 	border: none;
-	background: url("${contextPath}/resources/images/plus_circle.png") no-repeat left;
+	background: url("/resources/images/plus_circle.png") no-repeat left;
 	background-size: 18px;
 	width:112px;
 }
 .btnDelMaterial {
-	background: url(${contextPath}/resources/images/del_circle.png) no-repeat center;
+	background: url(/resources/images/del_circle.png) no-repeat center;
     width: 15px;
     height: 15px;
     background-size: 15px;
@@ -563,16 +561,16 @@ margin-right: 15px;
       }).then(function(){close()});
       </script>
 </c:if>
-<%@ include file="../include/header.jsp" %>
+<%-- <%@ include file="../include/header.jsp" %> --%>
 <div class="container-fluid" style="padding-top: 50px;">
 	<div class="myContainer">
 		<div class="side side-left">
 	  	</div>
   	    <div class="body">
-  				<form id="istFrm" method="post" action="${contextPath}/hobby/insertRun">
+  				<form id="istFrm" method="post" action="/hobby/insertRun">
 				<div style="background: #f8f8f8; border-bottom: 1px solid #e6e7e8; 
 					padding: 14px 18px; position: relative;">
-					<span class="lg_tit">취미 작성</span>
+					<span class="lg_tit" style="padding-left: 1rem;">취미글 작성</span>
 					<span class="star">*</span><span style="font-size:15px; font-weight:550;">필수입력</span>
 <!-- 					<input type="text" name="user_id"  placeholder="로그인했다고 가정할아이디 입력" style="width:300px;"/> -->
 				</div>
@@ -652,7 +650,7 @@ margin-right: 15px;
 										<div class="divMainImg" style="width:350px; height:230px; position:relative;">
 											<label for="mainImg_file" id="mainImg_label"
 												style="width: 350px; height: 230px; overflow: hidden;">
-												<img id="previewImg_main" src="${contextPath}/resources/images/preview_main.png"
+												<img id="previewImg_main" src="/resources/images/preview_main.png"
 													style="width:100%; height:100%; object-fit:cover; cursor:pointer; border: 1px solid #e1e1e1;" >
 											</label>
 											<input type="file" class="mainImg_file" name="mainImg_file" 
@@ -758,7 +756,7 @@ margin-right: 15px;
 								</div>
 							<div id="materialBoxWrap">
 								<div class="materialBox" id="materialBox_1" style="cursor:pointer; margin: 0 0 7px 50px;">
-									<img src = "${contextPath}/resources/images/double-arrow.png" 
+									<img src = "/resources/images/double-arrow.png" 
 										style="width:15px; height:20px; opacity:0.75;"/>
 									<div class="divMaterialItem" style="display:inline-block;">
 										<input type="hidden" class="seq" name="hobbyMaterials[0].seq" value="1"/>
@@ -818,7 +816,7 @@ margin-right: 15px;
 											</div>
 											<div class="divStepUpload">
 												<label class="stepImg_label" for="stepImg_file_1">
-													<img id="previewImg_step_1" class="previewImg_step" src="${contextPath}/resources/images/preview_img.png" >
+													<img id="previewImg_step_1" class="previewImg_step" src="/resources/images/preview_img.png" >
 												</label>
 												<input type="file" class="stepImg_file" 
 													 id="stepImg_file_1" accept=".gif, .jpg, .png, .jpeg" onchange="previewMakeStepImg(this, 1);"
@@ -846,19 +844,19 @@ margin-right: 15px;
 													<!-- 노트보기 -->
 													<a href="javascript:showNote(1);"
 													class="extraBtn showNote" style="width:90px;height:26px;">
-													<img src="${contextPath}/resources/images/note.png" 
+													<img src="/resources/images/note.png" 
 													style="width:16px;height:16px;"/> 노트</a>
 													<!-- //노트보기 -->
 													<!-- 팁보기 -->
 													<a href="javascript:showTip(1);" 
 													class="extraBtn showTip" style="width:90px;height:26px;">
-													<img src="${contextPath}/resources/images/lamp.png" 
+													<img src="/resources/images/lamp.png" 
 													style="width:16px;height:16px;"/> 팁</a>
 													<!-- //팁보기 -->
 													<!-- 링크보기 -->
 													<a href="javascript:showLink(1);" 
 													class="extraBtn showLink" style="width:90px;height:26px;">
-													<img src="${contextPath}/resources/images/link.png" 
+													<img src="/resources/images/link.png" 
 													style="width:16px;height:16px;"/> 참조</a>
 													<!-- //링크보기 -->
 													<!-- 전체보기 -->
@@ -872,7 +870,7 @@ margin-right: 15px;
 													<!-- //가이드보기 -->
 													<!-- 노트영역 -->
 												<div id="divStepNote_1" class="divStepNote" style="display:none; margin:5px 5px;">
-													<img src="${contextPath}/resources/images/note.png"
+													<img src="/resources/images/note.png"
 													style="width:24px;height:24px; vertical-align:top;"/> 
 													<textarea name="makeSteps[0].note" class="form-control stepNoteText" spellcheck="false" autocomplete="off"
 														style="width:500px;height:50px;resize:none; display: inline-block;"></textarea>
@@ -880,7 +878,7 @@ margin-right: 15px;
 												<!--// 노트영역 -->
 												<!-- 팁영역 -->
 												<div id="divStepTip_1" class="divStepTip" style="display:none; margin:5px 5px;">
-													<img src="${contextPath}/resources/images/lamp.png"
+													<img src="/resources/images/lamp.png"
 														style="width:24px;height:24px;vertical-align:top;"> 
 													<textarea name="makeSteps[0].tip" class="form-control stepTipText" spellcheck="false" autocomplete="off"
 														 style="width:500px;height:50px;resize:none; display: inline-block;"></textarea>
@@ -888,7 +886,7 @@ margin-right: 15px;
 												<!-- //팁영역 -->
 												<!-- 링크영역 -->
 												<div id="divStepLink_1" class="divStepLink" style="display:none; margin:5px 5px;">
-													<img src="${contextPath}/resources/images/link.png"
+													<img src="/resources/images/link.png"
 														style="width:24px;height:24px;vertical-align:top;"> 
 													<input type="text" name="makeSteps[0].link_url"
 														 placeholder="사이트 주소를 입력해주세요" spellcheck="false"
@@ -927,7 +925,7 @@ margin-right: 15px;
 									<div class="divCompleteImg" style="margin-right:1rem; height: 140px;">
 									<label class="complImg_label" for="complImg_file_${v }" style="border: 1px solid #e1e1e1;">
 										<img id="previewImg_compl_${v }" class="previewImg_compl" 
-											src="${contextPath}/resources/images/preview_img.png" style="width:140px; height:140px; object-fit: cover; cursor: pointer;">
+											src="/resources/images/preview_img.png" style="width:140px; height:140px; object-fit: cover; cursor: pointer;">
 									</label>
 									<input type="file" class="complImg_file" 
 										 id="complImg_file_${v }" accept=".gif, .jpg, .png, .jpeg" onchange="previewComplImg(this, ${v });"
@@ -1066,7 +1064,7 @@ function previewMainImg(targetObj) {
 			alert("파일 업로드 실패!");
 		},
 		"beforeSend" : function() {
-			$("#previewImg_main").attr("src", "${contextPath}/resources/images/loading.gif");
+			$("#previewImg_main").attr("src", "/resources/images/loading.gif");
 		},
 		"complete" : function() {
 			console.log("로딩끝")
@@ -1082,7 +1080,7 @@ function delMainImg() {
 	$.get(url, function(rData) {
 		if (rData == "success") {
 			$("#main_img").val("");
-			$("#previewImg_main").attr("src", "${contextPath}/resources/images/preview_main.png");
+			$("#previewImg_main").attr("src", "/resources/images/preview_main.png");
 			$("#btnDelMainImg").hide();
 		}
 	})
@@ -1156,7 +1154,7 @@ function previewMakeStepImg(targetObj, seq) {
 			alert("파일 업로드 실패!");
 		},
 		"beforeSend" : function() {
-			$("#previewImg_step_" + seq).attr("src", "${contextPath}/resources/images/loading.gif");
+			$("#previewImg_step_" + seq).attr("src", "/resources/images/loading.gif");
 		}
 	});
     
@@ -1253,7 +1251,7 @@ multifile_step.onchange = function () {
 					alert("파일 업로드 실패!");
 				},
 				"beforeSend" : function() {
-					$("#previewImg_step_" + seq).attr("src", "${contextPath}/resources/images/loading.gif");
+					$("#previewImg_step_" + seq).attr("src", "/resources/images/loading.gif");
 				}
 			});
 		});
@@ -1271,7 +1269,7 @@ function delStepImg(seq) {
 		if (rData == "success") {
 			$(el).val("");
 			$("#stepBox_" + seq).addClass("none_img");
-			$("#previewImg_step_" + seq).attr("src", "${contextPath}/resources/images/preview_img.png");
+			$("#previewImg_step_" + seq).attr("src", "/resources/images/preview_img.png");
 			$("#btnDelStepImg_" + seq).hide();
 		}
 	})
@@ -1344,7 +1342,7 @@ function previewComplImg(targetObj, num) {
 			alert("파일 업로드 실패!");
 		},
 		"beforeSend" : function() {
-			$("#previewImg_compl_" + num).attr("src", "${contextPath}/resources/images/loading.gif");
+			$("#previewImg_compl_" + num).attr("src", "/resources/images/loading.gif");
 		}
 	});
     
@@ -1359,7 +1357,7 @@ function delComplImg(num) {
 	$.get(url, function(rData) {
 		if (rData == "success") {
 			$(el).val("");
-			$("#previewImg_compl_" + num).attr("src", "${contextPath}/resources/images/preview_img.png");
+			$("#previewImg_compl_" + num).attr("src", "/resources/images/preview_img.png");
 			$("#btnDelComplImg_" + num).hide();
 		}
 	})
@@ -1514,7 +1512,7 @@ function validate() {
 	} 
 	
 	if (level_no.trim() == "") {
-		$("#level_no").text("난이도를 선택해주세요.");
+		$("#msgHobbyInfo").text("난이도를 선택해주세요.");
 		$("#level_no").focus();
 		return false;
 	} 
