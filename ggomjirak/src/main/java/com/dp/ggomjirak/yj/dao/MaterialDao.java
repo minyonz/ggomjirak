@@ -20,4 +20,6 @@ public interface MaterialDao {
 	public List<HobbyVo> selectHMList(MaterialSearch materialSearch);
 	
 	public int getCountHMList(MaterialSearch materialSearch);
+	
+	public List<String> selectMaterialName();
 }

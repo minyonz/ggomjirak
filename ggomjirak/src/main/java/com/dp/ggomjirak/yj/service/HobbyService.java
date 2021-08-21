@@ -31,4 +31,7 @@ public interface HobbyService {
 	
 //	 __________준비물로 목록조회 ___________
 	public List<HobbyVo> selectHMList(MaterialSearch materialSearch);
+	
+	//준비물 리스트 (자동완성용)
+	public List<String> selectMaterialName();
 }

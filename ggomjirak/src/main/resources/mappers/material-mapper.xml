@@ -130,4 +130,9 @@
  			ORDER BY H.hobby_no DESC
  		</if>
 	</sql>
+	
+	<!-- 자동완성용 준비물이름 리스트 -->
+	<select id="selectMaterialName" resultType="java.lang.String">
+		SELECT material_name FROM tbl_material
+	</select>
  </mapper>

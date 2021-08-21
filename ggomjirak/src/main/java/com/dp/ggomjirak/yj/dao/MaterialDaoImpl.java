@@ -59,6 +59,12 @@ public class MaterialDaoImpl implements MaterialDao {
 	}
 
 
+	@Override
+	public List<String> selectMaterialName() {
+		return sqlSession.selectList(NAMESPACE + "selectMaterialName");
+	}
+
+
 
 
 

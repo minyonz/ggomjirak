@@ -125,11 +125,14 @@ public class HobbyController {
 		List<TimeVo> times = cateService.getTimeList();
 		List<LevelVo> levels = cateService.getLevelList();
 		List<CostVo> costs = cateService.getCostList();
+		List<String> materialList = hobbyService.selectMaterialName();
 		model.addAttribute("user_id", loginVo.getUser_id());
 		model.addAttribute("cates", JSONArray.fromObject(cates));
 		model.addAttribute("times", JSONArray.fromObject(times));
 		model.addAttribute("levels", JSONArray.fromObject(levels));
 		model.addAttribute("costs", JSONArray.fromObject(costs));
+		model.addAttribute("materialList", JSONArray.fromObject(materialList));
+		model.addAttribute("materialList2", materialList);
 		return "hobby/write_form";
 	}
 	

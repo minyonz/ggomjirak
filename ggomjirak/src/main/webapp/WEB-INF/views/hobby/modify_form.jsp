@@ -240,7 +240,14 @@
 		reorder();
 	}
 	function addStepBox(seq) {
-		$(createBox()).insertAfter($("#stepBox_" + seq));;
+		$(createBox()).insertAfter($("#stepBox_" + seq)).hover(
+				function() {
+					$(this).find('.divStepBtn').show();
+				},
+				function() {
+					$(this).find('.divStepBtn').hide();
+				}		
+			);
 		reorder();
 	}
 	
@@ -427,6 +434,7 @@
 	
 	.stepBox {
 		margin-top: 30px;
+		padding-right: 4rem;
 	}
 	.divStepItem {
 		display:inline-block;
@@ -1226,6 +1234,8 @@ function previewMainImg(targetObj) {
 				$("#previewImg_main").attr("src", e.target.result);
 				console.log("$('#main_img').val()", $('#main_img').val());
 				$("#btnDelMainImg").show();
+				//3. 유효성메세지가 있다면 사라지게 하기
+				$(".check_font").text("");
 			}
 		},
 		"error" : function() {
@@ -1821,26 +1831,26 @@ function validate() {
 		var link_url = $("#stepBox_" + (v + 1)).find(".stepLink_url").val();
 		
 		var stepUrlJ = /(http(s)?:\/\/)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}/g; //기본 url패턴인지 검사
-		var httpJ = /^(https?:\/\/)(.*)/g;
+// 		var httpJ = /^(https?:\/\/)(.*)/g;
 // 		console.log(link_url);
 		if (typeof link_url != "undefined" && link_url.trim() != "" && link_url !=  null) {
 			if(!link_url.match(empJ)) {
 				if(!link_url.match(stepUrlJ)) {
-					if (!link_url.match(httpJ)) {
+// 					if (!link_url.match(httpJ)) {
 						// swal 시작
-						Swal.fire({
-							text: 'http:// 또는 https:// 로 시작하게 적어주세요.', 
-							allowOutsideClick: false,
-							iconColor: "#1f5e43",
-							icon: 'warning', 
-							confirmButtonText: "확인",
-							confirmButtonColor: "#1f5e43",
-							didClose: function() {
-								$("#stepBox_" + (v + 1)).find(".stepLink_url").focus();
-							},
-						});
+// 						Swal.fire({
+// 							text: 'http:// 또는 https:// 로 시작하게 적어주세요.', 
+// 							allowOutsideClick: false,
+// 							iconColor: "#1f5e43",
+// 							icon: 'warning', 
+// 							confirmButtonText: "확인",
+// 							confirmButtonColor: "#1f5e43",
+// 							didClose: function() {
+// 								$("#stepBox_" + (v + 1)).find(".stepLink_url").focus();
+// 							},
+// 						});
 						// swal 끝
-					} else {
+// 					} else {
 						Swal.fire({
 							text: '올바른 url형식이 아닙니다.', 
 							allowOutsideClick: false,
@@ -1852,7 +1862,7 @@ function validate() {
 								$("#stepBox_" + (v + 1)).find(".stepLink_url").focus();
 							},
 						});
-					}
+// 					}
 					
 					
 					return false;

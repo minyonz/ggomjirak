@@ -298,5 +298,10 @@ public class HobbyServiceImpl implements HobbyService {
 		return materialDao.selectHMList(materialSearch);
 	}
 
+	@Override
+	public List<String> selectMaterialName() {
+		return materialDao.selectMaterialName();
+	}
+
 
 }

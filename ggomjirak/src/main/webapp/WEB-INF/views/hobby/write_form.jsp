@@ -148,9 +148,7 @@
 			}
 		);
 		
-		
 	});
-	
 	
 	
 	function showNote(seq) {
@@ -202,7 +200,14 @@
 		reorder();
 	}
 	function addStepBox(seq) {
-		$(createBox()).insertAfter($("#stepBox_" + seq));;
+		$(createBox()).insertAfter($("#stepBox_" + seq)).hover(
+				function() {
+					$(this).find('.divStepBtn').show();
+				},
+				function() {
+					$(this).find('.divStepBtn').hide();
+				}		
+			);
 		reorder();
 	}
 	
@@ -364,8 +369,24 @@
 	}
 	
 	.stepBox {
-		margin-top: 30px;
+		padding-top: 30px;
+		padding-right: 4rem;
 	}
+	
+/* 	 .placeholder { */
+/*     width:100%; */
+/*     height:240px; */
+/* 	border:1px solid #1f5e43; */
+/* 	padding-left:40px; */
+/*     margin-top:30px; */
+/*     margin-left:20px; */
+/*     padding-top:10px; */
+/*     top:0; */
+/* /* 	opacity:.1; */ */
+/* /*     background-color:#1f5e43; */ */
+/* /*     box-shadow: 5px 10px 20px #1f5e43; */ */
+/* } */
+ 
 	.divStepItem {
 		display:inline-block;
 		margin-left:50px;
@@ -545,8 +566,17 @@ margin-right: 15px;
 /* .body .navbar .fixed-top {padding-left: 3.5rem;} */
 .body {  padding: 0 2%; }
  }
-  
  
+.ui-menu-item {
+	font-family: 'S-CoreDream-4Regular';
+}
+.ui-menu-item .ui-menu-item-wrapper.ui-state-active {
+    background: #1f5e43 !important;
+/*     font-weight: bold !important; */
+    color: #ffffff !important;
+	border: none;
+    
+}
 </style>
 </head>
 <body>
@@ -1058,6 +1088,8 @@ function previewMainImg(targetObj) {
 				$("#previewImg_main").attr("src", e.target.result);
 				console.log("$('#main_img').val()", $('#main_img').val());
 				$("#btnDelMainImg").show();
+			//3. 유효성메세지가 있다면 사라지게 하기
+				$(".check_font").text("");
 			}
 		},
 		"error" : function() {
@@ -1427,6 +1459,19 @@ function delMaterial(seq) {
 			$(this).find('.btnDelMaterial').hide();
 		}
 	);
+	//준비물 자동완성 기능
+	$(document.body).on('focus', '.materialName' ,function(){
+	    $(".materialName").autocomplete({
+	        source: ${materialList},
+	        select: function(event, ui) {
+	            console.log(ui.item);
+	        },
+	        focus: function(event, ui) {
+	            return false;
+	        }
+	    });
+	});
+	
 	
 // 유효성 체크 메세지 사라지게 하는부분
 $(".main_input").on("keydown", function() {
@@ -1437,6 +1482,7 @@ $(".main_input").on("keydown", function() {
 $(".main_select").on("click", function() {
 	$(".check_font").text("");
 })
+
 
 // 폼전송
 function validate() {
@@ -1572,26 +1618,26 @@ function validate() {
 		var link_url = $("#stepBox_" + (v + 1)).find(".stepLink_url").val();
 		
 		var stepUrlJ = /(http(s)?:\/\/)([a-z0-9\w]+\.*)+[a-z0-9]{2,4}/g; //기본 url패턴인지 검사
-		var httpJ = /^(https?:\/\/)(.*)/g;
-		console.log(link_url);
+// 		var httpJ = /^(https?:\/\/)(.*)/g;
+		console.log("link_url", link_url);
 		if (typeof link_url != "undefined" && link_url.trim() != "" && link_url !=  null) {
 			if(!link_url.match(empJ)) {
 				if(!link_url.match(stepUrlJ)) {
-					if (!link_url.match(httpJ)) {
+// 					if (!link_url.match(httpJ)) {
 						// swal 시작
-						Swal.fire({
-							text: 'http:// 또는 https:// 로 시작하게 적어주세요.', 
-							allowOutsideClick: false,
-							iconColor: "#1f5e43",
-							icon: 'warning', 
-							confirmButtonText: "확인",
-							confirmButtonColor: "#1f5e43",
-							didClose: function() {
-								$("#stepBox_" + (v + 1)).find(".stepLink_url").focus();
-							},
-						});
+// 						Swal.fire({
+// 							text: 'http:// 또는 https:// 로 시작하게 적어주세요.', 
+// 							allowOutsideClick: false,
+// 							iconColor: "#1f5e43",
+// 							icon: 'warning', 
+// 							confirmButtonText: "확인",
+// 							confirmButtonColor: "#1f5e43",
+// 							didClose: function() {
+// 								$("#stepBox_" + (v + 1)).find(".stepLink_url").focus();
+// 							},
+// 						});
 						// swal 끝
-					} else {
+// 					} else {
 						Swal.fire({
 							text: '올바른 url형식이 아닙니다.', 
 							allowOutsideClick: false,
@@ -1603,7 +1649,7 @@ function validate() {
 								$("#stepBox_" + (v + 1)).find(".stepLink_url").focus();
 							},
 						});
-					}
+// 					}
 					
 					
 					return false;
@@ -1646,7 +1692,7 @@ function validate() {
 
 function doSubmit() {
 	valResult = validate();
-	console.log(valResult);
+	console.log("유효성결과", valResult);
     if (!valResult) {
         return false;
     } 
