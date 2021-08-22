@@ -126,9 +126,9 @@
 				</when>
 			</choose>
  		</if>
- 		<if test="sort == 'all'">
- 			ORDER BY H.hobby_no DESC
- 		</if>
+<!--  		<if test="sort == 'all'"> -->
+<!--  			ORDER BY H.hobby_no DESC -->
+<!--  		</if> -->
 	</sql>
 	
 	<!-- 자동완성용 준비물이름 리스트 -->

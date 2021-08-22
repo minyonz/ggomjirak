@@ -1121,8 +1121,8 @@ figure[data-ke-type='opengraph'] .og-host {
 					style="float:right;">후기작성</a>
 		  </div>
 		    <div class="row" style="margin-top: 0.5rem; padding: 0 1rem;">
-		    	<a class="category sort" id="AllSort" ${rp.review_level == 'all' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
-					href="?review_level=all${rPage}#madeByMe">전체</a> <span> |</span> 
+<%-- 		    	<a class="category sort" id="AllSort" ${rp.review_level == 'all' ? 'style="color: #1f5e43; font-weight: 600;"' : '' } --%>
+<%-- 					href="?review_level=all${rPage}#madeByMe">전체</a> <span> |</span>  --%>
 				<a class="category sort" id="newSort" ${rp.review_level == 'new' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
 					 href="?review_level=new${rPage}#madeByMe">최신순</a> <span> |</span> 
 				<a class="category sort" id="ascSort" ${rp.review_level == 'asc' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }

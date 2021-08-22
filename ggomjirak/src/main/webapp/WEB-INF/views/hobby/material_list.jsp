@@ -273,8 +273,8 @@ a {
                           <span class="m_name">${ms.m_name}</span> <span>을(를) 쓰는</span> <span class="m_cnt">${ms.count}</span> <span>개의 취미가 있습니다.</span>
                       </div>
 						<div style="margin-left:auto;">
-							<a class="category sort" id="allSort" ${ms.sort == 'all' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
-								href="search?${m_no}${time}${cost}${level}&sort=all">전체</a> <span> |</span> 
+<%-- 							<a class="category sort" id="allSort" ${ms.sort == 'all' ? 'style="color: #1f5e43; font-weight: 600;"' : '' } --%>
+<%-- 								href="search?${m_no}${time}${cost}${level}&sort=all">전체</a> <span> |</span>  --%>
 							<a class="category sort" id="newSort" ${ms.sort == 'new' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }
 								 href="search?${m_no}${time}${cost}${level}&sort=new">최신순</a> <span> |</span> 
 							<a class="category sort" id="likeSort" ${ms.sort == 'like' ? 'style="color: #1f5e43; font-weight: 600;"' : '' }

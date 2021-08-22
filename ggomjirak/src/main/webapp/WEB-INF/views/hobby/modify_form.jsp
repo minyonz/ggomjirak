@@ -633,7 +633,17 @@ margin-right: 15px;
 .body {  padding: 0 2%; }
  }
   
-
+ 
+.ui-menu-item {
+	font-family: 'S-CoreDream-4Regular';
+}
+.ui-menu-item .ui-menu-item-wrapper.ui-state-active {
+    background: #1f5e43 !important;
+/*     font-weight: bold !important; */
+    color: #ffffff !important;
+	border: none;
+    
+}
 </style>
 </head>
 <body>
@@ -1687,6 +1697,19 @@ function delMaterial(seq) {
 			$(this).find('.btnDelMaterial').hide();
 		}
 	);
+	
+	//준비물 자동완성 기능
+	$(document.body).on('focus', '.materialName' ,function(){
+	    $(".materialName").autocomplete({
+	        source: ${materialList},
+	        select: function(event, ui) {
+	            console.log(ui.item);
+	        },
+	        focus: function(event, ui) {
+	            return false;
+	        }
+	    });
+	});
 	
 // 유효성 체크 메세지 사라지게 하는부분
 $(".main_input").on("keydown", function() {

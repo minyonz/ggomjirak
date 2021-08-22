@@ -334,9 +334,9 @@
 	<sql id="paging">
 		<if test="review_level != null">
  			<choose> 
-				<when test="review_level == 'all'">
-					ORDER BY MBM.mbm_no DESC
-				</when>
+<!-- 				<when test="review_level == 'all'"> -->
+<!-- 					ORDER BY MBM.mbm_no DESC -->
+<!-- 				</when> -->
 				<when test="review_level == 'new'">
 					ORDER BY MBM.reg_date DESC
 				</when>
