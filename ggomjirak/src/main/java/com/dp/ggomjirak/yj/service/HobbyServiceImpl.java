@@ -99,6 +99,10 @@ public class HobbyServiceImpl implements HobbyService {
 			hobbyDao.updateViewCnt(hobby_no);
 		}
 		HobbyVo hobbyVo = hobbyDao.selectHobby(hobby_no);
+		
+		//취미소개 엔터키 작업
+		hobbyVo.setHobby_intro(hobbyVo.getHobby_intro().replace("\r\n" ,"<br>"));
+
 		// 준비물
 		List<HobbyMaterialVo> hobbyMaterials = hobbyDao.selectHobbyMaterialList(hobby_no);
 		System.out.println(hobbyMaterials);

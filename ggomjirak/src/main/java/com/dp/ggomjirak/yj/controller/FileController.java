@@ -24,12 +24,12 @@ import com.dp.ggomjirak.yj.service.HobbyService;
 import com.dp.ggomjirak.yj.util.MyFileUploadUtil;
 
 @RestController
-public class AjaxController {
+public class FileController {
 	
 	@Resource(name="rootPath")
 	private String rootPath;
 	
-	private static final Logger logger = LoggerFactory.getLogger(AjaxController.class);
+	private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 	
 	private static final String MAIN_IMG_UPLOAD_PATH = "hobby/main_img";
 	private static final String STEP_IMG_UPLOAD_PATH = "hobby/make_step";

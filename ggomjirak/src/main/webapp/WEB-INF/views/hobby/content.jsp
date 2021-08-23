@@ -844,11 +844,12 @@ figure[data-ke-type='opengraph'] .og-host {
 			<div class="divMaterial" style="margin-top:2rem">
 				<ul>
 					<c:forEach var="hobbyMaterialVo" items="${hobbyVo.hobbyMaterials}">
-						<a href="/hobby/material/search?m_no=${hobbyMaterialVo.material_no}">
-							<li><span style="color:#212529">${hobbyMaterialVo.materialName}</span> <span class="btn-more">더보기</span>
+							<li><span style="color:#212529">${hobbyMaterialVo.materialName}</span> 
+							<a href="/hobby/material/search?m_no=${hobbyMaterialVo.material_no}">
+							<span class="btn-more">더보기</span>
+							</a> 
 							<span class="ingre_unit" style="float: right; color: #999;">${hobbyMaterialVo.material_detail}</span>
 							</li>
-						</a> 
 					</c:forEach>
 				</ul>
 			</div>

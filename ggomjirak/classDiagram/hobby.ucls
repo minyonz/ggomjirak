@@ -297,8 +297,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="33" language="java" name="com.dp.ggomjirak.yj.controller.AjaxController" project="ggomjirak" 
-    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/controller/AjaxController.java" binary="false" 
+  <class id="33" language="java" name="com.dp.ggomjirak.yj.controller.FileController" project="ggomjirak" 
+    file="/ggomjirak/src/main/java/com/dp/ggomjirak/yj/controller/FileController.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="-604" y="-210"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -307,282 +307,342 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <realization id="34">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="6"/>  
-  </realization>  
+  <dependency id="34">    
+    <end type="SOURCE" refId="26"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
   <association id="35">    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="36" name="likebmDao"/>      
-      <multiplicity id="37" minimum="0" maximum="1"/>    
+      <attribute id="36" name="likebmDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="37" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="38">    
-    <end type="SOURCE" refId="25" navigable="false">      
-      <attribute id="39" name="commentService"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="41">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <association id="42">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="43" name="cateService"/>      
-      <multiplicity id="44" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="45">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="31"/>  
-  </dependency>  
-  <dependency id="46">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="30"/>  
-  </dependency>  
-  <association id="47">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="48" name="completeImgs"/>      
-      <multiplicity id="49" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="50">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="17"/>  
-  </realization>  
-  <association id="51">    
-    <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="52" name="commentDao"/>      
-      <multiplicity id="53" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="26" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="54">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="55" name="makeSteps"/>      
-      <multiplicity id="56" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="57">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="28"/>  
-  </dependency>  
-  <dependency id="58">    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="31"/>  
-  </dependency>  
-  <realization id="59">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="24"/>  
-  </realization>  
-  <association id="60">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="61" name="likeBmService"/>      
-      <multiplicity id="62" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="63">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="32"/>  
-  </dependency>  
-  <association id="64">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="65" name="urlOgTag"/>      
-      <multiplicity id="66" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="22" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="67">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="31"/>  
-  </dependency>  
-  <dependency id="68">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="29"/>  
-  </dependency>  
-  <dependency id="69">    
-    <end type="SOURCE" refId="25"/>    
-    <end type="TARGET" refId="28"/>  
-  </dependency>  
-  <realization id="70">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="26"/>  
-  </realization>  
-  <dependency id="71">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <association id="72">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="73" name="hobbyMaterials"/>      
-      <multiplicity id="74" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="75">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <dependency id="76">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="32"/>  
-  </dependency>  
-  <dependency id="77">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="32"/>  
-  </dependency>  
-  <dependency id="78">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <realization id="79">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="15"/>  
-  </realization>  
-  <association id="80">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="81" name="hobbyMaterials"/>      
-      <multiplicity id="82" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="83">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="12"/>  
-  </realization>  
-  <association id="84">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="85" name="hobbyService"/>      
-      <multiplicity id="86" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="87">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="88" name="hobbyDao"/>      
-      <multiplicity id="89" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="90">    
+  <realization id="38">    
     <end type="SOURCE" refId="20"/>    
     <end type="TARGET" refId="19"/>  
   </realization>  
-  <association id="91">    
-    <end type="SOURCE" refId="33" navigable="false">      
-      <attribute id="92" name="hobbyService"/>      
-      <multiplicity id="93" minimum="0" maximum="1"/>    
+  <association id="39">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="40" name="hobbyMaterials">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="41" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="42">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="29"/>  
+  </dependency>  
+  <dependency id="43">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="31"/>  
+  </dependency>  
+  <dependency id="44">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="31"/>  
+  </dependency>  
+  <association id="45">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="46" name="hobbyService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="47" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="94">    
-    <end type="SOURCE" refId="24"/>    
-    <end type="TARGET" refId="28"/>  
-  </dependency>  
-  <dependency id="95">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="32"/>  
-  </dependency>  
-  <dependency id="96">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="31"/>  
-  </dependency>  
-  <dependency id="97">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="29"/>  
-  </dependency>  
-  <dependency id="98">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <dependency id="99">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="29"/>  
-  </dependency>  
-  <realization id="100">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="13"/>  
-  </realization>  
-  <dependency id="101">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="30"/>  
-  </dependency>  
-  <dependency id="102">    
+  <dependency id="48">    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="30"/>  
   </dependency>  
-  <dependency id="103">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="29"/>  
-  </dependency>  
-  <dependency id="104">    
+  <dependency id="49">    
     <end type="SOURCE" refId="21"/>    
     <end type="TARGET" refId="28"/>  
   </dependency>  
-  <dependency id="105">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="30"/>  
-  </dependency>  
-  <dependency id="106">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="28"/>  
-  </dependency>  
-  <dependency id="107">    
+  <dependency id="50">    
     <end type="SOURCE" refId="7"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
-  <dependency id="108">    
-    <end type="SOURCE" refId="5"/>    
+  <dependency id="51">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="30"/>  
+  </dependency>  
+  <association id="52">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="53" name="hobbyMaterials">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="54" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="55">    
+    <end type="SOURCE" refId="13"/>    
     <end type="TARGET" refId="32"/>  
   </dependency>  
-  <association id="109">    
+  <realization id="56">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="13"/>  
+  </realization>  
+  <dependency id="57">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="58">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="110" name="materialDao"/>      
-      <multiplicity id="111" minimum="0" maximum="1"/>    
+      <attribute id="59" name="materialDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="60" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="112">    
+  <dependency id="61">    
     <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="30"/>  
+    <end type="TARGET" refId="32"/>  
   </dependency>  
-  <dependency id="113">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="31"/>  
+  <realization id="62">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="26"/>  
+  </realization>  
+  <dependency id="63">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="32"/>  
   </dependency>  
-  <association id="114">    
+  <association id="64">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="65" name="commentService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="66" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="67">    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="115" name="cateDao"/>      
-      <multiplicity id="116" minimum="0" maximum="1"/>    
+      <attribute id="68" name="cateDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="69" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="13" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="117">    
-    <end type="SOURCE" refId="11"/>    
+  <realization id="70">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="24"/>  
+  </realization>  
+  <association id="71">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="72" name="makeSteps">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="73" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="74">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="30"/>  
+  </dependency>  
+  <dependency id="75">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="31"/>  
+  </dependency>  
+  <dependency id="76">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="30"/>  
+  </dependency>  
+  <dependency id="77">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="31"/>  
+  </dependency>  
+  <dependency id="78">    
+    <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="29"/>  
   </dependency>  
+  <association id="79">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="80" name="completeImgs">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="81" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="82">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="29"/>  
+  </dependency>  
+  <dependency id="83">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <realization id="84">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="6"/>  
+  </realization>  
+  <dependency id="85">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="29"/>  
+  </dependency>  
+  <realization id="86">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="87">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="88" name="cateService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="89" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="90">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <dependency id="91">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="32"/>  
+  </dependency>  
+  <dependency id="92">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="30"/>  
+  </dependency>  
+  <realization id="93">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="12"/>  
+  </realization>  
+  <association id="94">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="95" name="likeBmService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="96" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="97">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="98" name="urlOgTag">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="99" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="100">    
+    <end type="SOURCE" refId="33" navigable="false">      
+      <attribute id="101" name="hobbyService">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="102" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="103">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="104" name="hobbyDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="105" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="106">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="31"/>  
+  </dependency>  
+  <dependency id="107">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="28"/>  
+  </dependency>  
+  <association id="108">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="109" name="commentDao">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="110" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="111">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="29"/>  
+  </dependency>  
+  <dependency id="112">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="32"/>  
+  </dependency>  
+  <dependency id="113">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <realization id="114">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <dependency id="115">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="116">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <realization id="117">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

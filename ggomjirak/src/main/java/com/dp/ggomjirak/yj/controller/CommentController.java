@@ -28,6 +28,7 @@ public class CommentController {
 	@RequestMapping(value="/selectCommentList/{h_no}", method=RequestMethod.GET)
 	public List<CommentVo> selectCommentList(@PathVariable("h_no") int h_no) throws Exception {
 		List<CommentVo> list = commentService.selectCommentList(h_no);
+		System.out.println(list);
 		return list;
 	}
 	
