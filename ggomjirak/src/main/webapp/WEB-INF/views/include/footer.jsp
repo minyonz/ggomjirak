@@ -56,6 +56,9 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
+        <script src="/resources/js/jquery.nice-select.min.js"></script>
+    <script src="/resources/js/jquery-ui.min.js"></script>
+    <script src="/resources/js/jquery.slicknav.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>								
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>	
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" ></script>
@@ -63,9 +66,7 @@
 	<!-- 윤지 삭제 (제이쿼리 중복 -> 에러 ) -->
 <!--     <script src="/resources/js/jquery-3.3.1.min.js"></script> -->
 <!--     <script src="/resources/js/bootstrap.min.js"></script> -->
-    <script src="/resources/js/jquery.nice-select.min.js"></script>
-    <script src="/resources/js/jquery-ui.min.js"></script>
-    <script src="/resources/js/jquery.slicknav.js"></script>
+
 <!--     <script src="/resources/js/mixitup.min.js"></script> -->
     <script src="/resources/js/owl.carousel.min.js"></script>
     <script src="/resources/js/main.js"></script>
